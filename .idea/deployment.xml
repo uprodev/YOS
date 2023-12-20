@@ -26,7 +26,7 @@
       <paths name="YOS">
         <serverdata>
           <mappings>
-            <mapping deploy="/yos.upro.space/wp-content/themes/yos" local="$PROJECT_DIR$/yos" web="/" />
+            <mapping deploy="/yos.upro.space/wp-content/themes/yos" local="$PROJECT_DIR$/theme/yos" web="/" />
           </mappings>
         </serverdata>
       </paths>
