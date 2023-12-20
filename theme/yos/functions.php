@@ -20,7 +20,7 @@ function theme_register_nav_menu(){
 	add_theme_support( 'post-thumbnails'); 
 }
 
-
+add_theme_support( 'woocommerce');
 
 if( function_exists('acf_add_options_page') ) {
 	
