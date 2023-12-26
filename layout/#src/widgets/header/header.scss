@@ -91,7 +91,7 @@
     left: 0;
     width: 100%;
     opacity: 0;
-    transition: opacity $transition;
+    transition: opacity $transition, color $transition;
 
     @media (min-width: $mq-lg) {
         font-size: $text-2;

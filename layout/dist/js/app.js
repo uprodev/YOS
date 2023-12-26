@@ -766,18 +766,19 @@ if (topOffers.length) {
 
         window.addEventListener('resize', setPaddingTopWithouTransition);
 
-        const buttonClose = topOffer.querySelector('[data-action="close-top-offer"]');
-        if (!buttonClose) return;
+        topOffer.addEventListener('click', (e) => {
+            if(e.target.closest('[data-action="close-top-offer"]')) {
+                e.preventDefault();
 
-        buttonClose.addEventListener('click', () => {
-            topOffer.classList.remove('show');
-            setPaddingTop(0);
-
-            setTimeout(() => {
-                CategoryItems.setHeight();
-            }, 300);
-
-            window.removeEventListener('resize', setPaddingTopWithouTransition);
+                topOffer.classList.remove('show');
+                setPaddingTop(0);
+    
+                setTimeout(() => {
+                    CategoryItems.setHeight();
+                }, 300);
+    
+                window.removeEventListener('resize', setPaddingTopWithouTransition);
+            }
         })
     })
 }
