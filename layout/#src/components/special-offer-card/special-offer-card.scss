@@ -1,5 +1,6 @@
 .special-offer-card {
     height: 100%;
+    position: relative;
 
     @media (min-width: $mq-md) {
         display: flex;
@@ -41,6 +42,60 @@
 
         @media (min-width: $mq-md) {
             order: 1;
+        }
+    }
+
+
+    &__full-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        z-index: 4;
+        background-color: $pagesBg;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2rem;
+        transform: scaleX(0);
+        transition: transform $transition;
+        transform-origin: left;
+        pointer-events: none;
+        //visibility: hidden;
+        padding-bottom: 2px;
+
+
+        &.show {
+            //visibility: visible;
+            pointer-events: auto;
+            transform: scaleY(1);
+        }
+
+
+        & .special-offer-card__text {
+            height: 100%;
+            overflow: auto;
+        }
+
+        & ul {
+            padding-left: 0;
+            color: $textColorSecondary;
+            font-size: $text-2;
+
+            margin-bottom: 1rem;
+
+            & > li {
+                list-style: none;
+
+                &:not(:first-child) {
+                    margin-top: 0.9rem;
+                }
+            }
+        }
+
+        & .button-link {
+            justify-self: flex-start;
         }
     }
 }

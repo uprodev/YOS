@@ -58,20 +58,21 @@ body {
 		}
 	}
 
-	&::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
-	}
-	&::-webkit-scrollbar-thumb {
-		background-color: $themeColorThird;
-		border-radius: 0px;
-	}
+}
 
-	&::-webkit-scrollbar-track {
-		background-color: #eaeaea;
-		border-radius: 0px;
-		box-shadow: inset 0px 0px 0px 0px #fff;
-	}
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: $themeColorThird;
+	border-radius: 0px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #eaeaea;
+	border-radius: 0px;
+	box-shadow: inset 0px 0px 0px 0px #fff;
 }
 
 input,
