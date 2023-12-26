@@ -28,10 +28,6 @@
     @media (min-width: $mq-lg) {
         display: none;
     }
-
-    &__categories {
-
-    }
 }
 
 .header-actions {
@@ -291,7 +287,7 @@
         background-color: $themeColorThird;
     }
 
-    &__item {
+    &__tab {
         position: absolute;
         top: 100%;
         left: -1rem;
@@ -299,9 +295,24 @@
         background-color: $pagesBg;
         width: 29.2rem;
         display: none;
-        //animation: fadeIn $transition;
         height: calc(100svh - 14.9rem);
         overflow: auto;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+        &::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: $themeColorThird;
+            border-radius: 0px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background-color: #eaeaea;
+            border-radius: 0px;
+            box-shadow: inset 0px 0px 0px 0px #fff;
+        }
 
         &.show {
             display: block;
@@ -310,9 +321,10 @@
         @media (min-width: $mq-md) {
             left: -2rem;
         }
+
         @media (min-width: $mq-lg) {
-            height: auto !important;
-            width: 100vw;
+            height: auto;
+            width: calc(100% + 4rem);
         }
     }
 
@@ -366,9 +378,53 @@
         }
     }
 
+    &__list-title {
+        display: block;
+
+
+        @media (min-width: $mq-lg) {
+            display: inline;
+        }
+
+        &.active {
+            color: $themeColorSecondary;
+        }
+
+        &.icon {
+            padding-right: 2rem;
+            position: relative;
+
+            &:before {
+                font-family: 'icomoon' !important;
+                speak: never;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+
+                position: absolute;
+                content: "\e911";
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                transition: transform $transition;
+            }
+
+            &.active {
+                &:before {
+                    transform: translateY(-50%) scaleY(-1);
+                }
+            }
+        }
+    }
+
     &__sublist {
         padding-left: 0;
         margin-bottom: 0;
+        display: none;
 
         @media (min-width: $mq-lg) {
             padding-left: 2rem;

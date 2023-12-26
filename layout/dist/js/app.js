@@ -659,12 +659,12 @@ class CategoryItems {
     static setHeight() {
         if(!this._header) return;
         this._items.forEach(item => {
-            item.style.height = document.documentElement.clientHeight - this._header.clientHeight + 'px';
+            item.style.maxHeight = document.documentElement.clientHeight - this._header.clientHeight + 'px';
         })
     }
 
     static init() {
-        this._items = Array.from(categoriesEl.querySelectorAll('[data-category-item]'));
+        this._items = Array.from(categoriesEl.querySelectorAll('[data-category-tab]'));
         this._header = document.querySelector('[data-header]');
         this.setHeight();
 
@@ -674,8 +674,8 @@ class CategoryItems {
 
 const categoriesEl = document.querySelector('[data-categories]');
 if(categoriesEl) {
-    const navItems = categoriesEl.querySelectorAll('[data-action="show-category-nav-by-index"]');
-    const targetItems = Array.from(categoriesEl.querySelectorAll('[data-category-item]'));
+    const navItems = categoriesEl.querySelectorAll('[data-action="show-category-tab-by-index"]');
+    const targetItems = Array.from(categoriesEl.querySelectorAll('[data-category-tab]'));
 
     const resetNavItems = () => {
         navItems.forEach(navItem => navItem.classList.remove('active'))
@@ -711,6 +711,31 @@ if(categoriesEl) {
     })
 
     CategoryItems.init();
+}
+
+// category-tabs collapse sublist handler
+const categoryTabs = document.querySelectorAll('[data-category-tab]');
+if(categoryTabs.length) {
+    categoryTabs.forEach(categoryTab => {
+        const listTitles = categoryTab.querySelectorAll('.categories__list-title');
+        listTitles.forEach(listTitle => {
+            const sublist = listTitle.nextElementSibling;
+            if(!sublist || !sublist.closest('.categories__sublist')) return;
+            listTitle.classList.add('icon')
+            
+            listTitle.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                if(listTitle.classList.contains('active')) {
+                    listTitle.classList.remove('active');
+                    this.utils.slideUp(sublist, 300);
+                } else {
+                    listTitle.classList.add('active');
+                    this.utils.slideDown(sublist, 300);
+                }
+            })
+        })
+    })
 }
 
 // Top offer
