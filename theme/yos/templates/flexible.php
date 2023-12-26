@@ -14,39 +14,6 @@ $id = get_the_ID();
 
 <?php endif; ?>
 
-<section class="home-intro">
-    <div class="home-intro__slider swiper" data-slider="home-intro">
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="home-intro__img ibg">
-                        <picture>
-                            <source srcset="img/photo/home-intro-desk.jpg" media="(min-width: 768px)">
-                            <img src="img/photo/home-intro-mob.jpg" alt="img">
-                        </picture>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="home-intro__img ibg">
-                        <picture>
-                            <source srcset="img/photo/home-intro-desk.jpg" media="(min-width: 768px)">
-                            <img src="img/photo/home-intro-mob.jpg" alt="img">
-                        </picture>
-                    </div>
-                </div>
-            </div>
-            <div class="slider-buttons container">
-                <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
-                <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
-            </div>
-        </div>
-        <div class="swiper-scrollbar slider-scrollbar"></div>
-    </div>
-    <div class="home-intro__bottom container">
-        <h2 class="title-2">твій шлях до бездоганної шкіри</h2>
-    </div>
-</section>
-
 <div class="top-space-60 top-space-md-170">
     <div class="carousel">
         <div class="container">
