@@ -1,0 +1,63 @@
+.swiper-scrollbar.slider-scrollbar {
+    position: static;
+    background-color: $themeColorFourth;
+    height: 0.6rem;
+    border-radius: 0;
+    width: 100%;
+
+    & .swiper-scrollbar-drag {
+        border-radius: 0;
+        background-color: $themeColorThird;
+    }
+}
+
+.slider-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+
+    & .left {
+        margin-left: -0.5rem;
+    }
+    & .right {
+        margin-right: -0.5rem;
+    }
+}
+
+.slider-btn {
+    font-size: 2.1rem;
+    color: currentColor;
+    padding: 0.5rem;
+    display: inline-flex;
+    transition: background-color $transition;
+
+    @media #{$mouse-device} {
+        &:hover {
+            background-color: rgba($themeColor, 0.2);
+        }
+    }
+
+    &.swiper-button-disabled {
+        pointer-events: none;
+        color: $themeColorFourth;
+    }
+
+    &.swiper-button-lock {
+        display: none;
+    }
+}
+
+.slider-pagination.swiper-pagination-custom {
+    font-family: $mainFontFamily;
+    color: $textColor;
+    font-weight: 600;
+    width: auto;
+}
+
+
+.slider-navigations {
+    & .slider-buttons {
+        margin-top: 2rem;
+    }
+}

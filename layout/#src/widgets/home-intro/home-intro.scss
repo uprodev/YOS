@@ -1,0 +1,66 @@
+.home-intro {
+    &__slider {
+        position: relative;
+
+        & .swiper-wrapper {
+            z-index: 1;
+        }
+
+        & .swiper-scrollbar.slider-scrollbar {
+            width: calc(100% - 2rem);
+            margin: 2rem auto 0;
+
+            @media (min-width: $mq-md) {
+                width: calc(100% - 4rem);
+            }
+        }
+
+        & .slider-buttons {
+            display: none;
+
+            @media (min-width: $mq-md) {
+                display: flex;
+                position: absolute;
+                z-index: 2;
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%) translateX(-50%);
+                color: $textColorThird;
+
+                & .slider-btn {
+                    @media #{$mouse-device} {
+                        &:hover {
+                            background-color: rgba($textColorThird, 0.2);
+                        }
+                    }
+
+                    &.swiper-button-disabled {
+                        color: $textColorThird;
+                        opacity: 0.3;
+                    }
+                }
+            }
+        }
+    }
+
+    &__img {
+        height: 38rem;
+
+        @media (min-width: $mq-md) {
+            height: 44.5rem;
+        }
+    }
+
+    &__scrollbar {
+    }
+
+    &__bottom {
+        display: none;
+
+        @media (min-width: $mq-md) {
+            display: block;
+            text-align: right;
+            margin-top: 7rem;
+        }
+    }
+}

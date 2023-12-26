@@ -1,49 +1,50 @@
 
 
 //<ШРИФТЫ>===========================================================================================================
-$mainFontFamily:  'Mulish', sans-serif;
+$mainFontFamily: 'SFProDisplay', sans-serif;
+$mainFontFamilyItalic: 'SFProDisplay-Italic', sans-serif;
+$secondFontFamily: 'Inter', sans-serif;
+$thirdFontFamily: 'HelloAmerica', sans-serif;
 //</ШРИФТЫ>===========================================================================================================
+
 
 //<РАЗМЕРЫ КОНТЕЙНЕРА>===========================================================================================================
 $minwidth: 320px;
-$mw: 1170;
-$md1: 1267.98;
-$md2: 991.98;
-$md3: 767.98;
-$md4: 479.98;
+$mq-sm: 576px;
+$mq-md: 768px;
+$mq-lg: 992px;
+$mq-xl: 1200px;
+$mq-xxl: 1400px;
+$mouse-device: "(hover: hover) and (pointer: fine)";
+$touch-device: "(hover: none) and (pointer: coarse)";
 //</РАЗМЕРЫ КОНТЕЙНЕРА>===========================================================================================================
 
-$textColor: #666666;
-$textColorSecondary: #999999;
-$textColorThird: #A8084D;
-$titlceColor: #333333;
-$hover: #848102;
-$mainColor: #9C9A00;
-$secondColor: #DC0451;
-$dangerColor:  #FF4444;
-$successColor:#00C367;
-$infoColor: #BC62EF;
-$lightColor: #fff;
-$warningColor: #FFC31C;
+$textColor: #121212;
+$textColorSecondary: #6A6B6E;
+$textColorThird: #fff;
+$textColorWarning: #FF0000;
 
+$themeColor: #121212;
+$themeColorSecondary: #0007FF;
+$themeColorThird: #6A6B6E;
+$themeColorFourth: #EAEAEA;
+$themeColorWarning: #FF0000;
+$pagesBg: #fff;
+$hover: #0007FF;
+$bgHover: rgba($themeColorThird, 0.1);
 
+$step: .5rem;
 
-:root {
-    --bs-primary: #222222;
-    --bs-secondary: #037847;
-    --bs-success: #00C367;
-    --bs-info: #BC62EF;
-    --bs-warning: #FFC31C;
-    --bs-danger: #FF4444;
-    --bs-light: #fff;
-    --bs-dark: #000;
+$transition: .15s ease;
 
-    --bs-primary-rgb: 34, 34, 34;
-    --bs-secondary-rgb: 3, 120, 71;
-    --bs-success-rgb: 0, 195, 103;
-    --bs-info-rgb: 188, 98, 239;
-    --bs-warning-rgb: 255, 195, 28;
-    --bs-danger-rgb: 255, 68, 68;
-    --bs-light-rgb: 255, 255, 255;
-    --bs-dark-rgb: 0, 0, 0;
-}
+$text-1: 1.2rem;
+$text-1-md: 1.4rem;
+
+$text-2: 1.4rem;
+$text-2-md: 1.6rem;
+
+$text-3: 1.6rem;
+$text-3-md: 2rem;
+
+$text-4: 2rem;
+$text-4-md: 2.4rem;

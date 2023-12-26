@@ -3,24 +3,38 @@
 	<title>@@title</title>
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<script>
+		let element = document.querySelector('html');
+		if (element) {
+			const setFontSize = () => {
+				let value = 10 / 1440 * element.clientWidth;
+				element.style.fontSize = value + 'px';
+			}
+
+			setFontSize();
+
+			window.addEventListener('resize', setFontSize);
+		}
+	</script>
+
 	<link rel="stylesheet" href="css/style.css">
 	<style>
-		body.page-is-load ._preload-body {
+		body.page-loaded ._preloader {
 			opacity: 0;
 			visibility: hidden;
 		}
 
-		body.page-is-load ._preload-body:before {
+		body.page-loaded ._preloader:before {
 			display: none;
 		}
 
-		._preload-body {
+		._preloader {
 			background-color: #fff;
 			position: fixed;
 			top: 0;
@@ -33,7 +47,7 @@
 			transition: all .6s ease .2s;
 		}
 
-		._preload-body:before {
+		._preloader:before {
 			position: absolute;
 			content: '';
 			z-index: 999;

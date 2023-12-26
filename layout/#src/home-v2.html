@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" >
+@@include('_head.html',{
+"title": "YOS"
+})
+
+<body >
+	<div class="_preloader"></div>
+
+	@@include('widgets/header/_header-without-offer.html',{
+	"mod": ""
+	})
+	<!-- == // TOP LINE ================== -->
+
+	<main class="_page home-page">
+		@@include('widgets/home-intro/_home-intro-one-slide.html')
+
+		<div class="top-space-60 top-space-md-170">
+			@@include('widgets/carousel/_carousel-bestseller.html')
+		</div>
+		
+		<div class="top-space-140 top-space-md-120">
+			@@include('widgets/banner/_category-banner.html')
+		</div>
+
+		<div class="top-space-140 top-space-md-150">
+			@@include('widgets/carousel/_carousel-tabs.html')
+		</div>
+
+		<div class="top-space-140 top-space-md-100">
+			@@include('widgets/articles-preview/_articles-preview.html')
+		</div>
+
+		<div class="top-space-140 top-space-md-150">
+			@@include('widgets/ticker-logos/_ticker-logos.html')
+		</div>
+
+		<div class="top-space-140 top-space-md-150">
+			@@include('widgets/special-offers/_special-offers.html')
+		</div>
+
+		<div class="top-space-140 top-space-md-150">
+			<div class="image-full-width">
+				<img src="img/photo/phrase.png" alt="">
+			</div>
+		</div>
+
+		<div class="top-space-140 top-space-md-150">
+			@@include('widgets/instagram/_instagram.html')
+		</div>
+	</main>
+
+	<!-- == FOOTER ================== -->
+	@@include('widgets/footer/_footer.html',{})
+	<!-- == // FOOTER ================== -->
+
+</body>
+
+</html>

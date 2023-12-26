@@ -1,0 +1,41 @@
+.category-links {
+
+    &__title {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        justify-content: space-between;
+    }
+
+    &__list {
+        margin-top: 2rem;
+
+        &.swiper {
+            overflow: visible;
+        }
+
+        & .swiper-wrapper {
+            @media (min-width: $mq-md) {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        & .swiper-slide {
+            width: auto;
+            
+            &:not(:last-child) {
+                padding-right: 2rem;
+            }
+        }
+
+        & .swiper-scrollbar {
+            margin-top: 1.5rem;
+
+            &:not(.swiper-scrollbar-horizontal) {
+                display: none;
+            }
+        }
+        
+    }
+}

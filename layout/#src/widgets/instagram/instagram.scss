@@ -1,0 +1,93 @@
+.instagram {
+    overflow: hidden;
+    & .swiper:not(.category-links__list) {
+        margin-top: 4rem;
+        overflow: visible;
+    }
+
+    & .category-links__list {
+        margin-top: 1rem;
+    }
+
+    & .swiper-slide {
+        width: auto;
+        height: auto;
+        @media (min-width: $mq-md) {
+            &:not(:last-child) {
+                padding-right: 6rem;
+            }
+        }
+
+        &.hide-in-mobile {
+            display: none;
+
+            @media (min-width: $mq-md) {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    &__head {
+        @media (min-width: $mq-md) {
+            display: none;
+        }
+    }
+}
+
+.instagram-card {
+    display: block;
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    color: $textColorThird !important;
+    font-size: 1.9rem;
+
+    @media (min-width: $mq-md) {
+        width: 19.07rem;
+        height: 18.8rem;
+        font-size: 2.8rem;
+    }
+
+    @media #{$mouse-device} {
+        &:hover {
+            & img {
+                filter: grayscale(0%);
+            }
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+
+        @media #{$mouse-device} {
+            & img {
+                transition: filter $transition;
+                filter: grayscale(100%);
+            }
+        }
+    }
+
+    &:before {
+        font-family: 'icomoon' !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        position: absolute;
+        content: "\e900";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+    }
+}
+

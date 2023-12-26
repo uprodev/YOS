@@ -23,18 +23,39 @@
 @import "vars";
 // ==== // VARS ===========================================================================================
 
+// ==== UTILs ===========================================================================================
+@import "utils";
+// ==== // UTILs ===========================================================================================
+
 
 // ==== BASE STYLES ===========================================================================================
 @import "base";
 // ==== // BASE STYLES ===========================================================================================
 
-
-// ==== components BLOCKS =====================================================
-@import "../components/header/header";
-@import "../components/footer/footer";
+// ==== components =====================================================
 @import "../components/buttons/buttons";
-@import "../components/card/card";
-// ==== // components BLOCKS =====================================================
+@import "../components/popup/popup";
+@import "../components/popup-search/popup-search";
+@import "../components/inputs/inputs";
+@import "../components/slider-navigations/slider-navigations";
+@import "../components/product-card/product-card";
+@import "../components/category-links/category-links";
+@import "../components/link-label/link-label";
+@import "../components/article-carp-prview/article-carp-prview";
+@import "../components/special-offer-card/special-offer-card";
+// ==== // components =====================================================
+
+// ==== widgets =====================================================
+@import "../widgets/header/header";
+@import "../widgets/footer/footer";
+@import "../widgets/home-intro/home-intro";
+@import "../widgets/carousel/carousel";
+@import "../widgets/banner/banner";
+@import "../widgets/ticker-logos/ticker-logos";
+@import "../widgets/special-offers/special-offers";
+@import "../widgets/image-full-width/image-full-width";
+@import "../widgets/instagram/instagram";
+// ==== // widgets =====================================================
 
 // ==== PAGES =====================================================
 @import "pages/home";

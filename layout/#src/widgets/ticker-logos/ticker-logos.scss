@@ -1,0 +1,56 @@
+.ticker-logos {
+    height: 25.4rem;
+
+    @media (min-width: $mq-md) {
+        height: auto;
+    }
+
+    & .swiper-wrapper { 
+        transition-timing-function:linear !important; 
+    }
+
+    & .swiper-slide {
+        width: 24rem;
+        height: 11.6rem;
+
+        @media (min-width: 0px) and (max-width: 767.98px) {
+            &:nth-child(even) {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (min-width: $mq-md) {
+            width: 35.5rem;
+            height: 16.2rem;
+            padding-right: 2rem;
+        }
+    }
+}
+
+.ticker-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid $themeColorFourth;
+    transition: border-color $transition;
+    padding: 3rem;
+
+    @media (min-width: $mq-md) {
+        padding: 5rem;
+    }
+
+    @media #{$mouse-device} {
+        &:hover {
+            border-color: $themeColor;
+        }
+    }
+
+    & img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

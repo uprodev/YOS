@@ -1,0 +1,45 @@
+.article-carp-prview {
+    @media (min-width: $mq-md) {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+
+    &__img {
+        height: 25.6rem;
+
+        @media (min-width: $mq-md) {
+            height: 0;
+            padding-bottom: 82.9%;
+            margin-top: 1rem;
+        }
+    }
+
+    &__text {
+        margin-top: 2rem;
+
+        @media (min-width: $mq-md) {
+            margin-top: 0;
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+    }
+
+    &__title {
+    }
+
+    &__btn {
+        display: none;
+
+        @media (min-width: $mq-md) {
+            display: block;
+        }
+    }
+}
+.ibg {
+}
+.button-link {
+}

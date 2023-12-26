@@ -1,0 +1,62 @@
+.input-wrap {
+    display: block;
+    position: relative;
+
+    & .input {
+        position: relative;
+        z-index: 1;
+    }
+
+    &.using {
+        & .input {
+            border-color: $themeColor;
+        }
+
+        & .input-label {
+            top: 0.8rem;
+            font-size: 1rem;
+        }
+    }
+}
+.input-label {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%);
+    font-size: $text-2;
+    color: $textColorSecondary;
+    cursor: text;
+    pointer-events: none;
+    transition: top $transition, font-size $transition;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 3.6rem;
+    outline: none;
+    box-shadow: none;
+    padding: 1.4rem 2rem 0.4rem;
+    border-radius: 0;
+    border: 1px solid $themeColorFourth;
+    font-size: $text-3;
+    color: $textColor;
+    ransition: border-color $transition;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+        -webkit-text-fill-color: $textColor;
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    }
+
+    &::placeholder {
+        opacity: 0;
+    }
+
+    @media (min-width: $mq-md) {
+        height: 4rem;
+    }
+}

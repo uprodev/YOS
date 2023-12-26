@@ -161,52 +161,46 @@ class Utils {
 		}
 	}
 
-	setSameHeight() {
-		let elements = document.querySelectorAll('[data-set-same-height]');
-		if(elements.length) {
-			const getGropus = (elements) => {
-				let obj = {};
+	initCollapse() {
+		const collapseActionElements = document.querySelectorAll('[data-collapse]');
+		if(collapseActionElements.length) {
+			collapseActionElements.forEach(actionEl => {
 
-				elements.forEach(el => {
-					let id = el.dataset.setSameHeight;
-					if(obj.hasOwnProperty(id)) {
-						obj[id].push(el);
+				const id = actionEl.getAttribute('data-collapse');
+				if(!id) return;
+
+				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
+				if(!targetElements.length) return;
+
+				actionEl.addEventListener('click', (e) => {
+					e.preventDefault();
+					
+					if(actionEl.classList.contains('open')) {
+						actionEl.classList.remove('open');
+						targetElements.forEach(targetEl => {
+							this.slideUp(targetEl, 300)
+						})
 					} else {
-						obj[id] = [el];
+						actionEl.classList.add('open');
+						targetElements.forEach(targetEl => {
+							this.slideDown(targetEl, 300)
+						})
 					}
 				})
-
-				return obj;
-			}
-			const setMinHeight = (groups) => {
-				for(let key in groups) {
-					let maxHeight = Math.max(...groups[key].map(i => i.clientHeight));
-					
-					groups[key].forEach(el => {
-						el.style.minHeight = maxHeight + 'px';
-					})
-				}
-			}
-
-			let groups = getGropus(elements);
-
-			if(document.documentElement.clientWidth > 767.98) {
-				setMinHeight(groups);
-			}
+			})
 		}
 	}
 
-	setFullHeaghtSize() {
-		let elments = document.querySelectorAll('[data-full-min-height]');
-		if(elments.length) {
-			elments.forEach(el => {
-				const setSize = () => {
-					el.style.minHeight = document.documentElement.clientHeight + 'px';
-				}
-
-				setSize();
-
-				window.addEventListener('resize', setSize);
+	initInputMask() {
+		let items = document.querySelectorAll('[data-mask]');
+		if (items.length) {
+			items.forEach(item => {
+				let maskValue = item.dataset.mask;
+	
+				Inputmask(maskValue, {
+					clearIncomplete: false,
+					clearMaskOnLostFocus: false,
+				}).mask(item);
 			})
 		}
 	}

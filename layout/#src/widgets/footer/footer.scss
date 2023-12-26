@@ -1,0 +1,186 @@
+.footer-desk {
+    @media (min-width: 0px) and (max-width: 767.98px) {
+        display: none;
+    }
+    background-color: $themeColor;
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        color: $textColorThird;
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+    }
+
+    &__col {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        flex: 1 1 auto;
+
+        &-1 {
+            max-width: 33rem;
+        }
+        &-2 {
+            max-width: 27.4rem;
+        }
+        &-3 {
+            max-width: 39.8rem;
+        }
+        &-4 {
+            max-width: 25.9rem;
+        }
+    }
+
+    &__logo {
+        height: 5.3rem;
+
+        & img, & svg {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
+
+    &__text {
+        max-width: 26rem;
+    }
+
+    &__copy {
+        margin-top: auto;
+        font-size: $text-2;
+        max-width: 26.2rem;
+    }
+
+    &__title {
+    }
+
+    &__list {
+        padding-left: 0;
+        margin-bottom: 0;
+
+        & > li {
+            &:not(:first-child) {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+.container {
+}
+.text-content {
+}
+.last-no-margin {
+}
+.title-2 {
+}
+.button-link {
+}
+
+
+.footer-mob {
+    background-color: $themeColor;
+
+    @media (min-width: $mq-lg) {
+        display: none;
+    }
+
+    &__body {
+        padding-top: 2rem;
+        padding-bottom: 4.5rem;
+        color: $textColorThird;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &__logo {
+        height: 5.3rem;
+
+        & img, & svg {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
+
+    &__text {
+        max-width: 31rem;
+    }
+
+    &__time {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    &__title {
+    }
+
+    &__contacts {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    &__vertical-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-end;
+    }
+
+    &__copy {
+        font-size: $text-2;
+        line-height: 2em;
+        max-width: 25.7rem;
+    }
+}
+
+.subscription-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    
+
+    & input {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        outline: none;
+        border-radius: 0;
+        padding: 0;
+        background-color: transparent;
+        color: $textColorThird;
+        font-size: $text-2;
+        border: none;
+        border-bottom: 1px solid $textColorThird;
+
+        &::placeholder {
+            color: #929292;
+            transition: opacity $transition;
+        }
+
+        &:focus {
+            opacity: 1;
+            &::placeholder {
+                opacity: 0;
+            }
+        }
+    }
+
+    & button {
+        flex: 0 0 auto;
+        color: $textColorThird;
+    }
+}

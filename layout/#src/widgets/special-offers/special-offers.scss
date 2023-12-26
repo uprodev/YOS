@@ -1,0 +1,39 @@
+.special-offers {
+    & .swiper-wrapper {
+        @media (min-width: $mq-md) {
+            margin-left: -2rem;
+        }
+    }
+
+    & .swiper-slide {
+
+        @media (min-width: $mq-md) {
+            width: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+
+            & .special-offer-card {
+                width: 34.5rem;
+            }
+        }
+
+        &.has-banner {
+            @media (min-width: 0px) and (max-width: 767.98px) {
+                display: none;
+            }
+        }
+    }
+    &__banner {
+        width: 71rem;
+        min-height: 55.8rem;
+        height: 100%;
+    }
+
+    &__title {
+        @media (min-width: 0px) and (max-width: 767.98px) {
+            display: none;
+        }
+    }
+}
