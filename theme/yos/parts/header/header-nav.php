@@ -1,13 +1,21 @@
-<div class="top-offer" data-top-offer>
-    <div class="top-offer__inner container">
-        <div class="top-offer__text">
-            Безкоштовна доставка замовлень на суму від 2 000 ₴
+<?php
+
+$offer = get_field('offer', 'options');
+
+if($offer):?>
+
+    <div class="top-offer" data-top-offer>
+        <div class="top-offer__inner container">
+            <div class="top-offer__text">
+                <?= $offer;?>
+            </div>
+            <button class="top-offer__close" data-action="close-top-offer">
+                <span class="icon-close"></span>
+            </button>
         </div>
-        <button class="top-offer__close" data-action="close-top-offer">
-            <span class="icon-close"></span>
-        </button>
     </div>
-</div>
+
+<?php endif;?>
 
 <div class="header__nav header-desk">
     <div class="header-desk__body container header-actions">
@@ -26,14 +34,15 @@
             </div>
         </div>
         <div class="header-actions__logo">
-            <a href="#">
-                <img src="img/logo/yos-main-logo.png" alt="">
+            <a href="<?= get_home_url();?>">
+                <?php $logo = get_field('logo', 'options');?>
+                <img src="<?= $logo['url'];?>" alt="<?= $logo['alt'];?>">
             </a>
         </div>
         <div class="header-actions__right">
             <div class="header-actions__item">
                 <a href="#popup-search" data-popup="open-popup">
-                    пошук
+                    <?= __('пошук', 'yos');?>
                 </a>
             </div>
             <div class="header-actions__item">
@@ -50,7 +59,7 @@
             </div>
             <div class="header-actions__item">
                 <a href="#">
-                    кабінет
+                    <?= __('кабінет', 'yos');?>
                 </a>
             </div>
             <div class="header-actions__item">
@@ -65,12 +74,12 @@
         <div class="header-actions__left">
             <div class="header-actions__item">
                 <button data-action="open-mobile-menu">
-                    <img class="img-svg" src="img/icons/burger.svg" alt="">
+                    <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/burger.svg" alt="">
                 </button>
             </div>
             <div class="header-actions__item">
                 <a href="#popup-search" data-popup="open-popup">
-                    <img class="img-svg" src="img/icons/search.svg" alt="">
+                    <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/search.svg" alt="">
                 </a>
             </div>
         </div>
@@ -82,7 +91,7 @@
         <div class="header-actions__right">
             <div class="header-actions__item">
                 <a href="#">
-                    <img class="img-svg" src="img/icons/user.svg" alt="">
+                    <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/user.svg" alt="">
                 </a>
             </div>
             <div class="header-actions__item">
@@ -262,7 +271,7 @@
                 <div class="categories__block">
                     <div class="category-offer-card">
                         <div class="category-offer-card__img ibg">
-                            <img src="img/photo/offer-card.jpg" alt="">
+                            <img src="<?= get_template_directory_uri();?>/img/photo/offer-card.jpg" alt="">
                         </div>
                         <div class="category-offer-card__bottom">
                             <div class="category-offer-card__title">Догляд узимку</div>
