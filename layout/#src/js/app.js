@@ -42,6 +42,7 @@ class App {
 			@@include('../widgets/carousel/carousel.js');
 			@@include('../widgets/ticker-logos/ticker-logos.js');
 			@@include('../widgets/instagram/instagram.js');
+			@@include('../widgets/banner/banner.js');
 			// ==== // widgets =====================================================
 		});
 

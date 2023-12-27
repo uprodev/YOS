@@ -2734,9 +2734,9 @@ body {
   font-weight: 400;
   font-size: 1.6rem;
   line-height: normal;
-  -webkit-transition: opacity 0.8s ease;
-  -o-transition: opacity 0.8s ease;
-  transition: opacity 0.8s ease;
+  -webkit-transition: opacity 0.4s ease;
+  -o-transition: opacity 0.4s ease;
+  transition: opacity 0.4s ease;
   position: relative;
   min-height: 100%;
   display: -webkit-box;
@@ -4780,8 +4780,26 @@ h5,
   margin-right: -1rem;
 }
 
+.banner__images {
+  height: 300px;
+  margin-top: 3rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  min-width: 0;
+}
+
+.banner__images .swiper {
+  height: 100%;
+  width: 100%;
+}
+
 .banner__footer {
   margin-top: 2rem;
+}
+
+.banner .category-links__list a {
+  display: block;
+  width: 100%;
 }
 
 .ticker-logos {
@@ -5226,6 +5244,16 @@ h5,
   }
 
   .banner__img {
+    height: 55.8rem;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: -2rem;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+  }
+
+  .banner__images {
     height: 55.8rem;
     margin-left: 0;
     margin-top: 0;
