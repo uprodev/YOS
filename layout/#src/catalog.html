@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" >
+@@include('_head.html',{
+"title": "YOS"
+})
+
+<body >
+	<div class="_preloader"></div>
+
+	@@include('widgets/header/_header.html',{
+	"mod": ""
+	})
+	<!-- == // TOP LINE ================== -->
+
+	<main class="_page catalog-page">
+        @@include('widgets/catalog/_catalog.html')
+	</main>
+
+	<!-- == FOOTER ================== -->
+	@@include('widgets/footer/_footer.html',{})
+	<!-- == // FOOTER ================== -->
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<div class="popup" id="popup-notify-availability">
+    <div class="popup__body">
+        <div class="popup__content">
+            <button class="popup__close" data-popup="close-popup"><span class="icon-close-thin"></span></button>
+            <div class="popup-notify-availability">
+                <div class="popup-notify-availability__title">
+                    повідомити про наявність?
+                </div>
+                <div class="popup-notify-availability__text">
+                    Залишіть будь ласка свій номер і ми зв'яжемося, коли товар з'явиться в наявності
+                </div>
+                <form action="" class="popup-notify-availability__form">
+                    @@include('../inputs/_input-phone.html', { "label": "Телефонний номер", "required": false })
+                    <button class="button-primary dark">залишити номер</button>
+                </form>
+            </div>
+		</div>
+	</div>
+
+    <!-- 
+        После отправки формы нужно открыть следующий попап
+        это можно сделать методом - window.popup.open('#popup-notify-availability-thank-you')
+    -->
+</div>

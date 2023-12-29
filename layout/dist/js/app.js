@@ -204,6 +204,48 @@ class Utils {
 			})
 		}
 	}
+
+	initSpoller() {
+		let spollers = document.querySelectorAll('[data-spoller]');
+		if (spollers.length) {
+			spollers.forEach(spoller => {
+				let isOneActiveItem = spoller.dataset.spoller.trim() === 'one' ? true : false;
+				let triggers = spoller.querySelectorAll('[data-spoller-trigger]');
+				if (triggers.length) {
+					triggers.forEach(trigger => {
+						let parent = trigger.parentElement;
+						let content = trigger.nextElementSibling;
+
+						// init
+						if(trigger.classList.contains('active')) {
+							content.style.display = 'block';
+							parent.classList.add('active');
+						}
+
+						trigger.addEventListener('click', (e) => {
+							e.preventDefault();
+							parent.classList.toggle('active');
+							trigger.classList.toggle('active');
+							content && this.slideToggle(content);
+
+							if (isOneActiveItem) {
+								triggers.forEach(i => {
+									if (i === trigger) return;
+
+									let parent = i.parentElement;
+									let content = i.nextElementSibling;
+
+									parent.classList.remove('active');
+									i.classList.remove('active');
+									content && this.slideUp(content);
+								})
+							}
+						})
+					})
+				}
+			})
+		}
+	}
 }
 
 
@@ -367,6 +409,8 @@ class App {
 			this.utils.replaceToInlineSvg('.img-svg');
 			this.dynamicAdapt.init();
 			this.utils.initCollapse();
+			this.utils.initSpoller();
+			this.utils.initInputMask();
 
 			// ==== components =====================================================
 			// ==== Popup form handler====
@@ -544,7 +588,7 @@ if (inputsWrap.length) {
             inputWrap.classList.add('using');
         });
 
-        input.addEventListener('blur', () => {
+        input.addEventListener('blur', (e) => {
             if (input.value.length === 0) inputWrap.classList.remove('using');
         });
     })
@@ -639,6 +683,211 @@ if (specialOfferCards.length) {
         }
 
     })
+}
+			function filterBrandsHandler(filterBrandsEl) {
+    if(!filterBrandsEl) return;
+
+    const input = filterBrandsEl.querySelector('.filter-brands__search-input input');
+    if (!input) return;
+
+    const list = filterBrandsEl.querySelector('.filter-brands__list');
+    if (!list) return;
+
+    const listData = Array.from(list.children).map(listRow => {
+        const rowItemsBlock = listRow.querySelector('.filter__block');
+        const rowItemsData = rowItemsBlock?.children
+            ? Array.from(rowItemsBlock.children).map(rowItem => {
+                const text = rowItem.querySelector('.filter-checkbox-radio__text');
+                return {
+                    el: rowItem,
+                    text: rowItem.querySelector('.filter-checkbox-radio__text').innerText.trim().toLowerCase()
+                }
+            })
+            : null
+        return {
+            letter: listRow.getAttribute('data-letter').toLowerCase(),
+            el: listRow,
+            children: rowItemsData
+        }
+    })
+
+    input.addEventListener('input', (e) => {
+        const inputValue = e.target.value.trim().toLowerCase();
+        const firstLetter = inputValue.at(0);
+
+        listData.forEach(listRowData => {
+            if (inputValue.length) {
+
+                if (firstLetter !== listRowData.letter) {
+
+                    listRowData.el.classList.add('d-none');
+
+                } else {
+                    listRowData.children.forEach(rowItem => {
+
+                        if (!rowItem.text.startsWith(inputValue)) {
+                            rowItem.el.classList.add('d-none');
+                        } else {
+                            rowItem.el.classList.remove('d-none');
+                        }
+
+                    })
+                }
+
+            } else {
+                listRowData.el.classList.remove('d-none');
+            }
+        })
+    });
+
+    return {
+        reset: () => {
+            input.parentElement.classList.remove('using');
+
+            listData.forEach(listRowData => {
+                listRowData.el.classList.remove('d-none');
+                listRowData.children.forEach(rowItem => {
+                    rowItem.el.classList.remove('d-none');
+                })
+            })
+        }
+    }
+}
+			function selectedFiltersHandler(containers) {
+    if(!containers.length) return;
+    const subscriptions = [];
+
+    const removeItem = (id) => {
+        if(!id) return;
+        const items = Array.from(containers).map(container => {
+            const [el] = Array.from(container.children).filter(item => {
+                const itemId = item.getAttribute('data-selected-filter-id');
+                if(itemId == id) return item;
+            })
+            if(el) return el;
+        });
+
+        if(!items.length) return;
+        items.forEach(item => item?.remove());
+
+        containers.forEach(container => {
+            if(!container.children.length) {
+                container.parentElement.classList.add('d-none');
+            }
+        })
+
+        subscriptions.forEach(fun => fun(id));
+    }
+
+    document.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="remove-selected-filter"]')) {
+            e.preventDefault();
+            const item = e.target.closest('.selected-filters__item');
+            const itemId = item.getAttribute('data-selected-filter-id');
+            removeItem(itemId)
+        }
+    })
+
+    return {
+        addItem: (id, text) => {
+            containers.forEach(container => {
+                container.parentElement.classList.remove('d-none');
+
+                container.insertAdjacentHTML('beforeend', `
+                <div class="selected-filters__item" data-selected-filter-id="${id}">
+                    ${text}
+                    <button type="button" data-action="remove-selected-filter">
+                        <span class="icon-close"></span>
+                    </button>
+                </div>
+                `)
+            });
+        },
+
+        removeItem,
+
+        onRemoveItem: (callback) => {
+            subscriptions.push(callback);
+        },
+
+        removeAll: () => {
+            const ids = Array.from(new Set(
+                Array.from(containers).map(container => {
+                    container.parentElement.classList.add('d-none');
+    
+                    return Array.from(container.children).map(item => {
+                        return item.getAttribute('data-selected-filter-id');
+                    })
+                }).flat()
+            ))
+
+            ids.forEach(id => {
+                removeItem(id);
+            });
+        }
+    }
+}
+			function priceRangeHandler(priceRangeContainer) {
+    if (!priceRangeContainer) return;
+
+    const min = priceRangeContainer.dataset.min;
+    const max = priceRangeContainer.dataset.max;
+    const start = priceRangeContainer.dataset.start;
+    const end = priceRangeContainer.dataset.end;
+    const step = priceRangeContainer.dataset.step;
+    const slider = priceRangeContainer.querySelector('.price-range__slider');
+    const inputStart = priceRangeContainer.querySelector('.price-range__input--start');
+    const inputEnd = priceRangeContainer.querySelector('.price-range__input--end');
+
+    const priseRange = noUiSlider.create(slider, {
+        start: [+start, +end],
+        connect: true,
+        range: {
+            'min': [+min],
+            'max': [+max],
+        },
+        step: +step,
+        tooltips: false,
+        format: wNumb({
+            decimals: 0,
+        })
+    });
+
+    priseRange.on('update', function (values, handle) {
+        let value = values[handle];
+
+        if (handle) {
+            inputEnd.value = value;
+        } else {
+            inputStart.value = value;
+        }
+    });
+
+    priseRange.on('change', (values, handle) => {
+        if (handle) {
+            let event = new Event("change", { bubbles: true });
+            inputEnd.dispatchEvent(event);
+        } else {
+            let event = new Event("change", { bubbles: true });
+            inputStart.dispatchEvent(event);
+        }
+    })
+
+    inputStart.addEventListener('change', function () {
+        priseRange.set([this.value, null]);
+    });
+    inputEnd.addEventListener('change', function () {
+        priseRange.set([null, this.value]);
+    });
+
+    return {
+        reset: () => {
+            priseRange.set([+start, +end]);
+            let event = new Event("change", { bubbles: true });
+            inputEnd.dispatchEvent(event);
+            inputStart.dispatchEvent(event);
+        }
+    }
 }
 			// ==== // components =====================================================
 
@@ -1024,6 +1273,90 @@ if (bannerImagesSliders.length) {
         })
     })
 };
+			const catalogFilter = document.querySelector('[data-filter]');
+if(catalogFilter) {
+    const filterBrands = filterBrandsHandler(document.querySelector('[data-filter-brands]'));
+    const selectedFilters = selectedFiltersHandler(document.querySelectorAll('.selected-filters'));
+    const form = catalogFilter.querySelector('.filter__form');
+    const priceRage = priceRangeHandler(document.querySelector('[data-range]'));
+    const openButtons = document.querySelectorAll('[data-action="open-filter"]');
+    const closeButtons = document.querySelectorAll('[data-action="close-filter"]');
+    const mobileOpenFilterButtonCount = document.querySelector('.catalog__mobile-open-filter-button span');
+    const buttonReset = document.querySelector('.filter__reset');
+
+    const setCountOfSelectedFilters = (value) => {
+        mobileOpenFilterButtonCount.innerHTML = value;
+
+        if(value) {
+            buttonReset.removeAttribute('disabled', '');
+        } else {
+            buttonReset.setAttribute('disabled', '');
+        }
+    }
+
+    form.addEventListener('reset', (e) => {
+        e.preventDefault();
+        filterBrands?.reset();
+        selectedFilters?.removeAll();
+        priceRage?.reset();
+    })
+
+    form.addEventListener('change', (e) => {
+        const result = Array.from(form.elements).reduce((value, el) => {
+            if(el.nodeName === 'INPUT' && el.type === 'checkbox' && el.checked) {
+                return ++value
+            } else {
+                return value;
+            }
+        }, 0);
+        setCountOfSelectedFilters(result);
+
+        if(e.target.nodeName === 'INPUT' && e.target.type === 'checkbox') {
+            const checkbox = e.target;
+            
+            if(checkbox.checked) {
+                const id = Date.now();
+                const text = checkbox.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
+                if(!text) return;
+
+                checkbox.setAttribute('data-id', id);
+                selectedFilters.addItem(id, text);
+            } else {
+                const id = checkbox.getAttribute('data-id');
+                if(!id) return;
+
+                selectedFilters.removeItem(id);
+            }
+        }
+    });
+
+    selectedFilters.onRemoveItem((id) => {
+        const el = form.querySelector(`[data-id="${id}"]`);
+
+        el.checked = false;
+        el.removeAttribute('data-id');
+
+        const event = new Event('change', { bubbles: true });
+        el.dispatchEvent(event);
+    });
+
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            catalogFilter.classList.remove('open');
+            document.body.classList.remove('overflow-hidden');
+        })
+    });
+
+    openButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            catalogFilter.classList.add('open');
+            document.body.classList.add('overflow-hidden');
+        })
+    })
+}
+;
 			// ==== // widgets =====================================================
 		});
 

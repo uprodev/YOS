@@ -171,6 +171,10 @@
             opacity: 0;
             transition: opacity $transition;
         }
+
+        & .button-primary {
+            width: 100%;
+        }
     }
 
     &__option {
@@ -245,6 +249,37 @@
 
         @media (min-width: $mq-md) {
             margin-top: 1.6rem;
+        }
+    }
+
+    &--not-in-stock {
+        color: $textColorSecondary;
+
+        @media (min-width: $mq-lg) {
+            &:hover {
+                & .product-card__img {
+                    & img {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        & .product-card__img {
+            
+            & img {
+                filter: grayscale(100%);
+            }
+
+            @media #{$mouse-device} {
+                &:hover {
+                    border-color: $themeColorFourth;
+                }
+            }
+        }
+
+        & .product-card__price-current, & .product-card__text-1  {
+            color: $textColorSecondary;
         }
     }
 }

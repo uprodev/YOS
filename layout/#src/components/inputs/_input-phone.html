@@ -1,0 +1,10 @@
+<div class="input-wrap" data-input>
+    @@if (required === false) {
+        <input type="text" class="input"  data-mask="+380 (99) 999 99 99">
+        <span class="input-label">@@label</span>
+    }
+    @@if (required === true) {
+        <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
+        <span class="input-label">@@label</span>
+    }
+</div>

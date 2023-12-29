@@ -12,6 +12,7 @@
     color: $textColor;
     transition: transform 0.05s ease, background-color $transition;
     font-size: $text-3;
+    text-align: center;
 
     &.dark {
         background-color: $themeColor;
@@ -19,6 +20,7 @@
 
         @media #{$mouse-device} {
             &:hover {
+                color: $textColorThird !important;
                 background-color: rgba($themeColor, 0.8);
             }
         }
@@ -27,6 +29,7 @@
     &.light {
         @media #{$mouse-device} {
             &:hover {
+                color: $textColor !important;
                 background-color: $bgHover;
             }
         }

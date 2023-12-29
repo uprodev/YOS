@@ -26,6 +26,8 @@ class App {
 			this.utils.replaceToInlineSvg('.img-svg');
 			this.dynamicAdapt.init();
 			this.utils.initCollapse();
+			this.utils.initSpoller();
+			this.utils.initInputMask();
 
 			// ==== components =====================================================
 			@@include('../components/popup/popup.js')
@@ -33,6 +35,9 @@ class App {
 			@@include('../components/product-card/product-card.js')
 			@@include('../components/category-links/category-links.js')
 			@@include('../components/special-offer-card/special-offer-card.js')
+			@@include('../components/filter-brands/filter-brands.js')
+			@@include('../components/selected-filters/selected-filters.js')
+			@@include('../components/price-range/price-range.js')
 			// ==== // components =====================================================
 
 
@@ -43,6 +48,7 @@ class App {
 			@@include('../widgets/ticker-logos/ticker-logos.js');
 			@@include('../widgets/instagram/instagram.js');
 			@@include('../widgets/banner/banner.js');
+			@@include('../widgets/catalog/catalog.js');
 			// ==== // widgets =====================================================
 		});
 

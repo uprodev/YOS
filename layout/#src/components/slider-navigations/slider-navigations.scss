@@ -34,7 +34,7 @@
 
     @media #{$mouse-device} {
         &:hover {
-            background-color: rgba($themeColor, 0.2);
+            background-color: $bgHover;
         }
     }
 

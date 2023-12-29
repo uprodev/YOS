@@ -1,0 +1,19 @@
+.selected-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.6rem;
+
+    &__item {
+        color: $textColorSecondary;
+        font-size: $text-2;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        & button {
+            padding: 0.5rem;
+            font-size: .8rem;
+            display: flex;
+        }
+    }
+}

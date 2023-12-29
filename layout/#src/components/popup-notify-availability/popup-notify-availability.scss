@@ -1,0 +1,37 @@
+
+.popup-notify-availability {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__title {
+        text-transform: uppercase;
+        font-size: $text-3;
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-4;
+        }
+    }
+
+    &__text {
+        font-size: $text-2;
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    &--thank-you {
+        min-height: 20rem;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+    }
+}
+

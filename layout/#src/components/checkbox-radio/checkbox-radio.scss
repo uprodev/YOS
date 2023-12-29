@@ -1,0 +1,29 @@
+.checkbox-radio {
+    display: flex;
+    gap: 2rem;
+    cursor: pointer;
+    position: relative;
+
+    & input {
+        position: absolute;
+        z-index: -1;
+        visibility: hidden;
+        top: 0;
+        left: 0;
+
+        &:checked ~ .checkbox-radio__square {
+            background-color: $themeColor;
+        }
+    }
+    
+
+    &__square {
+        width: 1.9rem;
+        height: 1.9rem;
+        flex: 0 0 auto;
+        border: 1px solid $themeColor;
+    }
+
+    &__text {
+    }
+}

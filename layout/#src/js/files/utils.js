@@ -204,6 +204,48 @@ class Utils {
 			})
 		}
 	}
+
+	initSpoller() {
+		let spollers = document.querySelectorAll('[data-spoller]');
+		if (spollers.length) {
+			spollers.forEach(spoller => {
+				let isOneActiveItem = spoller.dataset.spoller.trim() === 'one' ? true : false;
+				let triggers = spoller.querySelectorAll('[data-spoller-trigger]');
+				if (triggers.length) {
+					triggers.forEach(trigger => {
+						let parent = trigger.parentElement;
+						let content = trigger.nextElementSibling;
+
+						// init
+						if(trigger.classList.contains('active')) {
+							content.style.display = 'block';
+							parent.classList.add('active');
+						}
+
+						trigger.addEventListener('click', (e) => {
+							e.preventDefault();
+							parent.classList.toggle('active');
+							trigger.classList.toggle('active');
+							content && this.slideToggle(content);
+
+							if (isOneActiveItem) {
+								triggers.forEach(i => {
+									if (i === trigger) return;
+
+									let parent = i.parentElement;
+									let content = i.nextElementSibling;
+
+									parent.classList.remove('active');
+									i.classList.remove('active');
+									content && this.slideUp(content);
+								})
+							}
+						})
+					})
+				}
+			})
+		}
+	}
 }
 
 

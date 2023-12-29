@@ -1,0 +1,758 @@
+<section class="catalog">
+    <div class="container">
+        <div class="catalog__head">
+            <div class="catalog__head-col-1"></div>
+            <div class="catalog__head-col-2">
+                <div class="catalog__head-row">
+                    <div class="article-preview-card">
+                        <h2 class="article-preview-card__title">Medik8</h2>
+                        <div class="article-preview-card__text text-content last-no-margin">
+                            <p>
+                                Зробіть свою шкіру здоровою за допомогою найкращих засобів для ванн і тіла. Розслабтеся
+                                після довгого дня за допомогою заспокійливої ванни Odacité Soul Soothing і солей,
+                                створених для
+                                того, щоб зробити шкіру м’якою. Щодо миючих засобів, це має бути підбадьорлив… <a
+                                    href="#" class="button-link"><span>більше</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="catalog__head-row catalog__head-row--selected-filters-and-sort">
+                    <div class="catalog__products-selected-filters d-none">
+                        @@include('../../components/selected-filters/_selected-filters.html')
+                    </div>
+                    <div class="catalog__products-sort-by">
+                        <div class="sort-by">
+                            <div class="sort-by__title">сортувати за</div>
+                            <ul class="sort-by__list">
+                                <li>
+                                    @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                    "type": "radio",
+                                    "name": "sort-by-desktop",
+                                    "text": "Вибір YOS",
+                                    "checked": "checked"
+                                    })
+
+                                </li>
+                                <li>
+                                    @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                    "type": "radio",
+                                    "name": "sort-by-desktop",
+                                    "text": "Нові надходження",
+                                    "checked": ""
+                                    })
+                                </li>
+                                <li>
+                                    @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                    "type": "radio",
+                                    "name": "sort-by-desktop",
+                                    "text": "Ціна (менша до більшої)",
+                                    "checked": ""
+                                    })
+                                </li>
+                                <li>
+                                    @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                    "type": "radio",
+                                    "name": "sort-by-desktop",
+                                    "text": "Ціна (більша до меншої)",
+                                    "checked": ""
+                                    })
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="catalog__body">
+            <div class="catalog__filter">
+
+                <button class="catalog__mobile-open-filter-button button-primary light" data-action="open-filter">ФІЛЬТР
+                    (<span>0</span>)</button>
+
+                <h2 class="catalog__title title-2" data-da=".catalog__head-col-1,992,first">тіло</h2>
+
+                <div class="filter" data-filter>
+                    <button class="filter__btn-close" data-action="close-filter">
+                        <span class="icon-close-thin"></span>
+                    </button>
+                    <div class="filter__scroll-container">
+                        <div class="filter__sort-by">
+                            <div class="sort-by">
+                                <div class="sort-by__title">сортувати за</div>
+                                <ul class="sort-by__list">
+                                    <li>
+                                        @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                        "type": "radio",
+                                        "name": "sort-by",
+                                        "text": "Вибір YOS",
+                                        "checked": "checked"
+                                        })
+
+                                    </li>
+                                    <li>
+                                        @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                        "type": "radio",
+                                        "name": "sort-by",
+                                        "text": "Нові надходження",
+                                        "checked": ""
+                                        })
+                                    </li>
+                                    <li>
+                                        @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                        "type": "radio",
+                                        "name": "sort-by",
+                                        "text": "Ціна (менша до більшої)",
+                                        "checked": ""
+                                        })
+                                    </li>
+                                    <li>
+                                        @@include('../../components/checkbox-radio/_checkbox-radio.html', {
+                                        "type": "radio",
+                                        "name": "sort-by",
+                                        "text": "Ціна (більша до меншої)",
+                                        "checked": ""
+                                        })
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <form action="/" class="filter__form">
+                            <div class="filter__row">
+                                <div class="filter__title">фільтр</div>
+                                <div class="filter__selected-filters d-none">
+                                    @@include('../../components/selected-filters/_selected-filters.html')
+                                </div>
+
+                                <ul class="filter__spoller spoller" data-spoller>
+                                    <li>
+                                        <div class="spoller__item-title" data-spoller-trigger>
+                                            Категорія
+                                        </div>
+                                        <div class="spoller__item-colapse-content">
+                                            <ul class="filter__block">
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">Гель для душу</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">Дезодорант</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">Крем для тіла</div>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="spoller__item-title" data-spoller-trigger>
+                                            Бренд
+                                        </div>
+                                        <div class="spoller__item-colapse-content">
+                                            @@include('../../components/filter-brands/_filter-brands.html')
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="spoller__item-title" data-spoller-trigger>
+                                            Тип шкіри
+                                        </div>
+                                        <div class="spoller__item-colapse-content">
+                                            <ul class="filter__block">
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">type 1</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">type 2</div>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label class="filter-checkbox-radio">
+                                                        <input type="checkbox">
+                                                        <div class="filter-checkbox-radio__text">type 3</div>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="spoller__item-title" data-spoller-trigger>
+                                            Ціна
+                                        </div>
+                                        <div class="spoller__item-colapse-content">
+                                            @@include('../../components/price-range/_price-range.html')
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button disabled type="reset" class="filter__reset button-link">
+                                <span>зняти всі фільтри</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="catalog__products">
+                <ul class="catalog__products-list">
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                </a>
+                                <button class="product-card__like-button active"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                    <div class="product-card-label">-25%</div>
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-2.png" alt="">
+                                </a>
+                                <button class="product-card__like-button"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">rare paris</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Заспокійлива маска для обличчя
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                    <div class="product-card__price-old">5 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                    <div class="product-card__price-old">5 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                    <div class="product-card__price-old">6 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                    <div class="product-card-label">YOS choice</div>
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-3.png" alt="">
+                                </a>
+                                <button class="product-card__like-button"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="3">
+                                    <div class="product-card__price-current">5 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="3">
+                                            <div class="product-card__option-item-value">
+                                                690 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                    <div class="product-card-label">new</div>
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-4.png" alt="">
+                                </a>
+                                <button class="product-card__like-button"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="3">
+                                    <div class="product-card__price-current">5 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="3">
+                                            <div class="product-card__option-item-value">
+                                                690 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                    <div class="product-card-label">-25%</div>
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-2.png" alt="">
+                                </a>
+                                <button class="product-card__like-button"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">rare paris</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Заспокійлива маска для обличчя
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                    <div class="product-card__price-old">5 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                    <div class="product-card__price-old">5 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                    <div class="product-card__price-old">6 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                </a>
+                                <button class="product-card__like-button active"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="product-card" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-5.png" alt="">
+                                </a>
+                                <button class="product-card__like-button active"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <form>
+                                    <div class="product-card__option">
+                                        <label class="product-card__option-item" disabled>
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="0">
+                                            <div class="product-card__option-item-value">
+                                                100 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option checked
+                                                data-index="1">
+                                            <div class="product-card__option-item-value">
+                                                290 г
+                                            </div>
+                                        </label>
+                                        <label class="product-card__option-item">
+                                            <input type="radio" name="card-id-1" data-product-card-option
+                                                data-index="2">
+                                            <div class="product-card__option-item-value">
+                                                490 г
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <button class="product-card__btn-to-basket button-primary dark w-100">
+                                        додати до кошика
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card product-card--not-in-stock" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                </a>
+                                <button class="product-card__like-button active"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price" data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <a href="#popup-notify-availability" data-popup="open-popup" class="button-primary dark">повідомити про наявність</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card product-card--not-in-stock" data-product-card>
+                            <div class="product-card__head">
+                                <div class="product-card__labels">
+                                    <div class="product-card-label">new</div>
+                                </div>
+                                <a href="#" class="product-card__img">
+                                    <img src="img/photo/product-card-img-4.png" alt="">
+                                </a>
+                                <button class="product-card__like-button"></button>
+                            </div>
+                            <div class="product-card__body">
+                                <div class="product-card__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card__text">
+                                    <div class="product-card__text-1">
+                                        Скраб відлущувальний
+                                    </div>
+                                    <div class="product-card__text-2">
+                                        Zo Skin Health Exfoliating Polish
+                                    </div>
+                                </div>
+                                <div class="product-card__price" data-index="0">
+                                    <div class="product-card__price-current">2 299 ₴</div>
+                                </div>
+                                <div class="product-card__price show" data-index="1">
+                                    <div class="product-card__price-current">3 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="2">
+                                    <div class="product-card__price-current">4 299 ₴</div>
+                                </div>
+                                <div class="product-card__price " data-index="3">
+                                    <div class="product-card__price-current">5 299 ₴</div>
+                                </div>
+                            </div>
+                            <div class="product-card__footer">
+                                <a href="#popup-notify-availability" data-popup="open-popup" class="button-primary dark">повідомити про наявність</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="catalog__prodducts-footer">
+                    @@include('../../components/pagination/_pagination.html')
+                </div>
+            </div>
+        </div>
+</section>
+
+@@include('../../components/popup-notify-availability/_popup-notify-availability.html')
+@@include('../../components/popup-notify-availability/_popup-notify-availability-thank-you.html')

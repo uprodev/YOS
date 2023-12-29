@@ -7,7 +7,7 @@ if (inputsWrap.length) {
             inputWrap.classList.add('using');
         });
 
-        input.addEventListener('blur', () => {
+        input.addEventListener('blur', (e) => {
             if (input.value.length === 0) inputWrap.classList.remove('using');
         });
     })

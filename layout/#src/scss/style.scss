@@ -17,6 +17,7 @@
 // ==== PLUGINS ===========================================================================================
 @import "plugins/swiper-bundle";
 @import "plugins/fancybox";
+@import "plugins/nouislider";
 // ==== // PLUGINS ===========================================================================================
 
 // ==== VARS ===========================================================================================
@@ -43,6 +44,12 @@
 @import "../components/link-label/link-label";
 @import "../components/article-card-prview/article-card-prview";
 @import "../components/special-offer-card/special-offer-card";
+@import "../components/pagination/pagination";
+@import "../components/checkbox-radio/checkbox-radio";
+@import "../components/filter-brands/filter-brands";
+@import "../components/selected-filters/selected-filters";
+@import "../components/price-range/price-range";
+@import "../components/popup-notify-availability/popup-notify-availability";
 // ==== // components =====================================================
 
 // ==== widgets =====================================================
@@ -55,6 +62,7 @@
 @import "../widgets/special-offers/special-offers";
 @import "../widgets/image-full-width/image-full-width";
 @import "../widgets/instagram/instagram";
+@import "../widgets/catalog/catalog";
 // ==== // widgets =====================================================
 
 // ==== PAGES =====================================================
