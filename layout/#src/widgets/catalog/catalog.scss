@@ -57,13 +57,13 @@
 
     &__body {
         margin-top: 4rem;
-        position: relative;
-        z-index: 1;
 
         @media (min-width: $mq-lg) {
             display: flex;
             gap: 2rem;
             margin-top: 2rem;
+            position: relative;
+            z-index: 1;
         }
     }
 
