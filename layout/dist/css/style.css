@@ -5717,7 +5717,12 @@ h5,
 }
 
 .ticker-logos {
-  height: 25.4rem;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.ticker-logos > .swiper:not(:first-child) {
+  margin-top: 2rem;
 }
 
 .ticker-logos .swiper-wrapper {
@@ -5912,7 +5917,7 @@ h5,
   margin-top: 4rem;
 }
 
-.article-preview-card {
+.brand-description-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5923,11 +5928,11 @@ h5,
   gap: 2rem;
 }
 
-.article-preview-card__title {
+.brand-description-card__title {
   font-weight: 400;
 }
 
-.article-preview-card__text {
+.brand-description-card__text {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -6549,10 +6554,6 @@ h5,
     display: none;
   }
 
-  .ticker-logos {
-    height: auto;
-  }
-
   .ticker-logos .swiper-slide {
     width: 35.5rem;
     height: 16.2rem;
@@ -6757,6 +6758,10 @@ h5,
             flex: 0 0 34.5rem;
   }
 
+  .ticker-logos > .swiper[dir=rtl] {
+    display: none;
+  }
+
   .catalog {
     padding-top: 5rem;
   }
@@ -6884,14 +6889,14 @@ h5,
             flex: 0 1 calc(33.3333333% - 1.3333333333rem);
   }
 
-  .article-preview-card {
+  .brand-description-card {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
 
-  .article-preview-card__title {
+  .brand-description-card__title {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
@@ -7049,12 +7054,6 @@ h5,
 
   .carousel .swiper-slide .product-card .product-card__body {
     margin-bottom: auto;
-  }
-
-  .ticker-logos .swiper-slide:nth-child(even) {
-    -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-            transform: translateX(-50%);
   }
 
   .special-offers .swiper-slide.has-banner {

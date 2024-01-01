@@ -889,6 +889,31 @@ if (specialOfferCards.length) {
         }
     }
 }
+			const productImages = document.querySelector('[data-product-images]');
+if (productImages) {
+    const thumbsSlider = new Swiper(productImages.querySelector('[data-slider="product-images-thumbs"]'), {
+        slidesPerView: 'auto',
+        freeMode: true,
+        direction: 'vertical',
+        observer: true,
+        observeParents: true,
+        slideToClickedSlide: true
+    })
+    const mainSlider = new Swiper(productImages.querySelector('[data-slider="product-images-main"]'), {
+        effect: document.documentElement.clientWidth < 992 ? 'slide' : 'fade',
+        speed: 400,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        observer: true,
+        observeParents: true,
+        thumbs: {
+            swiper: thumbsSlider,
+        },
+        scrollbar: {
+            el: productImages.querySelector('[data-slider="product-images-main"] .swiper-scrollbar'),
+        }
+    })
+}
 			// ==== // components =====================================================
 
 
@@ -1193,33 +1218,47 @@ if (carouselsTabs.length) {
         })
     })
 };
-			const tickerLogosSections = document.querySelectorAll('[data-slider="ticker-logos"]');
+			const tickerLogosSections = document.querySelectorAll('[data-ticker-logos]');
 if (tickerLogosSections.length) {
     tickerLogosSections.forEach(tickerLogosSection => {
-        const swiperSlider = new Swiper(tickerLogosSection, {
+        const sliderLtr = tickerLogosSection.querySelector('.swiper[dir="ltr"]');
+        const sliderRtl = tickerLogosSection.querySelector('.swiper[dir="rtl"]');
+        
+        const options = {
             speed: 6000,
             autoplay: {
                 delay: 1,
+                disableOnInteraction: false
             },
             loop: true,
-
+            freeMode: true,
             breakpoints: {
                 320: {
                     slidesPerView: 'auto',
                     spaceBetween: 20,
-                    grid: {
-                        rows: 2,
-                    },
+                    // grid: {
+                    //     rows: 2,
+                    // },
                 },
                 768: {
                     slidesPerView: 'auto',
                     spaceBetween: 0,
-                    grid: {
-                        rows: 1,
-                    },
+                    // grid: {
+                    //     rows: 1,
+                    // },
                 },
             },
-        })
+        }
+        
+        
+
+        if(document.documentElement.clientWidth < 992) {
+            new Swiper(sliderRtl, options);
+        } else {
+            sliderLtr.firstElementChild.append(...sliderRtl.firstElementChild.children)
+        }
+
+        new Swiper(sliderLtr, options);
     })
 };
 			const instagramSliders = document.querySelectorAll('[data-slider="instagram"]');
@@ -1245,10 +1284,43 @@ if (instagramSliders.length) {
     })
 }
 ;
-			const bannerImagesSliders = document.querySelectorAll('[data-slider="banner-images"]');
-if (bannerImagesSliders.length) {
-    bannerImagesSliders.forEach(bannerImagesSlider => {
-        const swiperSlider = new Swiper(bannerImagesSlider, {
+			const banners = document.querySelectorAll('[data-banner]');
+if (banners.length) {
+    banners.forEach(banner => {
+        const links = banner.querySelector('[data-slider="category-links-list-banner"]');
+        const images = banner.querySelector('[data-slider="banner-images"]');
+        const slider = links;
+        let linksSlider;
+
+        function mobileSlider() {
+            if (document.documentElement.clientWidth <= 767 && slider.dataset.mobile == 'false') {
+                linksSlider = new Swiper(slider, {
+                    slidesPerView: 'auto',
+                    //freeMode: true,
+                    scrollbar: {
+                        el: slider.querySelector('.swiper-scrollbar'),
+                    },
+                });
+
+                slider.dataset.mobile = 'true';
+            }
+
+            if (document.documentElement.clientWidth > 767) {
+                slider.dataset.mobile = 'false';
+
+                if (slider.classList.contains('swiper-initialized')) {
+                    linksSlider.destroy();
+                }
+            }
+        }
+
+        mobileSlider();
+
+        window.addEventListener('resize', () => {
+            mobileSlider();
+        })
+
+        const swiperSlider = new Swiper(images, {
             effect: 'fade',
             observer: true,
             observeParents: true,
@@ -1256,23 +1328,28 @@ if (bannerImagesSliders.length) {
             spaceBetween: 0,
             speed: 400,
             touchRatio: 0,
+            // thumbs: {
+            //     swiper: linksSlider,
+            // },
         });
 
-        const parent = bannerImagesSlider.closest('[data-banner]');
-        if(!parent) return;
+        if(linksSlider?.controller) {
+            linksSlider.controller.control = swiperSlider
+        }
 
-        const triggers = parent.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
-        
+        const triggers = banner.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
+
         triggers.forEach(trigger => {
             const index = trigger.getAttribute('data-index');
-            if(!index) return;
+            if (!index) return;
 
             trigger.addEventListener('mouseenter', () => {
                 swiperSlider.slideTo(index);
             })
         })
     })
-};
+}
+;
 			const catalogFilter = document.querySelector('[data-filter]');
 if(catalogFilter) {
     const filterBrands = filterBrandsHandler(document.querySelector('[data-filter-brands]'));

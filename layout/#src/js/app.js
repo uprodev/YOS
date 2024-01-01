@@ -38,6 +38,7 @@ class App {
 			@@include('../components/filter-brands/filter-brands.js')
 			@@include('../components/selected-filters/selected-filters.js')
 			@@include('../components/price-range/price-range.js')
+			@@include('../components/product-images/product-images.js')
 			// ==== // components =====================================================
 
 

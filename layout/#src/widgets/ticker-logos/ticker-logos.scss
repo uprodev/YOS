@@ -1,9 +1,19 @@
 .ticker-logos {
-    height: 25.4rem;
+    overflow: hidden;
+    min-width: 0;
 
-    @media (min-width: $mq-md) {
-        height: auto;
+    & > .swiper {
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+
+        &[dir="rtl"] {
+            @media (min-width: $mq-lg) {
+                display: none;
+            }
+        }
     }
+
 
     & .swiper-wrapper { 
         transition-timing-function:linear !important; 
@@ -12,12 +22,6 @@
     & .swiper-slide {
         width: 24rem;
         height: 11.6rem;
-
-        @media (min-width: 0px) and (max-width: 767.98px) {
-            &:nth-child(even) {
-                transform: translateX(-50%);
-            }
-        }
 
         @media (min-width: $mq-md) {
             width: 35.5rem;
