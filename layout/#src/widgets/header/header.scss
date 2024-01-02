@@ -97,6 +97,10 @@
         font-size: $text-2;
     }
 
+    @media #{$touch-device} {
+        color: $textColorThird !important;
+    }
+
     &.show {
         display: block;
         opacity: 1;
@@ -299,20 +303,7 @@
         overflow: auto;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-        &::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        &::-webkit-scrollbar-thumb {
-            background-color: $themeColorThird;
-            border-radius: 0px;
-        }
-    
-        &::-webkit-scrollbar-track {
-            background-color: #eaeaea;
-            border-radius: 0px;
-            box-shadow: inset 0px 0px 0px 0px #fff;
-        }
+
 
         &.show {
             display: block;

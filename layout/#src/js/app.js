@@ -23,11 +23,12 @@ class App {
 				document.body.classList.add('safari');
 			}
 
-			this.utils.replaceToInlineSvg('.img-svg');
+			this.utils.replaceImageToInlineSvg('.img-svg');
 			this.dynamicAdapt.init();
 			this.utils.initCollapse();
 			this.utils.initSpoller();
 			this.utils.initInputMask();
+			this.utils.initSmoothScroll();
 
 			// ==== components =====================================================
 			@@include('../components/popup/popup.js')
@@ -39,6 +40,7 @@ class App {
 			@@include('../components/selected-filters/selected-filters.js')
 			@@include('../components/price-range/price-range.js')
 			@@include('../components/product-images/product-images.js')
+			@@include('../components/rating/rating.js')
 			// ==== // components =====================================================
 
 
@@ -50,6 +52,8 @@ class App {
 			@@include('../widgets/instagram/instagram.js');
 			@@include('../widgets/banner/banner.js');
 			@@include('../widgets/catalog/catalog.js');
+			@@include('../widgets/product/product.js');
+			@@include('../widgets/product-reviews/product-reviews.js');
 			// ==== // widgets =====================================================
 		});
 

@@ -38,6 +38,12 @@
     &:active {
         transform: scale(0.99);
     }
+
+    &[disabled] {
+        background-color: #707070;
+        border-color: #707070;
+        pointer-events: none;
+    }
 }
 
 .button-link {
@@ -47,5 +53,11 @@
     & > span {
         padding: .2rem 0;
         background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+    }
+
+    @media #{$mouse-device} {
+        &:hover {
+            color: $themeColorSecondary;
+        }
     }
 }

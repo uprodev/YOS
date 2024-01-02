@@ -1,0 +1,267 @@
+<section class="product-reviews" id="reviews">
+    <div class="container">
+        <div class="product-reviews__inner">
+            <div class="product-reviews__head">
+                <h2 class="product-reviews__title title-2">
+                    відгуки покупців
+
+                    <span>(2)</span>
+                </h2>
+                <div class="product-reviews__main-stars">
+                    <div class="product-reviews__main-stars-row">
+                        @@include('../../components/rating/_rating.html', { "value": "3.5" })
+                        <div class="product-reviews__main-stars-value">
+                            3.5
+                        </div>
+                    </div>
+                    <div class="product-reviews__main-stars-row">
+                        <div class="product-reviews__count">24 відгуки</div>
+                    </div>
+                </div>
+                <div class="product-reviews__chart reviews-chart">
+                    <div class="reviews-chart__row">
+                        <div class="reviews-chart__star">
+                            5 <span class="icon-star-full"></span>
+                        </div>
+                        <div class="reviews-chart__line">
+                            <div class="line-track">
+                                <div class="line" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-chart__row">
+                        <div class="reviews-chart__star">
+                            4 <span class="icon-star-full"></span>
+                        </div>
+                        <div class="reviews-chart__line">
+                            <div class="line-track">
+                                <div class="line" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-chart__row">
+                        <div class="reviews-chart__star">
+                            3 <span class="icon-star-full"></span>
+                        </div>
+                        <div class="reviews-chart__line">
+                            <div class="line-track">
+                                <div class="line" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-chart__row">
+                        <div class="reviews-chart__star">
+                            2 <span class="icon-star-full"></span>
+                        </div>
+                        <div class="reviews-chart__line">
+                            <div class="line-track">
+                                <div class="line" style="width: 20%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reviews-chart__row">
+                        <div class="reviews-chart__star">
+                            1 <span class="icon-star-full"></span>
+                        </div>
+                        <div class="reviews-chart__line">
+                            <div class="line-track">
+                                <div class="line" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-reviews__body">
+                <div class="product-reviews__add-comment">
+                    <button class="product-reviews__add-comment-mobile-btn button-primary light"
+                        data-action="opne-add-comment">написати
+                        відгук</button>
+                    <div class="add-comment" data-add-comment>
+                        <button class="add-comment__btn-close" data-action="close-add-comment">
+                            <span class="icon-close-thin"></span>
+                        </button>
+                        <div class="add-comment__scroll-container">
+                            <div class="add-comment__title">
+                                ви можете залишити відгук або
+                                поставити питання
+                            </div>
+                            <div class="add-comment__subtitle">
+                                <div class="add-comment__text">
+                                    Ви можете залишити відгук або поставити
+                                    питання. Використовуйте цю форму для того, щоб
+                                    залишити відгук про товар або поставити
+                                    питання. Усі відгуки, які не стосуються товару,
+                                    будуть видалені!
+                                </div>
+                                <div class="add-comment__text-sm">
+                                    * залиште свій email, і ми надішлемо сповіщення одразу
+                                    після того, як фахівець дасть відповідь на ваше
+                                    запитання.
+                                </div>
+                            </div>
+                            <form action="/" class="add-comment__form">
+                                <div class="add-comment__form-fields">
+                                    <div class="add-comment__form-field half-lg">
+                                        @@include('../../components/inputs/_input.html', {
+                                        "label": "Ім’я",
+                                        "type": "text",
+                                        "required": true })
+                                    </div>
+                                    <div class="add-comment__form-field half-lg">
+                                        @@include('../../components/inputs/_input.html', {
+                                        "label": "Електронна адреса",
+                                        "type": "email",
+                                        "required": false })
+                                    </div>
+                                    <div class="add-comment__form-field">
+                                        @@include('../../components/inputs/_textarea.html', {
+                                        "label": "Текст повідомлення"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="add-comment__form-stars">
+                                    <div>Оцінка</div>
+                                    <div class="set-stars" data-set-stars>
+                                        <div class="set-stars__item">
+                                            1
+                                        </div>
+                                        <div class="set-stars__item">
+                                            2
+                                        </div>
+                                        <div class="set-stars__item">
+                                            3
+                                        </div>
+                                        <div class="set-stars__item">
+                                            4
+                                        </div>
+                                        <div class="set-stars__item">
+                                            5
+                                        </div>
+                                        <input type="text" value="0">
+                                    </div>
+                                </div>
+                                <div class="add-comment__form-footer">
+                                    <button class="button-primary dark">написати відгук</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-reviews__comments">
+                    <div class="product-comments">
+                        <div class="product-comments__list">
+                            <div class="comment">
+                                <div class="comment__head">
+                                    <div class="comment__author-name">
+                                        катерина
+                                    </div>
+                                    <div class="comment__author-status">
+                                        Покупку підтверджено
+                                    </div>
+                                    <div class="comment__author-set-stars">
+                                        @@include('../../components/rating/_rating.html', { "value": "5" })
+                                    </div>
+                                </div>
+                                <div class="comment__body">
+                                    <div class="comment__text">
+                                        Брала відтінок Трансільванія, боялась, що буде надто віддавати фіолетовим, але
+                                        все добре. Помада матова, приємна при нанесені, але запах мені не зрозумілий
+                                        (кожному своє). Стійкість відносна, якщо не куштувати нічого при носці, або
+                                        робити це з обережністю, то все добре. Мій відтінок наноситься чудово, зразу,
+                                        без
+                                        «комків» та потреби нашаровування
+                                    </div>
+                                    <div class="comment__footer">
+                                        <div class="comment__date">
+                                            30 листопада 2022
+                                        </div>
+                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                    </div>
+                                    <div class="comment__subcomments">
+                                        <div class="comment">
+                                            <div class="comment__head">
+                                                <div class="comment__author-name">
+                                                    <img src="img/logo/yos-short-logo.png" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="comment__body">
+                                                <div class="comment__text">
+                                                    КАТЕРИНА, в реальності кольори товарів
+                                                    можуть відрізнятися від тих, які Ви
+                                                    бачите на екрані - це залежить від
+                                                    індивідуальних налаштувань Вашого
+                                                    монітора. Також виробник продукції
+                                                    залишає за собою право змінювати
+                                                    комплектацію, технічні характеристики,
+                                                    кольорову гаму товарів і т. Д. Без
+                                                    попереднього повідомлення, тому партія
+                                                    від партії може відрізнятись.
+                                                </div>
+                                                <div class="comment__footer">
+                                                    <div class="comment__date">
+                                                        30 листопада 2022
+                                                    </div>
+                                                    <button
+                                                        class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment">
+                                            <div class="comment__head">
+                                                <div class="comment__author-name">
+                                                    аліса
+                                                </div>
+                                            </div>
+                                            <div class="comment__body">
+                                                <div class="comment__text">
+                                                    Екатерина, мабуть віддінки олівців nude
+                                                    beige i nude truffle? Дуже гарний макіяж
+                                                    губ!)
+                                                </div>
+                                                <div class="comment__footer">
+                                                    <div class="comment__date">
+                                                        31 листопада 2022
+                                                    </div>
+                                                    <button
+                                                        class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment__head">
+                                    <div class="comment__author-name">інна</div>
+                                    <div class="comment__author-set-stars">
+                                        @@include('../../components/rating/_rating.html', { "value": "3" })
+                                    </div>
+                                </div>
+                                <div class="comment__body">
+                                    <div class="comment__text">
+                                        34 - Dubai
+                                        Фотографією точчний відтінок важко передати, але, можливо, комусь буде
+                                        корисно для приблизного розуміння.
+                                        На губах приємна, майже не відчувається. Стійкість середня, але для мене це не
+                                        проблема. Замовляла заради гарного кольору.
+                                    </div>
+                                    <div class="comment__footer">
+                                        <div class="comment__date">
+                                            29 жовтня 2022
+                                        </div>
+                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                    </div>
+                                    <div class="comment__subcomments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-comments__footer">
+                            @@include('../../components/pagination/_pagination.html')
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
