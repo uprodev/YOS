@@ -41,6 +41,8 @@ class App {
 			@@include('../components/price-range/price-range.js')
 			@@include('../components/product-images/product-images.js')
 			@@include('../components/rating/rating.js')
+			@@include('../components/product-card-sm/product-card-sm.js')
+			@@include('../components/quantity/quantity.js')
 			// ==== // components =====================================================
 
 
@@ -54,6 +56,7 @@ class App {
 			@@include('../widgets/catalog/catalog.js');
 			@@include('../widgets/product/product.js');
 			@@include('../widgets/product-reviews/product-reviews.js');
+			@@include('../widgets/side-basket/side-basket.js');
 			// ==== // widgets =====================================================
 		});
 

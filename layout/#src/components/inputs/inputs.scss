@@ -6,6 +6,7 @@
         position: relative;
         z-index: 1;
         color: transparent;
+        padding: 1.4rem 2rem 0.4rem;
     }
 
     &.required {
@@ -60,7 +61,7 @@
     height: 4rem;
     outline: none;
     box-shadow: none;
-    padding: 1.4rem 2rem 0.4rem;
+    padding: 0.8rem 2rem 0.8rem;
     border-radius: 0;
     border: 1px solid $themeColorFourth;
     font-size: $text-3;
@@ -80,9 +81,15 @@
         opacity: 0;
     }
 
+    &:focus {
+        border-color: $themeColor;
+    }
+
     @media (min-width: $mq-md) {
         height: 4rem;
     }
+
+
 }
 
 .textarea-wrap {

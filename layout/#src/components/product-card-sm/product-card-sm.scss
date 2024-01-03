@@ -1,0 +1,157 @@
+.product-card-sm {
+    display: flex;
+    gap: 1.5rem;
+
+    @media (min-width: $mq-lg) {
+        gap: 2rem;
+    }
+
+    &__left { 
+        flex: 0 0 auto; 
+        position: relative; 
+    }
+
+    &__btn-remove {
+        position: absolute;
+        cursor: pointer;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        z-index: 2;
+        top: 0.1rem;
+        left: 0.1rem;
+        transition: background-color $transition;
+
+        @media (min-width: $mq-lg) {
+            top: 0.3rem;
+            left: 0.3rem;
+        }
+
+        @media #{$mouse-device} {
+            &:hover {
+                background-color: $bgHover;
+            }
+        }
+    }
+
+    &__img {
+        width: 9rem;
+        height: 8.6rem;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $themeColorFourth;
+        transition: border-color $transition;
+
+        @media (min-width: $mq-lg) {
+            width: 12.6rem;
+            height: 12.2rem;
+        }
+
+        @media #{$mouse-device} {
+            &:hover {
+                border-color: $themeColorThird;
+            }
+        }
+
+        & img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    &__right {
+        flex: 1 1 auto;
+    }
+
+    &__title {
+        font-size: $text-2;
+        text-transform: uppercase;
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+        }
+    }
+
+    &__text {
+        margin-top: 0.3rem;
+        font-size: $text-1;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 1rem;
+            font-size: $text-3;
+        }
+    }
+
+    &__text-1 {
+        
+    }
+
+    &__text-2 {
+        margin-top: 0.3rem;
+        font-size: 1rem;
+        color: $textColorSecondary;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 0;
+            font-size: $text-2;
+        }
+    }
+
+    &__group {
+        margin-top: 2rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @media (min-width: $mq-lg) {
+            flex-direction: column;
+        }
+    }
+
+    &__quantity {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    &__quantity-label {
+        font-size: $text-1;
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+        }
+    }
+
+    &__price {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        font-size: $text-1;
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+            gap: 1rem;
+        }
+    }
+
+    &__price-current {
+        font-weight: 700;
+        color: $textColor;
+    }
+
+    &__price-old {
+        color: $textColorSecondary;
+        text-decoration: line-through;
+    }
+
+    &__btn-add {
+        margin-top: 1rem;
+    }
+}
+

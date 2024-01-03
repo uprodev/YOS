@@ -308,6 +308,16 @@ h5, .title-5 {
 	}
 }
 
+.text-color-dark {
+	color: $themeColor;
+}
+.text-color-light {
+	color: $textColorThird;
+}
+.text-color-warning {
+	color: $themeColorWarning;
+}
+
 .text-content {
 	& h1,
 	& h2,

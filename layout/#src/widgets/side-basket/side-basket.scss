@@ -1,0 +1,165 @@
+.side-basket {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100svh;
+    z-index: 11;
+    background-color: rgba(18, 18, 18, 0);
+    pointer-events: none;
+    transition: background-color .4s ease;
+
+    &.open {
+        pointer-events: auto;
+        background-color: rgba(18, 18, 18, 0.3);
+
+        & .side-basket__container {
+            transform: translateX(0);
+        }
+    }
+
+    &__container {
+        pointer-events: auto;
+        background-color: $pagesBg;
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        justify-content: space-between;
+        padding: 5rem 1rem 2rem;
+        transform: translateX(100%);
+        transition: transform .4s ease;
+
+        @media (min-width: $mq-lg) {
+            width: 33.5rem;
+        }
+    }
+
+    &__close-btn {
+        position: absolute;
+        font-size: 1.6rem;
+        padding: 0.5rem;
+        z-index: 4;
+        top: 1.5rem;
+        right: 0.5rem;
+    }
+
+    &__head {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 2.4rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+    }
+
+    &__scroll-container {
+        margin-right: -1rem;
+        padding-right: 1rem;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+    }
+
+    &__products-list {
+        padding-left: 0;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        @media (min-width: $mq-lg) {
+            & .product-card-sm__btn-remove {
+                top: 0.1rem;
+                left: 0.1rem;
+            }
+            & .product-card-sm__img {
+                width: 9rem;
+                height: 8.7rem;
+            }
+
+            & .product-card-sm__title {
+                font-weight: 700;
+                font-size: $text-2;
+            }
+
+            & .product-card-sm__text {
+                margin-top: 0.2rem;
+                font-size: $text-2;
+            }
+
+            & .product-card-sm__text-2 {
+                margin-top: 0.2rem;
+                font-size: $text-1;
+            }
+
+            & .product-card-sm__group {
+                margin-top: 1.7rem;
+                flex-direction: row;
+            }
+
+            & .product-card-sm__quantity-label {
+                display: none;
+            }
+
+            & .quantity__btn, & .quantity__value, & .product-card-sm__price {
+                font-size: $text-2;
+            }
+        }
+    }
+
+    &__payment-info {
+        margin-top: auto;
+    }
+
+    &__payment-info-row {
+
+        display: flex;
+        gap: 2rem;
+        justify-content: space-between;
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+
+        &--total {
+            margin-top: 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+    }
+
+    &__to-checkout {
+    }
+
+    &__free-shipping {
+    }
+
+    &__free-shipping-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    &__free-shipping-line {
+        margin-top: 2rem;
+
+        & .line {
+            background-color: $themeColor;
+        }
+    }
+
+    &__free-shipping-total {
+        margin-top: 1rem;
+        font-size: $text-2;
+        color: $textColorSecondary;
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}

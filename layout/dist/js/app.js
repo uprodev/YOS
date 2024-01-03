@@ -987,6 +987,42 @@ if (productImages) {
         })
     }
 }
+			
+			document.addEventListener('click', (e) => {
+    if(e.target.closest('.quantity__btn')) {
+        const btn = e.target.closest('.quantity__btn');
+        const parent = btn.parentElement;
+        const input = parent.querySelector('.quantity__value');
+
+        if(btn.classList.contains('minus')) {
+            if(input.value <= 1) return;
+            
+            input.value--;
+
+            if(input.value == 1) {
+                btn.classList.add('disabled');
+            }
+        } else if(btn.classList.contains('plus')) {
+            input.value++;
+
+            const btnMinus = parent.querySelector('.quantity__btn.minus');
+            if(!btnMinus) return;
+            btnMinus.classList.remove('disabled');
+        }
+    }
+})
+
+const quantityElements = document.querySelectorAll('[data-quantity]');
+if(quantityElements.length) {
+    quantityElements.forEach(quantityElement => {
+        const btnMinus = quantityElement.querySelector('.quantity__btn.minus');
+        const input = quantityElement.querySelector('.quantity__value');
+
+        if(input.value == 1) {
+            btnMinus.classList.add('disabled')
+        }
+    })
+}
 			// ==== // components =====================================================
 
 
@@ -1608,6 +1644,48 @@ if (addCommentEl) {
             document.body.classList.add('overflow-hidden');
         })
     })
+};
+			const sideBasket = document.querySelector('[data-side-basket]');
+if (sideBasket) {
+    const openButtons = document.querySelectorAll('[data-action="open-side-basket"]');
+    const closeButtons = document.querySelectorAll('[data-action="close-side-basket"]');
+
+    closeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            sideBasket.classList.remove('open');
+            bodyUnlock();
+        })
+    });
+
+    openButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            bodyLock();
+            sideBasket.classList.add('open');
+            document.body.classList.add('overflow-hidden');
+        })
+    })
+
+    sideBasket.addEventListener('click', (e) => {
+        if (e.target.closest('.side-basket__container')) return;
+
+        sideBasket.classList.remove('open');
+        bodyUnlock();
+    })
+
+    window.sideBasket = {
+        open: () => {
+            bodyLock();
+            sideBasket.classList.add('open');
+            document.body.classList.add('overflow-hidden');
+        },
+
+        close: () => {
+            sideBasket.classList.remove('open');
+            bodyUnlock();
+        }
+    }
 };
 			// ==== // widgets =====================================================
 		});
