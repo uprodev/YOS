@@ -140,6 +140,12 @@
     &__free-shipping {
     }
 
+    &__text {
+        color: $textColorSecondary;
+        font-size: $text-2;
+        margin-top: 0.8rem;
+    }
+
     &__free-shipping-head {
         display: flex;
         justify-content: space-between;

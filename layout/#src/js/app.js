@@ -43,6 +43,7 @@ class App {
 			@@include('../components/rating/rating.js')
 			@@include('../components/product-card-sm/product-card-sm.js')
 			@@include('../components/quantity/quantity.js')
+			@@include('../components/select/select.js')
 			// ==== // components =====================================================
 
 

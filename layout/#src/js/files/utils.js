@@ -173,6 +173,7 @@ class Utils {
 				if(!targetElements.length) return;
 
 				actionEl.addEventListener('click', (e) => {
+					if(actionEl.tagName === 'INPUT') return;
 					e.preventDefault();
 					
 					if(actionEl.classList.contains('open')) {
@@ -184,6 +185,20 @@ class Utils {
 						actionEl.classList.add('open');
 						targetElements.forEach(targetEl => {
 							this.slideDown(targetEl, 300)
+						})
+					}
+				})
+
+				actionEl.addEventListener('change', (e) => {
+					if(actionEl.checked) {
+						actionEl.classList.add('open');
+						targetElements.forEach(targetEl => {
+							this.slideDown(targetEl, 300)
+						})
+					} else {
+						actionEl.classList.remove('open');
+						targetElements.forEach(targetEl => {
+							this.slideUp(targetEl, 300)
 						})
 					}
 				})

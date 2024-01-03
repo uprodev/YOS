@@ -1,0 +1,155 @@
+.checkout {
+    padding-top: 3rem;
+
+    @media (min-width: $mq-lg) {
+        padding-top: 5rem;
+    }
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        @media (min-width: $mq-lg) {
+            flex-direction: row;
+            gap: 15.4rem;
+        }
+    }
+
+    &__form {
+        @media (min-width: $mq-lg) {
+            flex: 1 1 auto;
+        }
+    }
+
+    &__side-basket {
+        @media (min-width: $mq-lg) {
+            flex: 0 0 29.5rem;
+        }
+
+        & .side-basket__head {
+            @media (min-width: 0px) and (max-width: 991.98px) {
+                font-weight: 400;
+                font-size: $text-3;
+            }
+        }
+
+        & .side-basket__scroll-container {
+            margin-top: 2rem;
+            height: auto;
+        }
+    }
+}
+
+.checkout-form {
+    &__head {
+        @media (min-width: $mq-lg) {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__head-left {
+        display: flex;
+        align-items: flex-start;
+        gap: 2rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__head-title {
+        font-size: $text-3;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        @media (min-width: $mq-lg) {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__head-right {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            display: none;
+        }
+    }
+
+    &__body {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+
+        @media (min-width: $mq-lg) {
+            gap: 4rem;
+        }
+    }
+
+    &__row {
+        &:not([data-da]) {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+    
+            @media (min-width: $mq-lg) {
+                display: flex;
+                flex-direction: row;
+                gap: 4rem;
+            }
+        }
+
+        @media (min-width: $mq-lg) {
+            &[data-da] {
+                margin-top: 3.8rem;
+            }
+        }
+    }
+
+    &__col {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            &.mt {
+                margin-top: 2.2rem;
+            }
+        }
+
+        @media (min-width: $mq-lg) {
+            flex: 0 1 calc(50% - 2rem);
+        }
+    }
+
+    &__fields {
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__field {
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+    }
+
+    &__title {
+        font-weight: 400;
+        font-size: $text-3;
+
+        &:not(:first-child) {
+            margin-top: 3.2rem;
+
+            @media (min-width: $mq-lg) {
+                margin-top: 3.8rem;
+            }
+        }
+    }
+}
+
+.checkbox-radio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:not(:first-child) {
+        margin-top: 2rem;
+    }
+}
