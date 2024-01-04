@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('_head.html',{
+"title": "YOS"
+})
+
+<body>
+    <div class="_preloader"></div>
+
+    @@include('widgets/header/_header.html',{
+    "mod": ""
+    })
+
+    @@include('widgets/side-basket/_side-basket.html')
+
+    <main class="_page order-info-page">
+        @@include('widgets/order-info/_order-info.html')
+    </main>
+
+    <!-- == FOOTER ================== -->
+    @@include('widgets/footer/_footer.html',{})
+    <!-- == // FOOTER ================== -->
+
+</body>
+
+</html>

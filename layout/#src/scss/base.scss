@@ -318,6 +318,11 @@ h5, .title-5 {
 	color: $themeColorWarning;
 }
 
+.text-sm {
+	font-size: $text-1;
+	color: $textColorSecondary;
+}
+
 .text-content {
 	& h1,
 	& h2,

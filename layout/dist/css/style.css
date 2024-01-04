@@ -3367,6 +3367,11 @@ h5,
   color: #FF0000;
 }
 
+.text-sm {
+  font-size: 1.2rem;
+  color: #6A6B6E;
+}
+
 .text-content h1,
 .text-content h2,
 .text-content h3,
@@ -5200,6 +5205,14 @@ h5,
   font-size: 1.2rem;
   text-align: center;
   pointer-events: none;
+}
+
+.select-wrap.disabled {
+  pointer-events: none;
+}
+
+.select-wrap.disabled .select__value {
+  background-color: #EAEAEA;
 }
 
 .select {
@@ -7711,6 +7724,63 @@ h5,
   margin-top: 2rem;
 }
 
+.order-info {
+  padding-top: 3rem;
+}
+
+.order-info__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4rem;
+}
+
+.order-info__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2rem;
+}
+
+.order-info__title:not(:first-child) {
+  margin-top: 4rem;
+}
+
+.order-info__text:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.order-info__list {
+  margin-top: 3.2rem;
+}
+
+.order-info__list .product-card-sm__btn-remove {
+  display: none;
+}
+
+.order-info__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 4rem;
+}
+
+.order-info__row h4 {
+  margin-bottom: 2rem;
+}
+
+.order-info__row > *:last-child {
+  margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
   ._page {
     padding-top: 13.1rem;
@@ -8864,6 +8934,34 @@ h5,
   .checkout-form__title:not(:first-child) {
     margin-top: 3.8rem;
   }
+
+  .order-info {
+    padding-top: 5rem;
+  }
+
+  .order-info__body {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    gap: 15.4rem;
+  }
+
+  .order-info__left {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+  }
+
+  .order-info__list {
+    margin-top: 4rem;
+  }
+
+  .order-info__right {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 29.5rem;
+            flex: 0 0 29.5rem;
+  }
 }
 
 @media all and (min-width: 1024px) {
@@ -9109,6 +9207,13 @@ h5,
 
   .checkout-form__col.mt {
     margin-top: 2.2rem;
+  }
+
+  .order-info__title {
+    font-size: 1.6rem;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 }
 

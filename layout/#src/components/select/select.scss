@@ -1,4 +1,12 @@
+.select-wrap {
+    &.disabled {
+        pointer-events: none;
 
+        & .select__value {
+            background-color: $themeColorFourth;
+        }
+    }
+}
 .select {
     position: relative;
 
