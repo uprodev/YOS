@@ -24,44 +24,62 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<li <?php wc_product_class( '', $product ); ?>>
-	<?php
-	/**
-	 * Hook: woocommerce_before_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_open - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item' );
 
-	/**
-	 * Hook: woocommerce_before_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_show_product_loop_sale_flash - 10
-	 * @hooked woocommerce_template_loop_product_thumbnail - 10
-	 */
-	do_action( 'woocommerce_before_shop_loop_item_title' );
-
-	/**
-	 * Hook: woocommerce_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_product_title - 10
-	 */
-	do_action( 'woocommerce_shop_loop_item_title' );
-
-	/**
-	 * Hook: woocommerce_after_shop_loop_item_title.
-	 *
-	 * @hooked woocommerce_template_loop_rating - 5
-	 * @hooked woocommerce_template_loop_price - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop_item_title' );
-
-	/**
-	 * Hook: woocommerce_after_shop_loop_item.
-	 *
-	 * @hooked woocommerce_template_loop_product_link_close - 5
-	 * @hooked woocommerce_template_loop_add_to_cart - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop_item' );
-	?>
-</li>
+<div class="product-card" data-product-card>
+    <div class="product-card__head">
+        <div class="product-card__labels">
+        </div>
+        <a href="<?php the_permalink();?>" class="product-card__img">
+            <img src="<?php the_post_thumbnail_url();?>" alt="">
+        </a>
+        <button class="product-card__like-button active"></button>
+    </div>
+    <div class="product-card__body">
+        <div class="product-card__title"><a href="<?php the_permalink();?>">zein obagi</a></div>
+        <div class="product-card__text">
+            <div class="product-card__text-1">
+                <?php the_title();?>
+            </div>
+            <div class="product-card__text-2">
+                Zo Skin Health Exfoliating Polish
+            </div>
+        </div>
+        <div class="product-card__price" data-index="0">
+            <div class="product-card__price-current">2 299 ₴</div>
+        </div>
+        <div class="product-card__price show" data-index="1">
+            <div class="product-card__price-current">3 299 ₴</div>
+        </div>
+        <div class="product-card__price" data-index="2">
+            <div class="product-card__price-current">4 299 ₴</div>
+        </div>
+    </div>
+    <div class="product-card__footer">
+        <form>
+            <div class="product-card__option">
+                <label class="product-card__option-item" disabled>
+                    <input type="radio" name="card-id-1" data-product-card-option data-index="0">
+                    <div class="product-card__option-item-value">
+                        100 г
+                    </div>
+                </label>
+                <label class="product-card__option-item">
+                    <input type="radio" name="card-id-1" data-product-card-option checked
+                           data-index="1">
+                    <div class="product-card__option-item-value">
+                        290 г
+                    </div>
+                </label>
+                <label class="product-card__option-item">
+                    <input type="radio" name="card-id-1" data-product-card-option data-index="2">
+                    <div class="product-card__option-item-value">
+                        490 г
+                    </div>
+                </label>
+            </div>
+            <button class="product-card__btn-to-basket button-primary dark w-100">
+                додати до кошика
+            </button>
+        </form>
+    </div>
+</div>
