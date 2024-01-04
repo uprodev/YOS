@@ -1,0 +1,467 @@
+<section class="brands" data-brands>
+    <div class="container">
+        <div class="brands__best">
+            <h2 class="brands__title title-2">топ бренди</h2>
+            <div class="brands__best-list">
+                <div class="swiper" data-slider="best-brands" data-mobile="false">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="#">the ordinary</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">is clinical</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">dermalogica</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">dr. jart+</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="#">boy smells</a>
+                        </div>
+                    </div>
+                    <div class="swiper-scrollbar slider-scrollbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="brands__nav">
+            <h2 class="brands__title title-2">всі бренди</h2>
+            <div class="swiper" data-slider="brands-nav">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="#">
+                            #
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="a">
+                            a
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="b">
+                            b
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="c">
+                            c
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="d">
+                            d
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="e">
+                            e
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="f">
+                            f
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="g">
+                            g
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="h">
+                            h
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="i">
+                            i
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="j">
+                            j
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="k">
+                            k
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="l">
+                            l
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="m">
+                            m
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="n">
+                            n
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="o">
+                            o
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="p">
+                            p
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="q">
+                            q
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="r">
+                            r
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="s">
+                            s
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="t">
+                            t
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="u">
+                            u
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="v">
+                            v
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="w">
+                            w
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="x">
+                            x
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="y">
+                            y
+                        </button>
+                    </div>
+                    <div class="swiper-slide">
+                        <button data-action="filter-by-letter" data-letter="z">
+                            z
+                        </button>
+                    </div>
+                </div>
+                <div class="swiper-scrollbar slider-scrollbar"></div>
+            </div>
+        </div>
+        <div class="brands__search">
+            @@include('../../components/inputs/_input.html', {
+            "label": "Пошук брендів",
+            "type": "text",
+            "required": false
+            })
+        </div>
+        <ul class="brands__list">
+            <li data-letter="a">
+                <div class="brands__letter">a</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">acqua di parma</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">alterna haircare</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">aesop <span>New</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">augustinus bader</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">aveda</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">aurelia london</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">ameliorate</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="b">
+                <div class="brands__letter">b</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">benefit cosmetics</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">byoma</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">byredo</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">bobbi brown</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">baxter of california</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">boy smells</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="c">
+                <div class="brands__letter">c</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">comfort zone</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">colorescience <span>Vegan</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="d">
+                <div class="brands__letter">d</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">darling</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">davines</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">damdam</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">drunk elephant</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">dr. jart+</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">dr. barbara sturm</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">davines</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">dr. jart+</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">drunk elephant</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">dermalogica</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">dermalogica</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="e">
+                <div class="brands__letter">e</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">elemis</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="f">
+                <div class="brands__letter">f</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">farmacy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">fenty beauty by rihanna</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="g">
+                <div class="brands__letter">g</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">gisou</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">glow recipe</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">glamglow</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="h">
+                <div class="brands__letter">h</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">hydrapeptide</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="i">
+                <div class="brands__letter">i</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">instytutum</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">is clinical</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="j">
+                <div class="brands__letter">j</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">jo malone london</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="k">
+                <div class="brands__letter">k</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="l">
+                <div class="brands__letter">l</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="m">
+                <div class="brands__letter">m</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="n">
+                <div class="brands__letter">n</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="p">
+                <div class="brands__letter">p</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">paula’s choice</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">paula’s choice</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="q">
+                <div class="brands__letter">q</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="r">
+                <div class="brands__letter">r</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">ren clean skincare <span>Vegan</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="s">
+                <div class="brands__letter">s</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">sachajuan</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">sol de janeiro</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">sun bum</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">sunday riley</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">summer fridays</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">supergoop!</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="t">
+                <div class="brands__letter">t</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">tata harper</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">the inkey list</a>
+                    </li>
+                    <li>
+                        <a href="#" class="brands__list-block-item">the ordinary</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="u">
+                <div class="brands__letter">u</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="v">
+                <div class="brands__letter">v</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">versed</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="w">
+                <div class="brands__letter">w</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="x">
+                <div class="brands__letter">x</div>
+                <ul class="brands__list-block">
+
+                </ul>
+            </li>
+            <li data-letter="y">
+                <div class="brands__letter">y</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">youth to the people</a>
+                    </li>
+                </ul>
+            </li>
+            <li data-letter="z">
+                <div class="brands__letter">z</div>
+                <ul class="brands__list-block">
+                    <li>
+                        <a href="#" class="brands__list-block-item">zitsticka</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>

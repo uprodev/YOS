@@ -58,6 +58,7 @@ class App {
 			@@include('../widgets/product/product.js');
 			@@include('../widgets/product-reviews/product-reviews.js');
 			@@include('../widgets/side-basket/side-basket.js');
+			@@include('../widgets/brands/brands.js');
 			// ==== // widgets =====================================================
 		});
 
