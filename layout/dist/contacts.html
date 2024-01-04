@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
 	<meta charset="UTF-8">
 	<title>YOS</title>
@@ -100,10 +100,10 @@ defer
 ></script> -->
 </head>
 
-<body>
-    <div class="_preloader"></div>
+<body >
+	<div class="_preloader"></div>
 
-    <header class="header " data-header data-popup="lock-padding">
+	<header class="header header--transparent" data-header data-popup="lock-padding">
 
     <a href="#" class="top-offer" data-top-offer>
         <div class="top-offer__inner container">
@@ -620,8 +620,8 @@ defer
 		</div>
 	</div>
 </div>
-
-    <div class="side-basket" data-side-basket>
+	
+	<div class="side-basket" data-side-basket>
     <!-- 
         Можно открыть/закрыть боковую корзину скриптами, есть два метода
         window.sideBasket.open();
@@ -748,329 +748,42 @@ defer
     </div>
 </div>
 
-    <main class="_page checkout-page">
-        <div class="head-height-compensation"></div>
-        <section class="checkout">
-    <form action="/">
-        <div class="container">
-            <div class="checkout__inner">
-                <div class="checkout__form checkout-form">
-                    <div class="checkout-form__head">
-                        <div class="checkout-form__head-left">
-                            <h2 class="checkout-form__head-title">оформлення замовлення</h2>
-                            <a href="#" class="button-link"><span>є акаунт?</span></a>
-                        </div>
-                        <div class="checkout-form__head-right">
-                            <a href="#" class="button-link"><span>продовжити покупки</span></a>
-                        </div>
-                    </div>
-                    <div class="checkout-form__body">
-                        <div class="checkout-form__row">
-                            <div class="checkout-form__col">
-                                <div class="checkout-form__fields">
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">Прізвище</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">Ім’я</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">По-батькові</span>
-    
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout-form__col">
-                                <div class="checkout-form__fields">
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="email" class="input" required>
-        <span class="input-label">Електронна адреса</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
-        <span class="input-label">Телефонний номер</span>
-    
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout-form__row">
-                            <div class="checkout-form__col other-recipient">
-                                <div class="checkbox-radio-list">
-                                    <label class="checkbox-radio">
-                                        <input type="checkbox" name="other" data-collapse="other-recipient">
-                                        <div class="checkbox-radio__square"></div>
-                                        <div class="checkbox-radio__text">Отримувач інша особа</div>
-                                    </label>
-                                </div>
-
-                                <div class="checkout-form__fields" data-collapse-target="other-recipient">
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">Прізвище</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">Ім’я</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required>
-        <span class="input-label">По-батькові</span>
-    
-</div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
-        <span class="input-label">Телефонний номер</span>
-    
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout-form__col mt">
-                                <h2 class="checkout-form__title">спосіб оплати</h2>
-                                <div class="checkbox-radio-list">
-                                    <label class="checkbox-radio">
-    <input type="radio" name="payment" >
-    <div class="checkbox-radio__square"></div>
-    <div class="checkbox-radio__text">Банківська картка. Інтернет-платіж</div>
-</label>
-                                    <label class="checkbox-radio">
-    <input type="radio" name="payment" checked>
-    <div class="checkbox-radio__square"></div>
-    <div class="checkbox-radio__text">При отриманні</div>
-</label>
-                                </div>
-
-                                <h2 class="checkout-form__title">коментар</h2>
-                                <div class="checkout-form__fields">
-                                    <div class="checkout-form__field">
-                                        <div class="textarea-wrap" data-textarea>
-    <textarea class="textarea"></textarea>
-    <span class="textarea-label">Текст повідомлення</span>
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout-form__row" data-da=".other-recipient,992,last">
-                            <div class="checkout-form__col">
-                                <h2 class="checkout-form__title">спосіб доставки</h2>
-                                <div class="checkbox-radio-list">
-                                    <label class="checkbox-radio">
-    <input type="radio" name="delivery-method" checked>
-    <div class="checkbox-radio__square"></div>
-    <div class="checkbox-radio__text">Нова Пошта Відділення</div>
-</label>
-                                    <label class="checkbox-radio">
-    <input type="radio" name="delivery-method" >
-    <div class="checkbox-radio__square"></div>
-    <div class="checkbox-radio__text">Нова Пошта Поштомат</div>
-</label>
-                                    <label class="checkbox-radio">
-    <input type="radio" name="delivery-method" >
-    <div class="checkbox-radio__square"></div>
-    <div class="checkbox-radio__text">Нова Пошта Кур’єр</div>
-</label>
-                                </div>
-                                <div class="checkout-form__fields">
-                                    <!-- 
-                                        Если нужно обновить селекты, есть метод
-                                        window.select.updateAll();
-                                     -->
-                                    <div class="checkout-form__field">
-                                        <div class="select-wrap">
-                                            <select name="cities" class="_select" required>
-                                                <option value="" selected>Місто</option>
-                                                <option value="1">Івано-Франківськ</option>
-                                                <option value="2">Вінниця</option>
-                                                <option value="3">Дніпро</option>
-                                                <option value="4">Донецьк</option>
-                                                <option value="5">Житомир</option>
-                                                <option value="6">Запоріжжя</option>
-                                                <option value="7">Київ</option>
-                                                <option value="8">Кропивницький</option>
-                                                <option value="9">Луганськ</option>
-                                                <option value="10">Луцьк</option>
-                                                <option value="11">Львів</option>
-                                                <option value="12">Миколаїв</option>
-                                                <option value="13">Одеса</option>
-                                                <option value="14">Полтава</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="checkout-form__field">
-                                        <div class="select-wrap disabled">
-                                            <select name="post" class="_select" required>
-                                                <option value="" selected>Відділення</option>
-                                                <option value="1">Відділення 1</option>
-                                                <option value="2">Відділення 2</option>
-                                                <option value="3">Відділення 3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="checkout__side-basket">
-                    <div class="side-basket__head">
-                        ваш кошик <span>(3)</span>
-                    </div>
-                    <div class="side-basket__scroll-container">
-                        <ul class="side-basket__products-list">
-                            <li>
-                                <div class="product-card-sm">
-                                    <div class="product-card-sm__left">
-                                        <button class="product-card-sm__btn-remove"><span
-                                                class="icon-close"></span></button>
-                                        <a href="#" class="product-card-sm__img">
-                                            <img src="img/photo/product-card-img-1.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-card-sm__right">
-                                        <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
-                                        <div class="product-card-sm__text">
-                                            <div class="product-card-sm__text-1">
-                                                Exfoliating Polish, 65g
-                                            </div>
-                                            <div class="product-card-sm__text-2">
-                                                Zo Skin Health
-                                            </div>
-                                        </div>
-                                        <div class="product-card-sm__group">
-                                            <div class="product-card-sm__quantity">
-                                                <div class="product-card-sm__quantity-label">Кількість:</div>
-                                                <div class="quantity" data-quantity>
-    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-    <input type="text" value="1" class="quantity__value">
-    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
-</div>
-                                            </div>
-                                            <div class="product-card-sm__price">
-                                                <div class="product-card-sm__price-current">3 199 ₴</div>
-                                                <div class="product-card-sm__price-old">7 299 ₴</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="product-card-sm">
-                                    <div class="product-card-sm__left">
-                                        <button class="product-card-sm__btn-remove"><span
-                                                class="icon-close"></span></button>
-                                        <a href="#" class="product-card-sm__img">
-                                            <img src="img/photo/product-card-img-2.png" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="product-card-sm__right">
-                                        <div class="product-card-sm__title"><a href="#">rare paris</a></div>
-                                        <div class="product-card-sm__text">
-                                            <div class="product-card-sm__text-1">
-                                                Ecological Cellulose, 65g
-                                            </div>
-                                            <div class="product-card-sm__text-2">
-                                                Tresor Solaire
-                                            </div>
-                                        </div>
-                                        <div class="product-card-sm__group">
-                                            <div class="product-card-sm__quantity">
-                                                <div class="product-card-sm__quantity-label">Кількість:</div>
-                                                <div class="quantity" data-quantity>
-    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-    <input type="text" value="1" class="quantity__value">
-    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
-</div>
-                                            </div>
-                                            <div class="product-card-sm__price">
-                                                <div class="product-card-sm__price-current">299 ₴</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-
-                        <div class="side-basket__payment-info">
-                            <div class="side-basket__payment-info-row">
-                                <span>Знижка за системою лояльності</span>
-                                <span class="text-nowrap">-40 ₴</span>
-                            </div>
-                            <div class="side-basket__payment-info-row">
-                                <span>Знижка -23%</span>
-                                <span class="text-nowrap">-340 ₴</span>
-                            </div>
-                            <div class="side-basket__payment-info-row">
-                                <span>Доставка</span>
-                                <span>За тарифами перевізника</span>
-                            </div>
-                            <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
-                                <span>всього до сплати</span>
-                                <span class="text-nowrap">4 098 ₴</span>
-                            </div>
-                        </div>
-
-                        <div class="side-basket__to-checkout">
-                            <button class="button-primary dark w-100">оформити замовлення</button>
-                            <div class="side-basket__text">
-                                Підтверджуючи замовлення, Ви приймаєте
-                                умови угоди
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+	<main class="_page contacts-page">
+        <div class="head-height-compensation d-lg-none"></div>
+        <section class="contacts">
+    <div class="container">
+        <h2 class="contacts__title" data-da=".contacts__info,768,last">контакти</h2>
+    </div>
+    <div class="contacts__img ibg">
+        <picture>
+            <source srcset="img/photo/contacts-desk.png" media="(min-width: 768px)">
+            <img src="img/photo/contacts-mob.png" alt="img">
+        </picture>
+    </div>
+    <div class="contacts__info">
+        <p>
+            Ми доступні з понеділка по п’ятницю
+            з 10.00 до 18.00
+        </p>
+        <p>
+            Ви можете <a href="#">написати нам лист</a>
+            або зателефонувати за номером:
+        </p>
+        <p>
+            <a href="#" class="button-link">+380 (93) 28 55 810</a>
+        </p>
+        <p>
+            <a href="#" class="button-link"><span>telegram</span></a>
+        </p>
+        <p>
+            <a href="#" class="button-link"><span>instagram</span></a>
+        </p>
+    </div>
 </section>
-    </main>
+	</main>
 
-    <!-- == FOOTER ================== -->
-    <section class="subscription top-space-140">
+	<!-- == FOOTER ================== -->
+	<section class="subscription top-space-140">
     <div class="subscription__body">
         <div class="subscription__col">
             <div class="subscription__img ibg">
@@ -1258,7 +971,7 @@ defer
         </div>
     </footer>
 </div>
-    <!-- == // FOOTER ================== -->
+	<!-- == // FOOTER ================== -->
 
 </body>
 

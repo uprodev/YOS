@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+@@include('_head.html',{
+"title": "YOS"
+})
+
+<body >
+	<div class="_preloader"></div>
+
+	@@include('widgets/header/_header.html',{
+	"mod": "header--transparent"
+	})
+	
+	@@include('widgets/side-basket/_side-basket.html')
+
+	<main class="_page contacts-page">
+        <div class="head-height-compensation d-lg-none"></div>
+        @@include('widgets/contacts/_contacts.html')
+	</main>
+
+	<!-- == FOOTER ================== -->
+	@@include('widgets/footer/_footer.html',{})
+	<!-- == // FOOTER ================== -->
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+.page404 {
+    padding-top: 3rem;
+    position: relative;
+
+    @media (min-width: $mq-lg) {
+        padding-top: 0;
+        min-height: 100vh;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @media (min-width: $mq-lg) {
+            padding-top: 24rem;
+            gap: 4rem;
+
+            & > * {
+                align-self: flex-start;
+            }
+        }
+
+    }
+
+    &__title {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            font-size: $text-3;
+        }
+    }
+
+    &__text {
+        font-size: $text-3;
+        text-transform: uppercase;
+
+        @media (min-width: $mq-lg) {
+            gap: 2.4rem;
+        }
+    }
+
+    &__img {
+        margin-top: 12rem;
+        height: 30rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 0;
+            height: 100%;
+            top: 0;
+            right: 0;
+            width: 52rem;
+            position: absolute;
+        }
+    }
+}
+.container {
+}
+.button-primary {
+}
+.light {
+}
+.ibg {
+}

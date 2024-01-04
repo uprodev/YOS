@@ -1,6 +1,10 @@
 .faq {
     padding-top: 3rem;
-    overflow: hidden;
+
+
+    @media (min-width: 0px) and (max-width: 991.98px) {
+        overflow: hidden;
+    }
 
     @media (min-width: $mq-lg) {
         padding-top: 5rem;
@@ -24,11 +28,18 @@
 
     &__side {
         @media (min-width: $mq-lg) {
-            flex: 0 0 30rem
+            flex: 0 0 30rem;
+            position: relative;
         }
     }
 
     &__nav {
+
+        @media (min-width: $mq-lg) {
+            position: sticky;
+            top: 19rem;
+        }
+
         & .swiper {
             overflow: visible;
         }

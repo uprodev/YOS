@@ -3291,7 +3291,7 @@ p,
 ul,
 ol,
 figure {
-  margin-bottom: 0.625em;
+  margin-bottom: 1rem;
 }
 
 h2,
@@ -5348,8 +5348,13 @@ h5,
 }
 
 .header--is-scrolling {
+  background-color: #fff;
   -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.header--transparent:not(.header--is-scrolling) {
+  background-color: transparent;
 }
 
 .header-desk {
@@ -7944,7 +7949,6 @@ h5,
 
 .faq {
   padding-top: 3rem;
-  overflow: hidden;
 }
 
 .faq__inner {
@@ -8001,6 +8005,70 @@ h5,
 
 .faq__content-text h4 {
   margin-bottom: 2rem;
+}
+
+.about {
+  padding-top: 3rem;
+}
+
+.about__body {
+  margin-top: 1.6rem;
+}
+
+.about__img {
+  height: 30rem;
+}
+
+.about__content {
+  margin-top: 12.5rem;
+}
+
+.contacts {
+  padding-top: 3rem;
+}
+
+.contacts__img {
+  margin-top: 2rem;
+  height: 30rem;
+}
+
+.contacts__info {
+  margin-top: 14rem;
+  max-width: 27.2rem;
+  margin-left: auto;
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.contacts__info a:not(.button-link) {
+  background-image: -o-linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+  background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+}
+
+.page404 {
+  padding-top: 3rem;
+  position: relative;
+}
+
+.page404__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+
+.page404__text {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.page404__img {
+  margin-top: 12rem;
+  height: 30rem;
 }
 
 @media (min-width: 768px) {
@@ -8418,6 +8486,36 @@ h5,
     width: 19.07rem;
     height: 18.8rem;
     font-size: 2.8rem;
+  }
+
+  .about {
+    padding-top: 5rem;
+  }
+
+  .about__body {
+    position: relative;
+    margin-top: 4rem;
+  }
+
+  .about__img {
+    height: auto;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    bottom: 1px;
+    right: 0;
+    z-index: 1;
+  }
+
+  .about__content {
+    position: relative;
+    min-height: 53.3rem;
+    width: 37.5rem;
+    z-index: 2;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: 24%;
+    margin-top: 0;
   }
 }
 
@@ -9278,6 +9376,12 @@ h5,
     -webkit-box-flex: 0;
         -ms-flex: 0 0 30rem;
             flex: 0 0 30rem;
+    position: relative;
+  }
+
+  .faq__nav {
+    position: sticky;
+    top: 19rem;
   }
 
   .faq__nav .swiper-wrapper {
@@ -9296,6 +9400,67 @@ h5,
 
   .faq__content {
     max-width: 69.2rem;
+  }
+
+  .contacts {
+    padding-top: 0;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+
+  .contacts__title {
+    margin-top: 4rem;
+  }
+
+  .contacts__img {
+    margin-top: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 52rem;
+  }
+
+  .contacts__info {
+    max-width: 28.2rem;
+    padding-right: 2rem;
+  }
+
+  .page404 {
+    padding-top: 0;
+    min-height: 100vh;
+  }
+
+  .page404__body {
+    padding-top: 24rem;
+    gap: 4rem;
+  }
+
+  .page404__body > * {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+
+  .page404__text {
+    gap: 2.4rem;
+  }
+
+  .page404__img {
+    margin-top: 0;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 52rem;
+    position: absolute;
   }
 }
 
@@ -9415,6 +9580,10 @@ h5,
 
   .special-offers__title {
     display: none;
+  }
+
+  .about__title {
+    font-size: 1.6rem;
   }
 }
 
@@ -9551,6 +9720,10 @@ h5,
             justify-content: space-between;
   }
 
+  .faq {
+    overflow: hidden;
+  }
+
   .faq__title {
     font-size: 1.6rem;
   }
@@ -9570,6 +9743,14 @@ h5,
 
   .faq__content h2 {
     font-size: 2rem;
+  }
+
+  .contacts__title {
+    font-size: 1.6rem;
+  }
+
+  .page404__title {
+    font-size: 1.6rem;
   }
 }
 
