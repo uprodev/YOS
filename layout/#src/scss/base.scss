@@ -124,6 +124,10 @@ img {
 ._page {
 	flex: 1 1 auto;
 
+
+}
+
+.head-height-compensation {
 	padding-top: 14.9rem;
 
 	@media (min-width: $mq-md) {
@@ -330,14 +334,14 @@ h5, .title-5 {
 	& h4,
 	& h5,
 	& h6 {
-		margin-bottom: 0.625em;
+		margin-bottom: 2rem;
 	}
 
 	& p,
 	& ul,
 	& ol,
 	& figure {
-		margin-bottom: 0.625em;
+		margin-bottom: 1rem;
 	}
 
 
@@ -440,7 +444,7 @@ h5, .title-5 {
 		& ~ h4,
 		& ~ h5,
 		& ~ h6 {
-			margin-top: 4rem;
+			margin-top: 2rem;
 		}
 	}
 }

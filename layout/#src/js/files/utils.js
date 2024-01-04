@@ -91,23 +91,23 @@ class Utils {
 	scrollTrigger(el, value, callback) {
 		let triggerPoint = document.documentElement.clientHeight / 100 * (100 - value);
 		const trigger = () => {
-			if(el.getBoundingClientRect().top <= triggerPoint && !el.classList.contains('is-show')) {
-				if(typeof callback === 'function') {
+			if (el.getBoundingClientRect().top <= triggerPoint && !el.classList.contains('is-show')) {
+				if (typeof callback === 'function') {
 					callback();
 					el.classList.add('is-show')
 				}
 			}
 		}
-	
+
 		trigger();
-	
+
 		window.addEventListener('scroll', trigger);
 	}
 
 	numberCounterAnim() {
 		let counterItems = document.querySelectorAll('[data-number-counter-anim]');
 		if (counterItems) {
-	
+
 			counterItems.forEach(item => {
 				let animation = anime({
 					targets: item,
@@ -117,9 +117,9 @@ class Utils {
 					autoplay: false,
 					duration: 1000
 				});
-	
+
 				window.addEventListener('load', () => {
-					this.scrollTrigger(item, 15, () => {animation.play()})
+					this.scrollTrigger(item, 15, () => { animation.play() })
 				})
 			})
 		}
@@ -133,7 +133,7 @@ class Utils {
 		}
 
 		let truncateItems = document.querySelectorAll('[data-truncate-string]');
-		if(truncateItems.length) {
+		if (truncateItems.length) {
 			truncateItems.forEach(truncateItem => {
 				truncateString(truncateItem, truncateItem.dataset.truncateString);
 			})
@@ -143,40 +143,40 @@ class Utils {
 	replaceImageToInlineSvg(query) {
 		const images = document.querySelectorAll(query);
 
-		if(images.length) {
+		if (images.length) {
 			images.forEach(img => {
-					let xhr = new XMLHttpRequest();
-					xhr.open('GET', img.src);
-					xhr.onload = () => {
-						if (xhr.readyState === xhr.DONE) {
-							if (xhr.status === 200) {
-								let svg = xhr.responseXML.documentElement;
-								svg.classList.add('_svg');
-								img.parentNode.replaceChild(svg, img);
-							}
+				let xhr = new XMLHttpRequest();
+				xhr.open('GET', img.src);
+				xhr.onload = () => {
+					if (xhr.readyState === xhr.DONE) {
+						if (xhr.status === 200) {
+							let svg = xhr.responseXML.documentElement;
+							svg.classList.add('_svg');
+							img.parentNode.replaceChild(svg, img);
 						}
 					}
-					xhr.send(null);
+				}
+				xhr.send(null);
 			})
 		}
 	}
 
 	initCollapse() {
 		const collapseActionElements = document.querySelectorAll('[data-collapse]');
-		if(collapseActionElements.length) {
+		if (collapseActionElements.length) {
 			collapseActionElements.forEach(actionEl => {
 
 				const id = actionEl.getAttribute('data-collapse');
-				if(!id) return;
+				if (!id) return;
 
 				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
-				if(!targetElements.length) return;
+				if (!targetElements.length) return;
 
 				actionEl.addEventListener('click', (e) => {
-					if(actionEl.tagName === 'INPUT') return;
+					if (actionEl.tagName === 'INPUT') return;
 					e.preventDefault();
-					
-					if(actionEl.classList.contains('open')) {
+
+					if (actionEl.classList.contains('open')) {
 						actionEl.classList.remove('open');
 						targetElements.forEach(targetEl => {
 							this.slideUp(targetEl, 300)
@@ -190,7 +190,7 @@ class Utils {
 				})
 
 				actionEl.addEventListener('change', (e) => {
-					if(actionEl.checked) {
+					if (actionEl.checked) {
 						actionEl.classList.add('open');
 						targetElements.forEach(targetEl => {
 							this.slideDown(targetEl, 300)
@@ -211,7 +211,7 @@ class Utils {
 		if (items.length) {
 			items.forEach(item => {
 				let maskValue = item.dataset.mask;
-	
+
 				Inputmask(maskValue, {
 					clearIncomplete: false,
 					clearMaskOnLostFocus: false,
@@ -232,7 +232,7 @@ class Utils {
 						let content = trigger.nextElementSibling;
 
 						// init
-						if(trigger.classList.contains('active')) {
+						if (trigger.classList.contains('active')) {
 							content.style.display = 'block';
 							parent.classList.add('active');
 						}
@@ -293,6 +293,60 @@ class Utils {
 			})
 		}
 
+	}
+
+	initTabs() {
+		let tabsContainers = document.querySelectorAll('[data-tabs]');
+		if (tabsContainers.length) {
+			tabsContainers.forEach(tabsContainer => {
+				let triggerItems = tabsContainer.querySelectorAll('[data-tab-trigger]');
+				let contentItems = Array.from(tabsContainer.querySelectorAll('[data-tab-content]'));
+				let select = tabsContainer.querySelector('[data-tab-select]');
+
+				const getContentItem = (id) => {
+					if (!id.trim()) return;
+					return contentItems.filter(item => item.dataset.tabContent === id)[0];
+				}
+
+				if (triggerItems.length && contentItems.length) {
+					// init
+					let activeItem = tabsContainer.querySelector('.tab-active[data-tab-trigger]');
+					if (activeItem) {
+						activeItem.classList.add('tab-active');
+						getContentItem(activeItem.dataset.tabTrigger).classList.add('tab-active');
+					} else {
+						triggerItems[0].classList.add('tab-active');
+						getContentItem(triggerItems[0].dataset.tabTrigger).classList.add('tab-active');
+					}
+
+					triggerItems.forEach(item => {
+						item.addEventListener('click', () => {
+							item.classList.add('tab-active');
+							getContentItem(item.dataset.tabTrigger).classList.add('tab-active');
+
+							triggerItems.forEach(i => {
+								if (i === item) return;
+
+								i.classList.remove('tab-active');
+								getContentItem(i.dataset.tabTrigger).classList.remove('tab-active');
+							})
+						})
+					})
+				}
+
+				if (select) {
+					select.addEventListener('change', (e) => {
+						getContentItem(e.target.value).classList.add('tab-active');
+
+						contentItems.forEach(item => {
+							if (getContentItem(e.target.value) === item) return;
+
+							item.classList.remove('tab-active');
+						})
+					})
+				}
+			})
+		}
 	}
 }
 

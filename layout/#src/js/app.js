@@ -29,6 +29,7 @@ class App {
 			this.utils.initSpoller();
 			this.utils.initInputMask();
 			this.utils.initSmoothScroll();
+			this.utils.initTabs();
 
 			// ==== components =====================================================
 			@@include('../components/popup/popup.js')
@@ -59,6 +60,7 @@ class App {
 			@@include('../widgets/product-reviews/product-reviews.js');
 			@@include('../widgets/side-basket/side-basket.js');
 			@@include('../widgets/brands/brands.js');
+			@@include('../widgets/faq/faq.js');
 			// ==== // widgets =====================================================
 		});
 

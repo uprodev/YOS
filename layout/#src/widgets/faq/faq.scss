@@ -1,0 +1,135 @@
+.faq {
+    padding-top: 3rem;
+    overflow: hidden;
+
+    @media (min-width: $mq-lg) {
+        padding-top: 5rem;
+    }
+
+    &__title {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            font-size: $text-3;
+        }
+    }
+
+    &__inner {
+        margin-top: 2rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 4rem;
+            display: flex;
+            gap: 4rem;
+        }
+    }
+
+    &__side {
+        @media (min-width: $mq-lg) {
+            flex: 0 0 30rem
+        }
+    }
+
+    &__nav {
+        & .swiper {
+            overflow: visible;
+        }
+
+        & .swiper-wrapper {
+            @media (min-width: $mq-lg) {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        & .swiper-slide {
+            width: auto;
+
+            @media (min-width: 0px) and (max-width: 991.98px) {
+                &:not(:last-child) {
+                    padding-right: 2rem;
+                }
+            }
+
+            & div {
+                text-transform: uppercase;
+                color: $themeColorThird;
+                cursor: pointer;
+
+                @media (min-width: 0px) and (max-width: 991.98px) {
+                    & span {
+                        background-image: none;
+                        padding: 0;
+                    }
+                }
+
+                @media #{$mouse-device} {
+                    &:hover {
+                        color: $themeColorSecondary;
+                    }
+                }
+
+                &.tab-active {
+                    color: $textColor;
+                }
+            }
+        }
+
+        & .swiper-scrollbar {
+            margin-top: 1.5rem;
+
+            &:not(.swiper-scrollbar-horizontal) {
+                display: none;
+            }
+        }
+    }
+
+    &__body {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            margin-top: 4rem;
+        }
+
+        @media (min-width: $mq-lg) {
+            flex: 1 1 auto;
+        }
+    }
+
+    &__content {
+        @media (min-width: $mq-lg) {
+            max-width: 69.2rem;
+        }
+
+        & h4, & h2 {
+            font-weight: 400;
+        }
+
+        & h2 {
+            @media (min-width: 0px) and (max-width: 991.98px) {
+                font-size: $text-4;
+            }
+        }
+    }
+
+    &__content-head {
+        &:not(:first-child) {
+            margin-top: 4rem;
+        }
+    }
+
+    &__content-date {
+        color: $textColorSecondary;
+        font-size: $text-1;
+
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+    }
+
+    &__content-text {
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+
+        & h4 {
+            margin-bottom: 2rem;
+        }
+    }
+}
