@@ -111,17 +111,22 @@
         & h4, & h2 {
             font-weight: 400;
         }
-
-        & h2 {
-            @media (min-width: 0px) and (max-width: 991.98px) {
-                font-size: $text-4;
-            }
-        }
     }
 
     &__content-head {
         &:not(:first-child) {
             margin-top: 4rem;
+        }
+
+        & h2 {
+            @media (min-width: 0px) and (max-width: 991.98px) {
+                font-size: $text-3;
+
+                & > span {
+                    padding: .2rem 0;
+                    background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+                }
+            }
         }
     }
 

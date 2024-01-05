@@ -339,8 +339,7 @@ h5, .title-5 {
 
 	& p,
 	& ul,
-	& ol,
-	& figure {
+	& ol {
 		margin-bottom: 1rem;
 	}
 
@@ -379,10 +378,14 @@ h5, .title-5 {
 	& figure {
 		display: block;
 		width: 100%;
-		margin: 4rem 0;
+		margin: 3rem 0;
+
+		@media (min-width: $mq-lg) {
+			margin: 4rem 0;
+		}
 
 
-		& > img {
+		& img {
 			display: block;
 			width: 100%;
 			height: auto;

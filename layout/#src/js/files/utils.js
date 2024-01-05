@@ -263,17 +263,12 @@ class Utils {
 	}
 
 	initSmoothScroll() {
-		let anchors = document.querySelectorAll('a[href*="#"]:not([data-popup="open-popup"])');
+		let anchors = document.querySelectorAll('a[href^="#"]:not([data-popup="open-popup"])');
 		if (anchors.length) {
 			let header = document.querySelector('.header');
-
 			anchors.forEach(anchor => {
-				if (!anchor.getAttribute('href').match(/#\w+$/gi)) return;
-
-				let id = anchor.getAttribute('href').match(/#\w+$/gi).join('').replace('#', '');
-
 				anchor.addEventListener('click', (e) => {
-					let el = document.querySelector(`#${id}`);
+					let el = document.querySelector(anchor.getAttribute('href'));
 
 					if (el) {
 						e.preventDefault();
