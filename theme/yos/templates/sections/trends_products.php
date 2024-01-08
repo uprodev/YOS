@@ -1,7 +1,7 @@
 <?php
 
 $trends = new WP_Query([
-    'post_type' => 'products',
+    'post_type' => 'product',
     'posts_per_page' => -1,
 ]);
 
