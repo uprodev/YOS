@@ -54,7 +54,7 @@ jQuery(document).ready(function ($) {
             },
             success:function(data){
 
-                // $('.basket').html(data);
+                $('.side-basket__container').html(data);
 
             }
         })
