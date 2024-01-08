@@ -23,6 +23,23 @@ global $product;
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
+if($_COOKIE['wish']){
+
+    $arr = explode(',',$_COOKIE['wish']);
+
+    $wish = array_unique($arr);
+
+}
+
+if ($product->is_type( 'variable' )) {
+    $variations = ($product->get_available_variations());
+    $default_attributes = get_field('_default_attributes' );
+    $variations_attr = ($product->get_variation_attributes());
+    $variative = 'variative';
+}
+
+$brand = get_the_terms(get_the_ID(), 'brand');
+
 ?>
 
 <div class="product-card" data-product-card>
@@ -35,7 +52,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         <button class="product-card__like-button active"></button>
     </div>
     <div class="product-card__body">
-        <div class="product-card__title"><a href="<?php the_permalink();?>">zein obagi</a></div>
+        <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
         <div class="product-card__text">
             <div class="product-card__text-1">
                 <?php the_title();?>
@@ -55,29 +72,32 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
     </div>
     <div class="product-card__footer">
-        <?php woocommerce_template_loop_add_to_cart();?>
         <form>
-            <div class="product-card__option">
-                <label class="product-card__option-item" disabled>
-                    <input type="radio" name="card-id-1" data-product-card-option data-index="0">
-                    <div class="product-card__option-item-value">
-                        100 г
-                    </div>
-                </label>
-                <label class="product-card__option-item">
-                    <input type="radio" name="card-id-1" data-product-card-option checked
-                           data-index="1">
-                    <div class="product-card__option-item-value">
-                        290 г
-                    </div>
-                </label>
-                <label class="product-card__option-item">
-                    <input type="radio" name="card-id-1" data-product-card-option data-index="2">
-                    <div class="product-card__option-item-value">
-                        490 г
-                    </div>
-                </label>
-            </div>
+            <?php if (isset($variations_attr['pa_volume'])): ?>
+                <div class="product-card__option">
+                    <?php foreach ($variations as  $variation) {
+                        $vol[] = $variation['attributes']['attribute_pa_volumes'];
+                    }
+                   print_r($variation);
+                    $vol = array_unique($vol);
+                    $i=0;
+
+                    if ($vol):
+                        foreach ($vol as  $variation):
+                            $sl = get_term_by('slug', $variation , 'pa_volume');
+
+                        ?>
+                            <label class="product-card__option-item" disabled>
+                                <input type="radio" name="card-id-1" data-product-card-option data-index="<?= $i;?>">
+                                <div class="product-card__option-item-value">
+                                    <?= $sl->name;?>
+                                </div>
+                            </label>
+
+                        <?php $i++; endforeach;
+                    endif;?>
+                </div>
+            <?php endif;?>
             <button class="product-card__btn-to-basket button-primary dark w-100">
                 додати до кошика
             </button>
