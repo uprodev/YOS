@@ -54,7 +54,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
         <div class="product-card__labels">
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
-            <img src="<?php the_post_thumbnail_url();?>" alt="">
+            <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">
         </a>
         <button class="product-card__like-button active"></button>
     </div>
@@ -65,7 +65,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                 <?php the_title();?>
             </div>
             <div class="product-card__text-2">
-                Zo Skin Health Exfoliating Polish
+                <?= $product->get_short_description();?>
             </div>
         </div>
         <?php if (isset($variations_attr['pa_volumes'])):
@@ -87,7 +87,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                         $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
 
                         ?>
-                            <label class="product-card__option-item" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                            <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
                                 <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
                                 <div class="product-card__option-item-value">
                                     <?= $sl->name;?>
@@ -98,7 +98,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                     ?>
                 </div>
             <?php endif;?>
-            <button class="product-card__btn-to-basket button-primary dark w-100" data-product_id="<?= get_the_ID();?>">
+            <button class="product-card__btn-to-basket button-primary dark w-100" data-variation_id="" data-product_id="<?= get_the_ID();?>">
                 додати до кошика
             </button>
         </form>

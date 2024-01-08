@@ -1,4 +1,8 @@
 jQuery(document).ready(function ($) {
+
+    var sv = $('.show-variation').attr('data-vario');
+    $('.product-card__btn-to-basket').attr('data-variation_id', sv);
+
     $(document).on('click', '.product-card__option-item', function(){
        var attr = $(this).attr('data-vario');
 
