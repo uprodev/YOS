@@ -55,6 +55,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
         </div>
     </div>
     <div class="product-card__footer">
+        <?php woocommerce_template_loop_add_to_cart();?>
         <form>
             <div class="product-card__option">
                 <label class="product-card__option-item" disabled>
