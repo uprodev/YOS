@@ -23,19 +23,26 @@ global $product;
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
-if($_COOKIE['wish']){
-
-    $arr = explode(',',$_COOKIE['wish']);
-
-    $wish = array_unique($arr);
-
-}
+//if($_COOKIE['wish']){
+//
+//    $arr = explode(',',$_COOKIE['wish']);
+//
+//    $wish = array_unique($arr);
+//
+//}
 
 if ($product->is_type( 'variable' )) {
     $variations = ($product->get_available_variations());
-    $default_attributes = get_field('_default_attributes' );
     $variations_attr = ($product->get_variation_attributes());
-    $variative = 'variative';
+}
+if (isset($variations_attr['pa_volumes'])){
+    $q = 0;
+    foreach ($variations as  $variation){
+        if($variation['is_in_stock'] == 1){
+            break;
+        }
+    $q++;
+    }
 }
 
 $brand = get_the_terms(get_the_ID(), 'brand');
@@ -61,44 +68,37 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                 Zo Skin Health Exfoliating Polish
             </div>
         </div>
-        <div class="product-card__price" data-index="0">
-            <div class="product-card__price-current">2 299 ₴</div>
-        </div>
-        <div class="product-card__price show" data-index="1">
-            <div class="product-card__price-current">3 299 ₴</div>
-        </div>
-        <div class="product-card__price" data-index="2">
-            <div class="product-card__price-current">4 299 ₴</div>
-        </div>
+        <?php if (isset($variations_attr['pa_volumes'])):
+            $i=0;
+            foreach ($variations as  $variation):?>
+                <div class="product-card__price <?= $q==$i?'show':'';?>" data-index="<?= $i;?>">
+                    <div class="product-card__price-current"><?= $variation['price_html'];?></div>
+                </div>
+            <?php $i++;
+            endforeach; endif;?>
     </div>
     <div class="product-card__footer">
         <form>
-            <?php if (isset($variations_attr['pa_volume'])): ?>
+            <?php if (isset($variations_attr['pa_volumes'])): ?>
                 <div class="product-card__option">
-                    <?php foreach ($variations as  $variation) {
-                        $vol[] = $variation['attributes']['attribute_pa_volumes'];
-                    }
-                   print_r($variation);
-                    $vol = array_unique($vol);
-                    $i=0;
+                    <?php $p=0;
+                    foreach ($variations as  $variation):
 
-                    if ($vol):
-                        foreach ($vol as  $variation):
-                            $sl = get_term_by('slug', $variation , 'pa_volume');
+                        $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
 
                         ?>
-                            <label class="product-card__option-item" disabled>
-                                <input type="radio" name="card-id-1" data-product-card-option data-index="<?= $i;?>">
+                            <label class="product-card__option-item" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                                <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
                                 <div class="product-card__option-item-value">
                                     <?= $sl->name;?>
                                 </div>
                             </label>
 
-                        <?php $i++; endforeach;
-                    endif;?>
+                        <?php $p++; endforeach;
+                    ?>
                 </div>
             <?php endif;?>
-            <button class="product-card__btn-to-basket button-primary dark w-100">
+            <button class="product-card__btn-to-basket button-primary dark w-100" data-variation_id="">
                 додати до кошика
             </button>
         </form>
