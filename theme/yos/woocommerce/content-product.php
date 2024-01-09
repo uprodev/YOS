@@ -23,13 +23,13 @@ global $product;
 if ( empty( $product ) || ! $product->is_visible() ) {
 	return;
 }
-//if($_COOKIE['wish']){
-//
-//    $arr = explode(',',$_COOKIE['wish']);
-//
-//    $wish = array_unique($arr);
-//
-//}
+if($_COOKIE['wish']){
+
+    $arr = explode(',',$_COOKIE['wish']);
+
+    $wish = array_unique($arr);
+
+}
 
 if ($product->is_type( 'variable' )) {
     $variations = ($product->get_available_variations());
@@ -46,17 +46,22 @@ if (isset($variations_attr['pa_volumes'])){
 }
 
 $brand = get_the_terms(get_the_ID(), 'pa_brand');
+$choise = get_field('yos_choise', get_the_ID());
 
 ?>
 
 <div class="product-card" data-product-card>
     <div class="product-card__head">
         <div class="product-card__labels">
+
+            <?php woocommerce_show_product_sale_flash();?>
+
+            <?= $choise?'<div class="product-card-label">'.__('YOS choice', 'yos').'</div>':'';?>
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
             <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">
         </a>
-        <button class="product-card__like-button active"></button>
+        <button class="product-card__like-button <?= (isset($_COOKIE['wish']) && in_array(get_the_ID(), $wish))?'active':'';?>"></button>
     </div>
     <div class="product-card__body">
         <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
