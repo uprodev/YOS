@@ -99,7 +99,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                 </div>
             <?php endif;?>
             <button class="product-card__btn-to-basket button-primary dark w-100" data-variation_id="" data-product_id="<?= get_the_ID();?>">
-                додати до кошика
+                <?= __('додати до кошика', 'yos');?>
             </button>
         </form>
     </div>
