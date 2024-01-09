@@ -4,7 +4,7 @@ $trends = new WP_Query([
     'post_type' => 'product',
     'posts_per_page' => -1,
 ]);
-
+$t = 1;
 ?>
 
 <div class="top-space-60 top-space-md-170">
@@ -37,34 +37,41 @@ $trends = new WP_Query([
             <div class="swiper" data-slider="carousel">
                 <div class="swiper-wrapper">
                     <?php while($trends->have_posts()): $trends->the_post();?>
+
+                        <?php if($t==2):?>
+
+                            <div class="swiper-slide hide-in-mobile">
+                                <div class="carousel__category-info">
+                                    <div class="category-links">
+                                        <h2 class="category-links__title title-2"><a href="#">бестселери</a></h2>
+                                        <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
+                                            <div class="swiper-wrapper">
+                                                <div class="swiper-slide">
+                                                    <a href="#">Волосся</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="#">Тіло</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="#">Обличчя</a>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <a href="#">Макіяж</a>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-scrollbar slider-scrollbar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php endif;?>
+
                         <div class="swiper-slide">
                             <?php wc_get_template_part( 'content', 'product' );?>
                         </div>
-                    <?php endwhile; wp_reset_postdata();?>
-                    <div class="swiper-slide hide-in-mobile">
-                        <div class="carousel__category-info">
-                            <div class="category-links">
-                                <h2 class="category-links__title title-2"><a href="#">бестселери</a></h2>
-                                <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <a href="#">Волосся</a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#">Тіло</a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#">Обличчя</a>
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <a href="#">Макіяж</a>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-scrollbar slider-scrollbar"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php $t++; endwhile; wp_reset_postdata();?>
+
                     <div class="swiper-slide">
                         <div class="product-card" data-product-card>
                             <div class="product-card__head">
