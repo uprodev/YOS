@@ -50,19 +50,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <li>
                         <div class="product-card-sm">
                             <div class="product-card-sm__left">
-                                <?php echo apply_filters('woocommerce_cart_item_remove_link',
-                                    sprintf(
-                                        '<a href="%s" class="product-card-sm__btn-remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s"><span class="icon-close"></span></a>',
-                                        esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-                                        /* translators: %s is the product name */
-                                        esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
-                                        esc_attr( $product_id ),
-                                        esc_attr( $cart_item_key ),
-                                        esc_attr( $_product->get_sku() )
-                                    ),
-                                    $cart_item_key
-                                );
-                                ?>
+                                <button class="product-card-sm__btn-remove" data-cart_item_key="<?= esc_attr( $cart_item_key );?>"><span class="icon-close"></span></button>
 
                                 <a href="<?php echo esc_url( $product_permalink ); ?>" class="product-card-sm__img">
                                     <?php echo $thumbnail;?>

@@ -5,6 +5,7 @@ $actions = [
     'set_cart_item_qty',
     'update_totals',
     'update_mini_cart',
+    'remove_from_cart',
 ];
 
 foreach($actions as $action){
@@ -33,9 +34,6 @@ function add_to_cart() {
 
 }
 
-add_action('wp_ajax_nopriv_add_to_cart', 'add_to_cart');
-add_action('wp_ajax_add_to_cart',  'add_to_cart');
-
 /*
 *
 
@@ -53,9 +51,6 @@ function set_cart_item_qty() {
 
     wp_die();
 }
-
-add_action('wp_ajax_nopriv_set_cart_item_qty', 'set_cart_item_qty');
-add_action('wp_ajax_set_cart_item_qty', 'set_cart_item_qty');
 
 
 /**
@@ -93,8 +88,6 @@ function update_totals() {
     die();
 }
 
-add_action('wp_ajax_update_totals', 'update_totals');
-add_action('wp_ajax_nopriv_update_totals', 'update_totals');
 
 
 /**
@@ -107,5 +100,15 @@ function update_mini_cart() {
     die();
 }
 
-add_action('wp_ajax_update_mini_cart', 'update_mini_cart');
-add_action('wp_ajax_nopriv_update_mini_cart', 'update_mini_cart');
+
+/**
+ * remove_from_cart
+ */
+
+
+
+function remove_from_cart() {
+
+    WC()->cart->remove_cart_item( $_GET['key'] );
+    die();
+}

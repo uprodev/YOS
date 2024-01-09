@@ -65,4 +65,31 @@ jQuery(document).ready(function ($) {
     }
 
 
+    /* remove_from_cart_button */
+
+    $(document).on('click', '.product-card-sm__btn-remove', function( e ){
+        e.preventDefault();
+        var key = $(this).attr('data-cart_item_key');
+
+        $(this).closest('.product-card-sm').remove();
+        $.ajax({
+            type: 'get',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'remove_from_cart',
+                key: key
+            },
+
+            success: function (response) {
+
+                ajax_mini_cart_update();
+
+                //     update_totals()
+
+            }
+        })
+
+    })
+
+
 });
