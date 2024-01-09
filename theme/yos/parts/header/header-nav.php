@@ -4,7 +4,7 @@ $offer = get_field('offer', 'options');
 
 if($offer):?>
 
-    <div class="top-offer" data-top-offer>
+    <a href="" class="top-offer" data-top-offer>
         <div class="top-offer__inner container">
             <div class="top-offer__text">
                 <?= $offer;?>
@@ -13,7 +13,7 @@ if($offer):?>
                 <span class="icon-close"></span>
             </button>
         </div>
-    </div>
+    </a>
 
 <?php endif;?>
 
@@ -85,7 +85,7 @@ if($offer):?>
         </div>
         <div class="header-actions__logo">
             <a href="#">
-                <img src="img/logo/yos-main-logo.png" alt="">
+                <img src="<?= get_template_directory_uri();?>/img/logo/yos-main-logo.png" alt="">
             </a>
         </div>
         <div class="header-actions__right">
