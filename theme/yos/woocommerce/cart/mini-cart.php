@@ -46,6 +46,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                             $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
                             $product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
                             $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+                            $brand = get_the_terms($product_id, 'pa_brand');
 				?>
                     <li>
                         <div class="product-card-sm">
@@ -57,18 +58,18 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                                 </a>
                             </div>
                             <div class="product-card-sm__right">
-                                <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
                                 <div class="product-card-sm__text">
                                     <div class="product-card-sm__text-1">
                                         <?php echo wp_kses_post( $product_name ); ?>
                                     </div>
                                     <div class="product-card-sm__text-2">
-                                        Zo Skin Health
+                                        <?php the_field('seria');?>
                                     </div>
                                 </div>
                                 <div class="product-card-sm__group">
                                     <div class="product-card-sm__quantity">
-                                        <div class="product-card-sm__quantity-label">Кількість:</div>
+                                        <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?></div>
                                         <div class="quantity" data-quantity>
                                             <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
                                             <input type="text" value="1" class="quantity__value">

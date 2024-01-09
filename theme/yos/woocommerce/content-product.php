@@ -45,7 +45,7 @@ if (isset($variations_attr['pa_volumes'])){
     }
 }
 
-$brand = get_the_terms(get_the_ID(), 'brand');
+$brand = get_the_terms(get_the_ID(), 'pa_brand');
 
 ?>
 
@@ -65,7 +65,7 @@ $brand = get_the_terms(get_the_ID(), 'brand');
                 <?php the_title();?>
             </div>
             <div class="product-card__text-2">
-                <?= $product->get_short_description();?>
+                <?php the_field('seria');?>
             </div>
         </div>
         <?php if (isset($variations_attr['pa_volumes'])):
