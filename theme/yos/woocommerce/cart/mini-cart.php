@@ -88,39 +88,13 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                                         </div>
                                     </div>
                                     <div class="product-card-sm__price">
-                                        <div class="product-card-sm__price-current">3 199 ₴</div>
-                                        <div class="product-card-sm__price-old">7 299 ₴</div>
+                                        <?= $product_price;?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
 
-                            <li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
-                                <?php
-                                echo apply_filters('woocommerce_cart_item_remove_link',
-                                    sprintf(
-                                        '<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
-                                        esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-                                        /* translators: %s is the product name */
-                                        esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
-                                        esc_attr( $product_id ),
-                                        esc_attr( $cart_item_key ),
-                                        esc_attr( $_product->get_sku() )
-                                    ),
-                                    $cart_item_key
-                                );
-                                ?>
-                                <?php if ( empty( $product_permalink ) ) : ?>
-                                    <?php echo $thumbnail . wp_kses_post( $product_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                <?php else : ?>
-                                    <a href="<?php echo esc_url( $product_permalink ); ?>">
-                                        <?php echo $thumbnail . wp_kses_post( $product_name ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                    </a>
-                                <?php endif; ?>
-                                <?php echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                                <?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                            </li>
                 <?php }
                     }
 
@@ -143,12 +117,12 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
-                    <span class="text-nowrap">4 098 ₴</span>
+                    <span class="text-nowrap"><?php wc_cart_totals_subtotal_html(); ?></span>
                 </div>
             </div>
 
             <div class="side-basket__to-checkout">
-                <a href="#" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+                <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
             </div>
 
             <div class="side-basket__free-shipping">
@@ -168,24 +142,5 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
             </div>
         </div>
     </div>
-
-
-
-	<p class="woocommerce-mini-cart__total total">
-		<?php
-		/**
-		 * Hook: woocommerce_widget_shopping_cart_total.
-		 *
-		 * @hooked woocommerce_widget_shopping_cart_subtotal - 10
-		 */
-		do_action( 'woocommerce_widget_shopping_cart_total' );
-		?>
-	</p>
-
-	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
-
-	<p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
-
-	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
 
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>
