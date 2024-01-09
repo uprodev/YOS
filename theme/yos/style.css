@@ -2,3 +2,7 @@
 Theme Name: YOS
 Description: Theme WP for YOS
 */
+
+.disable{
+    pointer-events: none;
+}

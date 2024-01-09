@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
-<?php if ( ! WC()->cart->is_empty() ) : ?>
+
 
     <div class="side-basket__container">
         <button class="side-basket__close-btn" data-action="close-side-basket"><span class="icon-close-thin"></span></button>
@@ -50,16 +50,29 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <li>
                         <div class="product-card-sm">
                             <div class="product-card-sm__left">
-                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
+                                <?php echo apply_filters('woocommerce_cart_item_remove_link',
+                                    sprintf(
+                                        '<a href="%s" class="product-card-sm__btn-remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s"><span class="icon-close"></span></a>',
+                                        esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+                                        /* translators: %s is the product name */
+                                        esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
+                                        esc_attr( $product_id ),
+                                        esc_attr( $cart_item_key ),
+                                        esc_attr( $_product->get_sku() )
+                                    ),
+                                    $cart_item_key
+                                );
+                                ?>
+
                                 <a href="<?php echo esc_url( $product_permalink ); ?>" class="product-card-sm__img">
-                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                    <?php echo $thumbnail;?>
                                 </a>
                             </div>
                             <div class="product-card-sm__right">
                                 <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
                                 <div class="product-card-sm__text">
                                     <div class="product-card-sm__text-1">
-                                        Exfoliating Polish, 65g
+                                        <?php echo wp_kses_post( $product_name ); ?>
                                     </div>
                                     <div class="product-card-sm__text-2">
                                         Zo Skin Health
@@ -85,8 +98,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
                             <li class="woocommerce-mini-cart-item <?php echo esc_attr( apply_filters( 'woocommerce_mini_cart_item_class', 'mini_cart_item', $cart_item, $cart_item_key ) ); ?>">
                                 <?php
-                                echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                    'woocommerce_cart_item_remove_link',
+                                echo apply_filters('woocommerce_cart_item_remove_link',
                                     sprintf(
                                         '<a href="%s" class="remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
                                         esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
@@ -175,11 +187,5 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 	<p class="woocommerce-mini-cart__buttons buttons"><?php do_action( 'woocommerce_widget_shopping_cart_buttons' ); ?></p>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_after_buttons' ); ?>
-
-<?php else : ?>
-
-	<p class="woocommerce-mini-cart__empty-message"><?php esc_html_e( 'No products in the cart.', 'woocommerce' ); ?></p>
-
-<?php endif; ?>
 
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>

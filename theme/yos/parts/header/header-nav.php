@@ -63,7 +63,7 @@ if($offer):?>
                 </a>
             </div>
             <div class="header-actions__item">
-                <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
+                <button class="basket-count<?php if ( WC()->cart->is_empty() ){echo ' disable';}?>" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
             </div>
         </div>
     </div>
@@ -95,53 +95,53 @@ if($offer):?>
                 </a>
             </div>
             <div class="header-actions__item">
-                <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
+                <button class="basket-count<?php if ( WC()->cart->is_empty() ){echo ' disable';}?>" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="header-mob__categories container">
+<div class="header__categories container">
     <div class="categories" data-categories>
         <div class="categories__nav swiper" data-slider="header-mob-categories">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="0">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="0">
                     бренди
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="1">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="1">
                     обличчя
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="2">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="2">
                     волосся
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="3">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="3">
                     <a href="#">тіло</a>
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="4">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="4">
                     <a href="#">аксесуари</a>
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="5">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="5">
                     <a href="#">набори</a>
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="6">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="6">
                     <a href="#">health&care</a>
                 </div>
-                <div class="swiper-slide" data-action="show-category-nav-by-index" data-index="7">
+                <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="7">
                     <a href="#">sale</a>
                 </div>
             </div>
             <div class="swiper-scrollbar"></div>
         </div>
 
-        <div class="categories__item" data-category-item data-index="0">
+        <div class="categories__tab" data-category-tab data-index="0">
             <div class="categories__body container">
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">бренди a — z</a>
+                            <a href="#" class="categories__list-title">бренди a — z</a>
                         </li>
                         <li>
-                            <a href="#">популярні бренди</a>
+                            <a href="#" class="categories__list-title">популярні бренди</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -172,13 +172,13 @@ if($offer):?>
             </div>
         </div>
 
-        <div class="categories__item" data-category-item data-index="1">
+        <div class="categories__tab" data-category-tab data-index="1">
             <div class="categories__body container">
 
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Догляд за обличчям</a>
+                            <a href="#" class="categories__list-title">Догляд за обличчям</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -213,7 +213,7 @@ if($offer):?>
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Область навколо очей</a>
+                            <a href="#" class="categories__list-title">Область навколо очей</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -231,10 +231,10 @@ if($offer):?>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Шия та декольте</a>
+                            <a href="#" class="categories__list-title">Шия та декольте</a>
                         </li>
                         <li>
-                            <a href="#">Брови та вії</a>
+                            <a href="#" class="categories__list-title">Брови та вії</a>
                         </li>
                     </ul>
                 </div>
@@ -242,7 +242,7 @@ if($offer):?>
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Догляд за обличчям</a>
+                            <a href="#" class="categories__list-title">Догляд за обличчям</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -257,13 +257,13 @@ if($offer):?>
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Автозасмага</a>
+                            <a href="#" class="categories__list-title">Автозасмага</a>
                         </li>
                         <li>
-                            <a href="#">Спеціальні засоби</a>
+                            <a href="#" class="categories__list-title">Спеціальні засоби</a>
                         </li>
                         <li>
-                            <a href="#">Travel версії та мініатюри</a>
+                            <a href="#" class="categories__list-title">Travel версії та мініатюри</a>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +271,7 @@ if($offer):?>
                 <div class="categories__block">
                     <div class="category-offer-card">
                         <div class="category-offer-card__img ibg">
-                            <img src="<?= get_template_directory_uri();?>/img/photo/offer-card.jpg" alt="">
+                            <img src="img/photo/offer-card.jpg" alt="">
                         </div>
                         <div class="category-offer-card__bottom">
                             <div class="category-offer-card__title">Догляд узимку</div>
@@ -282,22 +282,90 @@ if($offer):?>
             </div>
         </div>
 
-        <div class="categories__item" data-category-item data-index="2">
+        <div class="categories__tab" data-category-tab data-index="2">
             <div class="categories__body container">
 
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Шампуні</a>
+                            <a href="#" class="categories__list-title">Шампуні</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Термозахист</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ампули</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спреї</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#">Кондиціонери</a>
+                            <a href="#" class="categories__list-title">Кондиціонери</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Термозахист</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ампули</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спреї</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#">Маски</a>
+                            <a href="#" class="categories__list-title">Маски</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Термозахист</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ампули</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спреї</a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="#">Брови та вії</a>
+                            <a href="#" class="categories__list-title">Брови та вії</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Термозахист</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ампули</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спреї</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -305,7 +373,7 @@ if($offer):?>
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Незмивний догляд</a>
+                            <a href="#" class="categories__list-title">Незмивний догляд</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -331,7 +399,7 @@ if($offer):?>
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Догляд за шкірою голови</a>
+                            <a href="#" class="categories__list-title">Догляд за шкірою голови</a>
 
                             <ul class="categories__sublist">
                                 <li>
@@ -354,13 +422,13 @@ if($offer):?>
                 <div class="categories__block">
                     <ul class="categories__list">
                         <li>
-                            <a href="#">Сухі шампуні</a>
+                            <a href="#" class="categories__list-title">Сухі шампуні</a>
                         </li>
                         <li>
-                            <a href="#">Стайлінг</a>
+                            <a href="#" class="categories__list-title">Стайлінг</a>
                         </li>
                         <li>
-                            <a href="#">Travel версії та мініатюри</a>
+                            <a href="#" class="categories__list-title">Travel версії та мініатюри</a>
                         </li>
                     </ul>
                 </div>
