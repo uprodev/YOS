@@ -63,7 +63,7 @@ if($offer):?>
                 </a>
             </div>
             <div class="header-actions__item">
-                <button class="basket-count" data-action="open-basket"><?= WC()->cart->get_cart_contents_count();?></button>
+                <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
             </div>
         </div>
     </div>
