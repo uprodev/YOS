@@ -1644,19 +1644,13 @@ if (tickerLogosSections.length) {
             loop: true,
             freeMode: true,
             breakpoints: {
-                320: {
+                0: {
                     slidesPerView: 'auto',
                     spaceBetween: 20,
-                    // grid: {
-                    //     rows: 2,
-                    // },
                 },
                 768: {
                     slidesPerView: 'auto',
                     spaceBetween: 0,
-                    // grid: {
-                    //     rows: 1,
-                    // },
                 },
             },
         }

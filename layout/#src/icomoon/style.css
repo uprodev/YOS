@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?133wgt');
-  src:  url('../fonts/icomoon.eot?133wgt#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?133wgt') format('truetype'),
-    url('../fonts/icomoon.woff?133wgt') format('woff'),
-    url('../fonts/icomoon.svg?133wgt#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?orcebn');
+  src:  url('../fonts/icomoon.eot?orcebn#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?orcebn') format('truetype'),
+    url('../fonts/icomoon.woff?orcebn') format('woff'),
+    url('../fonts/icomoon.svg?orcebn#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-minus-white-square .path1:before {
+  content: "\e914";
+  color: rgb(18, 18, 18);
+}
+.icon-minus-white-square .path2:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-plus-black-square .path1:before {
+  content: "\e916";
+  color: rgb(18, 18, 18);
+}
+.icon-plus-black-square .path2:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
 .icon-user:before {
   content: "\e913";
 }

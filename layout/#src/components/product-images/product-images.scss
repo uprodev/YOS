@@ -97,6 +97,11 @@
     &__main {
         min-width: 0;
         flex: 1 1 auto;
+
+        & .swiper-slide {
+            background-color: $pagesBg;
+        }
+
         & .swiper-scrollbar {
             margin-top: 2rem;
 

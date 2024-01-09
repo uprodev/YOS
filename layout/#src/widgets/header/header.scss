@@ -102,6 +102,7 @@
 
     @media (min-width: $mq-lg) {
         font-size: $text-2;
+        text-align: center;
     }
 
     @media #{$touch-device} {
@@ -120,6 +121,13 @@
         justify-content: space-between;
         min-height: 3rem;
         padding: 0.2rem 0;
+        position: relative;
+
+        @media (min-width: $mq-lg) {
+            justify-content: center;
+            text-align: center;
+            padding: 0.2rem 3rem;
+        }
     }
 
     &__text {
@@ -129,6 +137,16 @@
         color: $textColorThird;
         flex: 0 0 auto;
         font-size: 1rem;
+        display: flex;
+        align-items: center;
+
+        @media (min-width: $mq-lg) {
+            position: absolute;
+            padding: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -0.5rem;
+        }
     }
 }
 
@@ -388,35 +406,35 @@
             color: $themeColorSecondary;
         }
 
-        &.icon {
-            padding-right: 2rem;
-            position: relative;
+        // &.icon {
+        //     padding-right: 2rem;
+        //     position: relative;
 
-            &:before {
-                font-family: 'icomoon' !important;
-                speak: never;
-                font-style: normal;
-                font-weight: normal;
-                font-variant: normal;
-                text-transform: none;
-                line-height: 1;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
+        //     &:before {
+        //         font-family: 'icomoon' !important;
+        //         speak: never;
+        //         font-style: normal;
+        //         font-weight: normal;
+        //         font-variant: normal;
+        //         text-transform: none;
+        //         line-height: 1;
+        //         -webkit-font-smoothing: antialiased;
+        //         -moz-osx-font-smoothing: grayscale;
 
-                position: absolute;
-                content: "\e911";
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                transition: transform $transition;
-            }
+        //         position: absolute;
+        //         content: "\e911";
+        //         top: 50%;
+        //         right: 0;
+        //         transform: translateY(-50%);
+        //         transition: transform $transition;
+        //     }
 
-            &.active {
-                &:before {
-                    transform: translateY(-50%) scaleY(-1);
-                }
-            }
-        }
+        //     &.active {
+        //         &:before {
+        //             transform: translateY(-50%) scaleY(-1);
+        //         }
+        //     }
+        // }
     }
 
     &__sublist {
