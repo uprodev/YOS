@@ -48,7 +48,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                             $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
                             $brand = get_the_terms($product_id, 'pa_brand');
 				?>
-                    <li>
+                    <li data-ids="<?= $product_id;?>">
                         <div class="product-card-sm">
                             <div class="product-card-sm__left">
                                 <button class="product-card-sm__btn-remove" data-cart_item_key="<?= esc_attr( $cart_item_key );?>"><span class="icon-close"></span></button>
@@ -64,15 +64,15 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                                         <?php echo wp_kses_post( $product_name ); ?>
                                     </div>
                                     <div class="product-card-sm__text-2">
-                                        <?php the_field('seria');?>
+                                        <?php the_field('seria', $product_id);?>
                                     </div>
                                 </div>
                                 <div class="product-card-sm__group">
                                     <div class="product-card-sm__quantity">
                                         <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?></div>
-                                        <div class="quantity" data-quantity>
+                                        <div class="quantity" data-key="<?= esc_attr( $cart_item_key );?>" data-quantity>
                                             <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-                                            <input type="text" value="1" class="quantity__value">
+                                            <input type="text" value="<?=  $cart_item['quantity'];?>" class="quantity__value">
                                             <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
                                         </div>
                                     </div>

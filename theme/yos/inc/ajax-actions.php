@@ -66,10 +66,10 @@ function update_totals() {
 
     WC()->cart->calculate_totals();
 
-    $tax = WC()->cart->get_total_tax();
-    $taxes = number_format($tax, 2, ',', ' ');
-    $sub = number_format(WC()->cart->subtotal, 2, ',', ' ');
-    $total = number_format(WC()->cart->total, 2, ',', ' ');
+//    $tax = WC()->cart->get_total_tax();
+//    $taxes = number_format($tax, 2, ',', ' ');
+//    $sub = number_format(WC()->cart->subtotal, 2, ',', ' ');
+//    $total = number_format(WC()->cart->total, 2, ',', ' ');
     $count = WC()->cart->get_cart_contents_count();
 
 
@@ -77,10 +77,10 @@ function update_totals() {
 
     wp_send_json_success(
         ['totals' => $html,
-            'total' => $total . get_woocommerce_currency_symbol(),
-            'subtotal' => $sub . get_woocommerce_currency_symbol(),
             'cart_qty' => $count,
-            'tax_total' => 'inkl. MwSt. ' .$taxes .get_woocommerce_currency_symbol(),
+//            'total' => $total . get_woocommerce_currency_symbol(),
+//            'subtotal' => $sub . get_woocommerce_currency_symbol(),
+//            'tax_total' => 'inkl. MwSt. ' .$taxes .get_woocommerce_currency_symbol(),
         ]
     );
 

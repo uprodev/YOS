@@ -47,6 +47,7 @@ jQuery(document).ready(function ($) {
         });
     })
 
+    /* mini cart update */
 
     function ajax_mini_cart_update() {
 
@@ -58,7 +59,7 @@ jQuery(document).ready(function ($) {
             },
             success:function(data){
 
-                $('.side-basket__container').html(data);
+                $('.side-basket').html(data);
 
             }
         })
@@ -90,6 +91,44 @@ jQuery(document).ready(function ($) {
         })
 
     })
+
+
+    /* change qty product */
+
+    $(document).on('click', '.quantity__btn.plus, .quantity__btn.minus', function(){
+
+        let val = $(this).closest('.quantity').find('.quantity__value').val();
+
+        let key = $(this).closest('.quantity').attr('data-key');
+
+        let products = [];
+
+        $('.side-basket__products-list li').each(function(){
+
+            var product_id = $(this).attr('data-ids');
+            var qty =  $(this).find('.quantity__value').val();
+            products.push([product_id,qty]);
+        });
+
+        $.ajax({
+            type: "GET",
+            url: woocommerce_params.ajax_url,
+            data: {
+                action : 'set_cart_item_qty',
+                key:key,
+                qty:val,
+                products:products
+            },
+
+            success: function (data) {
+
+                ajax_mini_cart_update();
+
+            }
+        });
+    })
+
+
 
 
 });
