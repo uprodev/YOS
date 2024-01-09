@@ -81,11 +81,11 @@ jQuery(document).ready(function ($) {
                 key: key
             },
 
-            success: function (response) {
+            success: function (data) {
+
+                $('.basket-count').text(data.data.cart_qty);
 
                 ajax_mini_cart_update();
-
-                //     update_totals()
 
             }
         })
@@ -122,13 +122,13 @@ jQuery(document).ready(function ($) {
 
             success: function (data) {
 
+                $('.basket-count').text(data.data.cart_qty);
+
                 ajax_mini_cart_update();
 
             }
         });
     })
-
-
 
 
 });

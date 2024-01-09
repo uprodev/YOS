@@ -49,9 +49,40 @@ function set_cart_item_qty() {
 
     update_totals();
 
+    WC_AJAX :: get_refreshed_fragments();
+
     wp_die();
 }
 
+
+/**
+ *
+Update Mini Cart
+ */
+
+function update_mini_cart() {
+    wc_get_template('cart/mini-cart.php');
+
+    die();
+}
+
+
+/**
+ * remove_from_cart
+ */
+
+
+
+function remove_from_cart() {
+
+    WC()->cart->remove_cart_item( $_GET['key'] );
+
+    update_totals();
+
+    WC_AJAX :: get_refreshed_fragments();
+
+    die();
+}
 
 /**
  *
@@ -89,26 +120,3 @@ function update_totals() {
 }
 
 
-
-/**
- *
-Update Mini Cart
- */
-
-function update_mini_cart() {
-    wc_get_template('cart/mini-cart.php');
-    die();
-}
-
-
-/**
- * remove_from_cart
- */
-
-
-
-function remove_from_cart() {
-
-    WC()->cart->remove_cart_item( $_GET['key'] );
-    die();
-}
