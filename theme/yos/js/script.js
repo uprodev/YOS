@@ -4,9 +4,15 @@ jQuery(document).ready(function ($) {
     $('.product-card__btn-to-basket').attr('data-variation_id', sv);
 
     $(document).on('click', '.product-card__option-item', function(){
-       var attr = $(this).attr('data-vario');
+       let attr = $(this).attr('data-vario');
+       let ind = $(this).attr('data-ind');
 
        $(this).closest('.product-card__footer').find('.product-card__btn-to-basket').attr('data-variation_id', attr);
+
+        $(this).closest('.product-card').find('.product-card-label-perc').removeClass('show');
+
+        $(this).closest('.product-card').find('.product-card-label-perc[data-index="'+ind+'"]').addClass('show');
+
     });
 
 

@@ -66,7 +66,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
                         $perc = round(($price-$sale)*100/$price);?>
 
-                        <div class="product-card-label<?= $q==$v?' show':'';?>" data-index="<?= $v;?>">-<?= $perc;?>%</div>
+                        <div class="product-card-label product-card-label-perc<?= $q==$v?' show':'';?>" data-index="<?= $v;?>">-<?= $perc;?>%</div>
 
                     <?php $v++; endforeach;
 
@@ -88,7 +88,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
 
 
-            <?= $choise?'<div class="product-card-label show">'.__('YOS choice', 'yos').'</div>':'';?>
+            <?= $choise?'<div class="product-card-label">'.__('YOS choice', 'yos').'</div>':'';?>
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
             <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">
@@ -124,7 +124,7 @@ $choise = get_field('yos_choise', get_the_ID());
                         $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
 
                         ?>
-                            <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                            <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
                                 <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
                                 <div class="product-card__option-item-value">
                                     <?= $sl->name;?>
