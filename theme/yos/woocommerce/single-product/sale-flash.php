@@ -26,12 +26,12 @@ global $post, $product;
 ?>
 <?php if ( $product->is_on_sale() ) :
 
-//    $price = $product->regular_price;
-//    $sale = $product->sale_price;
+    $price = $product->display_regular_price;
+    $sale = $product->display_price;
 
-//$perc = round(($price-$sale)*100/$price);?>
+$perc = round(($price-$sale)*100/$price);?>
 
-<!--	<div class="product-card-label">-%</div>-->
+	<div class="product-card-label">-<?= $perc;?>%</div>
 
 	<?php
 endif;

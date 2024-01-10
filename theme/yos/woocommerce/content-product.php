@@ -34,6 +34,8 @@ if($_COOKIE['wish']){
 if ($product->is_type( 'variable' )) {
     $variations = ($product->get_available_variations());
     $variations_attr = ($product->get_variation_attributes());
+
+//    print_r($variations);
 }
 if (isset($variations_attr['pa_volumes'])){
     $q = 0;
@@ -54,9 +56,39 @@ $choise = get_field('yos_choise', get_the_ID());
     <div class="product-card__head">
         <div class="product-card__labels">
 
-            <?php woocommerce_show_product_sale_flash();?>
+            <?php if ($product->is_type('variable')):
+                if ( $product->is_on_sale() ) :
+                    $v=0;
+                    foreach ($variations as  $variation):
 
-            <?= $choise?'<div class="product-card-label">'.__('YOS choice', 'yos').'</div>':'';?>
+                        $price = $variation['display_regular_price'];
+                        $sale = $variation['display_price'];
+
+                        $perc = round(($price-$sale)*100/$price);?>
+
+                        <div class="product-card-label<?= $q==$v?' show':'';?>" data-index="<?= $v;?>">-<?= $perc;?>%</div>
+
+                    <?php $v++; endforeach;
+
+                endif;
+
+            elseif($product->is_type('simple')):
+
+                if ( $product->is_on_sale() ) :
+                    $price = $product->display_price;
+                    $sale = $product->sale_price;
+
+                    $perc = round(($price-$sale)*100/$price);?>
+
+                    <div class="product-card-label">-<?= $perc;?>%</div>
+
+                <?php endif;
+
+            endif;?>
+
+
+
+            <?= $choise?'<div class="product-card-label show">'.__('YOS choice', 'yos').'</div>':'';?>
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
             <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">

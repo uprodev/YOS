@@ -6,3 +6,6 @@ Description: Theme WP for YOS
 .disable{
     pointer-events: none;
 }
+.product-card-label:not(.show) {
+    display: none;
+}
