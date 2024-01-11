@@ -1,32 +1,7 @@
 <section class="brands" data-brands>
-    <div class="container">
-        <div class="brands__best">
-            <h2 class="brands__title title-2">топ бренди</h2>
-            <div class="brands__best-list">
-                <div class="swiper" data-slider="best-brands" data-mobile="false">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="#">the ordinary</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#">is clinical</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#">dermalogica</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#">dr. jart+</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="#">boy smells</a>
-                        </div>
-                    </div>
-                    <div class="swiper-scrollbar slider-scrollbar"></div>
-                </div>
-            </div>
-        </div>
+    <div class="container brands__container">
+
         <div class="brands__nav">
-            <h2 class="brands__title title-2">всі бренди</h2>
             <div class="swiper" data-slider="brands-nav">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
@@ -165,9 +140,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="swiper-scrollbar slider-scrollbar"></div>
             </div>
         </div>
+
         <div class="brands__search">
             @@include('../../components/inputs/_input.html', {
             "label": "Пошук брендів",
@@ -175,6 +150,30 @@
             "required": false
             })
         </div>
+
+        <div class="brands__best" data-da=".brands__container,992,0">
+            <h2 class="brands__title title-2">топ бренди</h2>
+            <div class="brands__best-body">
+                <ul class="brands__best-list">
+                    <li>
+                        <a href="#">the ordinary</a>
+                    </li>
+                    <li>
+                        <a href="#">is clinical</a>
+                    </li>
+                    <li>
+                        <a href="#">dermalogica</a>
+                    </li>
+                    <li>
+                        <a href="#">dr. jart+</a>
+                    </li>
+                    <li>
+                        <a href="#">boy smells</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <ul class="brands__list">
             <li data-letter="a">
                 <div class="brands__letter">a</div>
