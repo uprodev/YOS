@@ -5817,7 +5817,6 @@ h5,
 .categories__sublist {
   padding-left: 0;
   margin-bottom: 0;
-  display: none;
 }
 
 .categories__sublist:not(:first-child) {
@@ -7802,7 +7801,7 @@ h5,
 }
 
 .brands__best {
-  margin-top: 3.6rem;
+  display: none;
 }
 
 .brands__best-body {
