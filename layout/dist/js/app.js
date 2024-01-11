@@ -1429,31 +1429,6 @@ if(categoriesEl) {
     CategoryItems.init();
 }
 
-// category-tabs collapse sublist handler
-const categoryTabs = document.querySelectorAll('[data-category-tab]');
-if(categoryTabs.length) {
-    categoryTabs.forEach(categoryTab => {
-        const listTitles = categoryTab.querySelectorAll('.categories__list-title');
-        listTitles.forEach(listTitle => {
-            const sublist = listTitle.nextElementSibling;
-            if(!sublist || !sublist.closest('.categories__sublist')) return;
-            listTitle.classList.add('icon')
-            
-            listTitle.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                if(listTitle.classList.contains('active')) {
-                    listTitle.classList.remove('active');
-                    this.utils.slideUp(sublist, 300);
-                } else {
-                    listTitle.classList.add('active');
-                    this.utils.slideDown(sublist, 300);
-                }
-            })
-        })
-    })
-}
-
 // Top offer
 const topOffers = document.querySelectorAll('[data-top-offer]');
 if (topOffers.length) {
