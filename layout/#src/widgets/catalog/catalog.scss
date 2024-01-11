@@ -355,6 +355,11 @@
     }
 
     &__spoller {
+        & .spoller__item-colapse-content {
+            & > *:not(:first-child) {
+                margin-top: 1rem;
+            }
+        }
     }
 
     &__block {

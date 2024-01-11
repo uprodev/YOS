@@ -6649,6 +6649,10 @@ h5,
   font-weight: 700;
 }
 
+.filter__spoller .spoller__item-colapse-content > *:not(:first-child) {
+  margin-top: 1rem;
+}
+
 .filter__block {
   padding-left: 0;
   margin-bottom: 0;
