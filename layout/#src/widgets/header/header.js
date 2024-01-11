@@ -8,6 +8,7 @@ if (headerMobCategoriesSlider) {
         slidesPerView: 'auto',
         scrollbar: {
             el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
+            hide: true,
         },
     })
 }
@@ -158,11 +159,4 @@ if(header) {
     
 
     window.addEventListener('resize', () => setPaddingTop(header.clientHeight));
-
-    header.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action="close-top-offer"]')) {
-            e.preventDefault();
-            //setPaddingTop(0, true);
-        }
-    })
 }

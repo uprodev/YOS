@@ -17,24 +17,3 @@ document.addEventListener('change', (e) => {
     }
 });
 
-
-const productSection = document.querySelector('[data-product]');
-if(productSection) {
-    const productActionsFooter = productSection.querySelector('.product-actions__footer');
-
-    if(!productActionsFooter) return;
-
-    const productSectionOpserver = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if(!entry) return;
-
-        if(entry.isIntersecting) {
-            productActionsFooter.classList.remove('hide');
-        } else {
-            productActionsFooter.classList.add('hide');
-        }
-    }, {
-        rootMargin: "-80% 0px 0px 0px",
-    });
-    productSectionOpserver.observe(productSection);
-}

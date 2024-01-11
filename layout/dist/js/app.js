@@ -1341,6 +1341,7 @@ if (headerMobCategoriesSlider) {
         slidesPerView: 'auto',
         scrollbar: {
             el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
+            hide: true,
         },
     })
 }
@@ -1491,13 +1492,6 @@ if(header) {
     
 
     window.addEventListener('resize', () => setPaddingTop(header.clientHeight));
-
-    header.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action="close-top-offer"]')) {
-            e.preventDefault();
-            //setPaddingTop(0, true);
-        }
-    })
 }
 ;
 			const homeIntro = document.querySelector('[data-slider="home-intro"]');
@@ -1854,27 +1848,6 @@ document.addEventListener('change', (e) => {
     }
 });
 
-
-const productSection = document.querySelector('[data-product]');
-if(productSection) {
-    const productActionsFooter = productSection.querySelector('.product-actions__footer');
-
-    if(!productActionsFooter) return;
-
-    const productSectionOpserver = new IntersectionObserver((entries) => {
-        const entry = entries[0];
-        if(!entry) return;
-
-        if(entry.isIntersecting) {
-            productActionsFooter.classList.remove('hide');
-        } else {
-            productActionsFooter.classList.add('hide');
-        }
-    }, {
-        rootMargin: "-80% 0px 0px 0px",
-    });
-    productSectionOpserver.observe(productSection);
-}
 ;
 			const setStartsElements = document.querySelectorAll('[data-set-stars]');
 if (setStartsElements.length) {

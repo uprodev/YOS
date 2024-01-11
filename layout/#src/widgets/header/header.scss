@@ -37,12 +37,16 @@
 }
 
 .header-actions {
-    padding: 3rem 0;
+    padding: 2rem 0;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12.9rem;
+
+    @media (min-width: $mq-lg) {
+        padding: 3rem 0;
+    }
 
     &__left {
         display: flex;
@@ -51,13 +55,17 @@
     }
 
     &__item {
-        font-size: $text-3;
+        font-size: 2.1rem;
         display: flex;
         align-items: center;
         text-transform: uppercase;
 
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+        }
+
         & img, & svg {
-            height: 1.6rem;
+            height: 2.1rem;
             width: auto;
             display: block;
         }
@@ -65,10 +73,14 @@
 
     &__logo {
         position: absolute;
-        top: 3rem;
+        top: 2.4rem;
         left: 50%;
         width: 12.9rem;
         transform: translateX(-39.68%);
+
+        @media (min-width: $mq-lg) {
+            top: 3.4rem;
+        }
 
         & img,
         & svg {
@@ -98,10 +110,10 @@
     width: 100%;
     opacity: 0;
     transition: opacity $transition, color $transition;
+    text-align: center;
 
     @media (min-width: $mq-lg) {
         font-size: $text-2;
-        text-align: center;
     }
 
     @media #{$touch-device} {
@@ -117,14 +129,13 @@
         display: flex;
         align-items: center;
         gap: 2.4rem;
-        justify-content: space-between;
+        justify-content: center;
+        text-align: center;
         min-height: 3rem;
-        padding: 0.2rem 0;
+        padding: 0.2rem 2rem;
         position: relative;
 
         @media (min-width: $mq-lg) {
-            justify-content: center;
-            text-align: center;
             padding: 0.2rem 3rem;
         }
     }
@@ -138,27 +149,24 @@
         font-size: 1rem;
         display: flex;
         align-items: center;
-
-        @media (min-width: $mq-lg) {
-            position: absolute;
-            padding: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            right: -0.5rem;
-        }
+        position: absolute;
+        padding: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        right: -0.5rem;
     }
 }
 
 .basket-count {
     background-color: $themeColor;
-    height: 1.6rem;
-    min-width: 1.6rem;
+    height: 2.1rem;
+    min-width: 2.1rem;
     color: $textColorThird;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0rem 0.3rem;
-    font-size: $text-2;
+    font-size: $text-3;
 }
 
 .mobile-menu {
@@ -271,8 +279,12 @@
 
 
 .categories {
-    padding: 1.6rem 0 2rem;
+    padding: 1rem 0 1rem;
     position: relative;
+
+    @media (min-width: $mq-lg) {
+        padding: 1.6rem 0 2rem;
+    }
 
     & .swiper {
         overflow: visible;
@@ -303,7 +315,7 @@
 
     & .swiper-scrollbar {
         position: static;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         background-color: $themeColorFourth;
         height: 0.3rem;
         border-radius: 0;
