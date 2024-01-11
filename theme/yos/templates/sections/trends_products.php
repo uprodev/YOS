@@ -1,5 +1,12 @@
 <?php
 
+$mtxnm = get_sub_field('title');
+$mtxnm_name = get_term( $mtxnm );
+
+$categories_product = get_sub_field('categories_product');
+$products_trend = get_sub_field('products_trend');
+$link = get_sub_field('button');
+
 $trends = new WP_Query([
     'post_type' => 'product',
     'posts_per_page' => -1,
@@ -13,64 +20,61 @@ $t = 1;
             <div class="carousel__head">
                 <div class="carousel__category-info">
                     <div class="category-links">
-                        <h2 class="category-links__title title-2"><a href="#">бестселери</a></h2>
-                        <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="#">Волосся</a>
+                        <?php if( $mtxnm ):?>
+                            <h2 class="category-links__title title-2"><a href="<?= get_term_link($mtxnm);?>"><?= $mtxnm_name->name;?></a></h2>
+                        <?php endif; ?>
+                        <?php if( $categories_product ):?>
+                            <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($categories_product as $item):
+                                        $item_name = get_term( $item );?>
+                                        <div class="swiper-slide">
+                                            <a href="<?= get_term_link($item);?>"><?= $item_name->name;?></a>
+                                        </div>
+                                    <?php endforeach;?>
                                 </div>
-                                <div class="swiper-slide">
-                                    <a href="#">Тіло</a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">Обличчя</a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a href="#">Макіяж</a>
-                                </div>
+                                <div class="swiper-scrollbar slider-scrollbar"></div>
                             </div>
-                            <div class="swiper-scrollbar slider-scrollbar"></div>
-                        </div>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
             <div class="swiper" data-slider="carousel">
                 <div class="swiper-wrapper">
-                    <?php while($trends->have_posts()): $trends->the_post();?>
-
-                        <?php if($t==2):?>
-
-                            <div class="swiper-slide hide-in-mobile">
-                                <div class="carousel__category-info">
-                                    <div class="category-links">
-                                        <h2 class="category-links__title title-2"><a href="#">бестселери</a></h2>
-                                        <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <a href="#">Волосся</a>
+                    <?php if( $products_trend ):
+                        foreach( $products_trend as $post): setup_postdata($post);
+                            if($t==2):?>
+                                <div class="swiper-slide hide-in-mobile">
+                                    <div class="carousel__category-info">
+                                        <div class="category-links">
+                                            <?php if( $mtxnm ):?>
+                                                <h2 class="category-links__title title-2"><a href="<?= get_term_link($mtxnm);?>"><?= $mtxnm_name->name;?></a></h2>
+                                            <?php endif; ?>
+                                            <?php if( $categories_product ):?>
+                                                <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
+                                                    <div class="swiper-wrapper">
+                                                        <?php foreach ($categories_product as $item):
+                                                            $item_name = get_term( $item );?>
+                                                            <div class="swiper-slide">
+                                                                <a href="<?= get_term_link($item);?>"><?= $item_name->name;?></a>
+                                                            </div>
+                                                        <?php endforeach;?>
+                                                    </div>
+                                                    <div class="swiper-scrollbar slider-scrollbar"></div>
                                                 </div>
-                                                <div class="swiper-slide">
-                                                    <a href="#">Тіло</a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a href="#">Обличчя</a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a href="#">Макіяж</a>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-scrollbar slider-scrollbar"></div>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                 </div>
+                            <?php endif;?>
+
+                            <div class="swiper-slide">
+                                <?php wc_get_template_part( 'content', 'product' );?>
                             </div>
 
-                        <?php endif;?>
+                        <?php $t++; endforeach; wp_reset_postdata(); ?>
+                    <?php endif; ?>
 
-                        <div class="swiper-slide">
-                            <?php wc_get_template_part( 'content', 'product' );?>
-                        </div>
-                    <?php $t++; endwhile; wp_reset_postdata();?>
                 </div>
                 <div class="carousel__navigation">
                     <div class="slider-navigations">
@@ -83,9 +87,15 @@ $t = 1;
                     </div>
                 </div>
             </div>
-            <div class="carousel__footer">
-                <a href="#" class="button-primary light w-100">БІЛЬШЕ</a>
-            </div>
+            <?php if( $link ):
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <div class="carousel__footer">
+                    <a class="button-primary light w-100" href="<?= esc_url($link_url); ?>" target="<?= esc_attr($link_target); ?>"><?= esc_html($link_title); ?></a>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>
