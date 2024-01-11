@@ -92,6 +92,10 @@
             gap: 2rem;
             position: relative;
             z-index: 1;
+
+            & .catalog__category-title {
+                display: none;
+            }
         }
     }
 
