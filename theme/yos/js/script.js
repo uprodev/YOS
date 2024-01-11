@@ -1,7 +1,10 @@
 jQuery(document).ready(function ($) {
 
-    var sv = $('.show-variation').attr('data-vario');
-    $('.product-card__btn-to-basket').attr('data-variation_id', sv);
+    $( '.product-card__footer form' ).each(function() {
+        let vid = $(this).find('input[name="var_id"]').val();
+
+        $(this).find('.product-card__btn-to-basket').attr('data-variation_id', vid);
+    });
 
     $(document).on('click', '.product-card__option-item', function(){
        let attr = $(this).attr('data-vario');

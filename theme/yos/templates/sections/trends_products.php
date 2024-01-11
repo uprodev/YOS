@@ -7,10 +7,6 @@ $categories_product = get_sub_field('categories_product');
 $products_trend = get_sub_field('products_trend');
 $link = get_sub_field('button');
 
-$trends = new WP_Query([
-    'post_type' => 'product',
-    'posts_per_page' => -1,
-]);
 $t = 1;
 ?>
 

@@ -86,8 +86,6 @@ $choise = get_field('yos_choise', get_the_ID());
 
             endif;?>
 
-
-
             <?= $choise?'<div class="product-card-label">'.__('YOS choice', 'yos').'</div>':'';?>
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
@@ -105,36 +103,53 @@ $choise = get_field('yos_choise', get_the_ID());
                 <?php the_field('seria');?>
             </div>
         </div>
-        <?php if (isset($variations_attr['pa_volumes'])):
-            $i=0;
-            foreach ($variations as  $variation):?>
-                <div class="product-card__price <?= $q==$i?'show':'';?>" data-index="<?= $i;?>">
-                    <div class="product-card__price-current"><?= $variation['price_html'];?></div>
-                </div>
-            <?php $i++;
-            endforeach; endif;?>
+        <?php if ($product->is_type('variable')):
+            if (isset($variations_attr['pa_volumes'])):
+                $i=0;
+                foreach ($variations as  $variation):?>
+                    <div class="product-card__price <?= $q==$i?'show':'';?>" data-index="<?= $i;?>">
+                        <div class="product-card__price-current"><?= $variation['price_html'];?></div>
+                    </div>
+                <?php $i++;
+                endforeach;
+            endif;
+        elseif($product->is_type('simple')):?>
+            <div class="product-card__price show">
+                <div class="product-card__price-current"><?php woocommerce_template_loop_price();?></div>
+            </div>
+        <?php endif;?>
     </div>
     <div class="product-card__footer">
         <form>
-            <?php if (isset($variations_attr['pa_volumes'])): ?>
-                <div class="product-card__option">
-                    <?php $p=0;
-                    foreach ($variations as  $variation):
+            <?php if ($product->is_type('variable')):
+                if (isset($variations_attr['pa_volumes'])): ?>
+                    <div class="product-card__option">
+                        <?php $p=0;
+                        foreach ($variations as  $variation):
 
-                        $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
+                            $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
 
+                            ?>
+                                <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                                    <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
+                                    <div class="product-card__option-item-value">
+                                        <?= $sl->name;?>
+                                    </div>
+                                </label>
+
+                            <?php $p++; endforeach;
                         ?>
-                            <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
-                                <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
-                                <div class="product-card__option-item-value">
-                                    <?= $sl->name;?>
-                                </div>
-                            </label>
-
-                        <?php $p++; endforeach;
-                    ?>
-                </div>
-            <?php endif;?>
+                    </div>
+                <?php endif;
+            endif;?>
+            <?php if ($product->is_type('variable')):
+                $h=0;
+                foreach ($variations as  $variation):
+                    if($h==$q):?>
+                    <input type="hidden" value="<?= $variation['variation_id'];?>" name="var_id">
+                    <?php endif;
+                $h++; endforeach;
+            endif;?>
             <button class="product-card__btn-to-basket button-primary dark w-100" data-variation_id="" data-product_id="<?= get_the_ID();?>">
                 <?= __('додати до кошика', 'yos');?>
             </button>
