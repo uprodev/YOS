@@ -5432,9 +5432,6 @@ h5,
   width: 100%;
   z-index: 10;
   background-color: #fff;
-  -webkit-transition: padding-top 0.15s ease;
-  -o-transition: padding-top 0.15s ease;
-  transition: padding-top 0.15s ease;
 }
 
 .header--is-scrolling {

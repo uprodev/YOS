@@ -9,7 +9,6 @@ class App {
 
 	init() {
 		window.addEventListener('DOMContentLoaded', () => {
-			document.body.classList.add('page-loaded');
 
 			if (this.utils.isMobile()) {
 				document.body.classList.add('mobile');
@@ -62,6 +61,8 @@ class App {
 			@@include('../widgets/brands/brands.js');
 			@@include('../widgets/faq/faq.js');
 			// ==== // widgets =====================================================
+		
+			document.body.classList.add('page-loaded');
 		});
 
 

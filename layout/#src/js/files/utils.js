@@ -268,7 +268,10 @@ class Utils {
 			let header = document.querySelector('.header');
 			anchors.forEach(anchor => {
 				anchor.addEventListener('click', (e) => {
-					let el = document.querySelector(anchor.getAttribute('href'));
+					const href = anchor.getAttribute('href')
+					const id = href.length > 1 ? href : null;
+					if(!id) return;
+					let el = document.querySelector(href);
 
 					if (el) {
 						e.preventDefault();

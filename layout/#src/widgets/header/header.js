@@ -1,10 +1,3 @@
-// header
-const header = document.querySelector('[data-header]');
-if(header) {
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('header--is-scrolling', window.pageYOffset > 50);
-    })
-}
 
 
 // categories
@@ -133,42 +126,68 @@ const topOffers = document.querySelectorAll('[data-top-offer]');
 if (topOffers.length) {
     topOffers.forEach(topOffer => {
         const parrentEl = topOffer.parentElement;
-        const delay = topOffer.getAttribute('data-delay') || 2000;
 
-        const setPaddingTop = (value) => {
-            parrentEl.style.transition = 'padding-top .3s ease';
+        const setPaddingTop = (value, isTransition = false) => {
+            parrentEl.style.transition = isTransition ? 'padding-top .15s ease' : '';
             parrentEl.style.paddingTop = value + 'px';
         }
 
-        const setPaddingTopWithouTransition = () => {
-            parrentEl.style.transition = '';
-            parrentEl.style.paddingTop = topOffer.clientHeight + 'px';
+        const setPaddingWrapper = () => {
+            setPaddingTop(topOffer.clientHeight);
         }
 
-        setTimeout(() => {
-            topOffer.classList.add('show');
-            setPaddingTop(topOffer.clientHeight);
+        topOffer.classList.add('show');
+        setPaddingTop(topOffer.clientHeight);
+        CategoryItems.setHeight();
 
-            setTimeout(() => {
-                CategoryItems.setHeight();
-            }, 300);
-        }, 300);
 
-        window.addEventListener('resize', setPaddingTopWithouTransition);
+        window.addEventListener('resize', setPaddingWrapper);
 
         topOffer.addEventListener('click', (e) => {
             if(e.target.closest('[data-action="close-top-offer"]')) {
                 e.preventDefault();
 
                 topOffer.classList.remove('show');
-                setPaddingTop(0);
-    
+                setPaddingTop(0, true);
+
                 setTimeout(() => {
                     CategoryItems.setHeight();
                 }, 300);
     
-                window.removeEventListener('resize', setPaddingTopWithouTransition);
+                window.removeEventListener('resize', setPaddingWrapper);
             }
         })
+    })
+}
+
+
+const header = document.querySelector('[data-header]');
+if(header) {
+
+    // header scrool animation
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('header--is-scrolling', window.pageYOffset > 50);
+    })
+
+
+    // header height compensation
+    const headHeightCompensation = document.querySelector('.head-height-compensation');
+    if(!headHeightCompensation) return;
+
+    const setPaddingTop = (value, isTransition = false) => {
+        headHeightCompensation.style.transition = isTransition ? 'padding-top .15s ease' : '';
+        headHeightCompensation.style.paddingTop = value + 'px';
+    }
+
+    setPaddingTop(header.clientHeight);
+    
+
+    window.addEventListener('resize', () => setPaddingTop(header.clientHeight));
+
+    header.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="close-top-offer"]')) {
+            e.preventDefault();
+            //setPaddingTop(0, true);
+        }
     })
 }
