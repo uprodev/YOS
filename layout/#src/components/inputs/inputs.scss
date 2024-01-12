@@ -84,12 +84,6 @@
     &:focus {
         border-color: $themeColor;
     }
-
-    @media (min-width: $mq-md) {
-        height: 4rem;
-    }
-
-
 }
 
 .textarea-wrap {

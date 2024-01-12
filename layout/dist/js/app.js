@@ -1351,6 +1351,8 @@ const mobileMenu = document.querySelector('[data-mobile-menu]');
 if (mobileMenu) {
     const buttonsOpen = document.querySelectorAll('[data-action="open-mobile-menu"]');
     const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
+    const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
+    const catalogLayer = mobileMenu.querySelector('.mobile-menu__layer--catalog');
 
     buttonsOpen.forEach(button => {
         button.addEventListener('click', () => {
@@ -1364,6 +1366,51 @@ if (mobileMenu) {
             document.body.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         });
+    })
+
+    document.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="open-mobile-menu"]')) return;
+
+        if(!e.target.closest('.mobile-menu')) {
+            document.body.classList.remove('overflow-hidden');
+            mobileMenu.classList.remove('open')
+        }
+    })
+
+    mobileMenu.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="show-layer-by-id"]')) {
+            const btn = e.target.closest('[data-action="show-layer-by-id"]');
+            const id = btn.getAttribute('data-id');
+            if(!id) return;
+            
+            const layer = mobileMenu.querySelector(`[data-layer="${id}"]`);
+            if(!layer) return;
+            layer.classList.add('show');
+            mainLayer.classList.add('overflow-hidden');
+
+            if(layer !== catalogLayer) {
+                catalogLayer.classList.add('overflow-hidden');
+            }
+        }
+
+        if(e.target.closest('[data-action="hide-layer"]')) {
+            const layer = e.target.closest('[data-layer]');
+            if(!layer) return;
+            layer.classList.remove('show');
+
+            if(!catalogLayer.classList.contains('show')) {
+                mainLayer.classList.remove('overflow-hidden');
+            }
+
+            if(layer !== catalogLayer) {
+                catalogLayer.classList.remove('overflow-hidden');
+            }
+            // const allLayers = Array.from(mobileMenu.querySelectorAll('[data-layer]'));
+            // const isAnyLayerOpen = allLayers.some(layer => layer.classList.contains('show'));
+            // if(!isAnyLayerOpen) {
+                
+            // }
+        }
     })
 }
 
@@ -1493,7 +1540,36 @@ if(header) {
 
     window.addEventListener('resize', () => setPaddingTop(header.clientHeight));
 }
-;
+
+
+// main search
+const mainSearchElements = document.querySelectorAll('[data-main-search]');
+if(mainSearchElements.length) {
+    mainSearchElements.forEach(mainSearch => {
+        const searchId = mainSearch.getAttribute('data-id');
+        if(!searchId) return;
+        const buttonsShow = document.querySelectorAll(`[data-action="show-search-by-id"][data-id="${searchId}"]`);
+        const buttonClose = mainSearch.querySelector('.main-search__btn-close');
+        const input = mainSearch.querySelector('input.input');
+
+        buttonsShow.forEach(buttonShow => {
+            buttonShow.addEventListener('click', (e) => {
+                e.preventDefault();
+                mainSearch.classList.add('show');
+                input.focus();
+            })
+        })
+
+        input.addEventListener('blur', () => {
+            if (input.value.length === 0) mainSearch.classList.remove('show');
+        })
+
+        buttonClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            mainSearch.classList.remove('show');
+        })
+    })
+};
 			const homeIntro = document.querySelector('[data-slider="home-intro"]');
 if(homeIntro) {
     const swiperSlider = new Swiper(homeIntro.querySelector('.swiper'), {
