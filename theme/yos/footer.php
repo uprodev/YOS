@@ -1,5 +1,7 @@
 </main>
 
+<?php get_template_part('parts/subscription');?>
+
 <!-- == FOOTER ================== -->
 <div class="top-space-140">
 
