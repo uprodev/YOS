@@ -1,3 +1,5 @@
+<?php get_header();?>
+
 <main class="_page page404-page">
     <div class="head-height-compensation d-lg-none"></div>
     <section class="page404">
@@ -27,3 +29,5 @@
         <?php endif;?>
     </section>
 </main>
+
+<?php get_footer();

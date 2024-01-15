@@ -1,3 +1,4 @@
+<?php if(!is_404()):?>
 <?php get_template_part('parts/subscription');?>
 
 <!-- == FOOTER ================== -->
@@ -9,6 +10,7 @@
 
 </div>
 <!-- == // FOOTER ================== -->
+<?php endif;?>
   <?php wp_footer(); ?>
 	</body>
 </html>
