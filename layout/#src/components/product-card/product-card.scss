@@ -42,16 +42,6 @@
         transition: border-color $transition;
         height: 16.7rem;
 
-        @media (min-width: $mq-lg) {
-            border: 1px solid $themeColorFourth;
-        }
-        
-        @media #{$mouse-device} {
-            &:hover {
-                border-color: $themeColorThird;
-            }
-        }
-
         @media (min-width: $mq-md) {
             height: 32.4rem;
             padding: 1.5rem;

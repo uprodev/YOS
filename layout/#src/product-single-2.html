@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('_head.html',{
+"title": "YOS"
+})
+
+<body>
+	<div class="_preloader"></div>
+
+	@@include('widgets/header/_header.html',{
+	"mod": ""
+	})
+	
+	@@include('widgets/side-basket/_side-basket.html')
+
+	<main class="_page product-single-page">
+		<div class="head-height-compensation"></div>
+		@@include('widgets/product/_product-active-btn.html')
+
+		<div class="top-space-60 top-space-md-150">
+			@@include('widgets/carousel/_carousel-product-single.html')
+		</div>
+
+		<div class="top-space-60 top-space-md-150">
+			<div class="image-full-width">
+				<picture>
+					<source srcset="img/photo/product-single-banner-desk.jpg" media="(min-width: 768px)" >
+					<img  src="img/photo/product-single-banner-mob.jpg" alt="img">
+				</picture>
+			</div>
+		</div>
+
+		<div class="top-space-60 top-space-md-150">
+			@@include('widgets/product-reviews/_product-reviews.html')
+		</div>
+	</main>
+
+	<!-- == FOOTER ================== -->
+	@@include('widgets/footer/_footer.html',{})
+	<!-- == // FOOTER ================== -->
+
+</body>
+
+</html>

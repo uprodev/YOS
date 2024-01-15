@@ -1,6 +1,5 @@
 //===== filter slider =========================================================
 .price-range {
-    
     &__values {
         display: flex;
         gap: 2rem;
@@ -42,8 +41,8 @@
     }
 
     &__slider {
-        margin-top: 2rem;
-        margin-bottom: 0.6rem;
+        width: calc(100% - 1.6rem);
+        margin: 2rem auto 0.6rem;
 
         &.noUi-target {
             height: 0.6rem;
@@ -74,36 +73,13 @@
             border-radius: 50%;
             border: 1px solid $textColorSecondary;
             box-shadow: none;
-            right: -0.9rem;
+            right: -0.8rem;
             top: -0.5rem;
             cursor: pointer;
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 display: none;
-            }
-
-            &:before {
-                position: absolute;
-                font-family: "icomoon" !important;
-                content: "\e941";
-                top: 50%;
-                left: 54%;
-                z-index: 2;
-                transform: translate(-50%, -50%);
-                font-size: 0.9rem;
-                color: #fff;
-                display: inline-block;
-                background: transparent;
-                width: auto;
-                height: auto;
-            }
-
-            &.noUi-handle-lower {
-                &:before {
-                    transform: translate(-50%, -50%) scale(-1, 1);
-                    left: 49%;
-                }
             }
         }
 

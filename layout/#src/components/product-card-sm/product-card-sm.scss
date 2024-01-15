@@ -41,7 +41,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid $themeColorFourth;
         transition: border-color $transition;
 
         @media (min-width: $mq-lg) {
@@ -51,7 +50,9 @@
 
         @media #{$mouse-device} {
             &:hover {
-                border-color: $themeColorThird;
+                & img {
+                    transform: scale(1.05);
+                }
             }
         }
 
@@ -61,6 +62,7 @@
             height: auto;
             max-width: 100%;
             max-height: 100%;
+            transition: transform $transition;
         }
     }
 

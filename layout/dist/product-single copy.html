@@ -229,8 +229,8 @@ defer
         <div class="categories" data-categories>
             <div class="categories__nav swiper" data-slider="header-mob-categories">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" >
-                        <a href="#">бренди</a>
+                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="0">
+                        бренди
                     </div>
                     <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="1">
                         обличчя
@@ -256,7 +256,22 @@ defer
                 </div>
                 <div class="swiper-scrollbar"></div>
             </div>
-            
+
+            <div class="categories__tab" data-category-tab data-index="0">
+                <div class="categories__body container">
+                    <div class="categories__block">
+                        <ul class="categories__list">
+                            <li>
+                                <a href="#" class="categories__list-title">бренди a — z</a>
+                            </li>
+                            <li>
+                                <a href="#" class="categories__list-title">популярні бренди</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             <div class="categories__tab" data-category-tab data-index="1">
                 <div class="categories__body container">
 
