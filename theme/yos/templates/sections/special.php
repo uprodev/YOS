@@ -1,5 +1,8 @@
 <?php
 
+$title = get_sub_field('title');
+$text = get_sub_field('text');
+
 ?>
 
 <div class="top-space-140 top-space-md-150">
@@ -7,9 +10,11 @@
         <div class="container">
             <div class="carousel__head">
                 <div class="carousel__category-info">
-                    <div class="category-links">
-                        <h2 class="title-2"><a href="#">спеціальні пропозиції</a></h2>
-                    </div>
+                    <?php if($title):?>
+                        <div class="category-links">
+                            <h2 class="title-2"><?= $title;?></h2>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
             <div class="swiper" data-slider="carousel">
@@ -20,7 +25,9 @@
                         </div>
                     </div>
                     <div class="swiper-slide">
-                        <h2 class="special-offers__title title-2"><a href="#">спеціальні пропозиції</a></h2>
+                        <?php if($title):?>
+                            <h2 class="special-offers__title title-2"><?= $title;?></h2>
+                        <?php endif;?>
                         <div class="special-offer-card" data-special-offer-card>
                             <div class="special-offer-card__row-1">
                                 <div class="special-offer-card__text text-content last-no-margin">

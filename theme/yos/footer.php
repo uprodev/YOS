@@ -1,5 +1,3 @@
-</main>
-
 <?php get_template_part('parts/subscription');?>
 
 <!-- == FOOTER ================== -->

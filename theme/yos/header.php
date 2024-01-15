@@ -109,5 +109,3 @@
     <?php get_template_part('parts/header/popup-search');?>
 
     <?php get_template_part('parts/header/side-basket');?>
-
-    <main class="_page<?= is_front_page()?' home-page':'';?>">
