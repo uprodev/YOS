@@ -3,56 +3,72 @@
         <div class="footer-mob__body">
             <div class="footer-mob__row">
                 <div class="footer-mob__logo">
-                    <a href="#">
-                        <img src="img/logo/footer-logo.png" alt="">
+                    <a href="<?= get_home_url();?>">
+                        <?php $logo = get_field('footer_logo', 'options');?>
+                        <img src="<?= $logo['url'];?>" alt="<?= $logo['alt'];?>">
                     </a>
                 </div>
-                <div class="footer-mob__text text-content last-no-margin">
-                    <p>
-                        — це мультибрендовий онлайн beauty
-                        бутік, доступний для візиту з будь-якої
-                        точки світу.
-                    </p>
-                </div>
+                <?php if(get_field('footer_text', 'options')):?>
+                    <div class="footer-mob__text text-content last-no-margin">
+                        <p><?php the_field('footer_text', 'options');?></p>
+                    </div>
+                <?php endif;?>
             </div>
             <div class="footer-mob__row">
                 <div class="footer-mob__time">
-                    <h3 class="footer-mob__title title-3">години роботи</h3>
-                    <div class="footer-mob__vertical-content">
-                        10.00 — 18.00
-                    </div>
+                    <?php if(get_field('footer_mobile_title_hours', 'options')):?>
+                        <h3 class="footer-mob__title title-3"><?php the_field('footer_mobile_title_hours', 'options');?></h3>
+                    <?php endif;?>
+
+                    <?php if(get_field('footer_hours', 'options')):?>
+                            <div class="footer-mob__vertical-content">
+                                <?php the_field('footer_hours', 'options');?>
+                            </div>
+                    <?php endif;?>
+
                 </div>
                 <div class="footer-mob__contacts">
-                    <h3 class="footer-mob__title title-3">
-                        зв’яжіться <br>
-                        з нами
-                    </h3>
+                    <?php if(get_field('footer_mobile_title_contact', 'options')):?>
+                        <h3 class="footer-mob__title title-3">
+                            <?php the_field('footer_mobile_title_contact', 'options');?>
+                        </h3>
+                    <?php endif;?>
                     <div class="footer-mob__vertical-content">
-                        <a href="#">+380 (93) 28 55 810</a>
-                        <a href="#" class="button-link"><span>telegram</span></a>
-                        <a href="#" class="button-link"><span>instagram</span></a>
+                        <?php if(get_field('footer_phone', 'options')):?>
+                            <a href="+<?= phone_clear(get_field('footer_phone', 'options'));?>"><?php the_field('footer_phone', 'options');?></a>
+                        <?php endif;?>
+                        <?php if(get_field('footer_social', 'options')):
+                            foreach (get_field('footer_social', 'options') as $soc):?>
+                                <a href="<?= $soc['link'];?>" target="_blank" class="button-link"><span><?= $soc['name'];?></span></a>
+                            <?php endforeach;
+                        endif;?>
                     </div>
                 </div>
             </div>
             <div class="footer-mob__row">
-                <h3 class="footer-mob__title title-3">підписатися на розсилку </h3>
-                <div class="footer-mob__text text-content last-no-margin">
-                    <p>
-                        Приєднуйся до нашого beauty комьюніті - отримуй ексклюзивні пропозиції та секрети ідеального
-                        догляду за шкірою.
-                    </p>
-                </div>
-                <form action="/" class="subscription-form">
-                    <input type="text" placeholder="Електронна пошта">
-                    <button class="button-link"><span>підписатися</span></button>
-                </form>
+                <?php if(get_field('footer_mobile_title_subsription', 'options')):?>
+                    <h3 class="footer-mob__title title-3">
+                        <?php the_field('footer_mobile_title_subsription', 'options');?>
+                    </h3>
+                <?php endif;?>
+                <?php if(get_field('footer_mobile_text', 'options')):?>
+                    <div class="footer-mob__text text-content last-no-margin">
+                        <p><?php the_field('footer_mobile_text', 'options');?></p>
+                    </div>
+                <?php endif;?>
+                <?php $form = get_field('subscription_form', 'options');
+
+                if($form){
+                    echo do_shortcode('[contact-form-7 id="'.$form.'"]');
+                }?>
             </div>
-            <div class="footer-mob__row">
-                <div class="footer-mob__copy">
-                    © 2022 YOS Skincare. Всі права захищені.
-                    designed & developed by ra-web
+            <?php if(get_field('copyright', 'options')):?>
+                <div class="footer-mob__row">
+                    <div class="footer-mob__copy">
+                        <?php the_field('copyright', 'options');?>
+                    </div>
                 </div>
-            </div>
+            <?php endif;?>
         </div>
     </div>
 </footer>
