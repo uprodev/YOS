@@ -1,5 +1,15 @@
 <?php
 
+/* li class top menu */
+
+function atg_menu_classes($classes, $item, $args) {
+    if($args->theme_location == 'top-menu') {
+        $classes[] = 'header-actions__item';
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'atg_menu_classes', 1, 3);
+
 /* pagination markup */
 
 add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );

@@ -19,20 +19,11 @@ if($offer):?>
 
 <div class="header__nav header-desk">
     <div class="header-desk__body container header-actions">
-        <div class="header-actions__left">
-            <div class="header-actions__item">
-                <a href="#">каталог</a>
-            </div>
-            <div class="header-actions__item">
-                <a href="#">запитання й відповіді</a>
-            </div>
-            <div class="header-actions__item">
-                <a href="#">про нас</a>
-            </div>
-            <div class="header-actions__item">
-                <a href="#">контакти</a>
-            </div>
-        </div>
+        <?php wp_nav_menu([
+            'theme_location' => 'top-menu',
+            'container' => false,
+            'menu_class' => 'header-actions__left',
+        ]);?>
         <div class="header-actions__logo">
             <a href="<?= get_home_url();?>">
                 <?php $logo = get_field('logo', 'options');?>
