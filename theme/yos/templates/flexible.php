@@ -4,8 +4,6 @@ $id = get_the_ID();
 
 ?>
 
-<main class="_page<?= is_front_page()?' home-page':'';?>">
-
     <?php if( have_rows('content', $id) ): ?>
 
         <?php while( have_rows('content', $id) ): the_row(); ?>
@@ -15,5 +13,3 @@ $id = get_the_ID();
         <?php endwhile; ?>
 
     <?php endif;?>
-
-</main>

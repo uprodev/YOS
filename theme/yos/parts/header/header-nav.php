@@ -82,9 +82,9 @@ if($offer):?>
                 </button>
             </div>
             <div class="header-actions__item">
-                <a href="#popup-search" data-popup="open-popup">
+                <button data-action="show-search-by-id" data-id="mob-search">
                     <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/search.svg" alt="">
-                </a>
+                </button>
             </div>
         </div>
         <div class="header-actions__logo">
@@ -103,6 +103,19 @@ if($offer):?>
             </div>
         </div>
     </div>
+    <div class="main-search" data-main-search data-id="mob-search">
+        <form action="/">
+            <div class="main-search__inner">
+                <input type="text" class="input" name="s" placeholder="Що ви шукаєте?">
+                <button class="main-search__btn">
+                    <span class="icon-search"></span>
+                </button>
+                <button type="button" class="main-search__btn-close">
+                    <span class="icon-close-thin"></span>
+                </button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <div class="header__categories container">
@@ -110,7 +123,7 @@ if($offer):?>
         <div class="categories__nav swiper" data-slider="header-mob-categories">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="0">
-                    бренди
+                    <a href="#">бренди</a>
                 </div>
                 <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="1">
                     обличчя
@@ -135,45 +148,6 @@ if($offer):?>
                 </div>
             </div>
             <div class="swiper-scrollbar"></div>
-        </div>
-
-        <div class="categories__tab" data-category-tab data-index="0">
-            <div class="categories__body container">
-                <div class="categories__block">
-                    <ul class="categories__list">
-                        <li>
-                            <a href="#" class="categories__list-title">бренди a — z</a>
-                        </li>
-                        <li>
-                            <a href="#" class="categories__list-title">популярні бренди</a>
-
-                            <ul class="categories__sublist">
-                                <li>
-                                    <a href="#">Medik8</a>
-                                </li>
-                                <li>
-                                    <a href="#">ZO</a>
-                                </li>
-                                <li>
-                                    <a href="#">Elemis</a>
-                                </li>
-                                <li>
-                                    <a href="#">Hydrapeptide</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dermalogica</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rare Paris</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rated Green</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
 
         <div class="categories__tab" data-category-tab data-index="1">
@@ -218,7 +192,6 @@ if($offer):?>
                     <ul class="categories__list">
                         <li>
                             <a href="#" class="categories__list-title">Область навколо очей</a>
-
                             <ul class="categories__sublist">
                                 <li>
                                     <a href="#">Крема</a>
@@ -293,83 +266,12 @@ if($offer):?>
                     <ul class="categories__list">
                         <li>
                             <a href="#" class="categories__list-title">Шампуні</a>
-                            <ul class="categories__sublist">
-                                <li>
-                                    <a href="#">Термозахист</a>
-                                </li>
-                                <li>
-                                    <a href="#">Масло</a>
-                                </li>
-                                <li>
-                                    <a href="#">Крема</a>
-                                </li>
-                                <li>
-                                    <a href="#">Ампули</a>
-                                </li>
-                                <li>
-                                    <a href="#">Спреї</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="#" class="categories__list-title">Кондиціонери</a>
-                            <ul class="categories__sublist">
-                                <li>
-                                    <a href="#">Термозахист</a>
-                                </li>
-                                <li>
-                                    <a href="#">Масло</a>
-                                </li>
-                                <li>
-                                    <a href="#">Крема</a>
-                                </li>
-                                <li>
-                                    <a href="#">Ампули</a>
-                                </li>
-                                <li>
-                                    <a href="#">Спреї</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="#" class="categories__list-title">Маски</a>
-                            <ul class="categories__sublist">
-                                <li>
-                                    <a href="#">Термозахист</a>
-                                </li>
-                                <li>
-                                    <a href="#">Масло</a>
-                                </li>
-                                <li>
-                                    <a href="#">Крема</a>
-                                </li>
-                                <li>
-                                    <a href="#">Ампули</a>
-                                </li>
-                                <li>
-                                    <a href="#">Спреї</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="categories__list-title">Брови та вії</a>
-                            <ul class="categories__sublist">
-                                <li>
-                                    <a href="#">Термозахист</a>
-                                </li>
-                                <li>
-                                    <a href="#">Масло</a>
-                                </li>
-                                <li>
-                                    <a href="#">Крема</a>
-                                </li>
-                                <li>
-                                    <a href="#">Ампули</a>
-                                </li>
-                                <li>
-                                    <a href="#">Спреї</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -418,6 +320,9 @@ if($offer):?>
                                 <li>
                                     <a href="#">Лосьон</a>
                                 </li>
+                                <li>
+                                    <a href="#">Travel версії та мініатюри</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -431,8 +336,147 @@ if($offer):?>
                         <li>
                             <a href="#" class="categories__list-title">Стайлінг</a>
                         </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories__tab" data-category-tab data-index="3">
+            <div class="categories__body container">
+
+                <div class="categories__block">
+                    <ul class="categories__list">
                         <li>
-                            <a href="#" class="categories__list-title">Travel версії та мініатюри</a>
+                            <a href="#" class="categories__list-title">Очищення</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Зволоження</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Крем</a>
+                                </li>
+                                <li>
+                                    <a href="#">Лосьон</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Батер</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спреї</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Скраби та пілінги</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Для ванн</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Для рук</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Для ніг</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Дезодоранти</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">SPF та автозасмага</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Догляд за ротовою порожниною</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Зубні пасти</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ополіскувачі</a>
+                                </li>
+                                <li>
+                                    <a href="#">Спрей</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="categories__tab" data-category-tab data-index="4">
+            <div class="categories__body container">
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Косметички</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Для лица</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Для волос</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Для тела</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Бьюти-гаджеты</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="categories__tab" data-category-tab data-index="6">
+            <div class="categories__body container">
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Харчові добавки</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Догляд за ротовою порожниною</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Зубна щітка</a>
+                                </li>
+                                <li>
+                                    <a href="#">Зубна нитка</a>
+                                </li>
+                                <li>
+                                    <a href="#">Пасти та гелі</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ополіскувач для порожнини рота</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

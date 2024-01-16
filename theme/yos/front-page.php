@@ -2,6 +2,13 @@
 
 get_header();
 
-get_template_part('templates/flexible');
+?>
 
-get_footer();
+<main class="_page home-page">
+    <div class="head-height-compensation"></div>
+
+    <?php get_template_part('templates/flexible');?>
+
+</main>
+
+<?php get_footer();

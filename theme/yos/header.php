@@ -106,6 +106,4 @@
 
     <?php get_template_part('parts/header/mobile-menu');?>
 
-    <?php get_template_part('parts/header/popup-search');?>
-
     <?php get_template_part('parts/header/side-basket');?>
