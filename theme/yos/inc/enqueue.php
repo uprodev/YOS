@@ -12,8 +12,8 @@ function add_styles() {
 
 function add_scripts() {
 
-    wp_enqueue_script( 'vendorsjs', get_template_directory_uri() . '/js/vendors.js', array(), rand(1111, 9999), true);
-    wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', array(), rand(1111, 9999), true);
+    wp_enqueue_script( 'vendorsjs', get_template_directory_uri() . '/js/vendors.js', array(), rand(1111, 9999), false);
+    wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', array('jquery'), rand(1111, 9999), true);
 
     wp_localize_script('script', 'globals',

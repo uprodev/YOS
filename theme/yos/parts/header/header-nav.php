@@ -32,9 +32,22 @@ if($offer):?>
         </div>
         <div class="header-actions__right">
             <div class="header-actions__item">
-                <a href="#popup-search" data-popup="open-popup">
+                <button data-action="show-search-by-id" data-id="descktop-search">
                     <?= __('пошук', 'yos');?>
-                </a>
+                </button>
+                <div class="main-search" data-main-search data-id="descktop-search">
+                    <form action="/">
+                        <div class="main-search__inner">
+                            <input type="text" class="input" name="s" placeholder="<?= __('Що ви шукаєте?', 'yos');?>">
+                            <button class="main-search__btn">
+                                <span class="icon-search"></span>
+                            </button>
+                            <button type="button" class="main-search__btn-close">
+                                <span class="icon-close-thin"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="header-actions__item">
                 <div class="language">
