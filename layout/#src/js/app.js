@@ -24,6 +24,7 @@ class App {
 
 			this.utils.replaceImageToInlineSvg('.img-svg');
 			this.dynamicAdapt.init();
+			this.utils.initTruncateString();
 			this.utils.initCollapse();
 			this.utils.initSpoller();
 			this.utils.initInputMask();

@@ -11,9 +11,8 @@ if (specialOfferCards.length) {
             const parent = e.target.closest('[data-special-offer-card]');
             if (!parent) return;
 
-
             const fullTextElements = parent.querySelectorAll('.special-offer-card__full-text');
-            console.log(fullTextElements);
+
             fullTextElements.forEach(fullTextEl => {
                 const elIndex = fullTextEl.getAttribute('data-index');
                 if (!elIndex) return;
@@ -24,13 +23,21 @@ if (specialOfferCards.length) {
                     fullTextEl.classList.remove('show');
                 }
             })
+
+            const slide = e.target.closest('.swiper-slide');
+            if(!slide) return;
+            slide.classList.add('z-index-100');
         } else if(e.target.closest('[data-action="hide-full-text-by-index"]')) {
             e.preventDefault();
             const btn = e.target;
-            const parent = btn.closest('.special-offer-card__full-text');
-           
-            if(!parent) return;
-            parent.classList.remove('show');
+            const fullTextEl = btn.closest('.special-offer-card__full-text');
+
+            if(!fullTextEl) return;
+            fullTextEl.classList.remove('show');
+
+            const slide = e.target.closest('.swiper-slide');
+            if(!slide) return;
+            slide.classList.remove('z-index-100');
         }
 
     })

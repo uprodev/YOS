@@ -144,6 +144,23 @@
         &:not(.show) {
             display: none;
         }
+
+        & .price {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            flex-direction: row-reverse;
+
+            & ins {
+                text-decoration: none;
+            }
+
+            & del {
+                font-weight: 400;
+                color: $textColorSecondary;
+            }
+        }
     }
 
     &__price-current {

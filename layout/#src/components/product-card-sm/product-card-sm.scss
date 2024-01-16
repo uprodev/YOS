@@ -6,9 +6,9 @@
         gap: 2rem;
     }
 
-    &__left { 
-        flex: 0 0 auto; 
-        position: relative; 
+    &__left {
+        flex: 0 0 auto;
+        position: relative;
     }
 
     &__btn-remove {
@@ -90,7 +90,6 @@
     }
 
     &__text-1 {
-        
     }
 
     &__text-2 {
@@ -136,10 +135,21 @@
         flex-wrap: wrap;
         gap: 0.6rem;
         font-size: $text-1;
+        flex-direction: row-reverse;
 
         @media (min-width: $mq-lg) {
             font-size: $text-3;
             gap: 1rem;
+        }
+
+        & ins {
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        & del {
+            font-weight: 400;
+            color: $textColorSecondary;
         }
     }
 
@@ -157,4 +167,3 @@
         margin-top: 1rem;
     }
 }
-
