@@ -46,7 +46,13 @@ $prod = get_field( 'product_article' );
                             </div>
                             <div class="product-card-sm__group">
                                 <div class="product-card-sm__price">
-                                    <?= $price;?>
+                                    <?php if ($product->is_type( 'variable' )) :?>
+                                        <div class="product-card-sm__price-current"><?= $price;?></div>
+                                    <!--                                    <div class="product-card-sm__price-old">7 299 ₴</div>--
+                                    <?php elseif($product->is_type( 'simple' )):?>
+                                        <div class="product-card-sm__price-current"><?= $price;?></div>
+
+                                        <?php endif;?>
                                 </div>
                             </div>
                         </div>
