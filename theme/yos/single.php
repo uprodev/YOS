@@ -1,6 +1,8 @@
 <?php 
 
-get_header(); 
+get_header();
+
+$aside = get_field('aside_menu');
 
 ?>
 
@@ -22,20 +24,18 @@ get_header();
 				</div>
 				<div class="article__body article__grid">
 					<div class="article__col-1">
-						<div class="article__nav">
-							<div class="article__nav-title"><?= __('зміст', 'yos');?></div>
-							<ul>
-								<li>
-									<a href="#products-1" class="button-link"><span>полігідроксикислота (PHA)</span></a>
-								</li>
-								<li>
-									<a href="#products-2" class="button-link"><span>гідроксикислота (AHA)</span></a>
-								</li>
-								<li>
-									<a href="#products-3" class="button-link"><span>бета-гідроксикислота (BHA)</span></a>
-								</li>
-							</ul>
-						</div>
+                        <?php if($aside):?>
+                            <div class="article__nav">
+                                <div class="article__nav-title"><?= __('зміст', 'yos');?></div>
+                                <ul>
+                                    <?php foreach($aside as $as):?>
+                                        <li>
+                                            <a href="#<?= $as['id'];?>" class="button-link"><span><?= $as['title'];?></span></a>
+                                        </li>
+                                    <?php endforeach;?>
+                                </ul>
+                            </div>
+                        <?php endif;?>
 					</div>
 					<div class="article__col-2">
 						<div class="article__content">

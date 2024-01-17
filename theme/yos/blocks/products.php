@@ -7,10 +7,11 @@
 
 $title = get_field( 'title' );
 $prod = get_field( 'product_article' );
+$id_prod = get_field( 'id' );
 
 ?>
 
-<div class="article__products" id="products-2">
+<div class="article__products" id="<?= $id_prod;?>">
     <?php if($title):?>
         <div class="article__products-text text-content last-no-margin text-end">
             <p>
