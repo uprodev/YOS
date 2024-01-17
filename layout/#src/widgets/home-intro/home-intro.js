@@ -5,6 +5,7 @@ if(homeIntro) {
         speed: 600,
         scrollbar: {
             el: homeIntro.querySelector('.swiper-scrollbar'),
+            draggable: true
         },
         navigation: {
             nextEl: homeIntro.querySelector('.slider-btn.right'),

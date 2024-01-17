@@ -9,6 +9,7 @@ if (headerMobCategoriesSlider) {
         scrollbar: {
             el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
             hide: true,
+            draggable: true
         },
     })
 }
@@ -36,7 +37,7 @@ if (mobileMenu) {
     })
 
     document.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action="open-mobile-menu"]')) return;
+        if(e.target.closest('[data-action]')) return;
 
         if(!e.target.closest('.mobile-menu')) {
             document.body.classList.remove('overflow-hidden');
@@ -72,11 +73,6 @@ if (mobileMenu) {
             if(layer !== catalogLayer) {
                 catalogLayer.classList.remove('overflow-hidden');
             }
-            // const allLayers = Array.from(mobileMenu.querySelectorAll('[data-layer]'));
-            // const isAnyLayerOpen = allLayers.some(layer => layer.classList.contains('show'));
-            // if(!isAnyLayerOpen) {
-                
-            // }
         }
     })
 }
@@ -147,6 +143,8 @@ if(categoriesEl) {
 // Top offer
 const topOffers = document.querySelectorAll('[data-top-offer]');
 if (topOffers.length) {
+    const headHeightCompensation = document.querySelector('.head-height-compensation');
+
     topOffers.forEach(topOffer => {
         const parrentEl = topOffer.parentElement;
 
@@ -169,7 +167,7 @@ if (topOffers.length) {
         topOffer.addEventListener('click', (e) => {
             if(e.target.closest('[data-action="close-top-offer"]')) {
                 e.preventDefault();
-
+                const topOfferHeight = topOffer.clientHeight;
                 topOffer.classList.remove('show');
                 setPaddingTop(0, true);
 
@@ -178,6 +176,10 @@ if (topOffers.length) {
                 }, 300);
     
                 window.removeEventListener('resize', setPaddingWrapper);
+
+                if(!headHeightCompensation) return;
+                headHeightCompensation.style.transition = 'padding-top .15s ease';
+                headHeightCompensation.style.paddingTop = (headHeightCompensation.clientHeight - topOfferHeight) + 'px';
             }
         })
     })

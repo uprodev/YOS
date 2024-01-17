@@ -11,6 +11,7 @@ if (categoryLinksElements.length) {
                     freeMode: true,
                     scrollbar: {
                         el: slider.querySelector('.swiper-scrollbar'),
+                        draggable: true
                     },
                 });
 

@@ -65,7 +65,7 @@
     }
 
     //Select
-    let selects = document.getElementsByTagName('select');
+    let selects = document.querySelectorAll('.select-wrap select');
     if (selects.length > 0) {
         selects_init();
     }

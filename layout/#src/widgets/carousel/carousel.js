@@ -7,6 +7,7 @@ if (carousels.length) {
             observeParents: true,
             scrollbar: {
                 el: carousel.querySelector('.carousel__navigation .swiper-scrollbar'),
+                draggable: true
             },
             navigation: {
                 nextEl: carousel.querySelector('.carousel__navigation .slider-btn.right'),

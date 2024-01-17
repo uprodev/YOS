@@ -4024,6 +4024,7 @@ h5,
 .swiper-scrollbar.slider-scrollbar .swiper-scrollbar-drag {
   border-radius: 0;
   background-color: #6A6B6E;
+  cursor: pointer;
 }
 
 .slider-buttons {
@@ -4337,7 +4338,7 @@ h5,
   display: inline-flex;
   background-color: #0007FF;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.2rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -5586,12 +5587,10 @@ h5,
 }
 
 .top-offer {
-  background-color: #121212;
   display: none;
   font-family: "Inter", sans-serif;
   font-size: 1.2rem;
   font-style: italic;
-  color: #fff;
   position: absolute;
   top: 0;
   left: 0;
@@ -5609,20 +5608,29 @@ h5,
 }
 
 .top-offer__inner {
+  position: relative;
+  width: 100% !important;
+}
+
+.top-offer__text {
+  width: 100%;
+  text-align: center;
+  min-height: 3rem;
+  padding: 0.2rem 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 2.4rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  text-align: center;
-  min-height: 3rem;
-  padding: 0.2rem 2rem;
-  position: relative;
+  color: #fff;
+  background-color: #121212;
+  -webkit-transition: background-color 0.15s ease;
+  -o-transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .top-offer__close {
@@ -5643,7 +5651,10 @@ h5,
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
-  right: -0.5rem;
+  right: 0.5rem;
+  -webkit-transition: background-color 0.15s ease;
+  -o-transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease;
 }
 
 .basket-count {
@@ -9174,7 +9185,7 @@ h5,
   }
 
   .product-card-label {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
   }
 
   .category-links__list .swiper-wrapper {
@@ -9240,6 +9251,10 @@ h5,
 
   .header-mob .main-search {
     padding: 1rem 2rem;
+  }
+
+  .top-offer__close {
+    right: 1.5rem;
   }
 
   .categories__tab {
@@ -9662,8 +9677,8 @@ h5,
     font-size: 1.4rem;
   }
 
-  .top-offer__inner {
-    padding: 0.2rem 3rem;
+  .top-offer__text {
+    padding: 0.2rem 5rem;
   }
 
   .categories {
@@ -11290,6 +11305,14 @@ h5,
 
   .header-actions__item button:hover {
     color: #0007FF;
+  }
+
+  .top-offer__text:hover {
+    background-color: rgba(18, 18, 18, 0.8);
+  }
+
+  .top-offer__close:hover {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 
   .main-search__btn:hover {
