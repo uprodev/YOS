@@ -10,6 +10,23 @@ function atg_menu_classes($classes, $item, $args) {
 }
 add_filter('nav_menu_css_class', 'atg_menu_classes', 1, 3);
 
+/* custom guttenberg block*/
+
+function cq_register_blocks() {
+    if( ! function_exists('acf_register_block') )
+        return;
+    acf_register_block( array(
+        'name'          => 'custom_products',
+        'title'         => 'Products',
+        'render_template'   => 'blocks/products.php',
+        'category'      => 'common',
+        'icon'          => 'archive',
+        'mode'          => 'edit',
+        'keywords'      => array( 'profile', 'user', 'author' )
+    ));
+}
+add_action('acf/init', 'cq_register_blocks' );
+
 /* pagination markup */
 
 add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
