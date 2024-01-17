@@ -3,6 +3,7 @@
 get_header();
 
 $aside = get_field('aside_menu');
+$blog_id = get_option('page_for_posts');
 
 ?>
 
@@ -17,7 +18,7 @@ $aside = get_field('aside_menu');
 					<div class="article__col-2">
 						<ul class="breadcrumbs">
 							<li><a href="<?= get_home_url();?>"><?= __('головна', 'yos');?></a></li>
-							<li><a href="#"><?= __('добірки', 'yos');?></a></li>
+							<li><a href="<?= get_permalink($blog_id);?>"><?= get_the_title($blog_id);?></a></li>
 							<li><?php the_title();?></li>
 						</ul>
 					</div>
