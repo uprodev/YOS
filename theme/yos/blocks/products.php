@@ -46,13 +46,23 @@ $prod = get_field( 'product_article' );
                             </div>
                             <div class="product-card-sm__group">
                                 <div class="product-card-sm__price">
-                                    <?php if ($product->is_type( 'variable' )) :?>
-                                        <div class="product-card-sm__price-current"><?= $price;?></div>
-                                    <!--                                    <div class="product-card-sm__price-old">7 299 ₴</div>--
-                                    <?php elseif($product->is_type( 'simple' )):?>
-                                        <div class="product-card-sm__price-current"><?= $price;?></div>
-
+                                    <?php if ($product->is_type( 'variable' )):
+                                        $min_price = $product->get_variation_regular_price('min', true). ' '. get_woocommerce_currency_symbol();
+                                        if($product->is_on_sale()):
+                                            $min_sale = $product->get_variation_sale_price('min', true). ' '. get_woocommerce_currency_symbol();?>
+                                            <div class="product-card-sm__price-current"><?= $min_sale;?></div>
+                                            <div class="product-card-sm__price-old"><?= $min_price;?></div>
+                                        <?php else:?>
+                                            <div class="product-card-sm__price-current"><?= $min_price;?></div>
                                         <?php endif;?>
+                                    <?php elseif($product->is_type( 'simple' )):
+                                        if($product->is_on_sale()):?>
+                                            <div class="product-card-sm__price-current"><?= $product->get_sale_price(). ' '. get_woocommerce_currency_symbol();?></div>
+                                            <div class="product-card-sm__price-old"><?= $product->get_regular_price(). ' '. get_woocommerce_currency_symbol();?></div>
+                                        <?php else:?>
+                                            <div class="product-card-sm__price-current"><?= $price;?></div>
+                                        <?php endif;?>
+                                    <?php endif;?>
                                 </div>
                             </div>
                         </div>
