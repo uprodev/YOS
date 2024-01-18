@@ -24,32 +24,33 @@ if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
 
 global $product;
 
-$columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
+$attachment_ids = $product->get_gallery_image_ids();
 $post_thumbnail_id = $product->get_image_id();
-$wrapper_classes   = apply_filters(
-	'woocommerce_single_product_image_gallery_classes',
-	array(
-		'woocommerce-product-gallery',
-		'woocommerce-product-gallery--' . ( $post_thumbnail_id ? 'with-images' : 'without-images' ),
-		'woocommerce-product-gallery--columns-' . absint( $columns ),
-		'images',
-	)
-);
+
 ?>
-<div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?>" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
-	<div class="woocommerce-product-gallery__wrapper">
-		<?php
-		if ( $post_thumbnail_id ) {
-			$html = wc_get_gallery_image_html( $post_thumbnail_id, true );
-		} else {
-			$html  = '<div class="woocommerce-product-gallery__image--placeholder">';
-			$html .= sprintf( '<img src="%s" alt="%s" class="wp-post-image" />', esc_url( wc_placeholder_img_src( 'woocommerce_single' ) ), esc_html__( 'Awaiting product image', 'woocommerce' ) );
-			$html .= '</div>';
-		}
+<div class="product__images">
+    <div class="product-images" data-product-images>
+        <?php do_action( 'woocommerce_product_thumbnails' );?>
 
-		echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', $html, $post_thumbnail_id ); // phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        <div class="product-images__main swiper" data-slider="product-images-main">
+            <div class="swiper-wrapper">
 
-		do_action( 'woocommerce_product_thumbnails' );
-		?>
-	</div>
+                <div class="swiper-slide">
+                    <a href="<?= wp_get_attachment_image_src( $post_thumbnail_id, 'large' )[0] ?>" data-fancybox="product-images" class="product-images__main-img">
+                        <img src="<?= wp_get_attachment_image_src( $post_thumbnail_id, 'large' )[0] ?>" alt="">
+                    </a>
+                </div>
+                <?php if ( $attachment_ids && $product->get_image_id() ) {
+                    foreach ( $attachment_ids as $attachment_id ) {?>
+                        <div class="swiper-slide">
+                            <a href="<?= wp_get_attachment_image_src( $attachment_id, 'large' )[0] ?>" data-fancybox="product-images" class="product-images__main-img">
+                                <img src="<?= wp_get_attachment_image_src( $attachment_id, 'large' )[0] ?>" alt="">
+                            </a>
+                        </div>
+                    <?php }
+                }?>
+            </div>
+            <div class="swiper-scrollbar slider-scrollbar"></div>
+        </div>
+    </div>
 </div>
