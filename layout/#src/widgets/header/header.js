@@ -40,6 +40,7 @@ if (mobileMenu) {
         if(
             e.target.closest('[data-action]')
             || e.target.closest('[data-side-basket]')
+            || e.target.closest('[data-filter]')
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {

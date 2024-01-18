@@ -7363,6 +7363,14 @@ h5,
   gap: 4rem;
 }
 
+.filter__btn-close-mob {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 3;
+  right: 1rem;
+}
+
 .filter__reset {
   position: absolute;
   top: 2rem;
@@ -10029,6 +10037,10 @@ h5,
     display: none;
   }
 
+  .filter__btn-close-mob {
+    display: none;
+  }
+
   .filter__sort-by {
     display: none;
   }
@@ -11062,7 +11074,7 @@ h5,
     height: 100svh;
     background-color: #fff;
     z-index: 11;
-    padding: 8rem 1rem 2rem;
+    padding: 8rem 1rem 6rem;
     -webkit-transition: -webkit-transform 0.4s ease;
     transition: -webkit-transform 0.4s ease;
     -o-transition: transform 0.4s ease;
