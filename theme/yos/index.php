@@ -80,3 +80,5 @@ $cats = get_terms([
         </div>
     </section>
 </main>
+
+<?php get_footer();
