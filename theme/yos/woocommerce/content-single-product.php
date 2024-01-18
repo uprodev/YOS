@@ -184,9 +184,12 @@ if ( post_password_required() ) {
                     <div class="product__main-info product-main-info">
                         <h2 class="product-main-info__title title-2">elemis</h2>
                         <?php woocommerce_template_single_title();?>
-                        <div class="product-main-info__subtitle">Сольовий скраб для тіла Франжіпані</div>
-                        <div class="product-main-info__text mt-0">Frangipani Monoi Salt Glow</div>
-                        <div class="product-main-info__articul">Артикул: 0371799</div>
+                        <?php if(get_field('seria')):?>
+                            <div class="product-main-info__text mt-0"><?php the_field('seria');?></div>
+                        <?php endif;?>
+                        <?php if( $product->get_sku()):?>
+                            <div class="product-main-info__articul"><?= __('Артикул:', 'yos');?> <?= $product->get_sku(); ?></div>
+                        <?php endif;?>
                         <div class="product-actions">
                             <div class="product-actions__stars">
                                 <a href="#reviews">
@@ -231,9 +234,10 @@ if ( post_password_required() ) {
 
                             <div class="product-actions__option">
                                 <div class="product-actions__option-head">
-                                    <div class="product-actions__option-title">Виберіть об’єм:</div>
+                                    <div class="product-actions__option-title"><?= __('Виберіть об’єм:', 'yos');?></div>
+
                                     <div class="product-actions__option-text">
-                                        Є в наявності
+                                        <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
                                     </div>
                                 </div>
                                 <div class="product-actions__option-items">
@@ -258,7 +262,7 @@ if ( post_password_required() ) {
 
                             <div class="product-actions__option colors">
                                 <div class="product-actions__option-head">
-                                    <div class="product-actions__option-title">Виберіть колір:</div>
+                                    <div class="product-actions__option-title"><?= __('Виберіть колір:', 'yos');?></div>
                                     <div class="product-actions__option-text">
                                         They Met In Argentina
                                     </div>
@@ -1328,4 +1332,4 @@ if ( post_password_required() ) {
 	?>
 </div>
 
-<?php do_action( 'woocommerce_after_single_product' ); ?>
+

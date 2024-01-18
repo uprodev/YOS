@@ -21,16 +21,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
+	<main class="_page product-single-page">
+	<div class="head-height-compensation"></div>
+
 
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
 
 			<?php wc_get_template_part( 'content', 'single-product' ); ?>
 
-		<?php endwhile;
+		<?php endwhile;?>
+
+	</main>
 
 
 
-get_footer();
+<?php get_footer();
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
