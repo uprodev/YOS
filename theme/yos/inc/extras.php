@@ -27,6 +27,20 @@ function cq_register_blocks() {
 }
 add_action('acf/init', 'cq_register_blocks' );
 
+/* woocommerce breadcrumbs */
+
+add_filter( 'woocommerce_breadcrumb_defaults', 'custom_woocommerce_breadcrumbs' );
+function custom_woocommerce_breadcrumbs() {
+    return array(
+        'delimiter'   => ' ',
+        'wrap_before' => '<ul class="breadcrumbs">',
+        'wrap_after'  => '</ul>',
+        'before'      => '<li>',
+        'after'       => '</li>',
+        'home'        => __( 'головна', 'yos' ),
+    );
+}
+
 /* pagination markup */
 
 add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );

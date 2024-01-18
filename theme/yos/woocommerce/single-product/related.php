@@ -19,35 +19,67 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( $related_products ) : ?>
+if ( $related_products ) :
+    $i=1;?>
 
-	<section class="related products">
+    <div class="top-space-60 top-space-md-150">
+        <div class="carousel">
+            <div class="container">
+                <div class="carousel__head">
+                    <div class="carousel__category-info">
+                        <div class="category-links">
+                            <h2 class="category-links__title title-2"><?= __('часто купують разом', 'yos');?></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper" data-slider="carousel">
+                    <div class="swiper-wrapper">
+                        <?php foreach ( $related_products as $related_product ) : ?>
 
-		<?php
-		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+                            <?php
+                            $post_object = get_post( $related_product->get_id() );
 
-		if ( $heading ) :
-			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
-		<?php endif; ?>
-		
-		<?php woocommerce_product_loop_start(); ?>
+                            setup_postdata( $GLOBALS['post'] =& $post_object );?>
 
-			<?php foreach ( $related_products as $related_product ) : ?>
+                            <?php if($i==2):?>
 
-					<?php
-					$post_object = get_post( $related_product->get_id() );
+                                <div class="swiper-slide hide-in-mobile">
+                                    <div class="carousel__category-info">
+                                        <div class="category-links">
+                                            <h2 class="category-links__title title-2"><?= __('часто купують разом', 'yos');?></h2>
+                                        </div>
+                                    </div>
+                                </div>
 
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+                            <?php endif;?>
 
-					wc_get_template_part( 'content', 'product' );
-					?>
+                            <div class="swiper-slide">
 
-			<?php endforeach; ?>
+                                <?php wc_get_template_part( 'content', 'product' );?>
 
-		<?php woocommerce_product_loop_end(); ?>
+                            </div>
 
-	</section>
+                        <?php $i++; endforeach; ?>
+
+                    </div>
+                    <div class="carousel__navigation">
+                        <div class="slider-navigations">
+                            <div class="swiper-scrollbar slider-scrollbar"></div>
+                            <div class="slider-buttons">
+                                <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
+                                <div class="slider-pagination"></div>
+                                <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel__footer">
+                    <a href="<?= get_permalink(wc_get_page_id( 'shop' ));?>" class="button-primary light w-100"><?= __('БІЛЬШЕ', 'yos');?></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<?php
 endif;
 
