@@ -4,9 +4,9 @@ get_header();
 
 ?>
 
-<?php if(is_product()):?>
+<?php if(is_product_category() || is_page(wc_get_page_id( 'shop' ))):?>
 
-	<main class="_page product-single-page">
+	<main class="_page catalog-page">
         <div class="head-height-compensation"></div>
 
 <?php else:?>
