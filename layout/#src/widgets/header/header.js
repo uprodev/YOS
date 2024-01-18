@@ -37,7 +37,10 @@ if (mobileMenu) {
     })
 
     document.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action]')) return;
+        if(
+            e.target.closest('[data-action]')
+            || e.target.closest('[data-side-basket]')
+            ) return;
 
         if(!e.target.closest('.mobile-menu')) {
             document.body.classList.remove('overflow-hidden');
