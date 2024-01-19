@@ -24,7 +24,7 @@ jQuery(document).ready(function ($) {
      */
 
 
-    $(document).on('click', '.product-card__btn-to-basket', function (e) {
+    $(document).on('click', '.add-cart', function (e) {
 
         e.preventDefault();
 
@@ -140,4 +140,15 @@ jQuery(document).ready(function ($) {
     })
 
 
+    /* variation  */
+
+    $(document).on('show_variation', '.single_variation_wrap', function (event, variation) {
+
+        // $('.zoomImg').attr('src', variation.image.src);
+        console.log(variation);
+
+        $('.add-cart').attr('data-variation_id', variation.variation_id);
+        $('.cost').html(variation.price_html);
+
+    });
 });

@@ -150,7 +150,7 @@ $choise = get_field('yos_choise', get_the_ID());
                     <?php endif;
                 $h++; endforeach;
             endif;?>
-            <button class="product-card__btn-to-basket button-primary dark w-100" data-variation_id="" data-product_id="<?= get_the_ID();?>">
+            <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="" data-product_id="<?= get_the_ID();?>">
                 <?= __('додати до кошика', 'yos');?>
             </button>
         </form>
