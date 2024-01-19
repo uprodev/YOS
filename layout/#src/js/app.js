@@ -46,6 +46,7 @@ class App {
 			@@include('../components/quantity/quantity.js')
 			@@include('../components/select/select.js')
 			@@include('../components/brand-description-card/brand-description-card.js')
+			@@include('../components/categories/categories.js')
 			// ==== // components =====================================================
 
 

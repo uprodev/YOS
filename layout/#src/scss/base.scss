@@ -123,18 +123,16 @@ img {
 
 ._page {
 	flex: 1 1 auto;
-
-
 }
 
 .head-height-compensation {
-	padding-top: 14.9rem;
+	padding-top: 6.1rem;
 
 	@media (min-width: $mq-md) {
-		padding-top: 13.1rem;
+		padding-top: 6.1rem;
 	}
 	@media (min-width: $mq-lg) {
-		padding-top: 13.4rem;
+		padding-top: 8.1rem;
 	}
 }
 
@@ -194,6 +192,13 @@ img {
 
 
 // === TEXT CONTETN ========================================================================
+
+button {
+	color: inherit;
+}
+button:hover {
+	color: inherit;
+}
 
 a,
 a:visited {

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 @@include('_head.html',{
 "title": "YOS"
 })
 
-<body >
+<body>
 	<div class="_preloader"></div>
 
 	@@include('widgets/header/_header.html',{
 	"mod": ""
 	})
-	
+
 	@@include('widgets/side-basket/_side-basket.html')
 
 	<main class="_page home-page">
 		<div class="head-height-compensation"></div>
+
+		@@include('components/categories/_categories.html', { "mod": "" })
+
 		@@include('widgets/home-intro/_home-intro.html')
 
 		<div class="top-space-60 top-space-md-170">
 			@@include('widgets/carousel/_carousel-bestseller.html')
 		</div>
-		
+
 		<div class="top-space-140 top-space-md-120">
 			@@include('widgets/banner/_category-banner.html')
 		</div>
@@ -188,7 +191,8 @@
 						<h3 class="footer-mob__title title-3">підписатися на розсилку </h3>
 						<div class="footer-mob__text text-content last-no-margin">
 							<p>
-								Приєднуйся до нашого beauty комьюніті - отримуй ексклюзивні пропозиції та секрети ідеального
+								Приєднуйся до нашого beauty комьюніті - отримуй ексклюзивні пропозиції та секрети
+								ідеального
 								догляду за шкірою.
 							</p>
 						</div>

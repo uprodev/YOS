@@ -151,9 +151,9 @@
                     top: 100%;
                     right: -1.5rem;
                     min-width: calc(100% + 3rem);
-                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    //box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
                     background-color: $pagesBg;
-                    border-radius: 0.7rem;
+                    //border-radius: 0.7rem;
                     padding: 1.5rem;
                     visibility: hidden;
                     opacity: 0;
@@ -229,7 +229,7 @@
         width: 100%;
         height: 100svh;
         background-color: $pagesBg;
-        z-index: 11;
+        z-index: 101;
         padding: 8rem 1rem 6rem;
         transition: transform .4s ease;
     
@@ -330,9 +330,58 @@
     }
 
     &__spoller {
+
+        &.spoller {
+            gap: 4rem;
+
+            & > li {
+                &:not(:last-child) {
+                    position: relative;
+
+                    &:before {
+                        position: absolute;
+                        content: '';
+                        height: 1px;
+                        top: calc(100% + 2rem);
+                        transform: translateY(-50%);
+                        background-color: $themeColorFourth;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        & .spoller__item-title {
+            &::before {
+                height: 1.6rem;
+                width: 1.6rem;
+                background-image: url(#{$icon-plus});
+                background-color: $pagesBg;
+                background-size: contain;
+            }
+
+            &.active {
+                color: $themeColorSecondary;
+
+                &::before {
+                    background-image: url(#{$icon-minus});
+ 
+                }
+            }
+        }
+
         & .spoller__item-colapse-content {
+            padding-left: 0;
+            padding-bottom: 0;
+
             & > *:not(:first-child) {
                 margin-top: 1rem;
+            }
+
+            & .filter__block {
+                &:first-child {
+                    padding-top: 1rem;
+                }
             }
         }
     }
@@ -361,6 +410,26 @@
         flex-direction: column;
         gap: 1rem;
     }
+
+    @media (min-width: 0px) and (max-width: 991.98px) {
+        & .checkbox-radio {
+            & input {
+                &:checked {
+                    & ~ .checkbox-radio__square {
+                        background-color: $pagesBg;
+                        background-image: url(#{$icon-check});
+                    }
+                }
+            }
+
+            & .checkbox-radio__square {
+                border-color: #8D8D8D;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 80%;
+            }
+        }
+    }
 }
 
 .filter-checkbox-radio {
@@ -379,7 +448,8 @@
             color: $textColor;
 
             &::before {
-                opacity: 1;
+                background-color: $pagesBg;
+                background-image: url(#{$icon-check});
             }
         }
     }
@@ -387,25 +457,19 @@
     &__text {
         position: relative;
         color: $textColorSecondary;
+        display: flex;
+        gap: 2rem;
 
         &:before {
-            font-family: 'icomoon' !important;
-            speak: never;
-            font-style: normal;
-            font-weight: normal;
-            font-variant: normal;
-            text-transform: none;
-            line-height: 1;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-
-            position: absolute;
-            content: "\e90b";
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            font-size: .8rem;
-            opacity: 0;
+            content: "";
+            display: block;
+            width: 1.9rem;
+            height: 1.9rem;
+            flex: 0 0 auto;
+            border: 1px solid #8D8D8D;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 80%;
         }
     }
 }
