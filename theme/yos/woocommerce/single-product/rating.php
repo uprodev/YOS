@@ -31,13 +31,45 @@ $average      = $product->get_average_rating();
 
 if ( $rating_count > 0 ) : ?>
 
-	<div class="woocommerce-product-rating">
-		<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
-		<?php if ( comments_open() ) : ?>
-			<?php //phpcs:disable ?>
-			<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
-			<?php // phpcs:enable ?>
-		<?php endif ?>
-	</div>
+    <div class="product-actions__stars">
+        <a href="#reviews">
+            <div class="rating" data-rating="<?= $average;?>">
+                <div class="rating__stars rating__stars-1">
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                </div>
+                <div class="rating__stars rating__stars-2">
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
 
 <?php endif; ?>

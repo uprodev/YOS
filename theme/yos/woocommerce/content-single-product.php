@@ -53,46 +53,9 @@ $brand = get_the_terms(get_the_ID(), 'pa_brand');
                             <div class="product-main-info__articul"><?= __('Артикул:', 'yos');?> <?= $product->get_sku(); ?></div>
                         <?php endif;?>
                         <div class="product-actions">
-                            <div class="product-actions__stars">
-                                <a href="#reviews">
-                                    <div class="rating" data-rating="3">
-                                        <div class="rating__stars rating__stars-1">
-                                            <div class="rating__star">
-                                                <span class="icon-star-full"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star-full"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star-full"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star-full"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star-full"></span>
-                                            </div>
-                                        </div>
-                                        <div class="rating__stars rating__stars-2">
-                                            <div class="rating__star">
-                                                <span class="icon-star"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star"></span>
-                                            </div>
-                                            <div class="rating__star">
-                                                <span class="icon-star"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            
+                            <?php woocommerce_template_single_rating();?>
+
 
                             <div class="product-actions__option">
                                 <div class="product-actions__option-head">
