@@ -144,11 +144,22 @@ jQuery(document).ready(function ($) {
 
     $(document).on('show_variation', '.single_variation_wrap', function (event, variation) {
 
-        // $('.zoomImg').attr('src', variation.image.src);
         console.log(variation);
 
         $('.add-cart').attr('data-variation_id', variation.variation_id);
         $('.cost').html(variation.price_html);
 
     });
+
+    $(document).on('click', '.color-item', function (){
+        let color = $(this).attr('data-color');
+
+        $('#pa_color').val(color).change();
+    })
+
+    $(document).on('click', '.volume-item', function (){
+        let volumes = $(this).attr('data-volumes');
+
+        $('#pa_volumes').val(volumes).change();
+    })
 });

@@ -67,7 +67,7 @@ if ($product->is_type( 'variable' )) {
                                     <div class="product-actions__option-head">
                                         <div class="product-actions__option-title"><?= __('Виберіть об’єм:', 'yos');?></div>
 
-                                        <div class="product-actions__option-text">
+                                        <div class="product-actions__option-text stock">
                                             <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@ if ($product->is_type( 'variable' )) {
                                             foreach ($volumes as $variation):
                                                 $volume = get_term_by('slug', $variation , 'pa_volumes');?>
 
-                                                <div class="product-actions__option-item" data-size="<?= $volume->slug ?>" >
+                                                <div class="product-actions__option-item volume-item" data-volumes="<?= $volume->slug ?>" >
                                                     <label class="product-option">
                                                         <input type="radio" name="volume" <?= $default_attributes['pa_volumes'] == $volume->slug ? 'checked' : '' ?>>
                                                         <div class="product-option__value">
@@ -114,9 +114,11 @@ if ($product->is_type( 'variable' )) {
                                         foreach ($colors as  $variation) {
                                             $color = get_term_by('slug', $variation , 'pa_color');
 
-                                            $c = get_field('color', 'pa_color_'.$color->term_id);?>
+                                            $c = get_field('color', 'pa_color_'.$color->term_id);
 
-                                            <div class="product-actions__option-item" data-color="<?= $color->slug ?>">
+                                            if($c):?>
+
+                                            <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
                                                 <label class="product-option-color" style="color: <?= $c;?>" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?>>
                                                     <input type="radio" name="color">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -142,7 +144,7 @@ if ($product->is_type( 'variable' )) {
                                                 </label>
                                             </div>
 
-                                        <?php }
+                                        <?php endif; }
 
                                     }?>
                                 </div>
@@ -173,8 +175,7 @@ if ($product->is_type( 'variable' )) {
                             </div>
 
                             <div class="product-actions__footer">
-                                <button disabled data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket"
-                                        class="product-actions__buy button-primary dark add-cart">додати
+                                <button disabled data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>">додати
                                     до кошика</button>
                                 <button class="product-actions__like"></button>
                                 <!-- class="product-actions__like active" -->
