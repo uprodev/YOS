@@ -31,6 +31,11 @@ if ( post_password_required() ) {
 	return;
 }
 
+$info = get_field('info');
+$image = get_field('image');
+$image_m = get_field('image_mob');
+$consultation = get_field('consultation');
+
 $brand = get_the_terms(get_the_ID(), 'pa_brand');
 
 if ($product->is_type( 'variable' )) {
@@ -161,22 +166,22 @@ if ($product->is_type( 'variable' )) {
                                 </div>
                             </div>
 
-                            <div class="product-actions__have-a-consultation">
-                                <div class="product-main-info__text">
-                                    У цьому засобі багато активних інгредієнтів, тому для покупки потрібно
-                                    проконсультуватися з фахівцем.
+                            <?php if($consultation):?>
+                                <div class="product-actions__have-a-consultation">
+                                    <div class="product-main-info__text">
+                                        <?php the_field('consultation_text');?>
+                                    </div>
+                                    <label class="checkbox-radio">
+                                        <input type="checkbox" name="consultation"
+                                               data-action="toggle-button-as-disabled-by-id" data-id="add-to-basket">
+                                        <div class="checkbox-radio__square"></div>
+                                        <div class="checkbox-radio__text"><?php the_field('consultation_input_text');?></div>
+                                    </label>
                                 </div>
-                                <label class="checkbox-radio">
-                                    <input type="checkbox" name="consultation"
-                                           data-action="toggle-button-as-disabled-by-id" data-id="add-to-basket">
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">У мене вже була консультація</div>
-                                </label>
-                            </div>
+                            <?php endif;?>
 
                             <div class="product-actions__footer">
-                                <button disabled data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>">додати
-                                    до кошика</button>
+                                <button <?= $consultation?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
                                 <button class="product-actions__like"></button>
                                 <!-- class="product-actions__like active" -->
 
@@ -193,158 +198,34 @@ if ($product->is_type( 'variable' )) {
                 <div class="product__col-1">
                     <div class="product__description">
                         <h2 class="product__description-title title-2">
-                            опис
+                            <?= __('опис', 'yos');?>
                         </h2>
                         <div class="product__description-text text-content last-no-margin">
-                            <h3 class="mb-0">elemis</h3>
-                            <p class="text-4 mt-1">Frangipani Monoi Salt Glow — Сольовий скраб для тіла Франжіпані</p>
-                            <p>
-                                Dermalogica Sound Sleep Cocoon — ночной крем-гель с экстрактом альбиции
-                                шелковой, который снимает признаки усталости кожи и возвращает ей
-                                эластичность и жизненную силу. Экстракт эводии помогает осветлить кожу,
-                                выравнивает ее тон, а экстракт семян тамаринда делает кожу более гладкой и
-                                увлажненной. Эфирные масла лаванды, сандалового дерева и пачули оказывают
-                                расслабляющее действие и способствуют глубокому, спокойному сну.
-                            </p>
+                            <h3 class="mb-0"><?= $brand[0]->name;?></h3>
+                            <p class="text-4 mt-1"><?= get_field('seria')?get_field('seria').' — ':'';?><?php the_title();?></p>
+                            <?= $product->get_description();?>
                         </div>
                     </div>
                 </div>
                 <div class="product__col-2">
-                    <div class="product__features">
-                        <ul class="product__spoller spoller" data-spoller>
-                            <li>
-                                <div class="spoller__item-title" data-spoller-trigger>
-                                    активні компоненти
-                                </div>
-                                <div class="spoller__item-colapse-content">
-                                    <div class="text-content last-no-margin">
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex suscipit sed ipsum nostrum saepe ducimus, tenetur expedita blanditiis sapiente amet.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex suscipit sed ipsum nostrum saepe ducimus, tenetur expedita blanditiis sapiente amet.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex suscipit sed ipsum nostrum saepe ducimus, tenetur expedita blanditiis sapiente amet.
-                                        </p>
-                                        <p>
-                                            Aqua, Dimethicone, Glycerin, Propanediol, Polymethylsilsesquioxane, Albizia
-                                            Julibrissin
-                                            Bark Extract, Dimethicone/PEG-10/15 Crosspolymer, Sodium Chloride, Evodia
-                                            Rutaecarpa Fruit Extract, Lavandula Hybrida Abrial Herb Oil, Tocopheryl
-                                            Acetate,
-                                            Terminalia Ferdinandiana Fruit Extract, Caprylhydroxamic Acid, Trisodium
-                                            Ethylenediamine Disuccinate, Tamarindus Indica Seed Polysaccharide,
-                                            Dipropylene
-                                            Glycol, Lavandula Angustifolia (Lavender) Flower Extract,
-                                            Ethylhexylglycerin, Fusanus
-                                            Spicatus Wood Oil, Pogostemon Cablin Leaf Oil, Sodium Citrate, PEG-10
-                                            Dimethicone,
-                                            Hexanediol, Polyurethane Crosspolymer-1, Limonene, Tocopherol, Citric Acid,
-                                            Linalool,
-                                            Phenoxyethanol
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="spoller__item-title" data-spoller-trigger>
-                                    як застосовувати
-                                </div>
-                                <div class="spoller__item-colapse-content">
-                                    <div class="text-content last-no-margin">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quidem voluptatem vero ipsam animi ducimus nemo dolorem ab unde ipsa. Repellat quia, laboriosam minus voluptatibus architecto voluptates exercitationem officiis? Aliquam.
-                                        </p>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quidem voluptatem vero ipsam animi ducimus nemo dolorem ab unde ipsa. Repellat quia, laboriosam minus voluptatibus architecto voluptates exercitationem officiis? Aliquam.
-                                        </p>
-                                        <p>
-                                            Aqua, Dimethicone, Glycerin, Propanediol, Polymethylsilsesquioxane, Albizia
-                                            Julibrissin
-                                            Bark Extract, Dimethicone/PEG-10/15 Crosspolymer, Sodium Chloride, Evodia
-                                            Rutaecarpa Fruit Extract, Lavandula Hybrida Abrial Herb Oil, Tocopheryl
-                                            Acetate,
-                                            Terminalia Ferdinandiana Fruit Extract, Caprylhydroxamic Acid, Trisodium
-                                            Ethylenediamine Disuccinate, Tamarindus Indica Seed Polysaccharide,
-                                            Dipropylene
-                                            Glycol, Lavandula Angustifolia (Lavender) Flower Extract,
-                                            Ethylhexylglycerin, Fusanus
-                                            Spicatus Wood Oil, Pogostemon Cablin Leaf Oil, Sodium Citrate, PEG-10
-                                            Dimethicone,
-                                            Hexanediol, Polyurethane Crosspolymer-1, Limonene, Tocopherol, Citric Acid,
-                                            Linalool,
-                                            Phenoxyethanol
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="spoller__item-title active" data-spoller-trigger>
-                                    склад
-                                </div>
-                                <div class="spoller__item-colapse-content" style="display: block;">
-                                    <div class="text-content last-no-margin">
-                                        <p>
-                                            Aqua, Dimethicone, Glycerin, Propanediol, Polymethylsilsesquioxane, Albizia
-                                            Julibrissin
-                                            Bark Extract, Dimethicone/PEG-10/15 Crosspolymer, Sodium Chloride, Evodia
-                                            Rutaecarpa Fruit Extract, Lavandula Hybrida Abrial Herb Oil, Tocopheryl
-                                            Acetate,
-                                            Terminalia Ferdinandiana Fruit Extract, Caprylhydroxamic Acid, Trisodium
-                                            Ethylenediamine Disuccinate, Tamarindus Indica Seed Polysaccharide,
-                                            Dipropylene
-                                            Glycol, Lavandula Angustifolia (Lavender) Flower Extract,
-                                            Ethylhexylglycerin, Fusanus
-                                            Spicatus Wood Oil, Pogostemon Cablin Leaf Oil, Sodium Citrate, PEG-10
-                                            Dimethicone,
-                                            Hexanediol, Polyurethane Crosspolymer-1, Limonene, Tocopherol, Citric Acid,
-                                            Linalool,
-                                            Phenoxyethanol
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="spoller__item-title" data-spoller-trigger>
-                                    деталі продукту
-                                </div>
-                                <div class="spoller__item-colapse-content">
-                                    <div class="text-content last-no-margin">
-                                        <p>
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus nesciunt placeat sapiente, vel labore voluptatem?
-                                        </p>
-                                        <p>
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus nesciunt placeat sapiente, vel labore voluptatem?
-                                        </p>
-                                        <p>
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus nesciunt placeat sapiente, vel labore voluptatem?
-                                        </p>
-                                        <p>
-                                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus nesciunt placeat sapiente, vel labore voluptatem?
-                                        </p>
-                                        <p>
-                                            Aqua, Dimethicone, Glycerin, Propanediol, Polymethylsilsesquioxane, Albizia
-                                            Julibrissin
-                                            Bark Extract, Dimethicone/PEG-10/15 Crosspolymer, Sodium Chloride, Evodia
-                                            Rutaecarpa Fruit Extract, Lavandula Hybrida Abrial Herb Oil, Tocopheryl
-                                            Acetate,
-                                            Terminalia Ferdinandiana Fruit Extract, Caprylhydroxamic Acid, Trisodium
-                                            Ethylenediamine Disuccinate, Tamarindus Indica Seed Polysaccharide,
-                                            Dipropylene
-                                            Glycol, Lavandula Angustifolia (Lavender) Flower Extract,
-                                            Ethylhexylglycerin, Fusanus
-                                            Spicatus Wood Oil, Pogostemon Cablin Leaf Oil, Sodium Citrate, PEG-10
-                                            Dimethicone,
-                                            Hexanediol, Polyurethane Crosspolymer-1, Limonene, Tocopherol, Citric Acid,
-                                            Linalool,
-                                            Phenoxyethanol
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <?php if($info):?>
+                        <div class="product__features">
+                            <ul class="product__spoller spoller" data-spoller>
+                                <?php foreach ($info as $in):?>
+                                    <li>
+                                        <div class="spoller__item-title <?= $in['open']?'active':'';?>" data-spoller-trigger>
+                                            <?= $in['title'];?>
+                                        </div>
+                                        <div class="spoller__item-colapse-content" <?= $in['open']?'style="display: block;"':'';?>>
+                                            <div class="text-content last-no-margin">
+                                                <?= $in['text'];?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                <?php endforeach;?>
+                            </ul>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>
@@ -353,14 +234,16 @@ if ($product->is_type( 'variable' )) {
 
 <?php woocommerce_output_related_products();?>
 
-<div class="top-space-60 top-space-md-150">
-    <div class="image-full-width">
-        <picture>
-            <source srcset="<?= get_template_directory_uri();?>/img/photo/product-single-banner-desk.jpg" media="(min-width: 768px)" >
-            <img  src="<?= get_template_directory_uri();?>/img/photo/product-single-banner-mob.jpg" alt="img">
-        </picture>
+<?php if($image):?>
+    <div class="top-space-60 top-space-md-150">
+        <div class="image-full-width">
+            <picture>
+                <source srcset="<?= $image;?>" media="(min-width: 768px)" >
+                <img  src="<?= $image_m;?>" alt="img">
+            </picture>
+        </div>
     </div>
-</div>
+<?php endif;?>
 
 <div class="top-space-60 top-space-md-150">
     <section class="product-reviews" id="reviews">

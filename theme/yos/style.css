@@ -9,3 +9,6 @@ Description: Theme WP for YOS
 .product-card-label-perc:not(.show) {
     display: none;
 }
+.variations_form{
+    display: none;
+}
