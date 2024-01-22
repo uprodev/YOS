@@ -156,15 +156,45 @@ if ($product->is_type( 'variable' )) {
                             </div>
                             <?php endif;?>
 
-                            <div class="product-actions__price">
-                                <div class="product-actions__price-row">
-                                    <div class="product-actions__price-current">1 995 ₴</div>
+                            <?php if ($product->is_type('variable')):
+
+                                echo 'Choose variation';?>
+
+                                <div class="product-actions__price" style="display: none;">
+                                    <div class="product-actions__price-row">
+                                        <div class="product-actions__price-current"></div>
+                                    </div>
+                                    <div class="product-actions__price-row">
+                                        <div class="product-actions__price-old"></div>
+                                        <div class="product-actions__price-profit"></div>
+                                    </div>
                                 </div>
-                                <div class="product-actions__price-row">
-                                    <div class="product-actions__price-old">4 999 ₴</div>
-                                    <div class="product-actions__price-profit">-34%</div>
-                                </div>
-                            </div>
+
+
+                            <?php elseif($product->is_type('simple')):
+                                if ( $product->is_on_sale() ) :
+                                    $price = $product->display_price;
+                                    $sale = $product->sale_price;
+
+                                    $perc = round(($price-$sale)*100/$price);?>
+                                    <div class="product-actions__price">
+                                        <div class="product-actions__price-row">
+                                            <div class="product-actions__price-current"><?= $sale;?> ₴</div>
+                                        </div>
+                                        <div class="product-actions__price-row">
+                                            <div class="product-actions__price-old"><?= $price;?> ₴</div>
+                                            <div class="product-actions__price-profit">-<?= $perc;?>%</div>
+                                        </div>
+                                    </div>
+                                <?php else:?>
+                                    <div class="product-actions__price">
+                                        <div class="product-actions__price-row">
+                                            <div class="product-actions__price-current"><?php woocommerce_template_single_price();?></div>
+                                        </div>
+                                    </div>
+                                <?php endif;?>
+                            <?php endif;?>
+                            
 
                             <?php if($consultation):?>
                                 <div class="product-actions__have-a-consultation">
@@ -252,7 +282,6 @@ if ($product->is_type( 'variable' )) {
                 <div class="product-reviews__head">
                     <h2 class="product-reviews__title title-2">
                         відгуки покупців
-
                         <span>(2)</span>
                     </h2>
                     <div class="product-reviews__main-stars">

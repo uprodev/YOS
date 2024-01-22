@@ -149,6 +149,9 @@ jQuery(document).ready(function ($) {
         $('.add-cart').attr('data-variation_id', variation.variation_id);
         $('.cost').html(variation.price_html);
 
+        $('.product-actions__price').show();
+        $('.product-actions__price-current').text(variation.display_price + ' ₴');
+        $('.product-actions__price-old').text(variation.display_regular_price + ' ₴');
     });
 
     $(document).on('click', '.color-item', function (){
