@@ -53,6 +53,27 @@ function my_navigation_template( $template, $class ){
 	';
 }
 
+/* comments field order */
+
+function all_commentfields( $fields ) {
+
+    $mycomment_field = $fields['comment'];
+    $myauthor_field = $fields['author'];
+    $myemail_field = $fields['email'];
+    $myrate_field = $fields['rating'];
+
+    unset( $fields['comment'], $fields['author'], $fields['email'], $fields['rating'] );
+
+    $fields['author'] = $myauthor_field;
+    $fields['email'] = $myemail_field;
+    $fields['comment'] = $mycomment_field;
+    $fields['rating'] = $myrate_field;
+
+    return $fields;
+}
+
+add_filter( 'comment_form_fields', 'all_commentfields' );
+
 /* excerpt */
 
 add_filter( 'excerpt_length', function(){

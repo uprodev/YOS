@@ -12,3 +12,6 @@ Description: Theme WP for YOS
 .variations_form{
     display: none;
 }
+.set-stars>p.stars{
+    display: none;
+}

@@ -16,6 +16,10 @@ function add_scripts() {
     wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', array('jquery'), rand(1111, 9999), true);
 
+    if (is_product()){
+        wp_enqueue_script( 'comment-reply' );
+    }
+
     wp_localize_script('script', 'globals',
         array(
             'url' => admin_url('admin-ajax.php'),
