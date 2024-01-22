@@ -169,7 +169,7 @@ $prc5 = round(($s5*100)/$review_count);
                     <div class="product-reviews__add-comment">
                         <button class="product-reviews__add-comment-mobile-btn button-primary light"
                                 data-action="opne-add-comment">
-                            <?= __('написати відгук', 'yos');?>
+                            <?php the_field('comments_title', 'options');?>
 
                         </button>
                         <div class="add-comment" data-add-comment>
@@ -178,21 +178,14 @@ $prc5 = round(($s5*100)/$review_count);
                             </button>
                             <div class="add-comment__scroll-container">
                                 <div class="add-comment__title">
-                                    ви можете залишити відгук або
-                                    поставити питання
+                                    <?php the_field('add_comment_title', 'options');?>
                                 </div>
                                 <div class="add-comment__subtitle">
                                     <div class="add-comment__text">
-                                        Ви можете залишити відгук або поставити
-                                        питання. Використовуйте цю форму для того, щоб
-                                        залишити відгук про товар або поставити
-                                        питання. Усі відгуки, які не стосуються товару,
-                                        будуть видалені!
+                                        <?php the_field('add_comment_text', 'options');?>
                                     </div>
                                     <div class="add-comment__text-sm">
-                                        * залиште свій email, і ми надішлемо сповіщення одразу
-                                        після того, як фахівець дасть відповідь на ваше
-                                        запитання.
+                                        <?php the_field('add_comment_note', 'options');?>
                                     </div>
                                 </div>
                                 <?php $commenter    = wp_get_current_commenter();
