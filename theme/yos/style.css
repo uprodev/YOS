@@ -12,6 +12,6 @@ Description: Theme WP for YOS
 .variations_form{
     display: none;
 }
-.set-stars>p.stars, .comment-notes, .comment-form-cookies-consent{
+.set-stars>p.stars, .comment-notes, .comment-form-cookies-consent, .add-comment__form .acf-comment-fields{
     display: none;
 }

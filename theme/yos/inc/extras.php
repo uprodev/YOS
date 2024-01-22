@@ -86,29 +86,15 @@ add_filter( 'excerpt_more', function( $more ) {
 
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-/*  Custom Pagination */
+/* Comment Depth */
 
-function custom_paged(){
-
-    global $wp_query;
-    $pgd = get_query_var('paged');
-
-    if($pgd==0){
-        $current_page = $pgd+1;
-    }else{
-        $current_page = $pgd;
+function get_comment_depth( $my_comment_id ) {
+    $depth_level = 0;
+    while( $my_comment_id > 0  ) {
+        $my_comment = get_comment( $my_comment_id );
+        $my_comment_id = $my_comment->comment_parent;
+        $depth_level++;
     }
-    $pgs = $wp_query->max_num_pages;
-
-    if($pgs>1) {
-        echo '<nav class="navigation " role="navigation">
-            <div class="nav-links">
-                <a class="prev page-numbers" href="' . get_previous_posts_page_link() . '" alt=""><img src="' . get_template_directory_uri() . '/img/chev_p.svg" alt=""></a>
-                <span aria-current="page" class="page-numbers current"> ' . $current_page . '</span>
-                <span class="pg-sep"> / ' . $pgs . '</span>
-                <a class="next page-numbers" href="' . get_next_posts_page_link() . '"><img src="' . get_template_directory_uri() . '/img/chev_p.svg" alt=""></a>
-            </div>
-        </nav>';
-    }
+    return $depth_level;
 }
 

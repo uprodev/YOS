@@ -20,48 +20,91 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-?>
-<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+$rate = intval(get_comment_meta(get_comment_ID(), 'rating', true));
+$buy = get_field('approve_buy', 'comment_'.get_comment_ID());
+$dpt = get_comment_depth(get_comment_ID());
 
-	<div id="comment-<?php comment_ID(); ?>" class="comment_container">
-
-		<?php
-		/**
-		 * The woocommerce_review_before hook
-		 *
-		 * @hooked woocommerce_review_display_gravatar - 10
-		 */
-		do_action( 'woocommerce_review_before', $comment );
-		?>
-
-		<div class="comment-text">
-
-			<?php
-			/**
-			 * The woocommerce_review_before_comment_meta hook.
-			 *
-			 * @hooked woocommerce_review_display_rating - 10
-			 */
-			do_action( 'woocommerce_review_before_comment_meta', $comment );
-
-			/**
-			 * The woocommerce_review_meta hook.
-			 *
-			 * @hooked woocommerce_review_display_meta - 10
-			 */
-			do_action( 'woocommerce_review_meta', $comment );
-
-			do_action( 'woocommerce_review_before_comment_text', $comment );
-
-			/**
-			 * The woocommerce_review_comment_text hook
-			 *
-			 * @hooked woocommerce_review_display_comment_text - 10
-			 */
-			do_action( 'woocommerce_review_comment_text', $comment );
-
-			do_action( 'woocommerce_review_after_comment_text', $comment );
-			?>
-
-		</div>
-	</div>
+if($dpt>1):?>
+<div class="comment">
+    <div class="comment__head"></div>
+    <div class="comment__body">
+        <div class="comment__subcomments">
+<?php endif;?>
+<div class="comment" id="comment-<?php comment_ID(); ?>">
+    <div class="comment__head">
+        <div class="comment__author-name">
+            <?php if (1 == $comment->user_id){?>
+                <img src="<?= get_template_directory_uri();?>/img/logo/yos-short-logo.png" alt="">
+            <?php }else{
+                comment_author();
+            }?>
+        </div>
+        <?php if($dpt==1):?>
+            <?php if($buy):?>
+                <div class="comment__author-status">
+                    <?= __('Покупку підтверджено', 'yos');?>
+                </div>
+            <?php endif;?>
+            <div class="comment__author-set-stars">
+                <div class="rating" data-rating="<?= $rate;?>">
+                    <div class="rating__stars rating__stars-1">
+                        <div class="rating__star">
+                            <span class="icon-star-full"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star-full"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star-full"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star-full"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star-full"></span>
+                        </div>
+                    </div>
+                    <div class="rating__stars rating__stars-2">
+                        <div class="rating__star">
+                            <span class="icon-star"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star"></span>
+                        </div>
+                        <div class="rating__star">
+                            <span class="icon-star"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif;?>
+    </div>
+    <div class="comment__body">
+        <div class="comment__text">
+            <?php do_action( 'woocommerce_review_comment_text', $comment );?>
+        </div>
+        <div class="comment__footer">
+            <div class="comment__date">
+                <?=  get_comment_date( 'j F Y'  ); ?>
+            </div>
+            <?= comment_reply_link( array_merge( $args, array(
+                'reply_text' => __('відповісти', 'yos'),
+                'depth'     => 1,
+                'max_depth' => 2,
+                'before'    => '<div class="button-link comment__reply-btn"><span>',
+                'after'     => '</span></div>'
+            ) ) );  ?>
+        </div>
+    </div>
+</div>
+<?php if($dpt>1):?>
+        </div>
+    </div>
+</div>
+<?php endif;?>
