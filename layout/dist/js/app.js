@@ -1437,7 +1437,6 @@ if (mobileMenu) {
     const buttonsOpen = document.querySelectorAll('[data-action="open-mobile-menu"]');
     const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
     const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
-    const catalogLayer = mobileMenu.querySelector('.mobile-menu__layer--catalog');
 
     buttonsOpen.forEach(button => {
         button.addEventListener('click', () => {
@@ -1476,24 +1475,13 @@ if (mobileMenu) {
             if(!layer) return;
             layer.classList.add('show');
             mainLayer.classList.add('overflow-hidden');
-
-            if(layer !== catalogLayer) {
-                catalogLayer.classList.add('overflow-hidden');
-            }
         }
 
         if(e.target.closest('[data-action="hide-layer"]')) {
             const layer = e.target.closest('[data-layer]');
             if(!layer) return;
             layer.classList.remove('show');
-
-            if(!catalogLayer.classList.contains('show')) {
-                mainLayer.classList.remove('overflow-hidden');
-            }
-
-            if(layer !== catalogLayer) {
-                catalogLayer.classList.remove('overflow-hidden');
-            }
+            mainLayer.classList.remove('overflow-hidden');
         }
     })
 }

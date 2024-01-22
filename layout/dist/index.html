@@ -226,7 +226,7 @@ defer
     </div>
 </header>
 
-<div class="mobile-menu" data-mobile-menu>
+<div class="mobile-menu open" data-mobile-menu>
     <div class="mobile-menu__inner container">
 
         <div class="mobile-menu__head header-actions">
@@ -269,42 +269,34 @@ defer
             <div class="mobile-menu__main-layer">
                 <div class="mobile-menu__row">
                     <ul class="mobile-menu__list">
-                        <li><button class="font-weight-700" data-action="show-layer-by-id"
-                                data-id="layer-1">каталог</button></li>
+                        <li><a href="#">бренди</a></li>
+                        <li><button data-action="show-layer-by-id" data-id="layer-2">обличчя</button></li>
+                        <li><button data-action="show-layer-by-id" data-id="layer-3">волосся</button></li>
+                        <li><button data-action="show-layer-by-id" data-id="layer-4">тіло</button></li>
+                        <li><button data-action="show-layer-by-id" data-id="layer-5">аксесуари</button></li>
+                        <li><a href="#">набори</a></li>
+                        <li><button data-action="show-layer-by-id" data-id="layer-6">wellness</button></li>
+                        <li class="text-color-warning"><a href="#">sale</a></li>
+                    </ul>
+                </div>
+                <div class="mobile-menu__row">
+                    <ul class="mobile-menu__list text-color-secondary">
                         <li><a href="#">запитання й відповіді</a></li>
                         <li><a href="#">про нас</a></li>
                         <li><a href="#">контакти</a></li>
                     </ul>
+
+                    <div class="mobile-menu__language">
+                        <div class="mobile-menu__title" data-collapse="language">мова</div>
+                        <!-- 
+                                Атрибут "data-collapse" скрывает следующий лемент, который ниже.
+                            -->
+                        <ul class="mobile-menu__list" data-collapse-target="language">
+                            <li><a href="#" class="active">Українська</a></li>
+                            <li><a href="#">English</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="mobile-menu__row">
-                    <div class="mobile-menu__title" data-collapse="language">мова</div>
-                    <!-- 
-                            Атрибут "data-collapse" скрывает следующий лемент, который ниже.
-                        -->
-                    <ul class="mobile-menu__list" data-collapse-target="language">
-                        <li><a href="#" class="active">Українська</a></li>
-                        <li><a href="#">English</a></li>
-                    </ul>
-                    <ul class="mobile-menu__list">
-                        <li><a href="#">онлайн допомога</a></li>
-                    </ul>
-                </div>
-                <div class="mobile-menu__row">
-                    <a href="#" class="mobile-menu__title">новинки та акції</a>
-                </div>
-            </div>
-            <div class="mobile-menu__layer mobile-menu__layer--catalog" data-layer="layer-1">
-                <button class="mobile-menu__layer-title font-weight-700" data-action="hide-layer">каталог</button>
-                <ul class="mobile-menu__list">
-                    <li><a href="#">бренди</a></li>
-                    <li><button data-action="show-layer-by-id" data-id="layer-2">обличчя</button></li>
-                    <li><button data-action="show-layer-by-id" data-id="layer-3">волосся</button></li>
-                    <li><button data-action="show-layer-by-id" data-id="layer-4">тіло</button></li>
-                    <li><button data-action="show-layer-by-id" data-id="layer-5">аксесуари</button></li>
-                    <li><a href="#">набори</a></li>
-                    <li><button data-action="show-layer-by-id" data-id="layer-6">health&care</button></li>
-                    <li class="text-color-warning"><a href="#">sale</a></li>
-                </ul>
             </div>
             <div class="mobile-menu__layer" data-layer="layer-2">
                 <button class="mobile-menu__layer-title" data-action="hide-layer">обличчя</button>
@@ -706,10 +698,10 @@ defer
                         <a href="#">набори</a>
                     </div>
                     <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="6">
-                        <a href="#">health&care</a>
+                        <a href="#">wellness</a>
                     </div>
                     <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="7">
-                        <a href="#">sale</a>
+                        <a href="#" class="text-color-warning">sale</a>
                     </div>
                 </div>
                 <div class="swiper-scrollbar"></div>
@@ -812,15 +804,14 @@ defer
             </div>
 
             <div class="categories__block">
-                <div class="category-offer-card">
+                <a href="#" class="category-offer-card">
                     <div class="category-offer-card__img ibg">
                         <img src="img/photo/offer-card.jpg" alt="">
                     </div>
                     <div class="category-offer-card__bottom">
                         <div class="category-offer-card__title">Догляд узимку</div>
-                        <a href="#" class="button-link"><span>докладніше</span></a>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
@@ -997,13 +988,7 @@ defer
                         <a href="#" class="categories__list-title">Косметички</a>
                     </li>
                     <li>
-                        <a href="#" class="categories__list-title">Для лица</a>
-                    </li>
-                    <li>
-                        <a href="#" class="categories__list-title">Для волос</a>
-                    </li>
-                    <li>
-                        <a href="#" class="categories__list-title">Для тела</a>
+                        <a href="#" class="categories__list-title">Бьюти-гаджеты</a>
                     </li>
                 </ul>
             </div>
@@ -1011,7 +996,21 @@ defer
             <div class="categories__block">
                 <ul class="categories__list">
                     <li>
-                        <a href="#" class="categories__list-title">Бьюти-гаджеты</a>
+                        <a href="#" class="categories__list-title">Для волос</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="categories__block">
+                <ul class="categories__list">
+                    <li>
+                        <a href="#" class="categories__list-title">Для тела</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="categories__block">
+                <ul class="categories__list">
+                    <li>
+                        <a href="#" class="categories__list-title">Для лица</a>
                     </li>
                 </ul>
             </div>
@@ -1024,9 +1023,6 @@ defer
 
             <div class="categories__block">
                 <ul class="categories__list">
-                    <li>
-                        <a href="#" class="categories__list-title">Харчові добавки</a>
-                    </li>
                     <li>
                         <a href="#" class="categories__list-title">Догляд за ротовою порожниною</a>
                         <ul class="categories__sublist">
@@ -1043,6 +1039,13 @@ defer
                                 <a href="#">Ополіскувач для порожнини рота</a>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="categories__block">
+                <ul class="categories__list">
+                    <li>
+                        <a href="#" class="categories__list-title">Харчові добавки</a>
                     </li>
                 </ul>
             </div>
