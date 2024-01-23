@@ -1457,6 +1457,7 @@ if (mobileMenu) {
             e.target.closest('[data-action]')
             || e.target.closest('[data-side-basket]')
             || e.target.closest('[data-filter]')
+            || e.target.closest('[data-add-comment]')
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {
