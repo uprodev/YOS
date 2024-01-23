@@ -96,17 +96,21 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <span><?= __('Знижка за системою лояльності', 'yos');?></span>
                     <span class="text-nowrap">-60 ₴</span>
                 </div>
-                <div class="side-basket__payment-info-row">
-                    <span><?= __('Інші знижки', 'yos');?></span>
-                    <span class="text-nowrap">0 ₴</span>
-                </div>
+                <?php if(WC()->cart->get_coupons()):?>
+                    <div class="side-basket__payment-info-row">
+                        <span><?= __('Інші знижки', 'yos');?></span>
+                        <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+                            <span class="text-nowrap"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif;?>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
                     <span><?= __('За тарифами перевізника', 'yos');?></span>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
-                    <span class="text-nowrap"><?php wc_cart_totals_subtotal_html(); ?></span>
+                    <span class="text-nowrap"><?php wc_cart_totals_order_total_html(); ?></span>
                 </div>
             </div>
 
@@ -114,8 +118,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
             </div>
 
-            <?php
-            $sub = WC()->cart->subtotal;
+            <?php $sub = WC()->cart->subtotal;
 
             if($sub<2000):
 
@@ -127,20 +130,20 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
             ?>
 
                 <div class="side-basket__free-shipping">
-                <div class="side-basket__free-shipping-head">
-                    <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
-                    <span class="text-nowrap"><?= $ost_html;?></span>
-                </div>
-                <div class="side-basket__free-shipping-line">
-                    <div class="line-track">
-                        <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+                    <div class="side-basket__free-shipping-head">
+                        <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
+                        <span class="text-nowrap"><?= $ost_html;?></span>
+                    </div>
+                    <div class="side-basket__free-shipping-line">
+                        <div class="line-track">
+                            <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+                        </div>
+                    </div>
+                    <div class="side-basket__free-shipping-total">
+                        <span class="text-nowrap">0 ₴</span>
+                        <span class="text-nowrap">2 000 ₴</span>
                     </div>
                 </div>
-                <div class="side-basket__free-shipping-total">
-                    <span class="text-nowrap">0 ₴</span>
-                    <span class="text-nowrap">2 000 ₴</span>
-                </div>
-            </div>
 
             <?php endif;?>
         </div>

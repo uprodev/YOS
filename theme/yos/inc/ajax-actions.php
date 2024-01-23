@@ -6,6 +6,7 @@ $actions = [
     'update_totals',
     'update_mini_cart',
     'remove_from_cart',
+    'apply_coupon'
 ];
 
 foreach($actions as $action){
@@ -97,11 +98,9 @@ function update_totals() {
 
     WC()->cart->calculate_totals();
 
-//    $tax = WC()->cart->get_total_tax();
-//    $taxes = number_format($tax, 2, ',', ' ');
-//    $sub = number_format(WC()->cart->subtotal, 2, ',', ' ');
-//    $total = number_format(WC()->cart->total, 2, ',', ' ');
+    $sub = WC()->cart->get_cart_subtotal();
     $count = WC()->cart->get_cart_contents_count();
+    $total = wc_cart_totals_order_total_html();
 
 
     $html = ob_get_clean();
@@ -109,13 +108,35 @@ function update_totals() {
     wp_send_json_success(
         ['totals' => $html,
             'cart_qty' => $count,
-//            'total' => $total . get_woocommerce_currency_symbol(),
-//            'subtotal' => $sub . get_woocommerce_currency_symbol(),
+            'total' => $total,
+            'subtotal' => $sub,
 //            'tax_total' => 'inkl. MwSt. ' .$taxes .get_woocommerce_currency_symbol(),
         ]
     );
 
 
+    die();
+}
+
+
+/* apply_coupon */
+
+function apply_coupon()
+{
+    $coupon = $_POST['coupon'];
+
+    WC()->cart->apply_coupon( $coupon );
+
+    update_totals();
+
+    WC_AJAX :: get_refreshed_fragments();
+
+
+    wp_send_json(
+        [
+            'coupon' => $coupon,
+        ]
+    );
     die();
 }
 

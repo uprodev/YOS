@@ -30,330 +30,178 @@ do_action( 'woocommerce_before_cart' ); ?>
                 <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
             </h2>
         </div>
-        <div class="basket__body">
-            <div class="basket__main">
-                <ul class="basket__list">
-                    <?php
-                    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-                    $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-                    $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-                    /**
-                     * Filter the product name.
-                     *
-                     * @since 2.1.0
-                     * @param string $product_name Name of the product in the cart.
-                     * @param array $cart_item The product in the cart.
-                     * @param string $cart_item_key Key for the product in the cart.
-                     */
-                    $product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+            <?php do_action( 'woocommerce_before_cart_table' ); ?>
+            <div class="basket__body">
+                <div class="basket__main">
+                    <ul class="basket__list">
+                        <?php
+                        foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+                        $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+                        $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+                        /**
+                         * Filter the product name.
+                         *
+                         * @since 2.1.0
+                         * @param string $product_name Name of the product in the cart.
+                         * @param array $cart_item The product in the cart.
+                         * @param string $cart_item_key Key for the product in the cart.
+                         */
+                        $product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
 
-                    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-                    $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-                        $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-                        $brand = get_the_terms($product_id, 'pa_brand');?>
-                        <li data-ids="<?= $product_id;?>">
+                        if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                        $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+                            $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+                            $brand = get_the_terms($product_id, 'pa_brand');?>
+                            <li data-ids="<?= $product_id;?>">
+                                <div class="product-card-sm">
+                                    <div class="product-card-sm__left">
+                                        <button class="product-card-sm__btn-remove" data-cart_item_key="<?= esc_attr( $cart_item_key );?>"><span class="icon-close"></span></button>
+
+                                        <a href="<?php echo esc_url( $product_permalink ); ?>" class="product-card-sm__img">
+                                            <?php echo $thumbnail;?>
+                                        </a>
+                                    </div>
+                                    <div class="product-card-sm__right">
+                                        <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                        <div class="product-card-sm__text">
+                                            <div class="product-card-sm__text-1">
+                                                <?php echo wp_kses_post( $product_name ); ?>
+                                            </div>
+                                            <div class="product-card-sm__text-2">
+                                                <?php the_field('seria', $product_id);?>
+                                            </div>
+                                        </div>
+                                        <div class="product-card-sm__group">
+                                            <div class="product-card-sm__quantity">
+                                                <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?></div>
+                                                <div class="quantity" data-key="<?= esc_attr( $cart_item_key );?>" data-quantity>
+                                                    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
+                                                    <input type="text" value="<?=  $cart_item['quantity'];?>" class="quantity__value">
+                                                    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+                                                </div>
+                                            </div>
+                                            <div class="product-card-sm__price">
+                                                <?= $_product->get_price_html();?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php }
+                        } ?>
+                    </ul>
+                </div>
+                <div class="basket__side">
+                    <?php if ( wc_coupons_enabled() ) { ?>
+
+                        <div class="basket__side-row">
+                            <div class="basket__side-promotional-code">
+                                <div class="promotional-code">
+                                    <button class="promotional-code__title button-link"
+                                            data-collapse="promotional-code"><span><?= __('маєте промокод?', 'yos');?></span></button>
+                                    <div class="promotional-code__body" data-collapse-target="promotional-code">
+                                        <input type="text" name="coupon_code" class="input" id="code_coupon" value="" />
+                                        <button class="button-primary light w-100" name="apply_coupon_code"><?= __('застосувати', 'yos');?></button>
+                                        <!-- <div class="promotional-code__text">промокод успішно застосуваний</div>
+                                        <div class="promotional-code__text text-color-warning">Термін дії промокоду закінчено!</div> -->
+                                        <?php do_action( 'woocommerce_cart_coupon' ); ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+
+                    <div class="basket__side-row">
+                        <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
+                        <div class="basket__side-offer">
                             <div class="product-card-sm">
                                 <div class="product-card-sm__left">
-                                    <button class="product-card-sm__btn-remove" data-cart_item_key="<?= esc_attr( $cart_item_key );?>"><span class="icon-close"></span></button>
-
-                                    <a href="<?php echo esc_url( $product_permalink ); ?>" class="product-card-sm__img">
-                                        <?php echo $thumbnail;?>
+                                    <a href="#" class="product-card-sm__img">
+                                        <img src="<?= get_template_directory_uri();?>/img/photo/product-card-img-2.png" alt="">
                                     </a>
                                 </div>
                                 <div class="product-card-sm__right">
-                                    <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                    <div class="product-card-sm__title"><a href="#">rare paris</a></div>
                                     <div class="product-card-sm__text">
                                         <div class="product-card-sm__text-1">
-                                            <?php echo wp_kses_post( $product_name ); ?>
+                                            Cellulose Facial Mask
                                         </div>
                                         <div class="product-card-sm__text-2">
-                                            <?php the_field('seria', $product_id);?>
+                                            Tresor Solaire Ecological
                                         </div>
                                     </div>
-                                    <div class="product-card-sm__group">
-                                        <div class="product-card-sm__quantity">
-                                            <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?></div>
-                                            <div class="quantity" data-key="<?= esc_attr( $cart_item_key );?>" data-quantity>
-                                                <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-                                                <input type="text" value="<?=  $cart_item['quantity'];?>" class="quantity__value">
-                                                <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
-                                            </div>
-                                        </div>
-                                        <div class="product-card-sm__price">
-                                            <?= $_product->get_price_html();?>
-                                        </div>
+                                    <div class="product-card-sm__price">
+                                        <div class="product-card-sm__price-current">299 ₴</div>
+                                    </div>
+                                    <div class="product-card-sm__btn-add">
+                                        <a href="#" class="button-primary dark button-primary--sm w-100">додати</a>
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    <?php }
-                    } ?>
-                </ul>
-            </div>
-            <div class="basket__side">
-                <div class="basket__side-row">
-                    <div class="basket__side-promotional-code">
-                        <div class="promotional-code">
-                            <button class="promotional-code__title button-link"
-                                    data-collapse="promotional-code"><span>маєте промокод?</span></button>
-                            <div class="promotional-code__body" data-collapse-target="promotional-code">
-                                <input type="text" class="input">
-                                <button class="button-primary light w-100">застосувати</button>
-                                <!-- <div class="promotional-code__text">промокод успішно застосуваний</div>
-                                <div class="promotional-code__text text-color-warning">Термін дії промокоду закінчено!</div> -->
+                        </div>
+                    </div>
+
+                    <div class="basket__side-row">
+                        <div class="side-basket__payment-info">
+                            <div class="side-basket__payment-info-row">
+                                <span><?= __('Знижка за системою лояльності', 'yos');?></span>
+                                <span class="text-nowrap">-60 ₴</span>
+                            </div>
+                            <?php if(WC()->cart->get_coupons()):?>
+                                <div class="side-basket__payment-info-row">
+                                    <span><?= __('Інші знижки', 'yos');?></span>
+                                    <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+                                        <span class="text-nowrap"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif;?>
+                            <div class="side-basket__payment-info-row">
+                                <span><?= __('Доставка', 'yos');?></span>
+                                <span><?= __('За тарифами перевізника', 'yos');?></span>
+                            </div>
+                            <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
+                                <span><?= __('всього до сплати', 'yos');?></span>
+                                <span class="text-nowrap cart-sub"><?php wc_cart_totals_order_total_html(); ?></span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="basket__side-row">
-                    <h4 class="basket__side-title title-4">додати до замовлення</h4>
-                    <div class="basket__side-offer">
-                        <div class="product-card-sm">
-                            <div class="product-card-sm__left">
-                                <a href="#" class="product-card-sm__img">
-                                    <img src="img/photo/product-card-img-2.png" alt="">
-                                </a>
-                            </div>
-                            <div class="product-card-sm__right">
-                                <div class="product-card-sm__title"><a href="#">rare paris</a></div>
-                                <div class="product-card-sm__text">
-                                    <div class="product-card-sm__text-1">
-                                        Cellulose Facial Mask
+                    <div class="basket__side-row">
+                        <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+                    </div>
+
+                    <?php $sub = WC()->cart->subtotal;
+
+                    if($sub<2000):
+
+                        $ost = 2000-$sub;
+                        $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
+                        $percent = round(($ost*100)/2000);
+                        $percent_bar = 100-$percent;
+
+                        ?>
+
+                        <div class="basket__side-row">
+                            <div class="side-basket__free-shipping">
+                                <div class="side-basket__free-shipping-head">
+                                    <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
+                                    <span class="text-nowrap"><?= $ost_html;?></span>
+                                </div>
+                                <div class="side-basket__free-shipping-line">
+                                    <div class="line-track">
+                                        <div class="line" style="width: <?= $percent_bar;?>%;"></div>
                                     </div>
-                                    <div class="product-card-sm__text-2">
-                                        Tresor Solaire Ecological
-                                    </div>
                                 </div>
-                                <div class="product-card-sm__price">
-                                    <div class="product-card-sm__price-current">299 ₴</div>
-                                </div>
-                                <div class="product-card-sm__btn-add">
-                                    <a href="#" class="button-primary dark button-primary--sm w-100">додати</a>
+                                <div class="side-basket__free-shipping-total">
+                                    <span class="text-nowrap">0 ₴</span>
+                                    <span class="text-nowrap">2 000 ₴</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="basket__side-row">
-                    <div class="side-basket__payment-info">
-                        <div class="side-basket__payment-info-row">
-                            <span>Знижка за системою лояльності</span>
-                            <span class="text-nowrap">-60 ₴</span>
-                        </div>
-                        <div class="side-basket__payment-info-row">
-                            <span>Інші знижки</span>
-                            <span class="text-nowrap">0 ₴</span>
-                        </div>
-                        <div class="side-basket__payment-info-row">
-                            <span>Доставка</span>
-                            <span>За тарифами перевізника</span>
-                        </div>
-                        <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
-                            <span>всього до сплати</span>
-                            <span class="text-nowrap">4 098 ₴</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="basket__side-row">
-                    <a href="#" class="button-primary dark w-100">перейти далі</a>
-                </div>
-
-                <div class="basket__side-row">
-                    <div class="side-basket__free-shipping">
-                        <div class="side-basket__free-shipping-head">
-                            <span>До безкоштовної доставки
-                                залишилось:</span>
-                            <span class="text-nowrap">1 230 ₴</span>
-                        </div>
-                        <div class="side-basket__free-shipping-line">
-                            <div class="line-track">
-                                <div class="line" style="width: 40%;"></div>
-                            </div>
-                        </div>
-                        <div class="side-basket__free-shipping-total">
-                            <span class="text-nowrap">0 ₴</span>
-                            <span class="text-nowrap">2 000 ₴</span>
-                        </div>
-                    </div>
+                    <?php endif;?>
                 </div>
             </div>
-        </div>
     </div>
 </section>
-<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
-	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-	<table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
-		<thead>
-			<tr>
-				<th class="product-remove"><span class="screen-reader-text"><?php esc_html_e( 'Remove item', 'woocommerce' ); ?></span></th>
-				<th class="product-thumbnail"><span class="screen-reader-text"><?php esc_html_e( 'Thumbnail image', 'woocommerce' ); ?></span></th>
-				<th class="product-name"><?php esc_html_e( 'Product', 'woocommerce' ); ?></th>
-				<th class="product-price"><?php esc_html_e( 'Price', 'woocommerce' ); ?></th>
-				<th class="product-quantity"><?php esc_html_e( 'Quantity', 'woocommerce' ); ?></th>
-				<th class="product-subtotal"><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php do_action( 'woocommerce_before_cart_contents' ); ?>
-
-			<?php
-			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
-				/**
-				 * Filter the product name.
-				 *
-				 * @since 2.1.0
-				 * @param string $product_name Name of the product in the cart.
-				 * @param array $cart_item The product in the cart.
-				 * @param string $cart_item_key Key for the product in the cart.
-				 */
-				$product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
-
-				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-					?>
-					<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
-
-						<td class="product-remove">
-							<?php
-								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-									'woocommerce_cart_item_remove_link',
-									sprintf(
-										'<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
-										esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
-										/* translators: %s is the product name */
-										esc_attr( sprintf( __( 'Remove %s from cart', 'woocommerce' ), wp_strip_all_tags( $product_name ) ) ),
-										esc_attr( $product_id ),
-										esc_attr( $_product->get_sku() )
-									),
-									$cart_item_key
-								);
-							?>
-						</td>
-
-						<td class="product-thumbnail">
-						<?php
-						$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
-
-						if ( ! $product_permalink ) {
-							echo $thumbnail; // PHPCS: XSS ok.
-						} else {
-							printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // PHPCS: XSS ok.
-						}
-						?>
-						</td>
-
-						<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
-						<?php
-						if ( ! $product_permalink ) {
-							echo wp_kses_post( $product_name . '&nbsp;' );
-						} else {
-							/**
-							 * This filter is documented above.
-							 *
-							 * @since 2.1.0
-							 */
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-						}
-
-						do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
-
-						// Meta data.
-						echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
-
-						// Backorder notification.
-						if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
-						}
-						?>
-						</td>
-
-						<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
-							<?php
-								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
-							?>
-						</td>
-
-						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
-						<?php
-						if ( $_product->is_sold_individually() ) {
-							$min_quantity = 1;
-							$max_quantity = 1;
-						} else {
-							$min_quantity = 0;
-							$max_quantity = $_product->get_max_purchase_quantity();
-						}
-
-						$product_quantity = woocommerce_quantity_input(
-							array(
-								'input_name'   => "cart[{$cart_item_key}][qty]",
-								'input_value'  => $cart_item['quantity'],
-								'max_value'    => $max_quantity,
-								'min_value'    => $min_quantity,
-								'product_name' => $product_name,
-							),
-							$_product,
-							false
-						);
-
-						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
-						?>
-						</td>
-
-						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
-							<?php
-								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
-							?>
-						</td>
-					</tr>
-					<?php
-				}
-			}
-			?>
-
-			<?php do_action( 'woocommerce_cart_contents' ); ?>
-
-			<tr>
-				<td colspan="6" class="actions">
-
-					<?php if ( wc_coupons_enabled() ) { ?>
-						<div class="coupon">
-							<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply coupon', 'woocommerce' ); ?></button>
-							<?php do_action( 'woocommerce_cart_coupon' ); ?>
-						</div>
-					<?php } ?>
-
-					<button type="submit" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
-
-					<?php do_action( 'woocommerce_cart_actions' ); ?>
-
-					<?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
-				</td>
-			</tr>
-
-			<?php do_action( 'woocommerce_after_cart_contents' ); ?>
-		</tbody>
-	</table>
-	<?php do_action( 'woocommerce_after_cart_table' ); ?>
-</form>
-
-<?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
-
-<div class="cart-collaterals">
-	<?php
-		/**
-		 * Cart collaterals hook.
-		 *
-		 * @hooked woocommerce_cross_sell_display
-		 * @hooked woocommerce_cart_totals - 10
-		 */
-		do_action( 'woocommerce_cart_collaterals' );
-	?>
-</div>
-
-<?php do_action( 'woocommerce_after_cart' ); ?>

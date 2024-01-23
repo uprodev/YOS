@@ -95,6 +95,7 @@ jQuery(document).ready(function ($) {
 
                 $('.basket-count').text(data.data.cart_qty);
                 $('.basket-qty').text('(' + data.data.cart_qty + ')');
+                $('.cart-sub').html(data.data.subtotal);
 
                 ajax_mini_cart_update();
 
@@ -135,6 +136,7 @@ jQuery(document).ready(function ($) {
 
                 $('.basket-count').text(data.data.cart_qty);
                 $('.basket-qty').text('(' + data.data.cart_qty + ')');
+                $('.cart-sub').html(data.data.subtotal);
                 ajax_mini_cart_update();
 
             }
@@ -177,4 +179,28 @@ jQuery(document).ready(function ($) {
 
         $('#pa_volumes').val(volumes).change();
     })
+
+
+    /* apply coupon */
+
+    $(document).on('click', '[name="apply_coupon_code"]', function (e) {
+
+        e.preventDefault();
+
+        var coupon = $('#code_coupon').val();
+        $.ajax({
+            type: 'POST',
+            url: wc_add_to_cart_params.ajax_url,
+            data: {
+                action: 'apply_coupon',
+                coupon: coupon,
+            },
+            success: function (data) {
+                $('.cart-sub').html(data.data.total);
+                $(document.body).trigger('update_checkout');
+
+            },
+        });
+    });
+
 });
