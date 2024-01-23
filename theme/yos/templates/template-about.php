@@ -14,6 +14,7 @@ get_header();
 
 <main class="_page about-page">
     <div class="head-height-compensation"></div>
+    <?php get_template_part('parts/header/categories-menu');?>
     <section class="about">
         <div class="container">
             <h2 class="about__title title-2">

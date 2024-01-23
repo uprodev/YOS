@@ -28,6 +28,7 @@ $cats = get_terms([
 
 <main class="_page home-page">
     <div class="head-height-compensation"></div>
+    <?php get_template_part('parts/header/categories-menu');?>
     <section class="articles-preview">
         <div class="container">
             <div class="articles-preview__head">

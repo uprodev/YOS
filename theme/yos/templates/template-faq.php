@@ -14,6 +14,7 @@ get_header();
 
     <main class="_page faq-page">
         <div class="head-height-compensation"></div>
+        <?php get_template_part('parts/header/categories-menu');?>
         <section class="faq">
             <div class="container">
                 <h2 class="faq__title title-2"><?php the_title();?></h2>
