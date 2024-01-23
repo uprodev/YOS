@@ -747,6 +747,7 @@ if (categoryLinksElements.length) {
                     freeMode: true,
                     scrollbar: {
                         el: slider.querySelector('.swiper-scrollbar'),
+                        draggable: true
                     },
                 });
 
@@ -1165,7 +1166,7 @@ if(quantityElements.length) {
     }
 
     //Select
-    let selects = document.getElementsByTagName('select');
+    let selects = document.querySelectorAll('.select-wrap select');
     if (selects.length > 0) {
         selects_init();
     }
@@ -1335,13 +1336,17 @@ if(quantityElements.length) {
         }
     }
 }
-			// ==== // components =====================================================
-
-
-			// ==== widgets =====================================================
-			
-
-// categories
+			document.addEventListener('click', (e) => {
+    if(e.target.closest('[data-action="show-full-description-card-text"]')) {
+        e.preventDefault();
+        e.target.closest('[brand-description-card]')?.classList.add('show-full-text');
+    }
+    if(e.target.closest('[data-action="hide-full-description-card-text"]')) {
+        e.preventDefault();
+        e.target.closest('[brand-description-card]')?.classList.remove('show-full-text');
+    }
+})
+			// categories
 const headerMobCategoriesSlider = document.querySelector('[data-slider="header-mob-categories"]');
 if (headerMobCategoriesSlider) {
     const swiperSlider = new Swiper(headerMobCategoriesSlider, {
@@ -1350,94 +1355,28 @@ if (headerMobCategoriesSlider) {
         scrollbar: {
             el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
             hide: true,
+            draggable: true
         },
     })
 }
 
-// Mobile menu
-const mobileMenu = document.querySelector('[data-mobile-menu]');
-if (mobileMenu) {
-    const buttonsOpen = document.querySelectorAll('[data-action="open-mobile-menu"]');
-    const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
-    const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
-    const catalogLayer = mobileMenu.querySelector('.mobile-menu__layer--catalog');
-
-    buttonsOpen.forEach(button => {
-        button.addEventListener('click', () => {
-            document.body.classList.add('overflow-hidden');
-            mobileMenu.classList.add('open')
-        });
-    })
-
-    buttonsClose.forEach(button => {
-        button.addEventListener('click', () => {
-            document.body.classList.remove('overflow-hidden');
-            mobileMenu.classList.remove('open')
-        });
-    })
-
-    document.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action="open-mobile-menu"]')) return;
-
-        if(!e.target.closest('.mobile-menu')) {
-            document.body.classList.remove('overflow-hidden');
-            mobileMenu.classList.remove('open')
-        }
-    })
-
-    mobileMenu.addEventListener('click', (e) => {
-        if(e.target.closest('[data-action="show-layer-by-id"]')) {
-            const btn = e.target.closest('[data-action="show-layer-by-id"]');
-            const id = btn.getAttribute('data-id');
-            if(!id) return;
-            
-            const layer = mobileMenu.querySelector(`[data-layer="${id}"]`);
-            if(!layer) return;
-            layer.classList.add('show');
-            mainLayer.classList.add('overflow-hidden');
-
-            if(layer !== catalogLayer) {
-                catalogLayer.classList.add('overflow-hidden');
-            }
-        }
-
-        if(e.target.closest('[data-action="hide-layer"]')) {
-            const layer = e.target.closest('[data-layer]');
-            if(!layer) return;
-            layer.classList.remove('show');
-
-            if(!catalogLayer.classList.contains('show')) {
-                mainLayer.classList.remove('overflow-hidden');
-            }
-
-            if(layer !== catalogLayer) {
-                catalogLayer.classList.remove('overflow-hidden');
-            }
-            // const allLayers = Array.from(mobileMenu.querySelectorAll('[data-layer]'));
-            // const isAnyLayerOpen = allLayers.some(layer => layer.classList.contains('show'));
-            // if(!isAnyLayerOpen) {
-                
-            // }
-        }
-    })
-}
-
-
-// Categories
 class CategoryItems {
     _items = null;
     _header = null;
+    _categories = null;
 
     static setHeight() {
         if(!this._header) return;
+        
         this._items.forEach(item => {
-            item.style.maxHeight = document.documentElement.clientHeight - this._header.clientHeight + 'px';
+            item.style.maxHeight = document.documentElement.clientHeight - this._header.clientHeight - this._categories.clientHeight + 'px';
         })
     }
 
     static init() {
         this._items = Array.from(categoriesEl.querySelectorAll('[data-category-tab]'));
         this._header = document.querySelector('[data-header]');
+        this._categories = document.querySelector('[data-categories]');
         this.setHeight();
 
         window.addEventListener('resize', this.setHeight.bind(this))
@@ -1484,10 +1423,75 @@ if(categoriesEl) {
 
     CategoryItems.init();
 }
+			// ==== // components =====================================================
+
+
+			// ==== widgets =====================================================
+			
+
+
+
+// Mobile menu
+const mobileMenu = document.querySelector('[data-mobile-menu]');
+if (mobileMenu) {
+    const buttonsOpen = document.querySelectorAll('[data-action="open-mobile-menu"]');
+    const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
+    const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
+
+    buttonsOpen.forEach(button => {
+        button.addEventListener('click', () => {
+            document.body.classList.add('overflow-hidden');
+            mobileMenu.classList.add('open')
+        });
+    })
+
+    buttonsClose.forEach(button => {
+        button.addEventListener('click', () => {
+            document.body.classList.remove('overflow-hidden');
+            mobileMenu.classList.remove('open')
+        });
+    })
+
+    document.addEventListener('click', (e) => {
+        if(
+            e.target.closest('[data-action]')
+            || e.target.closest('[data-side-basket]')
+            || e.target.closest('[data-filter]')
+            || e.target.closest('[data-add-comment]')
+            ) return;
+
+        if(!e.target.closest('.mobile-menu')) {
+            document.body.classList.remove('overflow-hidden');
+            mobileMenu.classList.remove('open')
+        }
+    })
+
+    mobileMenu.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="show-layer-by-id"]')) {
+            const btn = e.target.closest('[data-action="show-layer-by-id"]');
+            const id = btn.getAttribute('data-id');
+            if(!id) return;
+            
+            const layer = mobileMenu.querySelector(`[data-layer="${id}"]`);
+            if(!layer) return;
+            layer.classList.add('show');
+            mainLayer.classList.add('overflow-hidden');
+        }
+
+        if(e.target.closest('[data-action="hide-layer"]')) {
+            const layer = e.target.closest('[data-layer]');
+            if(!layer) return;
+            layer.classList.remove('show');
+            mainLayer.classList.remove('overflow-hidden');
+        }
+    })
+}
 
 // Top offer
 const topOffers = document.querySelectorAll('[data-top-offer]');
 if (topOffers.length) {
+    const headHeightCompensation = document.querySelector('.head-height-compensation');
+
     topOffers.forEach(topOffer => {
         const parrentEl = topOffer.parentElement;
 
@@ -1510,7 +1514,7 @@ if (topOffers.length) {
         topOffer.addEventListener('click', (e) => {
             if(e.target.closest('[data-action="close-top-offer"]')) {
                 e.preventDefault();
-
+                const topOfferHeight = topOffer.clientHeight;
                 topOffer.classList.remove('show');
                 setPaddingTop(0, true);
 
@@ -1519,6 +1523,10 @@ if (topOffers.length) {
                 }, 300);
     
                 window.removeEventListener('resize', setPaddingWrapper);
+
+                if(!headHeightCompensation) return;
+                headHeightCompensation.style.transition = 'padding-top .15s ease';
+                headHeightCompensation.style.paddingTop = (headHeightCompensation.clientHeight - topOfferHeight) + 'px';
             }
         })
     })
@@ -1585,6 +1593,7 @@ if(homeIntro) {
         speed: 600,
         scrollbar: {
             el: homeIntro.querySelector('.swiper-scrollbar'),
+            draggable: true
         },
         navigation: {
             nextEl: homeIntro.querySelector('.slider-btn.right'),
@@ -1601,6 +1610,7 @@ if (carousels.length) {
             observeParents: true,
             scrollbar: {
                 el: carousel.querySelector('.carousel__navigation .swiper-scrollbar'),
+                draggable: true
             },
             navigation: {
                 nextEl: carousel.querySelector('.carousel__navigation .slider-btn.right'),
