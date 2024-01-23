@@ -4,17 +4,18 @@ get_header();
 
 ?>
 
-<?php if(is_cart() || is_checkout()):?>
+<?php if(is_cart()):?>
 
 	<main class="_page basket-page">
-        <div class="head-height-compensation"></div>
+
+<?php elseif(is_checkout()):?>
 
 <?php else:?>
 
-	<main class="_page">
+	<main class="_page checkout-page">
 
-<?php endif;
-
+<?php endif;?>
+    <div class="head-height-compensation"></div>
 
 	the_content();
 
