@@ -21,122 +21,73 @@ do_action( 'woocommerce_before_cart' ); ?>
 <section class="basket">
     <div class="container">
         <div class="basket__head">
-            <a href="#" class="basket__link-to-shopping button-link">
-                <span class="icon-chevrone-left">продовжити покупки</span>
+            <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="basket__link-to-shopping button-link">
+                <span class="icon-chevrone-left"><?= __('продовжити покупки', 'yos');?></span>
             </a>
 
             <h2 class="basket__title title-2">
-                ваш кошик
-                <span>(3)</span>
+                <?= __('ваш кошик', 'yos');?>
+                <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
             </h2>
         </div>
         <div class="basket__body">
             <div class="basket__main">
                 <ul class="basket__list">
-                    <li>
-                        <div class="product-card-sm">
-                            <div class="product-card-sm__left">
-                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
-                                <a href="#" class="product-card-sm__img">
-                                    <img src="img/photo/product-card-img-1.png" alt="">
-                                </a>
-                            </div>
-                            <div class="product-card-sm__right">
-                                <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
-                                <div class="product-card-sm__text">
-                                    <div class="product-card-sm__text-1">
-                                        Exfoliating Polish, 65g
-                                    </div>
-                                    <div class="product-card-sm__text-2">
-                                        Zo Skin Health
-                                    </div>
+                    <?php
+                    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+                    $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+                    $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+                    /**
+                     * Filter the product name.
+                     *
+                     * @since 2.1.0
+                     * @param string $product_name Name of the product in the cart.
+                     * @param array $cart_item The product in the cart.
+                     * @param string $cart_item_key Key for the product in the cart.
+                     */
+                    $product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+
+                    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+                    $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+                        $thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+                        $brand = get_the_terms($product_id, 'pa_brand');?>
+                        <li data-ids="<?= $product_id;?>">
+                            <div class="product-card-sm">
+                                <div class="product-card-sm__left">
+                                    <button class="product-card-sm__btn-remove" data-cart_item_key="<?= esc_attr( $cart_item_key );?>"><span class="icon-close"></span></button>
+
+                                    <a href="<?php echo esc_url( $product_permalink ); ?>" class="product-card-sm__img">
+                                        <?php echo $thumbnail;?>
+                                    </a>
                                 </div>
-                                <div class="product-card-sm__group">
-                                    <div class="product-card-sm__quantity">
-                                        <div class="product-card-sm__quantity-label">Кількість:</div>
-                                        <div class="quantity" data-quantity>
-                                            <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-                                            <input type="text" value="1" class="quantity__value">
-                                            <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+                                <div class="product-card-sm__right">
+                                    <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                    <div class="product-card-sm__text">
+                                        <div class="product-card-sm__text-1">
+                                            <?php echo wp_kses_post( $product_name ); ?>
+                                        </div>
+                                        <div class="product-card-sm__text-2">
+                                            <?php the_field('seria', $product_id);?>
                                         </div>
                                     </div>
-                                    <div class="product-card-sm__price">
-                                        <div class="product-card-sm__price-current">3 199 ₴</div>
-                                        <div class="product-card-sm__price-old">7 299 ₴</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-card-sm">
-                            <div class="product-card-sm__left">
-                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
-                                <a href="#" class="product-card-sm__img">
-                                    <img src="img/photo/product-card-img-2.png" alt="">
-                                </a>
-                            </div>
-                            <div class="product-card-sm__right">
-                                <div class="product-card-sm__title"><a href="#">rare paris</a></div>
-                                <div class="product-card-sm__text">
-                                    <div class="product-card-sm__text-1">
-                                        Ecological Cellulose, 65g
-                                    </div>
-                                    <div class="product-card-sm__text-2">
-                                        Tresor Solaire
-                                    </div>
-                                </div>
-                                <div class="product-card-sm__group">
-                                    <div class="product-card-sm__quantity">
-                                        <div class="product-card-sm__quantity-label">Кількість:</div>
-                                        <div class="quantity" data-quantity>
-                                            <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-                                            <input type="text" value="1" class="quantity__value">
-                                            <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+                                    <div class="product-card-sm__group">
+                                        <div class="product-card-sm__quantity">
+                                            <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?></div>
+                                            <div class="quantity" data-key="<?= esc_attr( $cart_item_key );?>" data-quantity>
+                                                <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
+                                                <input type="text" value="<?=  $cart_item['quantity'];?>" class="quantity__value">
+                                                <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+                                            </div>
+                                        </div>
+                                        <div class="product-card-sm__price">
+                                            <?= $_product->get_price_html();?>
                                         </div>
                                     </div>
-                                    <div class="product-card-sm__price">
-                                        <div class="product-card-sm__price-current">299 ₴</div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="product-card-sm">
-                            <div class="product-card-sm__left">
-                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
-                                <a href="#" class="product-card-sm__img">
-                                    <img src="img/photo/product-card-img-1.png" alt="">
-                                </a>
-                            </div>
-                            <div class="product-card-sm__right">
-                                <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
-                                <div class="product-card-sm__text">
-                                    <div class="product-card-sm__text-1">
-                                        Exfoliating Polish, 65g
-                                    </div>
-                                    <div class="product-card-sm__text-2">
-                                        Zo Skin Health
-                                    </div>
-                                </div>
-                                <div class="product-card-sm__group">
-                                    <div class="product-card-sm__quantity">
-                                        <div class="product-card-sm__quantity-label">Кількість:</div>
-                                        <div class="quantity" data-quantity>
-                                            <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
-                                            <input type="text" value="1" class="quantity__value">
-                                            <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
-                                        </div>
-                                    </div>
-                                    <div class="product-card-sm__price">
-                                        <div class="product-card-sm__price-current">3 199 ₴</div>
-                                        <div class="product-card-sm__price-old">7 299 ₴</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    <?php }
+                    } ?>
                 </ul>
             </div>
             <div class="basket__side">

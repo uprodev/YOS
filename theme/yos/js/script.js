@@ -47,6 +47,7 @@ jQuery(document).ready(function ($) {
             success: function (data) {
 
                 $('.basket-count').text(data.data.cart_qty).removeClass('disable');
+                $('.basket-qty').text('(' + data.data.cart_qty + ')');
 
                 that.text('товар додано до кошика');
 
@@ -93,6 +94,7 @@ jQuery(document).ready(function ($) {
             success: function (data) {
 
                 $('.basket-count').text(data.data.cart_qty);
+                $('.basket-qty').text('(' + data.data.cart_qty + ')');
 
                 ajax_mini_cart_update();
 
@@ -132,7 +134,7 @@ jQuery(document).ready(function ($) {
             success: function (data) {
 
                 $('.basket-count').text(data.data.cart_qty);
-
+                $('.basket-qty').text('(' + data.data.cart_qty + ')');
                 ajax_mini_cart_update();
 
             }

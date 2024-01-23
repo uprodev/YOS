@@ -10,16 +10,16 @@ get_header();
 
 <?php elseif(is_checkout()):?>
 
+    <main class="_page checkout-page">
+
 <?php else:?>
 
-	<main class="_page checkout-page">
+	<main class="_page">
 
 <?php endif;?>
     <div class="head-height-compensation"></div>
 
-	the_content();
-
-?>
+	<?php the_content();?>
 
 	</main>
 
