@@ -150,8 +150,18 @@ jQuery(document).ready(function ($) {
         $('.cost').html(variation.price_html);
 
         $('.product-actions__price').show();
-        $('.product-actions__price-current').text(variation.display_price + ' ₴');
-        $('.product-actions__price-old').text(variation.display_regular_price + ' ₴');
+        let pr = variation.display_regular_price;
+        let sale = variation.display_price;
+        let perc = Math.round((pr-sale)*100/pr);
+        if(pr == sale){
+            $('.product-actions__price-current').text(pr + ' ₴');
+            $('.price-sale').hide();
+        }else {
+            $('.product-actions__price-current').text(sale + ' ₴');
+            $('.product-actions__price-old').text(pr + ' ₴');
+            $('.product-actions__price-profit').text('-' + perc + '%');
+            $('.price-sale').show();
+        }
     });
 
     $(document).on('click', '.color-item', function (){

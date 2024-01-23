@@ -44,6 +44,33 @@ if ($product->is_type( 'variable' )) {
     $variations_attr = ($product->get_variation_attributes());
 }
 
+if( $product->is_type('variable') ){
+    $default_attributes = $product->get_default_attributes();
+    foreach($product->get_available_variations() as $variation_values ){
+        foreach($variation_values['attributes'] as $key => $attribute_value ){
+            $attribute_name = str_replace( 'attribute_', '', $key );
+            $default_value = $product->get_variation_default_attribute($attribute_name);
+            if( $default_value == $attribute_value ){
+                $is_default_variation = true;
+            } else {
+                $is_default_variation = false;
+                break;
+            }
+        }
+        if( $is_default_variation ){
+            $variation_id = $variation_values['variation_id'];
+            break;
+        }
+    }
+    if( $is_default_variation ){
+
+
+        $default_variation = wc_get_product($variation_id);
+
+        $price = $default_variation->get_price();
+    }
+}
+
 ?>
 <section class="product" data-product>
     <div class="container">
@@ -124,8 +151,8 @@ if ($product->is_type( 'variable' )) {
                                             if($c):?>
 
                                             <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
-                                                <label class="product-option-color" style="color: <?= $c;?>" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?>>
-                                                    <input type="radio" name="color">
+                                                <label class="product-option-color" style="color: <?= $c;?>">
+                                                    <input type="radio" name="color" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?>>
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <g clip-path="url(#clip0_1014_6192)">
@@ -156,15 +183,13 @@ if ($product->is_type( 'variable' )) {
                             </div>
                             <?php endif;?>
 
-                            <?php if ($product->is_type('variable')):
-
-                                echo 'Choose variation';?>
+                            <?php if ($product->is_type('variable')):?>
 
                                 <div class="product-actions__price" style="display: none;">
                                     <div class="product-actions__price-row">
                                         <div class="product-actions__price-current"></div>
                                     </div>
-                                    <div class="product-actions__price-row">
+                                    <div class="product-actions__price-row price-sale">
                                         <div class="product-actions__price-old"></div>
                                         <div class="product-actions__price-profit"></div>
                                     </div>
