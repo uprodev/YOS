@@ -111,17 +111,29 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
             </div>
 
             <div class="side-basket__to-checkout">
-                <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+                <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
             </div>
 
-            <div class="side-basket__free-shipping">
+            <?php
+            $sub = WC()->cart->subtotal;
+
+            if($sub<2000):
+
+                $ost = 2000-$sub;
+                $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
+                $percent = round(($ost*100)/2000);
+                $percent_bar = 100-$percent;
+
+            ?>
+
+                <div class="side-basket__free-shipping">
                 <div class="side-basket__free-shipping-head">
                     <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
-                    <span class="text-nowrap">1 230 ₴</span>
+                    <span class="text-nowrap"><?= $ost_html;?></span>
                 </div>
                 <div class="side-basket__free-shipping-line">
                     <div class="line-track">
-                        <div class="line" style="width: 40%;"></div>
+                        <div class="line" style="width: <?= $percent_bar;?>%;"></div>
                     </div>
                 </div>
                 <div class="side-basket__free-shipping-total">
@@ -129,6 +141,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <span class="text-nowrap">2 000 ₴</span>
                 </div>
             </div>
+
+            <?php endif;?>
         </div>
     </div>
 
