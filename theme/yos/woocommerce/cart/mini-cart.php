@@ -96,21 +96,19 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <span><?= __('Знижка за системою лояльності', 'yos');?></span>
                     <span class="text-nowrap">-60 ₴</span>
                 </div>
-                <?php if(WC()->cart->get_coupons()):?>
-                    <div class="side-basket__payment-info-row">
-                        <span><?= __('Інші знижки', 'yos');?></span>
-                        <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-                            <span class="text-nowrap"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif;?>
+                <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
+                    <span><?= __('Інші знижки', 'yos');?></span>
+                    <span class="text-nowrap" >
+                        -<?= WC()->cart->get_cart_discount_total();?>₴
+                    </span>
+                </div>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
                     <span><?= __('За тарифами перевізника', 'yos');?></span>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
-                    <span class="text-nowrap"><?php wc_cart_totals_order_total_html(); ?></span>
+                    <span class="text-nowrap cart-sub"><?php wc_cart_totals_order_total_html(); ?></span>
                 </div>
             </div>
 

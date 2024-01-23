@@ -100,7 +100,6 @@ function update_totals() {
 
     $sub = WC()->cart->get_cart_subtotal();
     $count = WC()->cart->get_cart_contents_count();
-    $total = wc_cart_totals_order_total_html();
 
 
     $html = ob_get_clean();
@@ -108,9 +107,7 @@ function update_totals() {
     wp_send_json_success(
         ['totals' => $html,
             'cart_qty' => $count,
-            'total' => $total,
             'subtotal' => $sub,
-//            'tax_total' => 'inkl. MwSt. ' .$taxes .get_woocommerce_currency_symbol(),
         ]
     );
 
@@ -121,22 +118,24 @@ function update_totals() {
 
 /* apply_coupon */
 
-function apply_coupon()
-{
+function apply_coupon(){
     $coupon = $_POST['coupon'];
 
-    WC()->cart->apply_coupon( $coupon );
+    $coupon_code = wc_get_coupon_id_by_code($coupon);
+    if ($coupon_code) {
+        WC()->cart->apply_coupon($coupon);
 
-    update_totals();
+        $total = WC()->cart->get_cart_total();
+        $discount = WC()->cart->get_cart_discount_total();
 
-    WC_AJAX :: get_refreshed_fragments();
+        wp_send_json(['message' => '<div class="promotional-code__text">'.__('промокод успішно застосуваний', 'yos').'</div>',
+            'total' => $total,
+            'discount' => $discount,
+        ]);
+    }else{
+        wp_send_json(['message' => '<div class="promotional-code__text text-color-warning">'.__('Термін дії промокоду закінчено!', 'yos').'</div>']);
+    }
 
-
-    wp_send_json(
-        [
-            'coupon' => $coupon,
-        ]
-    );
     die();
 }
 

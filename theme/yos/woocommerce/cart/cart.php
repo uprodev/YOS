@@ -102,8 +102,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                                     <div class="promotional-code__body" data-collapse-target="promotional-code">
                                         <input type="text" name="coupon_code" class="input" id="code_coupon" value="" />
                                         <button class="button-primary light w-100" name="apply_coupon_code"><?= __('застосувати', 'yos');?></button>
-                                        <!-- <div class="promotional-code__text">промокод успішно застосуваний</div>
-                                        <div class="promotional-code__text text-color-warning">Термін дії промокоду закінчено!</div> -->
+
                                         <?php do_action( 'woocommerce_cart_coupon' ); ?>
                                     </div>
                                 </div>
@@ -147,14 +146,12 @@ do_action( 'woocommerce_before_cart' ); ?>
                                 <span><?= __('Знижка за системою лояльності', 'yos');?></span>
                                 <span class="text-nowrap">-60 ₴</span>
                             </div>
-                            <?php if(WC()->cart->get_coupons()):?>
-                                <div class="side-basket__payment-info-row">
-                                    <span><?= __('Інші знижки', 'yos');?></span>
-                                    <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-                                        <span class="text-nowrap"><?php wc_cart_totals_coupon_html( $coupon ); ?></span>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif;?>
+                            <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
+                                <span><?= __('Інші знижки', 'yos');?></span>
+                                <span class="text-nowrap" >
+                                    -<?= WC()->cart->get_cart_discount_total();?>₴
+                                </span>
+                            </div>
                             <div class="side-basket__payment-info-row">
                                 <span><?= __('Доставка', 'yos');?></span>
                                 <span><?= __('За тарифами перевізника', 'yos');?></span>

@@ -186,6 +186,7 @@ jQuery(document).ready(function ($) {
     $(document).on('click', '[name="apply_coupon_code"]', function (e) {
 
         e.preventDefault();
+        var that = $(this);
 
         var coupon = $('#code_coupon').val();
         $.ajax({
@@ -196,9 +197,15 @@ jQuery(document).ready(function ($) {
                 coupon: coupon,
             },
             success: function (data) {
-                $('.cart-sub').html(data.data.total);
+                that.after(data.message);
+                $('.cart-sub').html(data.total);
+                $('.coupon-row').show();
+                $('.coupon-row>.text-nowrap').text('-'+data.discount+'₴');
                 $(document.body).trigger('update_checkout');
 
+            },
+            error: function(data){
+                $('.promo-error').show();
             },
         });
     });
