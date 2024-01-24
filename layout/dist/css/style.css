@@ -6668,6 +6668,22 @@ h5,
 .home-intro__slider .swiper-scrollbar.slider-scrollbar {
   width: calc(100% - 2rem);
   margin: 2rem auto 0;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.home-intro__slider .swiper-scrollbar.slider-scrollbar .swiper-scrollbar-drag {
+  z-index: 2;
+}
+
+.home-intro__slider .swiper-scrollbar.slider-scrollbar .click-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .home-intro__slider .slider-buttons {
@@ -8108,11 +8124,25 @@ h5,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 2rem;
+}
+
+.add-comment__form > * {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 100%;
+          flex: 0 1 100%;
+}
+
+.add-comment__form > .add-comment__form-field {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
 }
 
 .add-comment__form-fields {
@@ -10293,9 +10323,9 @@ h5,
   }
 
   .add-comment__form-field.half-lg {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 calc(50% - 1rem);
-            flex: 0 1 calc(50% - 1rem);
+    -webkit-box-flex: 0 !important;
+        -ms-flex: 0 1 calc(50% - 1rem) !important;
+            flex: 0 1 calc(50% - 1rem) !important;
   }
 
   .add-comment__form-footer button.button-primary:hover {

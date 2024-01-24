@@ -9,9 +9,25 @@
         & .swiper-scrollbar.slider-scrollbar {
             width: calc(100% - 2rem);
             margin: 2rem auto 0;
+            position: relative;
+            left: 0;
+            bottom: 0;
 
             @media (min-width: $mq-md) {
                 width: calc(100% - 4rem);
+            }
+
+            & .swiper-scrollbar-drag {
+                z-index: 2;
+            }
+
+            & .click-line {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
             }
         }
 
