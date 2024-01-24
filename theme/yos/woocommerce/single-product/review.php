@@ -36,11 +36,6 @@ $dpt = get_comment_depth(get_comment_ID());
             }?>
         </div>
         <?php if($dpt==1):?>
-            <?php if($buy):?>
-                <div class="comment__author-status">
-                    <?= __('Покупку підтверджено', 'yos');?>
-                </div>
-            <?php endif;?>
             <div class="comment__author-set-stars">
                 <div class="rating" data-rating="<?= $rate;?>">
                     <div class="rating__stars rating__stars-1">
@@ -89,13 +84,17 @@ $dpt = get_comment_depth(get_comment_ID());
             <div class="comment__date">
                 <?=  get_comment_date( 'j F Y'  ); ?>
             </div>
-            <?= comment_reply_link( array_merge( $args, array(
-                'reply_text' => __('відповісти', 'yos'),
-                'depth'     => 1,
-                'max_depth' => 2,
-                'before'    => '<div class="button-link comment__reply-btn"><span>',
-                'after'     => '</span></div>'
-            ) ) );  ?>
+            <?php if( current_user_can('administrator')){
+
+                comment_reply_link( array_merge( $args, array(
+                    'reply_text' => __('відповісти', 'yos'),
+                    'depth'     => 1,
+                    'max_depth' => 2,
+                    'before'    => '<div class="button-link comment__reply-btn"><span>',
+                    'after'     => '</span></div>'
+                ) ) );
+
+            }?>
         </div>
     </div>
 </div>
