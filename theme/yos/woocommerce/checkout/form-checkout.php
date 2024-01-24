@@ -49,65 +49,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     <?php do_action( 'woocommerce_checkout_billing' ); ?>
                     <?php do_action( 'woocommerce_checkout_shipping' ); ?>
 
-                    <div class="checkout-form__row" data-da=".other-recipient,992,last">
-                        <div class="checkout-form__col">
-                            <h2 class="checkout-form__title">спосіб доставки</h2>
-                            <div class="checkbox-radio-list">
-                                <label class="checkbox-radio">
-                                    <input type="radio" name="delivery-method" checked>
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">Нова Пошта Відділення</div>
-                                </label>
-                                <label class="checkbox-radio">
-                                    <input type="radio" name="delivery-method" >
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">Нова Пошта Поштомат</div>
-                                </label>
-                                <label class="checkbox-radio">
-                                    <input type="radio" name="delivery-method" >
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">Нова Пошта Кур’єр</div>
-                                </label>
-                            </div>
-                            <div class="checkout-form__fields">
-                                <!--
-                                    Если нужно обновить селекты, есть метод
-                                    window.select.updateAll();
-                                 -->
-                                <div class="checkout-form__field">
-                                    <div class="select-wrap">
-                                        <select name="cities" class="_select" required>
-                                            <option value="" selected>Місто</option>
-                                            <option value="1">Івано-Франківськ</option>
-                                            <option value="2">Вінниця</option>
-                                            <option value="3">Дніпро</option>
-                                            <option value="4">Донецьк</option>
-                                            <option value="5">Житомир</option>
-                                            <option value="6">Запоріжжя</option>
-                                            <option value="7">Київ</option>
-                                            <option value="8">Кропивницький</option>
-                                            <option value="9">Луганськ</option>
-                                            <option value="10">Луцьк</option>
-                                            <option value="11">Львів</option>
-                                            <option value="12">Миколаїв</option>
-                                            <option value="13">Одеса</option>
-                                            <option value="14">Полтава</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="select-wrap disabled">
-                                        <select name="post" class="_select" required>
-                                            <option value="" selected>Відділення</option>
-                                            <option value="1">Відділення 1</option>
-                                            <option value="2">Відділення 2</option>
-                                            <option value="3">Відділення 3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php wc_cart_totals_shipping_html(); ?>
+
                 </div>
             </div>
             <div class="checkout__side-basket">
@@ -205,10 +148,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
             </div>
         </div>
     </div>
-
-	<div id="order_review" class="woocommerce-checkout-review-order">
-		<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-	</div>
 
 </form>
 
