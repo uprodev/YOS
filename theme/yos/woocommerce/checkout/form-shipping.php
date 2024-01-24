@@ -57,19 +57,10 @@ defined( 'ABSPATH' ) || exit;
         </div>
     </div>
     <div class="checkout-form__col mt">
+
         <h2 class="checkout-form__title"><?= __('спосіб оплати', 'yos');?></h2>
-        <div class="checkbox-radio-list">
-            <label class="checkbox-radio">
-                <input type="radio" name="payment" >
-                <div class="checkbox-radio__square"></div>
-                <div class="checkbox-radio__text">Банківська картка. Інтернет-платіж</div>
-            </label>
-            <label class="checkbox-radio">
-                <input type="radio" name="payment" checked>
-                <div class="checkbox-radio__square"></div>
-                <div class="checkbox-radio__text">При отриманні</div>
-            </label>
-        </div>
+
+        <?php wc_get_template( 'checkout/payment.php');?>
 
         <h2 class="checkout-form__title"><?= __('коментар', 'yos');?></h2>
         <div class="checkout-form__fields">
