@@ -37,10 +37,9 @@ defined( 'ABSPATH' ) || exit;
                 <div class="input-wrap" data-input>
                     <input type="text" class="input" name="billing_mid_name" id="billing_mid_name" placeholder="" value="" autocomplete="given-name" required>
                     <span class="input-label"><?= __('По-батькові', 'yos');?></span>
-
                 </div>
             </div>
-            <input type="text" class="input" name="billing_country" id="billing_country" placeholder="" value="UA" autocomplete="family-name" required>
+            <input type="hidden" name="billing_country" id="billing_country" value="UA" autocomplete="off">
         </div>
     </div>
     <div class="checkout-form__col">
