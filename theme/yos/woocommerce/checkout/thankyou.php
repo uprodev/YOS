@@ -18,73 +18,122 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+
+$items_count = count( $order->get_items() );
+$discount = $order->get_discount_total();
+
+$Timestamp = strtotime(date('j F Y'));
+$TotalTimeStamp1 = strtotime('+ 2 days', $Timestamp);
+$TotalTimeStamp2 = strtotime('+ 6 days', $Timestamp);
+$date1 = date('j F', $TotalTimeStamp1);
+$date2 = date('j F', $TotalTimeStamp2);
+
 ?>
+<section class="order-info">
+    <div class="container">
+        <div class="order-info__body">
+            <div class="order-info__left">
+                <div class="order-info__head">
+                    <h2 class="order-info__title">
+                        <?= __('дякуємо!', 'yos');?>
+                    </h2>
+                    <div class="order-info__text">
+                        <?= __('Ваше замовлення', 'yos');?> <?= $order->get_order_number(); ?> <?= __('було розміщено.', 'yos');?>
+                    </div>
+                </div>
+                <h2 class="order-info__title">
+                    <?= __('ваше замовлення', 'yos');?> <span>(<?= $items_count;?>)</span>
+                </h2>
+                <ul class="order-info__list basket__list">
+                    <?php foreach ( $order->get_items() as $item_id => $item ):
+                        $product_id = $item->get_product_id();
+                        $product = $item->get_product();
+                        $product_name = $item->get_name();
+                        $quantity = $item->get_quantity();
+                        $brand = get_the_terms($product_id, 'pa_brand');
+                    ?>
+                        <li>
+                            <div class="product-card-sm">
+                                <div class="product-card-sm__left">
+                                    <a href="<?= get_permalink($product_id);?>" class="product-card-sm__img">
+                                        <img src="<?= get_the_post_thumbnail_url($product_id, 'thumb');?>" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-card-sm__right">
+                                    <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                    <div class="product-card-sm__text">
+                                        <div class="product-card-sm__text-1">
+                                            <?php echo wp_kses_post( $product_name ); ?>
+                                        </div>
+                                        <div class="product-card-sm__text-2">
+                                            <?php the_field('seria', $product_id);?>
+                                        </div>
+                                    </div>
+                                    <div class="product-card-sm__group">
+                                        <div class="product-card-sm__quantity">
+                                            <div class="product-card-sm__quantity-label"><?= __('Кількість:', 'yos');?> <?= $quantity;?></div>
+                                        </div>
+                                        <div class="product-card-sm__price">
+                                            <?= $product->get_price_html();?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
+            </div>
+            <div class="order-info__right">
+                <h2 class="order-info__title">
+                    <?= __('інформація', 'yos');?>
+                </h2>
 
-<div class="woocommerce-order">
+                <div class="order-info__row">
+                    <h4><?= __('дані одержувача', 'yos');?></h4>
+                    <p><?= $order->get_billing_first_name(). ' '.$order->get_billing_last_name();?></p>
+                    <p><?= $order->get_billing_phone();?></p>
+                    <p><?= $order->get_billing_email();?></p>
+                </div>
 
-	<?php
-	if ( $order ) :
+                <div class="order-info__row">
+                    <h4><?= __('пункт видачі замовлення', 'yos');?></h4>
+                    <p>
+                        Нова Пошта — Відділення #132: вул.
+                        Генуезька, 5, 65002, Одеса
+                    </p>
+                    <p class="text-sm">
+                        <?= __('Приблизна дата доставки:', 'yos');?>
+                        <?= $date1 .' - '. $date2;?>
+                    </p>
+                </div>
+                <div class="order-info__row">
+                    <div class="side-basket__payment-info">
+                        <div class="side-basket__payment-info-row">
+                            <span><?= __('Знижка за системою лояльності', 'yos');?></span>
+                            <span class="text-nowrap">-40 ₴</span>
+                        </div>
+                        <?php if($discount):?>
+                            <div class="side-basket__payment-info-row">
+                                <span><?= __('Знижка', 'yos');?> -23%</span>
+                                <span class="text-nowrap">-<?= $order->get_discount_total();?> ₴</span>
+                            </div>
+                        <?php endif;?>
+                        <div class="side-basket__payment-info-row">
+                            <span><?= __('Доставка', 'yos');?></span>
+                            <span><?= __('За тарифами перевізника', 'yos');?></span>
+                        </div>
+                        <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
+                            <span><?= __('всього до сплати', 'yos');?></span>
+                            <span class="text-nowrap"><?= $order->get_formatted_order_total();?></span>
 
-		do_action( 'woocommerce_before_thankyou', $order->get_id() );
-		?>
+                        </div>
+                    </div>
+                </div>
 
-		<?php if ( $order->has_status( 'failed' ) ) : ?>
-
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
-
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
-				<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
-				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
-				<?php endif; ?>
-			</p>
-
-		<?php else : ?>
-
-			<?php wc_get_template( 'checkout/order-received.php', array( 'order' => $order ) ); ?>
-
-			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
-
-				<li class="woocommerce-order-overview__order order">
-					<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>
-					<strong><?php echo $order->get_order_number(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<li class="woocommerce-order-overview__date date">
-					<?php esc_html_e( 'Date:', 'woocommerce' ); ?>
-					<strong><?php echo wc_format_datetime( $order->get_date_created() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<?php if ( is_user_logged_in() && $order->get_user_id() === get_current_user_id() && $order->get_billing_email() ) : ?>
-					<li class="woocommerce-order-overview__email email">
-						<?php esc_html_e( 'Email:', 'woocommerce' ); ?>
-						<strong><?php echo $order->get_billing_email(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-					</li>
-				<?php endif; ?>
-
-				<li class="woocommerce-order-overview__total total">
-					<?php esc_html_e( 'Total:', 'woocommerce' ); ?>
-					<strong><?php echo $order->get_formatted_order_total(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<?php if ( $order->get_payment_method_title() ) : ?>
-					<li class="woocommerce-order-overview__payment-method method">
-						<?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
-						<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
-					</li>
-				<?php endif; ?>
-
-			</ul>
-
-		<?php endif; ?>
-
-		<?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
-		<?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
-
-	<?php else : ?>
-
-		<?php wc_get_template( 'checkout/order-received.php', array( 'order' => false ) ); ?>
-
-	<?php endif; ?>
-
-</div>
+                <div class="order-info__row">
+                    <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="button-link"><span><?= __('продовжити покупки', 'yos');?></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

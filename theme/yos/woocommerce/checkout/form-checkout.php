@@ -46,136 +46,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </div>
                 </div>
                 <div class="checkout-form__body">
-                    <div class="checkout-form__row">
-                        <div class="checkout-form__col">
-                            <div class="checkout-form__fields">
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
+                    <?php do_action( 'woocommerce_checkout_billing' ); ?>
+                    <?php do_action( 'woocommerce_checkout_shipping' ); ?>
 
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">Прізвище</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">Ім’я</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">По-батькові</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout-form__col">
-                            <div class="checkout-form__fields">
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="email" class="input" required>
-                                        <span class="input-label">Електронна адреса</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
-                                        <span class="input-label">Телефонний номер</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="checkout-form__row">
-                        <div class="checkout-form__col other-recipient">
-                            <div class="checkbox-radio-list">
-                                <label class="checkbox-radio">
-                                    <input type="checkbox" name="other" data-collapse="other-recipient">
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">Отримувач інша особа</div>
-                                </label>
-                            </div>
-
-                            <div class="checkout-form__fields" data-collapse-target="other-recipient">
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">Прізвище</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">Ім’я</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" required>
-                                        <span class="input-label">По-батькові</span>
-
-                                    </div>
-                                </div>
-                                <div class="checkout-form__field">
-                                    <div class="input-wrap" data-input>
-
-
-                                        <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
-                                        <span class="input-label">Телефонний номер</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="checkout-form__col mt">
-                            <h2 class="checkout-form__title">спосіб оплати</h2>
-                            <div class="checkbox-radio-list">
-                                <label class="checkbox-radio">
-                                    <input type="radio" name="payment" >
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">Банківська картка. Інтернет-платіж</div>
-                                </label>
-                                <label class="checkbox-radio">
-                                    <input type="radio" name="payment" checked>
-                                    <div class="checkbox-radio__square"></div>
-                                    <div class="checkbox-radio__text">При отриманні</div>
-                                </label>
-                            </div>
-
-                            <h2 class="checkout-form__title">коментар</h2>
-                            <div class="checkout-form__fields">
-                                <div class="checkout-form__field">
-                                    <div class="textarea-wrap" data-textarea>
-                                        <textarea class="textarea"></textarea>
-                                        <span class="textarea-label">Текст повідомлення</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="checkout-form__row" data-da=".other-recipient,992,last">
                         <div class="checkout-form__col">
                             <h2 class="checkout-form__title">спосіб доставки</h2>
@@ -348,28 +221,11 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
         </div>
     </div>
 
-	<?php if ( $checkout->get_checkout_fields() ) : ?>
 
-		<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
-
-		<div class="col2-set" id="customer_details">
-			<div class="col-1">
-				<?php do_action( 'woocommerce_checkout_billing' ); ?>
-			</div>
-
-			<div class="col-2">
-				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-			</div>
-		</div>
-
-		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
-
-	<?php endif; ?>
-	
 	<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-	
+
 	<h3 id="order_review_heading"><?php esc_html_e( 'Your order', 'woocommerce' ); ?></h3>
-	
+
 	<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
 	<div id="order_review" class="woocommerce-checkout-review-order">
@@ -381,5 +237,3 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 </form>
 
 </section>
-
-<?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>

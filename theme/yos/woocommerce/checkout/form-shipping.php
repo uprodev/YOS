@@ -18,53 +18,78 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
-<div class="woocommerce-shipping-fields">
-	<?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
+<div class="checkout-form__row">
+    <div class="checkout-form__col other-recipient">
+        <div class="checkbox-radio-list">
+            <label class="checkbox-radio">
+                <input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" data-collapse="other-recipient" value="1" />
+                <div class="checkbox-radio__square"></div>
+                <div class="checkbox-radio__text">Отримувач інша особа</div>
+            </label>
+        </div>
 
-		<h3 id="ship-to-different-address">
-			<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-				<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php esc_html_e( 'Ship to a different address?', 'woocommerce' ); ?></span>
-			</label>
-		</h3>
+        <div class="checkout-form__fields" data-collapse-target="other-recipient">
+            <div class="checkout-form__field">
+                <div class="input-wrap" data-input>
 
-		<div class="shipping_address">
 
-			<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
+                    <input type="text" class="input" required>
+                    <span class="input-label">Прізвище</span>
 
-			<div class="woocommerce-shipping-fields__field-wrapper">
-				<?php
-				$fields = $checkout->get_checkout_fields( 'shipping' );
+                </div>
+            </div>
+            <div class="checkout-form__field">
+                <div class="input-wrap" data-input>
 
-				foreach ( $fields as $key => $field ) {
-					woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
-				}
-				?>
-			</div>
 
-			<?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
+                    <input type="text" class="input" required>
+                    <span class="input-label">Ім’я</span>
 
-		</div>
+                </div>
+            </div>
+            <div class="checkout-form__field">
+                <div class="input-wrap" data-input>
 
-	<?php endif; ?>
-</div>
-<div class="woocommerce-additional-fields">
-	<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
 
-	<?php if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' === get_option( 'woocommerce_enable_order_comments', 'yes' ) ) ) : ?>
+                    <input type="text" class="input" required>
+                    <span class="input-label">По-батькові</span>
 
-		<?php if ( ! WC()->cart->needs_shipping() || wc_ship_to_billing_address_only() ) : ?>
+                </div>
+            </div>
+            <div class="checkout-form__field">
+                <div class="input-wrap" data-input>
 
-			<h3><?php esc_html_e( 'Additional information', 'woocommerce' ); ?></h3>
 
-		<?php endif; ?>
+                    <input type="text" class="input" data-mask="+380 (99) 999 99 99" required>
+                    <span class="input-label">Телефонний номер</span>
 
-		<div class="woocommerce-additional-fields__field-wrapper">
-			<?php foreach ( $checkout->get_checkout_fields( 'order' ) as $key => $field ) : ?>
-				<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
-			<?php endforeach; ?>
-		</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-form__col mt">
+        <h2 class="checkout-form__title">спосіб оплати</h2>
+        <div class="checkbox-radio-list">
+            <label class="checkbox-radio">
+                <input type="radio" name="payment" >
+                <div class="checkbox-radio__square"></div>
+                <div class="checkbox-radio__text">Банківська картка. Інтернет-платіж</div>
+            </label>
+            <label class="checkbox-radio">
+                <input type="radio" name="payment" checked>
+                <div class="checkbox-radio__square"></div>
+                <div class="checkbox-radio__text">При отриманні</div>
+            </label>
+        </div>
 
-	<?php endif; ?>
-
-	<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
+        <h2 class="checkout-form__title">коментар</h2>
+        <div class="checkout-form__fields">
+            <div class="checkout-form__field">
+                <div class="textarea-wrap" data-textarea>
+                    <textarea class="textarea"></textarea>
+                    <span class="textarea-label">Текст повідомлення</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -8,9 +8,13 @@ get_header();
 
 	<main class="_page basket-page">
 
-<?php elseif(is_checkout()):?>
+<?php elseif(is_checkout()):
 
-    <main class="_page checkout-page">
+    if(is_wc_endpoint_url( 'order-received' )): ?>
+        <main class="_page order-info-page">
+    <?php else:?>
+        <main class="_page checkout-page">
+    <?php endif;?>
 
 <?php else:?>
 
