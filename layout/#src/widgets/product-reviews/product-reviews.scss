@@ -11,7 +11,7 @@
 
     &__head {
         @media (min-width: $mq-lg) {
-            flex: 0 0 33.5rem
+            flex: 0 0 33.5rem;
         }
     }
 
@@ -261,7 +261,7 @@
         @media (min-width: $mq-lg) {
             &.hover {
                 color: $themeColorThird;
-    
+
                 &::before {
                     content: "\e902";
                 }
@@ -282,13 +282,10 @@
     }
 }
 
-
 .product-comments {
-
     &__list {
         display: flex;
         flex-direction: column;
-        gap: 4rem;
     }
 
     &__footer {
@@ -300,6 +297,14 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    &:not(:first-child) {
+        margin-top: 4rem;
+    }
+
+    &:not(.subcomment) + .subcomment {
+        margin-top: 2rem;
+    }
 
     @media (min-width: $mq-lg) {
         flex-direction: row;
@@ -332,7 +337,7 @@
 
     &__body {
         @media (min-width: $mq-lg) {
-            flex: 0 0 56rem
+            flex: 0 0 56rem;
         }
     }
 
@@ -355,36 +360,13 @@
     &__reply-btn {
     }
 
-    &__subcomments {
-        padding-left: 4rem;
-
-        & > * {
-            margin-top: 2rem;
-        }
+    &.subcomment {
+        margin-left: 4rem;
+        gap: 1rem;
 
         @media (min-width: $mq-lg) {
-            padding-left: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 4rem;
-
-            & > * {
-                margin-top: 0rem;
-
-                &:first-child {
-                    margin-top: 2rem;
-                }
-            }
-        }
-
-        & .comment {
-            gap: 1rem;
-
-            @media (min-width: $mq-lg) {
-                gap: 2rem;
-                margin-left: auto;
-            }
+            gap: 2rem;
+            margin-left: auto;
         }
 
         & .comment__head {
@@ -396,13 +378,14 @@
 
         & .comment__body {
             flex: 1 1 auto;
-            max-width: 29.2rem;
+
+            @media (min-width: $mq-lg) {
+                max-width: 29.2rem;
+            }
         }
 
         & .comment__footer {
             margin-top: 1rem;
         }
-
-
     }
 }
