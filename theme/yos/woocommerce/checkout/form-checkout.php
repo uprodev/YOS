@@ -37,11 +37,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
             <div class="checkout__form checkout-form">
                 <div class="checkout-form__head">
                     <div class="checkout-form__head-left">
-                        <h2 class="checkout-form__head-title">оформлення замовлення</h2>
+                        <h2 class="checkout-form__head-title"><?php the_title();?></h2>
                         <a href="#" class="button-link"><span>є акаунт?</span></a>
                     </div>
                     <div class="checkout-form__head-right">
-                        <a href="#" class="button-link"><span>продовжити покупки</span></a>
+                        <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="button-link">
+                            <span><?= __('продовжити покупки', 'yos');?></span></a>
                     </div>
                 </div>
                 <div class="checkout-form__body">
@@ -238,7 +239,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
             </div>
             <div class="checkout__side-basket">
                 <div class="side-basket__head">
-                    ваш кошик <span>(3)</span>
+                    <?= __('ваш кошик', 'yos');?>
+                    <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
                 </div>
                 <div class="side-basket__scroll-container">
                     <ul class="side-basket__products-list">

@@ -24,13 +24,9 @@ $rate = intval(get_comment_meta(get_comment_ID(), 'rating', true));
 $buy = get_field('approve_buy', 'comment_'.get_comment_ID());
 $dpt = get_comment_depth(get_comment_ID());
 
-if($dpt>1):?>
-<div class="comment">
-    <div class="comment__head"></div>
-    <div class="comment__body">
-        <div class="comment__subcomments">
-<?php endif;?>
-<div class="comment" id="comment-<?php comment_ID(); ?>">
+?>
+
+<div class="comment <?= $dpt>1?'subcomment':'';?>" id="comment-<?php comment_ID(); ?>">
     <div class="comment__head">
         <div class="comment__author-name">
             <?php if (1 == $comment->user_id){?>
@@ -103,8 +99,4 @@ if($dpt>1):?>
         </div>
     </div>
 </div>
-<?php if($dpt>1):?>
-        </div>
-    </div>
-</div>
-<?php endif;?>
+

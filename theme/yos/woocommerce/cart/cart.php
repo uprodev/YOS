@@ -26,7 +26,7 @@ do_action( 'woocommerce_before_cart' ); ?>
             </a>
 
             <h2 class="basket__title title-2">
-                <?= __('ваш кошик', 'yos');?>
+                <?php the_title();?>
                 <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
             </h2>
         </div>
