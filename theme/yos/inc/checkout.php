@@ -1,5 +1,7 @@
 <?php
 
+/* unset checkout fields */
+
 add_filter( 'woocommerce_checkout_fields' , 'quadlayers_remove_checkout_fields' );
 
 function quadlayers_remove_checkout_fields( $fields ) {
@@ -21,6 +23,7 @@ function quadlayers_remove_checkout_fields( $fields ) {
 
 }
 
+/* add custom checkout field */
 add_action( 'woocommerce_before_order_notes', 'add_custom_checkout_field' );
 
 function add_custom_checkout_field( $checkout ) {
@@ -41,7 +44,7 @@ add_action( 'woocommerce_checkout_process', 'validate_new_checkout_field' );
 
 function validate_new_checkout_field() {
     if ( ! $_POST['billing_mid_name'] ) {
-        wc_add_notice( 'Please enter your По-батькові', 'error' );
+        wc_add_notice( '<strong>'.__('По-батькові', 'yos').'</strong> '.__('is a required field.', 'yos'), 'error' );
     }
 }
 
@@ -54,20 +57,20 @@ function save_new_checkout_field( $order_id ) {
 add_action( 'woocommerce_thankyou', 'show_new_checkout_field_thankyou' );
 
 function show_new_checkout_field_thankyou( $order_id ) {
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
 }
 
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'show_new_checkout_field_order' );
 
 function show_new_checkout_field_order( $order ) {
     $order_id = $order->get_id();
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
 }
 
 add_action( 'woocommerce_email_after_order_table', 'show_new_checkout_field_emails', 20, 4 );
 
 function show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
-    if ( get_post_meta( $order->get_id(), '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order->get_id(), '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order->get_id(), '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order->get_id(), '_billing_mid_name', true ) . '</p>';
 }
 
 remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
