@@ -15,3 +15,7 @@ Description: Theme WP for YOS
 .set-stars>p.stars, .comment-notes, .comment-form-cookies-consent, .add-comment__form .acf-comment-fields{
     display: none;
 }
+.woocommerce-checkout #payment {
+    background: #fff;
+    border-radius: unset;
+}

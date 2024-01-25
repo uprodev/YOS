@@ -51,6 +51,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
                     <?php wc_cart_totals_shipping_html(); ?>
 
+
                 </div>
             </div>
             <div class="checkout__side-basket">

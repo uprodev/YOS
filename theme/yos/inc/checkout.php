@@ -54,18 +54,22 @@ function save_new_checkout_field( $order_id ) {
 add_action( 'woocommerce_thankyou', 'show_new_checkout_field_thankyou' );
 
 function show_new_checkout_field_thankyou( $order_id ) {
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>License Number:</strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
 }
 
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'show_new_checkout_field_order' );
 
 function show_new_checkout_field_order( $order ) {
     $order_id = $order->get_id();
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>License Number:</strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
 }
 
 add_action( 'woocommerce_email_after_order_table', 'show_new_checkout_field_emails', 20, 4 );
 
 function show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
-    if ( get_post_meta( $order->get_id(), '_billing_mid_name', true ) ) echo '<p><strong>License Number:</strong> ' . get_post_meta( $order->get_id(), '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order->get_id(), '_billing_mid_name', true ) ) echo '<p><strong>Father: </strong> ' . get_post_meta( $order->get_id(), '_billing_mid_name', true ) . '</p>';
 }
+
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
+
+add_action( 'woocommerce_review_order_and_proceed', 'woocommerce_order_review', 20 );
