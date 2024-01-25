@@ -6,7 +6,8 @@ $actions = [
     'update_totals',
     'update_mini_cart',
     'remove_from_cart',
-    'apply_coupon'
+    'apply_coupon',
+    'add_to_fav'
 ];
 
 foreach($actions as $action){
@@ -137,6 +138,18 @@ function apply_coupon(){
     }
 
     die();
+}
+
+
+/* add to fav*/
+
+function add_to_fav() {
+    $user_id = $_POST['user_id'];
+    $fav = $_POST['fav'];
+    update_field('fav',$fav, 'user_'.$user_id);
+
+
+    wp_die();
 }
 
 

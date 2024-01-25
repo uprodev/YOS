@@ -66,23 +66,9 @@ jQuery(document).ready(function ($) {
 
         $('.recently-row').remove();
 
+        $(document.body).trigger('wc_update_cart');
+        $( document.body ).trigger( 'wc_fragment_refresh' );
 
-        $( document.body ).trigger( 'updated_wc_div' );
-        $( document.body ).trigger( 'updated_cart_totals' );
-
-
-            // $.ajax({
-            //
-            //     url: globals.url,
-            //     data: {
-            //         action: 'update_cart',
-            //     },
-            //     success: function (data) {
-            //
-            //         $('.basket-page').html(data);
-            //
-            //     }
-            // });
     })
 
     /* mini cart update */
@@ -236,6 +222,73 @@ jQuery(document).ready(function ($) {
                 $('.promo-error').show();
             },
         });
+    });
+
+
+    /**
+     * favourites
+     */
+
+    function onlyUnique(value, index, array) {
+        return array.indexOf(value) === index;
+    }
+
+    function getKeyByValue(object, value) {
+        return Object.keys(object).find(key => object[key] === value);
+    }
+
+
+    var globalFav = globals.fav
+
+    $(document).on('click', '.add_to_fav', function () {
+
+        $(this).toggleClass('active');
+
+        var user_id = $(this).attr('data-user_id');
+        var product_id = $(this).attr('data-product_id');
+        var liked = $(this).attr('data-liked');
+
+        if (user_id > 0) {
+            var fav = globalFav ? globalFav : [];
+        } else {
+            var fav = Cookies.get('fav') ? Cookies.get('fav') : [];
+        }
+
+        if (fav.length > 0) {
+            fav = fav.split('|');
+        }
+
+        fav = fav.filter(onlyUnique);
+
+        if (liked) {
+            var key = getKeyByValue(fav, product_id)
+            delete fav[key];
+
+        } else {
+            fav.push(product_id);
+            $(this).attr('data-liked', 1);
+        }
+
+        fav = fav.join('|');
+
+        Cookies.set('fav', fav);
+        globalFav = fav
+        if (user_id > 0) {
+
+            $.ajax({
+                type: 'POST',
+                url: wc_add_to_cart_params.ajax_url,
+
+                data: {
+                    action: 'add_to_fav',
+                    user_id: user_id,
+                    fav: fav
+                },
+                success: function (data) {
+
+                },
+            });
+        }
     });
 
 

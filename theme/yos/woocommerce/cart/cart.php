@@ -139,7 +139,11 @@ do_action( 'woocommerce_before_cart' ); ?>
                                             <?= $_prod->get_price_html();?>
                                         </div>
                                         <div class="product-card-sm__btn-add">
-                                            <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart addit-add" ><?= __('додати', 'yos');?></a>
+                                            <?php if($_prod->is_type('variable')):?>
+                                                <a href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
+                                            <?php else:?>
+                                                <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart addit-add" ><?= __('додати', 'yos');?></a>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                 </div>

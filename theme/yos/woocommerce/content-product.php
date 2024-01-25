@@ -91,7 +91,8 @@ $choise = get_field('yos_choise', get_the_ID());
         <a href="<?php the_permalink();?>" class="product-card__img">
             <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">
         </a>
-        <button class="product-card__like-button <?= (isset($_COOKIE['wish']) && in_array(get_the_ID(), $wish))?'active':'';?>"></button>
+
+        <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-card__like-button" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
     </div>
     <div class="product-card__body">
         <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>

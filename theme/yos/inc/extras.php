@@ -157,3 +157,25 @@ function recently_viewed_products() {
     return $first;
 
 }
+
+/* add to fav */
+
+function is_favorite($product_id) {
+    if (is_user_logged_in() ) {
+        $fav = get_field('fav', 'user_'. get_current_user_id()) ? get_field('fav', 'user_'. get_current_user_id()) :[];
+    } else {
+        $fav =  $_COOKIE['fav'] ? $_COOKIE['fav'] : [];
+    }
+
+    if ($fav){
+        $fav = explode('|', $fav);
+    }
+
+
+    if (in_array($product_id, $fav)){
+        return 'active';
+    }
+
+}
+
+remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );

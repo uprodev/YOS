@@ -236,8 +236,7 @@ if( $product->is_type('variable') ){
 
                             <div class="product-actions__footer">
                                 <button <?= $consultation?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
-                                <button class="product-actions__like"></button>
-                                <!-- class="product-actions__like active" -->
+                                <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-actions__like" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
 
                             </div>
 
