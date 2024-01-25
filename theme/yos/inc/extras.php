@@ -179,3 +179,20 @@ function is_favorite($product_id) {
 }
 
 remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );
+
+
+/* alphabet brand */
+
+add_filter( 'terms_clauses', 'terms_clauses_47840519', 10, 3 );
+function terms_clauses_47840519( $clauses, $taxonomies, $args ){
+    global $wpdb;
+
+    if( !isset( $args['__first_letter'] ) ){
+        return $clauses;
+    }
+
+    $clauses['where'] .= ' AND ' . $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $args['__first_letter'] ) . '%' );
+
+    return $clauses;
+
+}
