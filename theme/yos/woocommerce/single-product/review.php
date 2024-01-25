@@ -24,6 +24,8 @@ $rate = intval(get_comment_meta(get_comment_ID(), 'rating', true));
 $buy = get_field('approve_buy', 'comment_'.get_comment_ID());
 $dpt = get_comment_depth(get_comment_ID());
 
+$images = get_comment_meta(get_comment_ID(), 'comment_image_reloaded_url');
+
 ?>
 
 <div class="comment <?= $dpt>1?'subcomment':'';?>" id="comment-<?php comment_ID(); ?>">
@@ -77,6 +79,15 @@ $dpt = get_comment_depth(get_comment_ID());
         <?php endif;?>
     </div>
     <div class="comment__body">
+        <?php if($images):?>
+            <div class="comment-images">
+                <?php foreach ($images as $key =>$val):
+                    foreach($val as $img):?>
+                        <?= $img['woocommerce_gallery_thumbnail'];?>
+                    <?php endforeach;
+                endforeach;?>
+            </div>
+        <?php endif;?>
         <div class="comment__text">
             <?php do_action( 'woocommerce_review_comment_text', $comment );?>
         </div>
