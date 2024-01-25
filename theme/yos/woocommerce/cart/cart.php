@@ -110,35 +110,42 @@ do_action( 'woocommerce_before_cart' ); ?>
                         </div>
                     <?php } ?>
 
-                    <div class="basket__side-row">
-                        <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
-                        <div class="basket__side-offer">
-                            <div class="product-card-sm">
-                                <div class="product-card-sm__left">
-                                    <a href="#" class="product-card-sm__img">
-                                        <img src="<?= get_template_directory_uri();?>/img/photo/product-card-img-2.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="product-card-sm__right">
-                                    <div class="product-card-sm__title"><a href="#">rare paris</a></div>
-                                    <div class="product-card-sm__text">
-                                        <div class="product-card-sm__text-1">
-                                            Cellulose Facial Mask
-                                        </div>
-                                        <div class="product-card-sm__text-2">
-                                            Tresor Solaire Ecological
-                                        </div>
+                    <?php $addit_prod = recently_viewed_products();
+
+                    if($addit_prod):
+                        $_prod =  wc_get_product( $addit_prod );
+                        $br = get_the_terms($addit_prod, 'pa_brand');?>
+                        <div class="basket__side-row recently-row">
+                            <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
+
+                            <div class="basket__side-offer">
+                                <div class="product-card-sm">
+                                    <div class="product-card-sm__left">
+                                        <a href="<?= get_permalink($addit_prod);?>" class="product-card-sm__img">
+                                            <img src="<?= get_the_post_thumbnail_url($addit_prod, 'thumb');?>" alt="">
+                                        </a>
                                     </div>
-                                    <div class="product-card-sm__price">
-                                        <div class="product-card-sm__price-current">299 ₴</div>
-                                    </div>
-                                    <div class="product-card-sm__btn-add">
-                                        <a href="#" class="button-primary dark button-primary--sm w-100">додати</a>
+                                    <div class="product-card-sm__right">
+                                        <div class="product-card-sm__title"><a href="<?= get_term_link($br[0]->term_id);?>"><?= $br[0]->name;?></a></div>
+                                        <div class="product-card-sm__text">
+                                            <div class="product-card-sm__text-1">
+                                                <?= get_the_title($addit_prod);?>
+                                            </div>
+                                            <div class="product-card-sm__text-2">
+                                                <?php the_field('seria', $addit_prod);?>
+                                            </div>
+                                        </div>
+                                        <div class="product-card-sm__price">
+                                            <?= $_prod->get_price_html();?>
+                                        </div>
+                                        <div class="product-card-sm__btn-add">
+                                            <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart addit-add" ><?= __('додати', 'yos');?></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endif;?>
 
                     <div class="basket__side-row">
                         <div class="side-basket__payment-info">
@@ -199,6 +206,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                     <?php endif;?>
                 </div>
             </div>
+
     </div>
 </section>
 

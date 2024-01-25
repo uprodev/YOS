@@ -98,3 +98,62 @@ function get_comment_depth( $my_comment_id ) {
     return $depth_level;
 }
 
+/* recently viewed products */
+
+add_action( 'template_redirect', 'recently_viewed_product_cookie', 20 );
+
+function recently_viewed_product_cookie() {
+
+    if ( ! is_product() ) {
+        return;
+    }
+
+
+    if ( empty( $_COOKIE[ 'woocommerce_recently_viewed_2' ] ) ) {
+        $viewed_products = array();
+    } else {
+        $viewed_products = (array) explode( '|', $_COOKIE[ 'woocommerce_recently_viewed_2' ] );
+    }
+
+
+    if ( ! in_array( get_the_ID(), $viewed_products ) ) {
+        $viewed_products[] = get_the_ID();
+    }
+
+    if ( sizeof( $viewed_products ) > 10 ) {
+        array_shift( $viewed_products );
+    }
+
+
+    wc_setcookie( 'woocommerce_recently_viewed_2', join( '|', $viewed_products ) );
+
+}
+
+function recently_viewed_products() {
+
+    if( empty( $_COOKIE[ 'woocommerce_recently_viewed_2' ] ) ) {
+        $viewed_products = array();
+    } else {
+        $viewed_products = (array) explode( '|', $_COOKIE[ 'woocommerce_recently_viewed_2' ] );
+    }
+
+    if ( empty( $viewed_products ) ) {
+        return;
+    }
+
+    $product_id = [];
+
+    foreach ( WC()->cart->get_cart() as $cart_item ) {
+
+        $product_id[] = $cart_item['product_id'];
+
+    }
+
+    $viewed_products = array_reverse( array_map( 'absint', $viewed_products ) );
+
+    $result = array_diff($viewed_products, $product_id);
+    $first = array_shift($result);
+
+    return $first;
+
+}
