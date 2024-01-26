@@ -28,7 +28,9 @@ $review_count = $product->get_review_count();
 $average      = round($product->get_average_rating(),1);
 
 $args = array ('post_type' => 'product', 'post_id' => get_the_ID());
+
 $comments = get_comments( $args );
+if($comments):
 $s1 = 0;
 $s2 = 0;
 $s3 = 0;
@@ -53,7 +55,7 @@ $prc2 = round(($s2*100)/$review_count);
 $prc3 = round(($s3*100)/$review_count);
 $prc4 = round(($s4*100)/$review_count);
 $prc5 = round(($s5*100)/$review_count);
-
+endif;
 ?>
 <div class="top-space-60 top-space-md-150">
     <section class="product-reviews" id="reviews">
@@ -279,3 +281,4 @@ $prc5 = round(($s5*100)/$review_count);
         </div>
     </section>
 </div>
+
