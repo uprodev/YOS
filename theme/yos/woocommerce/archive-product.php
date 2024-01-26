@@ -999,12 +999,12 @@ do_action( 'woocommerce_before_main_content' );
                         </ul>
                         <div class="catalog__prodducts-footer">
                             <?php do_action( 'woocommerce_after_shop_loop' );?>
-                            <div class="pagination">
-                                <a href="#" class="button-link"><span>завантажити ще</span></a>
-                                <div class="pagination__fraction">01/13</div>
-                                <a href="#" class="pagination__btn left disabled"><span class="icon-arrow-left"></span></a>
-                                <a href="#" class="pagination__btn right"><span class="icon-arrow-right"></span></a>
-                            </div>
+<!--                            <div class="pagination">-->
+<!--                                <a href="#" class="button-link"><span>завантажити ще</span></a>-->
+<!--                                <div class="pagination__fraction">01/13</div>-->
+<!--                                <a href="#" class="pagination__btn left disabled"><span class="icon-arrow-left"></span></a>-->
+<!--                                <a href="#" class="pagination__btn right"><span class="icon-arrow-right"></span></a>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>
