@@ -48,18 +48,31 @@ if($offer):?>
                     </form>
                 </div>
             </div>
-            <div class="header-actions__item">
-                <div class="language">
-                    <div class="language__current">
-                        українська
+            <?php $languages = icl_get_languages('skip_missing=1');
+
+            if(1 < count($languages)):?>
+
+                <div class="header-actions__item">
+                    <div class="language">
+                        <?php foreach($languages as $l){
+
+                            if($l['active']){
+                                echo '<div class="language__current">'.$l['translated_name'].'</div>';
+                            }
+                        }?>
+                        <ul class="language__list">
+                            <?php foreach($languages as $l){
+
+                                if(!$l['active']){
+                                    echo '<li><a href="'.$l['url'].'">'.$l['translated_name'].'</a></li>';
+                                }
+                            }?>
+
+                        </ul>
                     </div>
-                    <ul class="language__list">
-                        <li>
-                            <a href="#">english</a>
-                        </li>
-                    </ul>
                 </div>
-            </div>
+            <?php endif;?>
+
             <div class="header-actions__item">
                 <a href="#">
                     <?= __('кабінет', 'yos');?>
