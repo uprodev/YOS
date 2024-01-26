@@ -28,7 +28,7 @@ get_header();
                             <ul class="brands__best-list">
                                 <?php foreach($top as $tb):?>
                                     <li>
-                                        <a href="#"><?= get_term( $tb )->name;?></a>
+                                        <a href="<?= get_term_link($tb);?>"><?= get_term( $tb )->name;?></a>
                                     </li>
                                 <?php endforeach;?>
                             </ul>
@@ -72,6 +72,7 @@ get_header();
                         $terms = get_terms( array(
                             'taxonomy' => 'pa_brand',
                             '__first_letter' => $letr,
+                            'hide_empty' => false
                         ) );
                         ?>
 
@@ -83,7 +84,7 @@ get_header();
                                     $label = get_field('label', 'pa_brand_'.$term->term_id);?>
 
                                     <li>
-                                        <a href="#" class="brands__list-block-item"><?= $term->name;?> <?= $label?'<span>'.$label.'</span>':'';?></a>
+                                        <a href="<?= get_term_link($term->term_id);?>" class="brands__list-block-item"><?= $term->name;?> <?= $label?'<span>'.$label.'</span>':'';?></a>
                                     </li>
 
                                 <?php endforeach;?>
