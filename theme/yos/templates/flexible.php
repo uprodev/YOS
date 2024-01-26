@@ -1,5 +1,11 @@
 <?php
 
+/*
+
+Template Name: Flexible
+
+*/
+
 $id = get_the_ID();
 
 ?>
