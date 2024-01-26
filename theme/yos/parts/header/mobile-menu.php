@@ -58,16 +58,23 @@
                         <li><a href="#">контакти</a></li>
                     </ul>
 
-                    <div class="mobile-menu__language">
-                        <div class="mobile-menu__title" data-collapse="language">мова</div>
-                        <!--
-                                Атрибут "data-collapse" скрывает следующий лемент, который ниже.
-                            -->
-                        <ul class="mobile-menu__list" data-collapse-target="language">
-                            <li><a href="#" class="active">Українська</a></li>
-                            <li><a href="#">English</a></li>
-                        </ul>
-                    </div>
+                    <?php $languages = icl_get_languages('skip_missing=1');
+
+                    if(1 < count($languages)):?>
+
+                        <div class="mobile-menu__language">
+                            <div class="mobile-menu__title" data-collapse="language"><?= __('мова', 'yos');?></div>
+                            <ul class="mobile-menu__list" data-collapse-target="language">
+                                <?php foreach($languages as $l):?>
+
+                                    <li><a href="<?= $l['url'];?>" <?= $l['active']?'class="active"':'';?>><?= $l['translated_name' ];?></a></li>
+
+                                <?php endforeach;?>
+                            </ul>
+                        </div>
+
+                    <?php endif;?>
+
                 </div>
             </div>
             <div class="mobile-menu__layer" data-layer="layer-2">
