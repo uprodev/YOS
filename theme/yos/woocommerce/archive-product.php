@@ -38,11 +38,16 @@ do_action( 'woocommerce_before_main_content' );
                     <div class="catalog__head-col-1"></div>
                     <div class="catalog__head-col-2">
                         <div class="catalog__head-row catalog__head-row--selected-filters-and-sort">
-                            <div class="catalog__products-selected-filters d-none">
-                                <div class="selected-filters"></div>
+                            <div class="catalog__products-selected-filters d-none0">
+                                <div class="selected-filters">
+                                    <?= do_shortcode('[br_filter_single filter_id=450]') ?>
+                                </div>
                             </div>
                             <div class="catalog__products-sort-by">
                                 <div class="sort-by">
+
+                                    <?php woocommerce_catalog_ordering() ?>
+
                                     <div class="sort-by__title">сортувати за</div>
                                     <ul class="sort-by__list">
                                         <li>
@@ -130,7 +135,15 @@ do_action( 'woocommerce_before_main_content' );
                                         </ul>
                                     </div>
                                 </div>
-                                <form action="/" class="filter__form">
+
+                                <div class="filter__form">
+                                    <div class="filter__row">
+                                        <div class="filter__title">фільтр</div>
+                                    <?= do_shortcode('[br_filters_group group_id=409]') ?>
+                                    </div>
+                                </div>
+
+                                <form style="display: none1" action="/" class="filter__form">
                                     <div class="filter__row">
                                         <div class="filter__title">фільтр</div>
                                         <div class="filter__selected-filters d-none">
@@ -980,6 +993,9 @@ do_action( 'woocommerce_before_main_content' );
                                         <span>зняти всі фільтри</span>
                                     </button>
                                 </form>
+
+
+
                             </div>
                         </div>
                     </div>
