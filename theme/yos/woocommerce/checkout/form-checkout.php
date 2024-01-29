@@ -119,10 +119,10 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </ul>
 
                     <div class="side-basket__payment-info">
-                        <div class="side-basket__payment-info-row">
-                            <span><?= __('Знижка за системою лояльності', 'yos');?></span>
-                            <span class="text-nowrap">-60 ₴</span>
-                        </div>
+<!--                        <div class="side-basket__payment-info-row">-->
+<!--                            <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
+<!--                            <span class="text-nowrap">-60 ₴</span>-->
+<!--                        </div>-->
                         <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
                             <span><?= __('Інші знижки', 'yos');?></span>
                             <span class="text-nowrap" >
