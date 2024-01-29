@@ -184,14 +184,20 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.color-item', function (){
         let color = $(this).attr('data-color');
+        let vol = $('input[name="volume"]:checked').val();
 
         $('#pa_color').val(color).change();
+        $('#pa_volumes').val(vol).change();
+
     })
 
     $(document).on('click', '.volume-item', function (){
         let volumes = $(this).attr('data-volumes');
+        let color = $('input[name="colors"]:checked').val();
 
         $('#pa_volumes').val(volumes).change();
+        $('#pa_color').val(color).change();
+
     })
 
 

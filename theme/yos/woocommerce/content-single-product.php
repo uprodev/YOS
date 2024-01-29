@@ -116,7 +116,7 @@ if( $product->is_type('variable') ){
 
                                                 <div class="product-actions__option-item volume-item" data-volumes="<?= $volume->slug ?>" >
                                                     <label class="product-option">
-                                                        <input type="radio" name="volume" <?= $default_attributes['pa_volumes'] == $volume->slug ? 'checked' : '' ?>>
+                                                        <input type="radio" name="volume" <?= $default_attributes['pa_volumes'] == $volume->slug ? 'checked' : '' ?> value="<?= $volume->slug ?>">
                                                         <div class="product-option__value">
                                                             <?= $volume->name ?>
                                                         </div>
@@ -152,7 +152,7 @@ if( $product->is_type('variable') ){
 
                                             <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
                                                 <label class="product-option-color" style="color: <?= $c;?>">
-                                                    <input type="radio" name="color" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?>>
+                                                    <input type="radio" name="colors" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?> value="<?= $color->slug ?>">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <g clip-path="url(#clip0_1014_6192)">
