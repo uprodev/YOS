@@ -27,12 +27,126 @@ if($menu):
                             </div>
                         <?php endif; ?>
 
-                    <?php $i++; endforeach;?>
+                    <?php $i++; endforeach; $i=0;?>
                 </div>
                 <div class="swiper-scrollbar"></div>
             </div>
         </div>
     </div>
+
+    <?php foreach ($menu as $m):?>
+
+        <div class="categories__tab" data-category-tab data-index="<?= $i;?>">
+            <div class="categories__body container">
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Догляд за обличчям</a>
+
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Очищення</a>
+                                </li>
+                                <li>
+                                    <a href="#">Тонізація</a>
+                                </li>
+                                <li>
+                                    <a href="#">Сироватки</a>
+                                </li>
+                                <li>
+                                    <a href="#">Креми</a>
+                                </li>
+                                <li>
+                                    <a href="#">Маски</a>
+                                </li>
+                                <li>
+                                    <a href="#">Масло</a>
+                                </li>
+                                <li>
+                                    <a href="#">Ексфоліанти</a>
+                                </li>
+                                <li>
+                                    <a href="#">SPF</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Область навколо очей</a>
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Сироватки</a>
+                                </li>
+                                <li>
+                                    <a href="#">Патчи</a>
+                                </li>
+                                <li>
+                                    <a href="#">Гелі</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Шия та декольте</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Брови та вії</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <ul class="categories__list">
+                        <li>
+                            <a href="#" class="categories__list-title">Догляд за обличчям</a>
+
+                            <ul class="categories__sublist">
+                                <li>
+                                    <a href="#">Бальзами</a>
+                                </li>
+                                <li>
+                                    <a href="#">Крема</a>
+                                </li>
+                                <li>
+                                    <a href="#">Маски</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Автозасмага</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Спеціальні засоби</a>
+                        </li>
+                        <li>
+                            <a href="#" class="categories__list-title">Travel версії та мініатюри</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories__block">
+                    <a href="#" class="category-offer-card">
+                        <div class="category-offer-card__img ibg">
+                            <img src="img/photo/offer-card.jpg" alt="">
+                        </div>
+                        <div class="category-offer-card__bottom">
+                            <div class="category-offer-card__title">Догляд узимку</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <?php $i++; endforeach;?>
+
+</div>
     <div class="categories__tab" data-category-tab data-index="1">
         <div class="categories__body container">
 
@@ -376,7 +490,5 @@ if($menu):
             </div>
         </div>
     </div>
-</div>
-
 
 <?php endif;
