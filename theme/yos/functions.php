@@ -7,6 +7,7 @@ include 'classes/walker.php';  // walker nav menu
 include 'inc/register.php';    // custom ajax register and auth
 include 'inc/ajax-actions.php';// ajax actions
 include 'inc/checkout.php';    // checkout actions
+include 'inc/dropzone.php';   // dropzone comments
 
 
 add_action('after_setup_theme', 'theme_register_nav_menu');

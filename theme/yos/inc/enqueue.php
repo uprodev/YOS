@@ -24,6 +24,8 @@ function add_scripts() {
         array(
             'url' => admin_url('admin-ajax.php'),
             'template' => get_template_directory_uri(),
+            'upload'=>admin_url( 'admin-ajax.php?action=handle_dropped_media' ),
+            'delete'=>admin_url( 'admin-ajax.php?action=handle_deleted_media' ),
         )
     );
 
