@@ -1,5 +1,10 @@
 <?php
 
+$menu = get_field('menu', 'options');
+
+if($menu):
+    $i=0;
+
 ?>
 
 <div class="categories " data-categories>
@@ -7,30 +12,22 @@
         <div class="container">
             <div class="categories__nav swiper" data-slider="header-mob-categories">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="0">
-                        <a href="brands.html">бренди</a>
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="1">
-                        обличчя
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="2">
-                        волосся
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="3">
-                        <a href="#">тіло</a>
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="4">
-                        <a href="#">аксесуари</a>
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="5">
-                        <a href="#">набори</a>
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="6">
-                        <a href="#">wellness</a>
-                    </div>
-                    <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="7">
-                        <a href="#" class="text-color-warning">sale</a>
-                    </div>
+
+                    <?php foreach ($menu as $m):
+                        $red = $m['color_red'];
+                        $link = $m['main_item'];
+
+                        if( $link ):
+                            $link_url = $link['url'];
+                            $link_title = $link['title'];
+                            $link_target = $link['target'] ? $link['target'] : '_self';
+                            ?>
+                            <div class="swiper-slide" data-action="show-category-tab-by-index" data-index="<?= $i;?>">
+                                <a <?= $red?'class="text-color-warning"':'';?> href="<?= esc_url($link_url); ?>" target="<?= esc_attr($link_target); ?>"><?= esc_html($link_title); ?></a>
+                            </div>
+                        <?php endif; ?>
+
+                    <?php $i++; endforeach;?>
                 </div>
                 <div class="swiper-scrollbar"></div>
             </div>
@@ -380,3 +377,6 @@
         </div>
     </div>
 </div>
+
+
+<?php endif;
