@@ -298,4 +298,70 @@ jQuery(document).ready(function ($) {
     });
 
 
+
+    /* dropzone */
+
+    var files = []
+    $(".drop-zone").each(function() {
+
+        $(this).dropzone({
+            url: globals.upload,
+            maxFiles: 10,
+            previewsContainer: this.querySelector('.drop-zone__preview'),
+            addRemoveLinks: true,
+            url: globals.upload,
+            maxFiles: 10,
+            maxFilesize: 10, // MB
+            //   uploadMultiple: true,
+            acceptedFiles: ".jpg, .jpeg, .png, .gif, .pdf",
+
+
+            init: function() {
+
+                this.on("success", function(file, data) {
+
+                    files.push(data)
+
+                    $('[name="media_ids"]').val(files.join(','))
+
+                });
+
+                let fraction = this.element.querySelector('.drop-zone__fraction');
+                let submitBtn = this.element.closest('form').querySelector('[type="submit"], .form__submit');
+                let dt = new DataTransfer();
+                const numberOfFilesHandler = () => {
+                    fraction.innerText = dt.files.length + '/10';
+                    this.element.classList.toggle('drop-zone--has-files', dt.files.length > 0)
+
+                    if(dt.files.length > 10) {
+                        submitBtn.setAttribute('disabled', true);
+                    } else {
+                        submitBtn.removeAttribute('disabled');
+                    }
+
+                    if(dt.files.length === 0) {
+                        let messageText = this.element.closest('form').querySelector('.message-text');
+
+                        if(messageText) {
+                            messageText.innerHTML = '';
+                        }
+                    }
+                }
+
+                this.on("addedfile", file => {
+                    dt.items.add(file)
+
+                    numberOfFilesHandler();
+                })
+
+                this.on("removedfile", file => {
+                    dt.items.remove(file)
+                    numberOfFilesHandler();
+                })
+            },
+
+
+
+        });
+    })
 });

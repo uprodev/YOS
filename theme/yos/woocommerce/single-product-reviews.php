@@ -220,14 +220,27 @@ endif;
                                         'value'    => $commenter['comment_author_email'],
                                         'required' => $name_email_required,
                                     ),
+                                    'photo'  => array(
+                                        'label'    => __( 'Photo', 'yos' ),
+                                        'type'     => 'file',
+                                        'value'    => '',
+                                        'required' => false,
+                                        'class' => 'drop-zone'
+                                    ),
                                 );
 
                                 $comment_form['fields'] = array();
 
                                 foreach ( $fields as $key => $field ) {
-                                    $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap" data-input>';
+                                    $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap '.$field['class'].'" data-input>';
 
-                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input" ' . ( $field['required'] ? 'required' : '' ) . ' /><span class="input-label">'.$field['label'].'</span></div></div>';
+                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input" ' . ( $field['required'] ? 'required' : '' ) . ' /><span class="input-label">'.$field['label'].'</span>';
+
+                                    if($field['class'] == 'drop-zone'){
+                                        $field_html .= '<div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids">';
+                                    }
+
+                                    $field_html .= '</div></div>';
 
                                     $comment_form['fields'][ $key ] = $field_html;
                                 }
