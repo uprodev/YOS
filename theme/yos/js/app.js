@@ -681,40 +681,45 @@ window.popup = {
     }
 }
 
-			// Fields labels animation
-const inputsWrap = document.querySelectorAll('[data-input]');
-if (inputsWrap.length) {
-    inputsWrap.forEach(inputWrap => {
-        const input = inputWrap.querySelector('input');
+			
+// const inputsWrap = document.querySelectorAll('[data-input]');
+// if (inputsWrap.length) {
+//     inputsWrap.forEach(inputWrap => {
+//         const input = inputWrap.querySelector('input');
 
-        if(input.required) {
-            inputWrap.classList.add('required')
-        }
+//         if(input.required) {
+//             inputWrap.classList.add('required')
+//         }
 
-        input.addEventListener('focus', () => {
-            inputWrap.classList.add('using');
-        });
+//         input.addEventListener('focus', () => {
+//             inputWrap.classList.add('using');
+//         });
 
-        input.addEventListener('blur', (e) => {
-            if (input.value.length === 0) inputWrap.classList.remove('using');
-        });
-    })
-}
+//         input.addEventListener('blur', (e) => {
+//             if (input.value.length === 0) inputWrap.classList.remove('using');
+//         });
+//     })
+// }
 
-const textareasWrap = document.querySelectorAll('[data-textarea]');
-if (textareasWrap.length) {
-    textareasWrap.forEach(textareaWrap => {
-        const textarea = textareaWrap.querySelector('textarea');
+// document.addEventListener('focus', (e) => {
+//     console.log(e.target);
+// })
 
-        textarea.addEventListener('focus', () => {
-            textareaWrap.classList.add('using');
-        });
 
-        textarea.addEventListener('blur', (e) => {
-            if (textarea.value.length === 0) textareaWrap.classList.remove('using');
-        });
-    })
-}
+// const textareasWrap = document.querySelectorAll('[data-textarea]');
+// if (textareasWrap.length) {
+//     textareasWrap.forEach(textareaWrap => {
+//         const textarea = textareaWrap.querySelector('textarea');
+
+//         textarea.addEventListener('focus', () => {
+//             textareaWrap.classList.add('using');
+//         });
+
+//         textarea.addEventListener('blur', (e) => {
+//             if (textarea.value.length === 0) textareaWrap.classList.remove('using');
+//         });
+//     })
+// }
 			document.addEventListener('click', (e) => {
     if(e.target.closest('[data-product-card-option]')) {
         const radio = e.target;
@@ -1864,85 +1869,85 @@ if (catalogFilter) {
     const mobileOpenFilterButtonCount = document.querySelector('.catalog__mobile-open-filter-button span');
     const buttonReset = document.querySelector('.filter__reset');
 
-    const setCountOfSelectedFilters = (value) => {
-        mobileOpenFilterButtonCount.innerHTML = value;
+    // const setCountOfSelectedFilters = (value) => {
+    //     mobileOpenFilterButtonCount.innerHTML = value;
 
-        if (value) {
-            buttonReset.removeAttribute('disabled', '');
-        } else {
-            buttonReset.setAttribute('disabled', '');
-        }
-    }
+    //     if (value) {
+    //         buttonReset.removeAttribute('disabled', '');
+    //     } else {
+    //         buttonReset.setAttribute('disabled', '');
+    //     }
+    // }
 
-    form.addEventListener('reset', (e) => {
-        e.preventDefault();
-        filterBrands?.reset();
-        selectedFilters?.removeAll();
-        priceRage?.reset();
-    })
+    // form.addEventListener('reset', (e) => {
+    //     e.preventDefault();
+    //     filterBrands?.reset();
+    //     selectedFilters?.removeAll();
+    //     priceRage?.reset();
+    // })
 
-    form.addEventListener('change', (e) => {
-        const result = Array.from(form.elements).reduce((value, el) => {
-            if (el.nodeName === 'INPUT' && el.checked) {
-                return ++value
-            } else {
-                return value;
-            }
-        }, 0);
-        setCountOfSelectedFilters(result);
+    // form.addEventListener('change', (e) => {
+    //     const result = Array.from(form.elements).reduce((value, el) => {
+    //         if (el.nodeName === 'INPUT' && el.checked) {
+    //             return ++value
+    //         } else {
+    //             return value;
+    //         }
+    //     }, 0);
+    //     setCountOfSelectedFilters(result);
 
-        if (e.target.nodeName === 'INPUT' && e.target.type === 'checkbox') {
-            const checkbox = e.target;
+    //     if (e.target.nodeName === 'INPUT' && e.target.type === 'checkbox') {
+    //         const checkbox = e.target;
 
-            if (checkbox.checked) {
-                const id = Date.now();
-                const text = checkbox.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
-                if (!text) return;
+    //         if (checkbox.checked) {
+    //             const id = Date.now();
+    //             const text = checkbox.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
+    //             if (!text) return;
 
-                checkbox.setAttribute('data-id', id);
-                selectedFilters.addItem(id, text);
-            } else {
-                const id = checkbox.getAttribute('data-id');
-                if (!id) return;
+    //             checkbox.setAttribute('data-id', id);
+    //             selectedFilters.addItem(id, text);
+    //         } else {
+    //             const id = checkbox.getAttribute('data-id');
+    //             if (!id) return;
 
-                selectedFilters.removeItem(id);
-            }
-        } else if (e.target.nodeName === 'INPUT' && e.target.type === 'radio') {
-            const radio = e.target;
+    //             selectedFilters.removeItem(id);
+    //         }
+    //     } else if (e.target.nodeName === 'INPUT' && e.target.type === 'radio') {
+    //         const radio = e.target;
 
-            if(radio.checked) {
-                const groupEl = radio.closest('.spoller__item-colapse-content')?.parentElement?.closest('li');
-                const groupTitle = groupEl?.querySelector('.spoller__item-title')?.innerText || null;
-                const text = radio.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
-                if (!text) return;
+    //         if(radio.checked) {
+    //             const groupEl = radio.closest('.spoller__item-colapse-content')?.parentElement?.closest('li');
+    //             const groupTitle = groupEl?.querySelector('.spoller__item-title')?.innerText || null;
+    //             const text = radio.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
+    //             if (!text) return;
 
-                const id = Date.now();
-                radio.setAttribute('data-id', id);
-                selectedFilters.addItem(id, `${groupTitle ? groupTitle + ': ' : ''}${text}`);
+    //             const id = Date.now();
+    //             radio.setAttribute('data-id', id);
+    //             selectedFilters.addItem(id, `${groupTitle ? groupTitle + ': ' : ''}${text}`);
 
-                const parentBlock = radio.closest('.filter__block');
-                const allRadiosOfGroup = parentBlock.querySelectorAll(`input[type="radio"][name="${radio.name}"]`);
-                allRadiosOfGroup.forEach(r => {
-                    if(r === radio) return;
+    //             const parentBlock = radio.closest('.filter__block');
+    //             const allRadiosOfGroup = parentBlock.querySelectorAll(`input[type="radio"][name="${radio.name}"]`);
+    //             allRadiosOfGroup.forEach(r => {
+    //                 if(r === radio) return;
     
-                    const id = r.getAttribute('data-id');
-                    if (!id) return;
+    //                 const id = r.getAttribute('data-id');
+    //                 if (!id) return;
     
-                    selectedFilters.removeItem(id);
-                });
-            } 
-        }
-    });
+    //                 selectedFilters.removeItem(id);
+    //             });
+    //         } 
+    //     }
+    // });
 
-    selectedFilters.onRemoveItem((id) => {
-        const el = form.querySelector(`[data-id="${id}"]`);
+    // selectedFilters.onRemoveItem((id) => {
+    //     const el = form.querySelector(`[data-id="${id}"]`);
 
-        el.checked = false;
-        el.removeAttribute('data-id');
+    //     el.checked = false;
+    //     el.removeAttribute('data-id');
 
-        const event = new Event('change', { bubbles: true });
-        el.dispatchEvent(event);
-    });
+    //     const event = new Event('change', { bubbles: true });
+    //     el.dispatchEvent(event);
+    // });
 
     closeButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -2044,24 +2049,18 @@ if (addCommentEl) {
 };
 			const sideBasket = document.querySelector('[data-side-basket]');
 if (sideBasket) {
-    const openButtons = document.querySelectorAll('[data-action="open-side-basket"]');
-    const closeButtons = document.querySelectorAll('[data-action="close-side-basket"]');
 
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            sideBasket.classList.remove('open');
-            bodyUnlock();
-        })
-    });
-
-    openButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="open-side-basket"]')) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
             document.body.classList.add('overflow-hidden');
-        })
+        } else if(e.target.closest('[data-action="close-side-basket"]')) {
+            e.preventDefault();
+            sideBasket.classList.remove('open');
+            bodyUnlock();
+        }
     })
 
     sideBasket.addEventListener('click', (e) => {
@@ -2129,7 +2128,7 @@ if (brandsSection) {
 
                 } else {
                     listRowData.el.classList.remove('d-none');
-                    listRowData.children.forEach(rowItem => {
+                    listRowData.children && listRowData.children.forEach(rowItem => {
 
                         if (!rowItem.text.startsWith(text)) {
                             rowItem.el.classList.add('d-none');

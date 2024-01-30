@@ -27,7 +27,7 @@ $rating_count = $product->get_rating_count();
 $review_count = $product->get_review_count();
 $average      = round($product->get_average_rating(),1);
 
-$args = array ('post_type' => 'product', 'post_id' => get_the_ID());
+$args = array ('post_type' => 'product', 'post_id' => get_the_ID(), 'status' => 'approve');
 
 $comments = get_comments( $args );
 if($comments):
@@ -232,15 +232,19 @@ endif;
                                 $comment_form['fields'] = array();
 
                                 foreach ( $fields as $key => $field ) {
-                                    $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap '.$field['class'].'" data-input>';
-
-                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input" ' . ( $field['required'] ? 'required' : '' ) . ' /><span class="input-label">'.$field['label'].'</span>';
-
-                                    if($field['class'] == 'drop-zone'){
-                                        $field_html .= '<div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids">';
+                                    if($field['class'] == 'drop-zone') {
+                                        $field_html = '<div class="add-comment__form-field">';
+                                    }else{
+                                        $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap" data-input>';
                                     }
 
-                                    $field_html .= '</div></div>';
+                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input '.$field['class'].'" ' . ( $field['required'] ? 'required' : '' ) . ' /><span class="input-label">'.$field['label'].'</span>';
+
+                                    if($field['class'] == 'drop-zone'){
+                                        $field_html .= '<div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
+                                    }else{
+                                        $field_html .= '</div></div>';
+                                    }
 
                                     $comment_form['fields'][ $key ] = $field_html;
                                 }

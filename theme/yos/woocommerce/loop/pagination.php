@@ -18,7 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+global $wp_query;
 $total   = isset( $total ) ? $total : wc_get_loop_prop( 'total_pages' );
 $current = isset( $current ) ? $current : wc_get_loop_prop( 'current_page' );
 $base    = isset( $base ) ? $base : esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
@@ -28,7 +28,8 @@ if ( $total <= 1 ) {
 	return;
 }
 ?>
-<nav class="woocommerce-pagination">
+
+<nav class="woocommerce-pagination pagination"  >
 	<?php
 	echo paginate_links(
 		apply_filters(
@@ -48,4 +49,14 @@ if ( $total <= 1 ) {
 		)
 	);
 	?>
+
+
 </nav>
+
+<div class="pagination">
+
+    <div class="pagination__fraction"><?= $current ?>/<?= $wp_query->max_num_pages ; ?></div>
+    <a href="<?= get_previous_posts_page_link() ?>" class="pagination__btn left <?= $current > 1 ? '' : 'disabled' ?>"><span class="icon-arrow-left"></span></a>
+    <a href="<?= get_next_posts_page_link() ?>" class="pagination__btn right <?= $current == $wp_query->max_num_pages ? 'disabled' : '' ?>"" ><span class="icon-arrow-right"></span></a>
+</div>
+

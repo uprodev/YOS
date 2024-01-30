@@ -7,7 +7,7 @@ if($menu):
 
 ?>
 
-<div class="categories" data-categories>
+<div class="categories " data-categories>
     <div class="categories__inner">
         <div class="container">
             <div class="categories__nav swiper" data-slider="header-mob-categories">

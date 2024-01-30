@@ -130,7 +130,7 @@ ob_start();
 ?>
 <div class="filter__block-search">
     <div class="input-wrap" data-input="">
-        <input type="text" class="input">
+        <input type="text" class="input" placeholder="enter">
         <span class="input-label">Пошук</span>
     </div>
 </div>
