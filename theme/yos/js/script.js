@@ -309,8 +309,6 @@ jQuery(document).ready(function ($) {
             maxFiles: 10,
             previewsContainer: this.querySelector('.drop-zone__preview'),
             addRemoveLinks: true,
-            url: globals.upload,
-            maxFiles: 10,
             maxFilesize: 10, // MB
             //   uploadMultiple: true,
             acceptedFiles: ".jpg, .jpeg, .png, .gif, .pdf",

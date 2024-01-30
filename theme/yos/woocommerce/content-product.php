@@ -21,7 +21,7 @@ global $product;
 
 // Ensure visibility.
 if ( empty( $product ) || ! $product->is_visible() ) {
-	return;
+    return;
 }
 if($_COOKIE['wish']){
 
@@ -43,7 +43,7 @@ if (isset($variations_attr['pa_volumes'])){
         if($variation['is_in_stock'] == 1){
             break;
         }
-    $q++;
+        $q++;
     }
 }
 
@@ -64,11 +64,12 @@ $choise = get_field('yos_choise', get_the_ID());
                         $price = $variation['display_regular_price'];
                         $sale = $variation['display_price'];
 
-                        $perc = round(($price-$sale)*100/$price);?>
+                        $perc = round(($price-$sale)*100/$price);
+                        if($perc!=0):?>
 
-                        <div class="product-card-label product-card-label-perc<?= $q==$v?' show':'';?>" data-index="<?= $v;?>">-<?= $perc;?>%</div>
+                            <div class="product-card-label product-card-label-perc<?= $q==$v?' show':'';?>" data-index="<?= $v;?>">-<?= $perc;?>%</div>
 
-                    <?php $v++; endforeach;
+                        <?php endif; $v++; endforeach;
 
                 endif;
 
@@ -111,7 +112,7 @@ $choise = get_field('yos_choise', get_the_ID());
                     <div class="product-card__price <?= $q==$i?'show':'';?>" data-index="<?= $i;?>">
                         <div class="product-card__price-current"><?= $variation['price_html'];?></div>
                     </div>
-                <?php $i++;
+                    <?php $i++;
                 endforeach;
             endif;
         elseif($product->is_type('simple')):?>
@@ -131,12 +132,12 @@ $choise = get_field('yos_choise', get_the_ID());
                             $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
 
                             ?>
-                                <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
-                                    <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
-                                    <div class="product-card__option-item-value">
-                                        <?= $sl->name;?>
-                                    </div>
-                                </label>
+                            <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                                <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
+                                <div class="product-card__option-item-value">
+                                    <?= $sl->name;?>
+                                </div>
+                            </label>
 
                             <?php $p++; endforeach;
                         ?>
@@ -147,9 +148,9 @@ $choise = get_field('yos_choise', get_the_ID());
                 $h=0;
                 foreach ($variations as  $variation):
                     if($h==$q):?>
-                    <input type="hidden" value="<?= $variation['variation_id'];?>" name="var_id">
+                        <input type="hidden" value="<?= $variation['variation_id'];?>" name="var_id">
                     <?php endif;
-                $h++; endforeach;
+                    $h++; endforeach;
             endif;?>
             <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="" data-product_id="<?= get_the_ID();?>">
                 <?= __('додати до кошика', 'yos');?>
