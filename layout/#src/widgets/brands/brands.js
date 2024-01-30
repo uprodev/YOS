@@ -43,7 +43,7 @@ if (brandsSection) {
 
                 } else {
                     listRowData.el.classList.remove('d-none');
-                    listRowData.children.forEach(rowItem => {
+                    listRowData.children && listRowData.children.forEach(rowItem => {
 
                         if (!rowItem.text.startsWith(text)) {
                             rowItem.el.classList.add('d-none');

@@ -141,6 +141,13 @@
     align-items: flex-start;
     gap: 4rem;
     
+    & .wpcf7-form-control-wrap {
+        flex: 1 1 auto;
+
+        & input {
+            width: 100%;
+        }
+    }
 
     & input {
         display: flex;

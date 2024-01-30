@@ -5766,6 +5766,8 @@ h5,
       -ms-flex-align: center;
           align-items: center;
   gap: 2rem;
+  padding-left: 0;
+  margin-bottom: 0;
 }
 
 .header-actions__item {
@@ -6526,6 +6528,16 @@ h5,
       -ms-flex-align: start;
           align-items: flex-start;
   gap: 4rem;
+}
+
+.subscription-form .wpcf7-form-control-wrap {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+
+.subscription-form .wpcf7-form-control-wrap input {
+  width: 100%;
 }
 
 .subscription-form input {
@@ -7576,6 +7588,25 @@ h5,
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+}
+
+.sort-by .woocommerce-ordering {
+  float: none;
+  margin-bottom: 0;
+}
+
+.sort-by .woocommerce-ordering select.orderby {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: right;
+  cursor: pointer;
 }
 
 .filter-checkbox-radio {

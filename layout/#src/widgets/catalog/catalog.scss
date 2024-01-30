@@ -430,6 +430,23 @@
             }
         }
     }
+
+    & .woocommerce-ordering {
+        float: none;
+        margin-bottom: 0;
+
+        & select.orderby {
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            text-transform: uppercase;
+            font-size: $text-3;
+            font-weight: 700;
+            text-align: right;
+            cursor: pointer;
+        }
+    }
 }
 
 .filter-checkbox-radio {

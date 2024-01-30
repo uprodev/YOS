@@ -2044,24 +2044,18 @@ if (addCommentEl) {
 };
 			const sideBasket = document.querySelector('[data-side-basket]');
 if (sideBasket) {
-    const openButtons = document.querySelectorAll('[data-action="open-side-basket"]');
-    const closeButtons = document.querySelectorAll('[data-action="close-side-basket"]');
 
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            sideBasket.classList.remove('open');
-            bodyUnlock();
-        })
-    });
-
-    openButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+        if(e.target.closest('[data-action="open-side-basket"]')) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
             document.body.classList.add('overflow-hidden');
-        })
+        } else if(e.target.closest('[data-action="close-side-basket"]')) {
+            e.preventDefault();
+            sideBasket.classList.remove('open');
+            bodyUnlock();
+        }
     })
 
     sideBasket.addEventListener('click', (e) => {
@@ -2129,7 +2123,7 @@ if (brandsSection) {
 
                 } else {
                     listRowData.el.classList.remove('d-none');
-                    listRowData.children.forEach(rowItem => {
+                    listRowData.children && listRowData.children.forEach(rowItem => {
 
                         if (!rowItem.text.startsWith(text)) {
                             rowItem.el.classList.add('d-none');
