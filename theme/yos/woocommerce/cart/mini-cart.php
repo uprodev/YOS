@@ -26,7 +26,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
     <div class="side-basket__container">
         <button class="side-basket__close-btn" data-action="close-side-basket"><span class="icon-close-thin"></span></button>
         <div class="side-basket__head">
-            <?= __('ваш кошик', 'yos');?> <span>(<?= WC()->cart->get_cart_contents_count();?>)</span>
+            <?= __('ваш кошик', 'yos');?> <span class="count-side">(<?= WC()->cart->get_cart_contents_count();?>)</span>
         </div>
         <div class="side-basket__scroll-container">
             <ul class="side-basket__products-list">

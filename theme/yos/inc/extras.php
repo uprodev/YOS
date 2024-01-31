@@ -221,11 +221,15 @@ add_filter('woocommerce_catalog_orderby', function($order) {
 function add_points_widget_to_fragment( $fragments ) {
 //    $fragments['.side-basket'] =  '<p class="cart-header">'.  WC()->cart->get_cart_total() . '</p>';
 
+    $fragments['.basket-count'] =  '<button class="basket-count" data-action="open-side-basket">'.  WC()->cart->get_cart_contents_count() . '</button>';
+
+    $fragments['.count-side'] = '<span class="count-side">'. WC()->cart->get_cart_contents_count() .'</span>';
+
     ob_start();
     woocommerce_mini_cart();
-    $fragments['.side-basket'] = ob_get_clean();
+    $fragments['.side-basket__container'] = ob_get_clean();
 
-    $fragments['.side-basket'] = '<span class="side-basket">'. count(WC()->cart->get_cart_contents()) .'</span>';
+
 
 
 

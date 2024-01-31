@@ -125,39 +125,65 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click', '.quantity__btn.plus, .quantity__btn.minus', function(){
 
-        let val = $(this).closest('.quantity').find('.quantity__value').val();
+        // var item_quantity = $(this).val();
+
+        let item_quantity = $(this).closest('.quantity').find('.quantity__value').val();
 
         let key = $(this).closest('.quantity').attr('data-key');
 
-        let products = [];
+        var currentVal = parseFloat(item_quantity);
 
-        $('.side-basket__products-list li').each(function(){
-
-            var product_id = $(this).attr('data-ids');
-            var qty =  $(this).find('.quantity__value').val();
-            products.push([product_id,qty]);
-        });
-
+        console.log(currentVal);
         $.ajax({
-            type: "GET",
-            url: woocommerce_params.ajax_url,
+            type: 'GET',
+            url: wc_add_to_cart_params.ajax_url,
             data: {
-                action : 'set_cart_item_qty',
-                key:key,
-                qty:val,
-                products:products
+                action: 'qty_cart',
+                hash: key,
+                quantity: currentVal,
             },
-
             success: function (data) {
-
-                $('.basket-count').text(data.data.cart_qty);
-                $('.basket-qty').text('(' + data.data.cart_qty + ')');
-                $('.cart-sub').html(data.data.subtotal);
-                ajax_mini_cart_update();
-
-            }
+                $(document.body).trigger('wc_update_cart');
+                $( document.body ).trigger( 'wc_fragment_refresh' );
+            },
         });
     })
+
+    // $(document).on('click', '.quantity__btn.plus, .quantity__btn.minus', function(){
+    //
+    //     let val = $(this).closest('.quantity').find('.quantity__value').val();
+    //
+    //     let key = $(this).closest('.quantity').attr('data-key');
+    //
+    //     let products = [];
+    //
+    //     $('.side-basket__products-list li').each(function(){
+    //
+    //         var product_id = $(this).attr('data-ids');
+    //         var qty =  $(this).find('.quantity__value').val();
+    //         products.push([product_id,qty]);
+    //     });
+    //
+    //     $.ajax({
+    //         type: "GET",
+    //         url: woocommerce_params.ajax_url,
+    //         data: {
+    //             action : 'set_cart_item_qty',
+    //             key:key,
+    //             qty:val,
+    //             products:products
+    //         },
+    //
+    //         success: function (data) {
+    //
+    //             $('.basket-count').text(data.data.cart_qty);
+    //             $('.basket-qty').text('(' + data.data.cart_qty + ')');
+    //             $('.cart-sub').html(data.data.subtotal);
+    //             ajax_mini_cart_update();
+    //
+    //         }
+    //     });
+    // })
 
 
     /* variation  */
