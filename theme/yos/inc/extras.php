@@ -207,3 +207,13 @@ function terms_clauses_47840519( $clauses, $taxonomies, $args ){
     return $clauses;
 
 }
+
+
+add_filter('woocommerce_catalog_orderby', function($order) {
+    unset($order['menu_order']);
+    unset($order['rating']);
+    $order['popularity'] = __('Вибір YOS', 'yos');
+
+    return $order; 
+
+});

@@ -57,7 +57,7 @@ do_action( 'woocommerce_before_main_content' );
                     <div class="catalog__filter">
                         <button class="catalog__mobile-open-filter-button button-primary light"
                                 data-action="open-filter">ФІЛЬТР
-                            (<span>0</span>)
+<!--                            (<span>0</span>)-->
                         </button>
 
                         <h2 class="catalog__category-title title-2" data-da=".catalog__head-col-1,992,first">Волосся</h2>
@@ -130,6 +130,7 @@ do_action( 'woocommerce_before_main_content' );
 
 
                             </div>
+                            <?= do_shortcode('[br_filter_single filter_id=553]') ?>
                         </div>
                     </div>
                     <div class="catalog__products">
