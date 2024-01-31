@@ -60,7 +60,9 @@ do_action( 'woocommerce_before_main_content' );
 <!--                            (<span>0</span>)-->
                         </button>
 
-                        <h2 class="catalog__category-title title-2" data-da=".catalog__head-col-1,992,first">Волосся</h2>
+                        <h2 class="catalog__category-title title-2" data-da=".catalog__head-col-1,992,first">
+                            <?php woocommerce_page_title(); ?>
+                        </h2>
 
                         <div class="filter" data-filter>
                             <button class="filter__btn-close" data-action="close-filter">
@@ -76,7 +78,7 @@ do_action( 'woocommerce_before_main_content' );
                                             <ul class="sort-by__list">
                                                 <li>
                                                     <label class="checkbox-radio">
-                                                        <input type="radio" name="orderby" checked="" value="menu_order">
+                                                        <input type="radio" name="orderby" checked="" value="popularity">
                                                         <div class="checkbox-radio__square"></div>
                                                         <div class="checkbox-radio__text">Вибір YOS</div>
                                                     </label>

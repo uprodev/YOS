@@ -39,10 +39,10 @@ $id_prod = get_field( 'id' );
                             <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
                             <div class="product-card-sm__text">
                                 <div class="product-card-sm__text-1">
-                                    <?= get_the_title($pid); ?>
+                                    <a href="<?php get_the_permalink($pid); ?>"><?= get_the_title($pid); ?></a>
                                 </div>
                                 <div class="product-card-sm__text-2">
-                                    <?php the_field('seria', $pid);?>
+                                    <a href="<?php get_the_permalink($pid); ?>"><?php the_field('seria', $pid);?></a>
                                 </div>
                             </div>
                             <div class="product-card-sm__group">

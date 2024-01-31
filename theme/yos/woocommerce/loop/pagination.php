@@ -29,8 +29,8 @@ if ( $total <= 1 ) {
 }
 ?>
 
-<nav class="woocommerce-pagination pagination"  >
-	<?php
+<nav class="woocommerce-pagination "  >
+	<div style="display: none"> <?php
 	echo paginate_links(
 		apply_filters(
 			'woocommerce_pagination_args',
@@ -49,14 +49,15 @@ if ( $total <= 1 ) {
 		)
 	);
 	?>
+    </div>
 
+    <div class="pagination">
 
+        <div class="pagination__fraction"><?= $current ?>/<?= $wp_query->max_num_pages ; ?></div>
+        <a href="<?= get_previous_posts_page_link() ?>" class="pagination__btn left <?= $current > 1 ? '' : 'disabled' ?>"><span class="icon-arrow-left"></span></a>
+        <a href="<?= get_next_posts_page_link() ?>" class="pagination__btn right <?= $current == $wp_query->max_num_pages ? 'disabled' : '' ?>"" ><span class="icon-arrow-right"></span></a>
+    </div>
 </nav>
 
-<div class="pagination">
 
-    <div class="pagination__fraction"><?= $current ?>/<?= $wp_query->max_num_pages ; ?></div>
-    <a href="<?= get_previous_posts_page_link() ?>" class="pagination__btn left <?= $current > 1 ? '' : 'disabled' ?>"><span class="icon-arrow-left"></span></a>
-    <a href="<?= get_next_posts_page_link() ?>" class="pagination__btn right <?= $current == $wp_query->max_num_pages ? 'disabled' : '' ?>"" ><span class="icon-arrow-right"></span></a>
-</div>
 

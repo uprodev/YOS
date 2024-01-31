@@ -819,75 +819,6 @@ if (specialOfferCards.length) {
 
     })
 }
-			function filterBrandsHandler(filterBrandsEl) {
-    if(!filterBrandsEl) return;
-
-    const input = filterBrandsEl.querySelector('.filter-brands__search-input input');
-    if (!input) return;
-
-    const list = filterBrandsEl.querySelector('.filter-brands__list');
-    if (!list) return;
-
-    const listData = Array.from(list.children).map(listRow => {
-        const rowItemsBlock = listRow.querySelector('.filter__block');
-        const rowItemsData = rowItemsBlock?.children
-            ? Array.from(rowItemsBlock.children).map(rowItem => {
-                const text = rowItem.querySelector('.filter-checkbox-radio__text');
-                return {
-                    el: rowItem,
-                    text: rowItem.querySelector('.filter-checkbox-radio__text').innerText.trim().toLowerCase()
-                }
-            })
-            : null
-        return {
-            letter: listRow.getAttribute('data-letter').toLowerCase(),
-            el: listRow,
-            children: rowItemsData
-        }
-    })
-
-    input.addEventListener('input', (e) => {
-        const inputValue = e.target.value.trim().toLowerCase();
-        const firstLetter = inputValue.at(0);
-
-        listData.forEach(listRowData => {
-            if (inputValue.length) {
-
-                if (firstLetter !== listRowData.letter) {
-
-                    listRowData.el.classList.add('d-none');
-
-                } else {
-                    listRowData.children.forEach(rowItem => {
-
-                        if (!rowItem.text.startsWith(inputValue)) {
-                            rowItem.el.classList.add('d-none');
-                        } else {
-                            rowItem.el.classList.remove('d-none');
-                        }
-
-                    })
-                }
-
-            } else {
-                listRowData.el.classList.remove('d-none');
-            }
-        })
-    });
-
-    return {
-        reset: () => {
-            input.parentElement.classList.remove('using');
-
-            listData.forEach(listRowData => {
-                listRowData.el.classList.remove('d-none');
-                listRowData.children.forEach(rowItem => {
-                    rowItem.el.classList.remove('d-none');
-                })
-            })
-        }
-    }
-}
 			function selectedFiltersHandler(containers) {
     if(!containers.length) return;
     const subscriptions = [];
@@ -1570,8 +1501,7 @@ if(mainSearchElements.length) {
         const searchId = mainSearch.getAttribute('data-id');
         if(!searchId) return;
         const buttonsShow = document.querySelectorAll(`[data-action="show-search-by-id"][data-id="${searchId}"]`);
-        const buttonClose = mainSearch.querySelector('.main-search__btn-close');
-        const input = mainSearch.querySelector('input.input');
+        const input = mainSearch.querySelector('input.dgwt-wcas-search-input');
 
         buttonsShow.forEach(buttonShow => {
             buttonShow.addEventListener('click', (e) => {
@@ -1581,13 +1511,9 @@ if(mainSearchElements.length) {
             })
         })
 
+        if(!input) return;
         input.addEventListener('blur', () => {
             if (input.value.length === 0) mainSearch.classList.remove('show');
-        })
-
-        buttonClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            mainSearch.classList.remove('show');
         })
     })
 };
@@ -1860,102 +1786,7 @@ if (banners.length) {
 ;
 			const catalogFilter = document.querySelector('[data-filter]');
 if (catalogFilter) {
-    const filterBrands = filterBrandsHandler(document.querySelector('[data-filter-brands]'));
-    const selectedFilters = selectedFiltersHandler(document.querySelectorAll('.selected-filters'));
-    const form = catalogFilter.querySelector('.filter__form');
-    const priceRage = priceRangeHandler(document.querySelector('[data-range]'));
     const openButtons = document.querySelectorAll('[data-action="open-filter"]');
-    const closeButtons = document.querySelectorAll('[data-action="close-filter"]');
-    const mobileOpenFilterButtonCount = document.querySelector('.catalog__mobile-open-filter-button span');
-    const buttonReset = document.querySelector('.filter__reset');
-
-    // const setCountOfSelectedFilters = (value) => {
-    //     mobileOpenFilterButtonCount.innerHTML = value;
-
-    //     if (value) {
-    //         buttonReset.removeAttribute('disabled', '');
-    //     } else {
-    //         buttonReset.setAttribute('disabled', '');
-    //     }
-    // }
-
-    // form.addEventListener('reset', (e) => {
-    //     e.preventDefault();
-    //     filterBrands?.reset();
-    //     selectedFilters?.removeAll();
-    //     priceRage?.reset();
-    // })
-
-    // form.addEventListener('change', (e) => {
-    //     const result = Array.from(form.elements).reduce((value, el) => {
-    //         if (el.nodeName === 'INPUT' && el.checked) {
-    //             return ++value
-    //         } else {
-    //             return value;
-    //         }
-    //     }, 0);
-    //     setCountOfSelectedFilters(result);
-
-    //     if (e.target.nodeName === 'INPUT' && e.target.type === 'checkbox') {
-    //         const checkbox = e.target;
-
-    //         if (checkbox.checked) {
-    //             const id = Date.now();
-    //             const text = checkbox.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
-    //             if (!text) return;
-
-    //             checkbox.setAttribute('data-id', id);
-    //             selectedFilters.addItem(id, text);
-    //         } else {
-    //             const id = checkbox.getAttribute('data-id');
-    //             if (!id) return;
-
-    //             selectedFilters.removeItem(id);
-    //         }
-    //     } else if (e.target.nodeName === 'INPUT' && e.target.type === 'radio') {
-    //         const radio = e.target;
-
-    //         if(radio.checked) {
-    //             const groupEl = radio.closest('.spoller__item-colapse-content')?.parentElement?.closest('li');
-    //             const groupTitle = groupEl?.querySelector('.spoller__item-title')?.innerText || null;
-    //             const text = radio.parentElement.querySelector('.filter-checkbox-radio__text')?.innerText.trim() || null;
-    //             if (!text) return;
-
-    //             const id = Date.now();
-    //             radio.setAttribute('data-id', id);
-    //             selectedFilters.addItem(id, `${groupTitle ? groupTitle + ': ' : ''}${text}`);
-
-    //             const parentBlock = radio.closest('.filter__block');
-    //             const allRadiosOfGroup = parentBlock.querySelectorAll(`input[type="radio"][name="${radio.name}"]`);
-    //             allRadiosOfGroup.forEach(r => {
-    //                 if(r === radio) return;
-    
-    //                 const id = r.getAttribute('data-id');
-    //                 if (!id) return;
-    
-    //                 selectedFilters.removeItem(id);
-    //             });
-    //         } 
-    //     }
-    // });
-
-    // selectedFilters.onRemoveItem((id) => {
-    //     const el = form.querySelector(`[data-id="${id}"]`);
-
-    //     el.checked = false;
-    //     el.removeAttribute('data-id');
-
-    //     const event = new Event('change', { bubbles: true });
-    //     el.dispatchEvent(event);
-    // });
-
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            catalogFilter.classList.remove('open');
-            document.body.classList.remove('overflow-hidden');
-        })
-    });
 
     openButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -1964,6 +1795,95 @@ if (catalogFilter) {
             document.body.classList.add('overflow-hidden');
         })
     })
+
+    catalogFilter.addEventListener('input', (e) => {
+        if (e.target.closest('.filter__block-search')) {
+            const inputSearch = e.target.closest('input');
+            const parent = e.target.closest('.bapf_body');
+            if (!parent) return;
+
+            const list = parent.querySelector('ul');
+            if (!list) return;
+
+            const value = inputSearch.value.trim().toLowerCase();
+            const firstLetter = value.at(0);
+
+            Array.from(list.children).forEach(li => {
+                const attr = li.getAttribute('data-letter')?.toLowerCase();
+                if (value.length) {
+                    if (attr) {
+                        if (firstLetter !== attr) {
+                            li.classList.add('d-none');
+                            const prevLi = li.previousElementSibling;
+                            if (!prevLi) return;
+                            prevLi.getAttribute('data-letter') || prevLi.classList.add('d-none');
+                        } else {
+                            const text = li.querySelector('label')?.innerText.trim().toLowerCase();
+                            if (!text) return;
+
+                            if (!text.startsWith(value)) {
+                                li.classList.add('d-none');
+                            } else {
+                                li.classList.remove('d-none');
+                            }
+                        }
+                    }
+                } else {
+                    li.classList.remove('d-none');
+                }
+            })
+        }
+    })
+
+    catalogFilter.addEventListener('click', (e) => {
+        if (e.target.closest('[data-action="close-filter"]') || e.target.closest('.filter__btn-close-mob')) {
+            e.preventDefault();
+            catalogFilter.classList.remove('open');
+            document.body.classList.remove('overflow-hidden');
+        }
+    })
+
+    catalogFilter.addEventListener('change', (e) => {
+        if(e.target.closest('input[name="orderby"]')) {
+            const orderByRadio = e.target;
+
+            const sortBySelect = catalogFilter.querySelector('.filter__sort-by select');
+            if(!sortBySelect) return;
+
+            sortBySelect.value = orderByRadio.value;
+            const event = new Event('change', { bubbles: true });
+            sortBySelect.dispatchEvent(event);
+        }
+    })
+
+    let observer = new MutationObserver(mutationRecords => {
+        setOrderByRadioAsChecked();
+        const selectedFilters = catalogFilter.querySelector('.berocket_aapf_widget_selected_filter');
+        if(!selectedFilters) return;
+        const items = selectedFilters.querySelectorAll('a');
+        const selectedFilterItems = document.createElement('div');
+        selectedFilterItems.className = "selected-filter-items";
+        selectedFilterItems.append(...items);
+        selectedFilters.replaceWith(selectedFilterItems);
+    });
+
+    // наблюдать за всем, кроме атрибутов
+    observer.observe(catalogFilter, {
+        childList: true, // наблюдать за непосредственными детьми
+        subtree: true, // и более глубокими потомками
+        //characterDataOldValue: true // передавать старое значение в колбэк
+    });
+
+    function setOrderByRadioAsChecked() {
+        const sortBySelect = catalogFilter.querySelector('.filter__sort-by select');
+        if(!sortBySelect) return;
+        const sortByRadios = catalogFilter.querySelectorAll('.filter__sort-by input[name="orderby"]');
+        sortByRadios.forEach(radio => {
+            if(radio.value === sortBySelect.value) {
+                radio.checked = true;
+            }
+        })
+    }
 }
 ;
 			//toggle button as disabled by id handler

@@ -7,7 +7,8 @@ $actions = [
     'update_mini_cart',
     'remove_from_cart',
     'apply_coupon',
-    'add_to_fav'
+    'add_to_fav',
+    'qty_cart'
 ];
 
 foreach($actions as $action){
@@ -28,32 +29,31 @@ function add_to_cart() {
 
 
     $added = WC()->cart->add_to_cart($product_id, $qty, $variation_id);
-    update_totals();
 
-    WC_AJAX :: get_refreshed_fragments();
     wp_die();
 
 
 }
 
-/*
-*
 
-Set Car Item QTY
+/**
+ * change qty
+ */
 
-*/
 
-function set_cart_item_qty() {
+function qty_cart(){
 
-    $key = $_GET['key'];
-    $qty = (int)$_GET['qty'];
-    WC()->cart->set_quantity( $key, $qty, true  );
+    $cart_item_key = $_GET['hash'];
+    $product_values = WC()->cart->get_cart_item($cart_item_key);
+    $product_quantity = apply_filters('woocommerce_stock_amount_cart_item', apply_filters('woocommerce_stock_amount', preg_replace("/[^0-9\.]/", '', filter_var($_GET['quantity'], FILTER_SANITIZE_NUMBER_INT))), $cart_item_key);
+    $passed_validation  = apply_filters('woocommerce_update_cart_validation', true, $cart_item_key, $product_values, $product_quantity);
 
-    update_totals();
 
-    WC_AJAX :: get_refreshed_fragments();
+    if ($passed_validation) {
+        WC()->cart->set_quantity($cart_item_key, $product_quantity, true);
+    }
 
-    wp_die();
+    die();
 }
 
 
@@ -63,6 +63,7 @@ Update Mini Cart
  */
 
 function update_mini_cart() {
+
     wc_get_template('cart/mini-cart.php');
 
     die();
@@ -78,10 +79,6 @@ function update_mini_cart() {
 function remove_from_cart() {
 
     WC()->cart->remove_cart_item( $_GET['key'] );
-
-    update_totals();
-
-    WC_AJAX :: get_refreshed_fragments();
 
     die();
 }
@@ -106,7 +103,7 @@ function update_totals() {
     $html = ob_get_clean();
 
     wp_send_json_success(
-        ['totals' => $html,
+        [
             'cart_qty' => $count,
             'subtotal' => $sub,
         ]

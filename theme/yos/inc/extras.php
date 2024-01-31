@@ -209,17 +209,17 @@ function terms_clauses_47840519( $clauses, $taxonomies, $args ){
 }
 
 
+
 add_filter('woocommerce_catalog_orderby', function($order) {
     unset($order['menu_order']);
     unset($order['rating']);
     $order['popularity'] = __('Вибір YOS', 'yos');
 
-    return $order; 
+    return $order;
 
 });
 
 function add_points_widget_to_fragment( $fragments ) {
-//    $fragments['.side-basket'] =  '<p class="cart-header">'.  WC()->cart->get_cart_total() . '</p>';
 
     $fragments['.basket-count'] =  '<button class="basket-count" data-action="open-side-basket">'.  WC()->cart->get_cart_contents_count() . '</button>';
 
@@ -228,10 +228,6 @@ function add_points_widget_to_fragment( $fragments ) {
     ob_start();
     woocommerce_mini_cart();
     $fragments['.side-basket__container'] = ob_get_clean();
-
-
-
-
 
     return $fragments;
 }

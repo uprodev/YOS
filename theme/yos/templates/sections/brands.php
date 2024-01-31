@@ -12,7 +12,7 @@ $brands = get_sub_field('brands');
                     $name = get_term( $brand );
                     $logo = get_field('logo_brand', 'pa_brand_'.$brand);?>
                     <div class="swiper-slide">
-                        <a href="/shop/?action=filter&pa_brand=<?= $brand;?>" class="ticker-logo">
+                        <a href="<?= get_term_link($brand);?>" class="ticker-logo">
                             <img src="<?= $logo;?>" alt="<?= $brand->name;?>">
                         </a>
                     </div>
