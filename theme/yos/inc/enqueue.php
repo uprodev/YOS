@@ -21,6 +21,9 @@ function add_scripts() {
         wp_enqueue_script( 'comment-reply' );
     }
 
+    wp_enqueue_script( 'wc-cart-fragments' );
+
+
     wp_localize_script('script', 'globals',
         array(
             'url' => admin_url('admin-ajax.php'),

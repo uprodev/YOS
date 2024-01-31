@@ -217,3 +217,18 @@ add_filter('woocommerce_catalog_orderby', function($order) {
     return $order; 
 
 });
+
+function add_points_widget_to_fragment( $fragments ) {
+//    $fragments['.side-basket'] =  '<p class="cart-header">'.  WC()->cart->get_cart_total() . '</p>';
+
+    ob_start();
+    woocommerce_mini_cart();
+    $fragments['.side-basket'] = ob_get_clean();
+
+    $fragments['.side-basket'] = '<span class="side-basket">'. count(WC()->cart->get_cart_contents()) .'</span>';
+
+
+
+    return $fragments;
+}
+add_filter('add_to_cart_fragments', 'add_points_widget_to_fragment');
