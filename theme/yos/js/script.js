@@ -8,11 +8,11 @@ jQuery(document).ready(function ($) {
     });
 
     $(document).on('click', '.product-card__option-item', function(){
-       let attr = $(this).attr('data-vario');
+        let attr = $(this).attr('data-vario');
 
-       let ind = $(this).attr('data-ind');
+        let ind = $(this).attr('data-ind');
 
-       $(this).closest('.product-card__footer').find('.product-card__btn-to-basket').attr('data-variation_id', attr);
+        $(this).closest('.product-card__footer').find('.product-card__btn-to-basket').attr('data-variation_id', attr);
 
         $(this).closest('.product-card').find('.product-card-label-perc').removeClass('show');
 
@@ -50,8 +50,8 @@ jQuery(document).ready(function ($) {
 
                 $( document.body ).trigger( 'wc_fragment_refresh' );
 
-                $('.basket-count').text(data.data.cart_qty).removeClass('disable');
-                $('.basket-qty').text('(' + data.data.cart_qty + ')');
+                // $('.basket-count').text(data.data.cart_qty).removeClass('disable');
+                // $('.basket-qty').text('(' + data.data.cart_qty + ')');
 
                 that.text('товар додано до кошика');
 
@@ -99,7 +99,11 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         var key = $(this).attr('data-cart_item_key');
 
+        if ( $( '.woocommerce-cart-form' ).length  ) {
+          $(this).closest('li').remove();
+        }
         $(this).closest('.product-card-sm').remove();
+
         $.ajax({
             type: 'get',
             url: wc_add_to_cart_params.ajax_url,
@@ -130,13 +134,15 @@ jQuery(document).ready(function ($) {
 
 
     $(document).on('click', '.quantity__btn.plus, .quantity__btn.minus', function(){
+      var that = $(this)
+      setTimeout(function(){
+        let item_quantity = that.closest('.quantity').find('.quantity__value').val();
 
-        let item_quantity = $(this).closest('.quantity').find('.quantity__value').val();
-
-        let key = $(this).closest('.quantity').attr('data-key');
+        let key = that.closest('.quantity').attr('data-key');
 
         var currentVal = parseFloat(item_quantity);
 
+        console.log(item_quantity)
         $.ajax({
             type: 'GET',
             url: wc_add_to_cart_params.ajax_url,
@@ -150,6 +156,7 @@ jQuery(document).ready(function ($) {
                 $( document.body ).trigger( 'wc_fragment_refresh' );
             },
         });
+      }, 200)
     })
 
 
@@ -299,43 +306,43 @@ jQuery(document).ready(function ($) {
     var files = []
     // $(".drop-zone").each(function() {
 
-        $('.drop-zone').dropzone({
-            url: globals.upload,
-            maxFiles: 10,
-            previewsContainer: this.querySelector('.drop-zone__preview'),
-            addRemoveLinks: true,
-            url: globals.upload,
-            maxFiles: 10,
-            maxFilesize: 10, // MB
-            //   uploadMultiple: true,
-            acceptedFiles: ".jpg, .jpeg, .png, .gif, .pdf",
+    $('.drop-zone').dropzone({
+        url: globals.upload,
+        maxFiles: 10,
+        previewsContainer: this.querySelector('.drop-zone__preview'),
+        addRemoveLinks: true,
+        url: globals.upload,
+        maxFiles: 10,
+        maxFilesize: 10, // MB
+        //   uploadMultiple: true,
+        acceptedFiles: ".jpg, .jpeg, .png, .gif, .pdf",
 
 
-            init: function() {
+        init: function() {
 
-                this.on("success", function(file, data) {
+            this.on("success", function(file, data) {
 
-                    files.push(data)
+                files.push(data)
 
-                    $('[name="media_ids"]').val(files.join(','))
+                $('[name="media_ids"]').val(files.join(','))
 
-                });
+            });
 
-                let fraction = this.element.querySelector('.drop-zone__fraction');
-                let submitBtn = this.element.closest('form').querySelector('[type="submit"], .form__submit');
-                let dt = new DataTransfer();
+            let fraction = this.element.querySelector('.drop-zone__fraction');
+            let submitBtn = this.element.closest('form').querySelector('[type="submit"], .form__submit');
+            let dt = new DataTransfer();
 
-                this.on("addedfile", file => {
-                    dt.items.add(file)
-                })
+            this.on("addedfile", file => {
+                dt.items.add(file)
+            })
 
-                this.on("removedfile", file => {
-                    dt.items.remove(file)
-                })
-            },
+            this.on("removedfile", file => {
+                dt.items.remove(file)
+            })
+        },
 
 
 
-        });
+    });
     // })
 });

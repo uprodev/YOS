@@ -12,6 +12,7 @@ function add_styles() {
 
 function add_scripts() {
 
+    wp_enqueue_script( 'wc-cart-fragments' );
     wp_enqueue_script( 'vendorsjs', get_template_directory_uri() . '/js/vendors.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'dropzone', get_template_directory_uri() . '/js/dropzone.js', array(), rand(1111, 9999), false);
@@ -21,7 +22,7 @@ function add_scripts() {
         wp_enqueue_script( 'comment-reply' );
     }
 
-    wp_enqueue_script( 'wc-cart-fragments' );
+
 
 
     wp_localize_script('script', 'globals',
