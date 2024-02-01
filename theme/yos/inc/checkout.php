@@ -1,5 +1,6 @@
 <?php
 
+return;
 /* unset checkout fields */
 
 add_filter( 'woocommerce_checkout_fields' , 'quadlayers_remove_checkout_fields' );

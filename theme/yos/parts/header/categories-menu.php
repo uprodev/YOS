@@ -46,7 +46,8 @@ if($menu):
                         $terms = get_terms([
                             'hide_empty' => false,
                             'taxonomy' => 'product_cat',
-                            'parent' => $term_id
+                            'parent' => $term_id,
+                            'orderby' => 'order'
                         ]);
                         if ($terms) {
                         foreach ($terms as $term) { ?>
@@ -60,7 +61,8 @@ if($menu):
                                         $terms_child = get_terms([
                                             'hide_empty' => false,
                                             'taxonomy' => 'product_cat',
-                                            'parent' => $term->term_id
+                                            'parent' => $term->term_id,
+                                            'orderby' => 'menu-order'
                                         ]);
 
                                         if ($terms_child) {
