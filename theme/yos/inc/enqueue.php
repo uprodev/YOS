@@ -21,6 +21,7 @@ function add_scripts() {
     if (is_product()){
         wp_enqueue_script( 'comment-reply' );
     }
+    wp_dequeue_script('wc-order-attribution');
 
 
 

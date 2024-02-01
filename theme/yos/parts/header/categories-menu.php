@@ -36,58 +36,77 @@ if($menu):
 
     <?php foreach ($menu as $m):
 
-        if ($m['category_tree']) {  ?>
+        array_filter($m);
 
-            <div class="categories__tab" data-category-tab data-index="<?= $i;?>">
-                <div class="categories__body container">
+        if ($m['categories_menu']) {
+            if (!empty($m['categories_menu']['column_1'])) { ?>
 
-                    <?php
-                    foreach ($m['category_tree'] as $term_id) {
-                        $terms = get_terms([
-                            'hide_empty' => false,
-                            'taxonomy' => 'product_cat',
-                            'parent' => $term_id,
-                            'orderby' => 'order'
-                        ]);
-                        if ($terms) {
-                        foreach ($terms as $term) { ?>
+                <div class="categories__tab" data-category-tab data-index="<?= $i;?>">
+                    <div class="categories__body container">
 
-                            <div class="categories__block">
-                                <ul class="categories__list">
-                                    <li>
-                                        <a href="<?=  get_term_link($term->term_id)  ?>" class="categories__list-title"><?= $term->name ?></a>
+                        <?php
 
+//                        echo '<pre>';
+//                        print_r($m['categories_menu']);
+                        foreach ($m['categories_menu'] as $key=>$column) {
+
+
+                             if (!empty($column['offer'])) { ?>
+                                <div class="categories__block">
+
+                                    <a href="<?= $column['offer']['url'] ?>" class="category-offer-card">
+                                        <div class="category-offer-card__img ibg">
+                                            <img src="<?= $column['image']['url'] ?>" alt="">
+                                        </div>
+                                        <div class="category-offer-card__bottom">
+                                            <div class="category-offer-card__title"><?= $column['offer']['title'] ?></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php }  elseif (!empty($column)) { ?>
+
+                                <div class="categories__block">
+                                    <ul class="categories__list">
                                         <?php
-                                        $terms_child = get_terms([
-                                            'hide_empty' => false,
-                                            'taxonomy' => 'product_cat',
-                                            'parent' => $term->term_id,
-                                            'orderby' => 'menu-order'
-                                        ]);
-
-                                        if ($terms_child) {
-                                        ?>
-
-                                            <ul class="categories__sublist">
-                                                <?php foreach ($terms_child as $term_child) { ?>
+                                        if (!empty($column)) {
+                                            foreach ($column as $term_id) {
+                                                $term = get_term($term_id);?>
                                                 <li>
-                                                    <a href="<?=  get_term_link($term_child->term_id)  ?>"><?= $term_child->name ?></a>
+                                                    <a href="<?=  get_term_link($term->term_id)  ?>" class="categories__list-title"><?= $term->name ?></a>
+
+                                                    <?php
+                                                    $terms_child = get_terms([
+                                                        'hide_empty' => false,
+                                                        'taxonomy' => 'product_cat',
+                                                        'parent' => $term->term_id,
+                                                        'orderby' => 'menu-order'
+                                                    ]);
+
+                                                    if ($terms_child) { ?>
+                                                        <ul class="categories__sublist">
+                                                            <?php foreach ($terms_child as $term_child) { ?>
+                                                            <li>
+                                                                <a href="<?=  get_term_link($term_child->term_id)  ?>"><?= $term_child->name ?></a>
+                                                            </li>
+                                                           <?php } ?>
+                                                        </ul>
+                                                    <?php } ?>
                                                 </li>
-                                               <?php } ?>
-                                            </ul>
-
+                                            <?php } ?>
                                         <?php } ?>
-                                    </li>
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
 
-                        <?php } ?>
+                             <?php } ?>
+
                     <?php } ?>
-                <?php } ?>
+
+
+
+                </div>
             </div>
-        </div>
 
-
+            <?php } ?>
         <?php } ?>
 
     <?php $i++; endforeach;?>
