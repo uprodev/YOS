@@ -220,31 +220,20 @@ endif;
                                         'value'    => $commenter['comment_author_email'],
                                         'required' => $name_email_required,
                                     ),
-//                                    'photo'  => array(
-//                                        'label'    => __( 'Photo', 'yos' ),
-//                                        'type'     => 'file',
-//                                        'value'    => '',
-//                                        'required' => false,
-//                                        'class' => 'drop-zone'
-//                                    ),
                                 );
 
                                 $comment_form['fields'] = array();
 
                                 foreach ( $fields as $key => $field ) {
-                                    if($field['class'] == 'drop-zone') {
-                                        $field_html = '<div class="add-comment__form-field">';
-                                    }else{
-                                        $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap" data-input>';
-                                    }
 
-                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input '.$field['class'].'" ' . ( $field['required'] ? 'required' : '' ) . ' /><span class="input-label">'.$field['label'].'</span>';
+                                    $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap" data-input>';
 
-                                    if($field['class'] == 'drop-zone'){
-                                        $field_html .= '<div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
-                                    }else{
-                                        $field_html .= '</div></div>';
-                                    }
+
+                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input '.$field['class'].'" ' . ( $field['required'] ? 'required' : '' ) . ' placeholder="'.$field['label'].'" /><span class="input-label">'.$field['label'].'</span>';
+
+
+                                   $field_html .= '</div></div>';
+
 
                                     $comment_form['fields'][ $key ] = $field_html;
                                 }
@@ -253,7 +242,7 @@ endif;
                                     $comment_form['comment_field'] = '<div class="add-comment__form-stars"><div>'.__('Оцінка', 'yos').'</div><div class="set-stars" data-set-stars><div class="set-stars__item">1</div><div class="set-stars__item">2</div><div class="set-stars__item">3</div><div class="set-stars__item">4</div><div class="set-stars__item">5</div><input type="text" value="0" name="rating" id="rating"></div></div>';
                                 }
 
-                                $comment_form['comment_field'] .= '<div class="add-comment__form-field"><div class="textarea-wrap" data-textarea><textarea class="textarea" id="comment" name="comment"></textarea><span class="textarea-label">'.__('Текст повідомлення', 'yos').'</span></div></div>';
+                                $comment_form['comment_field'] .= '<div class="add-comment__form-field"><div class="textarea-wrap" data-textarea><textarea class="textarea" id="comment" name="comment" placeholder="'.__('Текст повідомлення', 'yos').'"></textarea><span class="textarea-label">'.__('Текст повідомлення', 'yos').'</span></div></div>';
 
 				                comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form ) );?>
 

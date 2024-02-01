@@ -52,7 +52,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
 ?>
 
-<div class="product-card" data-product-card>
+<div class="product-card<?= $product->is_in_stock()?'':' product-card--not-in-stock';?>"  data-product-card>
     <div class="product-card__head">
         <div class="product-card__labels">
 
@@ -121,40 +121,51 @@ $choise = get_field('yos_choise', get_the_ID());
             </div>
         <?php endif;?>
     </div>
-    <div class="product-card__footer">
-        <form>
-            <?php if ($product->is_type('variable')):
-                if (isset($variations_attr['pa_volumes'])): ?>
-                    <div class="product-card__option">
-                        <?php $p=0;
-                        foreach ($variations as  $variation):
+    <?php if($product->is_in_stock()):?>
 
-                            $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
+        <div class="product-card__footer">
+            <form>
+                <?php if ($product->is_type('variable')):
+                    if (isset($variations_attr['pa_volumes'])): ?>
+                        <div class="product-card__option">
+                            <?php $p=0;
+                            foreach ($variations as  $variation):
 
+                                $sl = get_term_by('slug', $variation['attributes']['attribute_pa_volumes'] , 'pa_volumes');
+
+                                ?>
+                                    <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
+                                        <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
+                                        <div class="product-card__option-item-value">
+                                            <?= $sl->name;?>
+                                        </div>
+                                    </label>
+
+                                <?php $p++; endforeach;
                             ?>
-                                <label class="product-card__option-item <?= $q==$p?'show-variation':'';?>" data-ind="<?= $p;?>" data-vario="<?= $variation['variation_id'];?>" <?= $variation['is_in_stock']==0?'disabled':'';?>>
-                                    <input type="radio" name="card-id-1" <?= $q==$p?'checked':'';?> data-product-card-option data-index="<?= $p;?>">
-                                    <div class="product-card__option-item-value">
-                                        <?= $sl->name;?>
-                                    </div>
-                                </label>
-
-                            <?php $p++; endforeach;
-                        ?>
-                    </div>
-                <?php endif;
-            endif;?>
-            <?php if ($product->is_type('variable')):
-                $h=0;
-                foreach ($variations as  $variation):
-                    if($h==$q):?>
-                    <input type="hidden" value="<?= $variation['variation_id'];?>" name="var_id">
+                        </div>
                     <?php endif;
-                $h++; endforeach;
-            endif;?>
-            <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="" data-product_id="<?= get_the_ID();?>">
-                <?= __('додати до кошика', 'yos');?>
-            </button>
-        </form>
-    </div>
+                endif;?>
+                <?php if ($product->is_type('variable')):
+                    $h=0;
+                    foreach ($variations as  $variation):
+                        if($h==$q):?>
+                        <input type="hidden" value="<?= $variation['variation_id'];?>" name="var_id">
+                        <?php endif;
+                    $h++; endforeach;
+                endif;?>
+                <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="" data-product_id="<?= get_the_ID();?>">
+                    <?= __('додати до кошика', 'yos');?>
+                </button>
+            </form>
+        </div>
+
+    <?php else:?>
+
+        <div class="product-card__footer">
+            <a href="#popup-notify-availability" data-popup="open-popup" class="button-primary dark"><?= __('повідомити про наявність', 'yos');?></a>
+        </div>
+
+    <?php endif;?>
+
 </div>

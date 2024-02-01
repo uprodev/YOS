@@ -1,1 +1,0 @@
-<!-- href="tel:+<?php echo phone_clear(get_field('telefon_h', 'options')); ?>" -->

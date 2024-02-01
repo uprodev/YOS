@@ -158,27 +158,36 @@ do_action( 'woocommerce_before_main_content' );
             </div>
     </section>
 
+
+    <?php
+
+        $title_out = get_field('zagolovok_formy' , 'options');
+        $subtitle_out = get_field('pidzagolovok_formy' , 'options');
+        $form_id = get_field('form_out' , 'options');
+        $title_out2 = get_field('vikno_dyakuyu_zagolovok' , 'options');
+        $subtitle_out2 = get_field('vikno_dyakuyu_pidzagolovok' , 'options');
+
+
+    ?>
+
     <div class="popup" id="popup-notify-availability">
         <div class="popup__body">
             <div class="popup__content">
                 <button class="popup__close" data-popup="close-popup"><span class="icon-close-thin"></span></button>
                 <div class="popup-notify-availability">
-                    <div class="popup-notify-availability__title">
-                        повідомити про наявність?
-                    </div>
-                    <div class="popup-notify-availability__text">
-                        Залишіть будь ласка свій номер і ми зв'яжемося, коли товар з'явиться в наявності
-                    </div>
-                    <form action="" class="popup-notify-availability__form">
-                        <div class="input-wrap" data-input>
-
-                            <input type="text" class="input"  data-mask="+380 (99) 999 99 99">
-                            <span class="input-label">Телефонний номер</span>
-
-
+                    <?php if($title_out):?>
+                        <div class="popup-notify-availability__title">
+                            <?= $title_out;?>
                         </div>
-                        <button class="button-primary dark">залишити номер</button>
-                    </form>
+                    <?php endif;?>
+                    <?php if($subtitle_out):?>
+                    <div class="popup-notify-availability__text">
+                        <?= $subtitle_out;?>
+                    </div>
+                    <?php endif;?>
+                    <?php if($form_id){
+                        echo do_shortcode('[contact-form-7 id="'.$form_id.'"]');
+                    }?>
                 </div>
             </div>
         </div>
@@ -193,12 +202,16 @@ do_action( 'woocommerce_before_main_content' );
             <div class="popup__content">
                 <button class="popup__close" data-popup="close-popup"><span class="icon-close-thin"></span></button>
                 <div class="popup-notify-availability popup-notify-availability--thank-you">
-                    <div class="popup-notify-availability__title">
-                        ваш номер надіслано
-                    </div>
-                    <div class="popup-notify-availability__text">
-                        дякуємо!
-                    </div>
+                    <?php if($title_out2):?>
+                        <div class="popup-notify-availability__title">
+                            <?= $title_out2;?>
+                        </div>
+                    <?php endif;?>
+                    <?php if($subtitle_out2):?>
+                        <div class="popup-notify-availability__text">
+                            <?= $subtitle_out2;?>
+                        </div>
+                    <?php endif;?>
                 </div>
             </div>
         </div>

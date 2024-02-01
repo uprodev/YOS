@@ -234,10 +234,13 @@ function add_points_widget_to_fragment( $fragments ) {
 add_filter('add_to_cart_fragments', 'add_points_widget_to_fragment');
 
 
+/* comment dropzone field */
+
+
 add_action( 'comment_form_logged_in_after', 'extend_comment_custom_fields' );
 add_action( 'comment_form_after_fields', 'extend_comment_custom_fields' );
 function extend_comment_custom_fields() {
 
-    echo '<div class="add-comment__form-field"><input id="photo" name="photo" type="file" class="drop-zone"/><div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
+    echo '<div class="add-comment__form-field dropzone"><button type="button" class="button-primary light">'.__('Додати медіафайл', 'yos').' <input id="photo" name="photo" type="file" class="drop-zone"/></button><div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
     
 }

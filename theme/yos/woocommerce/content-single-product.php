@@ -94,6 +94,16 @@ if( $product->is_type('variable') ){
 
                             <?php woocommerce_template_single_rating();?>
 
+                            <?php if ($product->is_type('simple')):?>
+                                <div class="product-actions__option">
+                                    <div class="product-actions__option-head">
+                                        <div class="product-actions__option-text stock">
+                                            <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif;?>
+
                             <?php if ( !empty($variations_attr['pa_volumes'])):?>
                                 <div class="product-actions__option">
                                     <div class="product-actions__option-head">
@@ -131,9 +141,9 @@ if( $product->is_type('variable') ){
                                 <div class="product-actions__option colors">
                                 <div class="product-actions__option-head">
                                     <div class="product-actions__option-title"><?= __('Виберіть колір:', 'yos');?></div>
-                                    <div class="product-actions__option-text">
-                                        They Met In Argentina
-                                    </div>
+<!--                                    <div class="product-actions__option-text">-->
+<!--                                        They Met In Argentina-->
+<!--                                    </div>-->
                                 </div>
                                 <div class="product-actions__option-items">
                                     <?php foreach ($variations as  $variation) {
@@ -235,7 +245,7 @@ if( $product->is_type('variable') ){
                             <?php endif;?>
 
                             <div class="product-actions__footer">
-                                <button <?= $consultation?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
+                                <button <?= $consultation||!$product->is_in_stock()?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
                                 <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-actions__like" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
 
                             </div>

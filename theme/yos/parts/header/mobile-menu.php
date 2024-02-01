@@ -54,11 +54,11 @@
                     </ul>
                 </div>
                 <div class="mobile-menu__row">
-                    <ul class="mobile-menu__list text-color-secondary">
-                        <li><a href="#">запитання й відповіді</a></li>
-                        <li><a href="#">про нас</a></li>
-                        <li><a href="#">контакти</a></li>
-                    </ul>
+                    <?php wp_nav_menu([
+                        'theme_location' => 'mob-menu',
+                        'container' => false,
+                        'menu_class' => 'mobile-menu__list text-color-secondary',
+                    ]);?>
 
                     <?php $languages = icl_get_languages('skip_missing=1');
 

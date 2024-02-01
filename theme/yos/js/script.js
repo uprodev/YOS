@@ -1,6 +1,8 @@
 jQuery(document).ready(function ($) {
     Dropzone.autoDiscover = false;
 
+
+
     $( '.product-card__footer form' ).each(function() {
         let vid = $(this).find('input[name="var_id"]').val();
 
@@ -99,11 +101,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         var key = $(this).attr('data-cart_item_key');
 
-        if ( $( '.woocommerce-cart-form' ).length ||  $( '.woocommerce-checkout' ).length) {
-          $(this).closest('li').remove();
-        }
         $(this).closest('.product-card-sm').remove();
-
         $.ajax({
             type: 'get',
             url: wc_add_to_cart_params.ajax_url,
@@ -120,7 +118,7 @@ jQuery(document).ready(function ($) {
 
                 $(document.body).trigger('wc_update_cart');
                 $( document.body ).trigger( 'wc_fragment_refresh' );
-                $( document.body ).trigger( 'update_checkout' );
+
                 // if (data.count === 0) location.href = '/shop';
 
             }
@@ -134,15 +132,13 @@ jQuery(document).ready(function ($) {
 
 
     $(document).on('click', '.quantity__btn.plus, .quantity__btn.minus', function(){
-      var that = $(this)
-      setTimeout(function(){
-        let item_quantity = that.closest('.quantity').find('.quantity__value').val();
 
-        let key = that.closest('.quantity').attr('data-key');
+        let item_quantity = $(this).closest('.quantity').find('.quantity__value').val();
+
+        let key = $(this).closest('.quantity').attr('data-key');
 
         var currentVal = parseFloat(item_quantity);
 
-        console.log(item_quantity)
         $.ajax({
             type: 'GET',
             url: wc_add_to_cart_params.ajax_url,
@@ -154,10 +150,8 @@ jQuery(document).ready(function ($) {
             success: function (data) {
                 $(document.body).trigger('wc_update_cart');
                 $( document.body ).trigger( 'wc_fragment_refresh' );
-                $( document.body ).trigger( 'update_checkout' );
             },
         });
-      }, 200)
     })
 
 
@@ -346,4 +340,21 @@ jQuery(document).ready(function ($) {
 
     });
     // })
+
+
+    /*  Form Out on stock  */
+
+
+    $(document).on('input', '.phone-input', function (){
+        let val = $(this).val();
+
+        $('#phone').val(val);
+    })
+
+    document.addEventListener( 'wpcf7mailsent', function( event ) {
+        var id = event.detail.contactFormId;
+        if ( id == 661 ) {
+            window.popup.open('#popup-notify-availability-thank-you');
+        }
+    }, false );
 });
