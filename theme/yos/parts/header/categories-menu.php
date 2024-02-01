@@ -46,11 +46,7 @@ if($menu):
 
                         <?php
 
-//                        echo '<pre>';
-//                        print_r($m['categories_menu']);
                         foreach ($m['categories_menu'] as $key=>$column) {
-
-
                              if (!empty($column['offer'])) { ?>
                                 <div class="categories__block">
 
@@ -100,8 +96,6 @@ if($menu):
                              <?php } ?>
 
                     <?php } ?>
-
-
 
                 </div>
             </div>
