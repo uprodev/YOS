@@ -220,13 +220,13 @@ endif;
                                         'value'    => $commenter['comment_author_email'],
                                         'required' => $name_email_required,
                                     ),
-                                    'photo'  => array(
-                                        'label'    => __( 'Photo', 'yos' ),
-                                        'type'     => 'file',
-                                        'value'    => '',
-                                        'required' => false,
-                                        'class' => 'drop-zone'
-                                    ),
+//                                    'photo'  => array(
+//                                        'label'    => __( 'Photo', 'yos' ),
+//                                        'type'     => 'file',
+//                                        'value'    => '',
+//                                        'required' => false,
+//                                        'class' => 'drop-zone'
+//                                    ),
                                 );
 
                                 $comment_form['fields'] = array();
