@@ -299,14 +299,11 @@ jQuery(document).ready(function ($) {
     /* dropzone */
 
     var files = []
-    // $(".drop-zone").each(function() {
 
     $('.drop-zone').dropzone({
         url: globals.upload,
-        maxFiles: 10,
         previewsContainer: this.querySelector('.drop-zone__preview'),
         addRemoveLinks: true,
-        url: globals.upload,
         maxFiles: 10,
         maxFilesize: 10, // MB
         //   uploadMultiple: true,
@@ -337,9 +334,7 @@ jQuery(document).ready(function ($) {
         },
 
 
-
     });
-    // })
 
 
     /*  Form Out on stock  */
