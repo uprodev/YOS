@@ -207,12 +207,22 @@ class Utils {
 	}
 
 	initInputMask() {
-		let items = document.querySelectorAll('[data-mask]');
-		if (items.length) {
-			items.forEach(item => {
+		let itemsByData = document.querySelectorAll('[data-mask]');
+		if (itemsByData.length) {
+			itemsByData.forEach(item => {
 				let maskValue = item.dataset.mask;
 
 				Inputmask(maskValue, {
+					clearIncomplete: false,
+					clearMaskOnLostFocus: false,
+				}).mask(item);
+			})
+		}
+
+		let itemsByClass = document.querySelectorAll('input.phone-input');
+		if (itemsByClass.length) {
+			itemsByClass.forEach(item => {
+				Inputmask('+380 (99) 999 99 99', {
 					clearIncomplete: false,
 					clearMaskOnLostFocus: false,
 				}).mask(item);
