@@ -28,6 +28,14 @@ get_header();
  */
 //do_action( 'woocommerce_before_main_content' );
 
+$atr = get_queried_object();
+
+if($atr->taxonomy=='pa_brand'){
+    $desc = $atr->description;
+    $full_desc = get_field('povnyj_opys', 'pa_brand_'.$atr->term_id);
+    $logo = get_field('logo_brand', 'pa_brand_'.$atr->term_id);
+}
+
 ?>
     <main class="_page catalog-page">
         <div class="head-height-compensation"></div>
@@ -36,6 +44,41 @@ get_header();
     <section class="catalog">
         <div class="container">
             <div class="catalog__inner">
+                <?php if($atr->taxonomy=='pa_brand'):?>
+                    <div class="catalog__brand">
+                        <div class="catalog__brand-col-1"></div>
+                        <div class="catalog__brand-col-2">
+                            <div class="brand-description-card" brand-description-card>
+                                <h2 class="brand-description-card__title"><?= $atr->name;?></h2>
+                                <?php if($logo):?>
+                                    <div class="brand-description-card__logo">
+                                        <a href="<?= get_term_link($atr->term_id);?>">
+                                            <img src="<?= $logo;?>" alt="<?= $atr->name;?>">
+                                        </a>
+                                    </div>
+                                <?php endif;?>
+                                <?php if($desc):?>
+                                    <div class="brand-description-card__text">
+                                        <div class="brand-description-card__text-preview text-content last-no-margin">
+                                            <p>
+                                                <?= $desc;?>
+                                                <?php if($full_desc):?>
+                                                    <a href="#" data-action="show-full-description-card-text" class="button-link"><span><?= __('більше', 'yos');?></span></a>
+                                                <?php endif;?>
+                                            </p>
+                                        </div>
+                                        <?php if($full_desc):?>
+                                            <div class="brand-description-card__text-full text-content last-no-margin">
+                                                <?= $full_desc;?>
+                                                <button data-action="hide-full-description-card-text" class="button-link"><span><?= __('Сховати', 'yos');?></span></button>
+                                            </div>
+                                        <?php endif;?>
+                                    </div>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
                 <div class="catalog__head">
                     <div class="catalog__head-col-1"></div>
                     <div class="catalog__head-col-2">
