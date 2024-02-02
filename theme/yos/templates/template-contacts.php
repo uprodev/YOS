@@ -14,7 +14,7 @@ get_header();
 
     <main class="_page contacts-page">
         <div class="head-height-compensation d-lg-none"></div>
-        <?php get_template_part('parts/header/categories-menu');?>
+        <?php //get_template_part('parts/header/categories-menu');?>
         <section class="contacts">
             <div class="container">
                 <h2 class="contacts__title" data-da=".contacts__info,768,last"><?php the_title();?></h2>

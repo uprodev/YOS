@@ -26,11 +26,13 @@ get_header();
  * @hooked woocommerce_breadcrumb - 20
  * @hooked WC_Structured_Data::generate_website_data() - 30
  */
-do_action( 'woocommerce_before_main_content' );
+//do_action( 'woocommerce_before_main_content' );
 
 ?>
     <main class="_page catalog-page">
         <div class="head-height-compensation"></div>
+        <?php get_template_part('parts/header/categories-menu');?>
+
     <section class="catalog">
         <div class="container">
             <div class="catalog__inner">
