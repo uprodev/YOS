@@ -215,6 +215,14 @@ class Utils {
 				Inputmask(maskValue, {
 					clearIncomplete: false,
 					clearMaskOnLostFocus: false,
+					oncomplete: () => {
+						const event = new Event('phonecomplete', { bubbles: true });
+						item.dispatchEvent(event);
+					},
+					oncleared: () => {
+						const event = new Event('phonecleare', { bubbles: true });
+						item.dispatchEvent(event);
+					}
 				}).mask(item);
 			})
 		}
@@ -225,6 +233,15 @@ class Utils {
 				Inputmask('+380 (99) 999 99 99', {
 					clearIncomplete: false,
 					clearMaskOnLostFocus: false,
+					oncomplete: () => {
+						const event = new Event('phonecomplete', { bubbles: true });
+						item.dispatchEvent(event);
+					},
+					oncleared: () => {
+						console.log('onclear');
+						const event = new Event('phonecleare', { bubbles: true });
+						item.dispatchEvent(event);
+					},
 				}).mask(item);
 			})
 		}
@@ -1134,6 +1151,25 @@ if(categoriesEl) {
     })
 
     CategoryItems.init();
+}
+			{
+    const availabilityForm = document.querySelector('#popup-notify-availability form.wpcf7-form');
+    if(availabilityForm) {
+        const btnSubmit = availabilityForm.querySelector('button[type="submit"]');
+        if(!btnSubmit) return;
+        btnSubmit.setAttribute('disabled', '');
+
+        availabilityForm.addEventListener('input', (e) => {
+            if(e.target.closest('.phone-input')) {
+                const input = e.target;
+                if(input.value.match(/\d/gi).length === 12) {
+                    btnSubmit.removeAttribute('disabled');
+                } else {
+                    btnSubmit.setAttribute('disabled', '');
+                }
+            }
+        })
+    }
 }
 			// ==== // components =====================================================
 
