@@ -3832,60 +3832,60 @@ h5,
   position: relative;
 }
 
-.input-wrap .input,
-.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input,
-.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input,
-.input-wrap .input-text {
+.input-wrap .input:not(.wpcf7-text),
+.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text),
+.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text),
+.input-wrap .input-text:not(.wpcf7-text) {
   position: relative;
   z-index: 1;
   color: transparent;
   padding: 1.4rem 2rem 0.4rem;
 }
 
-.input-wrap .input:focus,
-.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:focus,
-.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:focus,
-.input-wrap .input-text:focus {
+.input-wrap .input:not(.wpcf7-text):focus,
+.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):focus,
+.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):focus,
+.input-wrap .input-text:not(.wpcf7-text):focus {
   color: #121212;
 }
 
-.input-wrap .input:focus ~ .input-label,
-.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:focus ~ .input-label,
-.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:focus ~ .input-label,
-.input-wrap .input-text:focus ~ .input-label {
+.input-wrap .input:not(.wpcf7-text):focus ~ .input-label,
+.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):focus ~ .input-label,
+.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):focus ~ .input-label,
+.input-wrap .input-text:not(.wpcf7-text):focus ~ .input-label {
   top: 0.8rem;
   font-size: 1rem;
 }
 
-.input-wrap .input:not(:-moz-placeholder-shown), .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:-moz-placeholder-shown), .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:-moz-placeholder-shown), .input-wrap .input-text:not(:-moz-placeholder-shown) {
+.input-wrap .input:not(.wpcf7-text):not(:-moz-placeholder-shown), .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-moz-placeholder-shown), .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-moz-placeholder-shown), .input-wrap .input-text:not(.wpcf7-text):not(:-moz-placeholder-shown) {
   color: #121212;
 }
 
-.input-wrap .input:not(:-ms-input-placeholder), .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:-ms-input-placeholder), .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:-ms-input-placeholder), .input-wrap .input-text:not(:-ms-input-placeholder) {
+.input-wrap .input:not(.wpcf7-text):not(:-ms-input-placeholder), .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-ms-input-placeholder), .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-ms-input-placeholder), .input-wrap .input-text:not(.wpcf7-text):not(:-ms-input-placeholder) {
   color: #121212;
 }
 
-.input-wrap .input:not(:placeholder-shown),
-.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:placeholder-shown),
-.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:placeholder-shown),
-.input-wrap .input-text:not(:placeholder-shown) {
+.input-wrap .input:not(.wpcf7-text):not(:placeholder-shown),
+.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:placeholder-shown),
+.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:placeholder-shown),
+.input-wrap .input-text:not(.wpcf7-text):not(:placeholder-shown) {
   color: #121212;
 }
 
-.input-wrap .input:not(:-moz-placeholder-shown) ~ .input-label, .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:-moz-placeholder-shown) ~ .input-label, .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:-moz-placeholder-shown) ~ .input-label, .input-wrap .input-text:not(:-moz-placeholder-shown) ~ .input-label {
+.input-wrap .input:not(.wpcf7-text):not(:-moz-placeholder-shown) ~ .input-label, .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-moz-placeholder-shown) ~ .input-label, .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-moz-placeholder-shown) ~ .input-label, .input-wrap .input-text:not(.wpcf7-text):not(:-moz-placeholder-shown) ~ .input-label {
   top: 0.8rem;
   font-size: 1rem;
 }
 
-.input-wrap .input:not(:-ms-input-placeholder) ~ .input-label, .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:-ms-input-placeholder) ~ .input-label, .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:-ms-input-placeholder) ~ .input-label, .input-wrap .input-text:not(:-ms-input-placeholder) ~ .input-label {
+.input-wrap .input:not(.wpcf7-text):not(:-ms-input-placeholder) ~ .input-label, .input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-ms-input-placeholder) ~ .input-label, .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:-ms-input-placeholder) ~ .input-label, .input-wrap .input-text:not(.wpcf7-text):not(:-ms-input-placeholder) ~ .input-label {
   top: 0.8rem;
   font-size: 1rem;
 }
 
-.input-wrap .input:not(:placeholder-shown) ~ .input-label,
-.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(:placeholder-shown) ~ .input-label,
-.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(:placeholder-shown) ~ .input-label,
-.input-wrap .input-text:not(:placeholder-shown) ~ .input-label {
+.input-wrap .input:not(.wpcf7-text):not(:placeholder-shown) ~ .input-label,
+.input-wrap .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:placeholder-shown) ~ .input-label,
+.main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp .input-wrap input[type=search].dgwt-wcas-search-input:not(.wpcf7-text):not(:placeholder-shown) ~ .input-label,
+.input-wrap .input-text:not(.wpcf7-text):not(:placeholder-shown) ~ .input-label {
   top: 0.8rem;
   font-size: 1rem;
 }
@@ -4153,6 +4153,10 @@ h5,
   -webkit-transition: top 0.15s ease, font-size 0.15s ease;
   -o-transition: top 0.15s ease, font-size 0.15s ease;
   transition: top 0.15s ease, font-size 0.15s ease;
+}
+
+.wpcf7-form-control-wrap + .input-label {
+  display: none;
 }
 
 .swiper-scrollbar.slider-scrollbar {
