@@ -39,12 +39,15 @@ if( function_exists('acf_add_options_page') ) {
 function phone_clear($phone_num){ 
     $phone_num = preg_replace("![^0-9]+!",'',$phone_num);
     return($phone_num); 
-}				
-
-
-function my_acf_init() {
-	acf_update_setting('google_api_key', 'AIzaSyAh1NE8kfXzx31UyPrwTCqwJdETUseulmI');
 }
 
-add_action('acf/init', 'my_acf_init');
+add_action( 'woocommerce_thankyou', 'adding_customers_details_to_thankyou', 10, 1 );
+function adding_customers_details_to_thankyou( $order_id ) {
+    // Only for non logged in users
+    if ( ! $order_id || is_user_logged_in() ) return;
+
+    $order = wc_get_order($order_id); // Get an instance of the WC_Order object
+
+    wc_get_template( 'order/order-details-customer.php', array('order' => $order ));
+}
 

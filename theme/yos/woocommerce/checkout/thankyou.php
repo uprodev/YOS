@@ -28,6 +28,10 @@ $TotalTimeStamp2 = strtotime('+ 6 days', $Timestamp);
 $date1 = date('j F', $TotalTimeStamp1);
 $date2 = date('j F', $TotalTimeStamp2);
 
+$ship = $order->get_shipping_to_display();
+$adres = $order->get_shipping_address_1();
+$city = $order->get_shipping_city();
+
 ?>
 <section class="order-info">
     <div class="container">
@@ -51,7 +55,7 @@ $date2 = date('j F', $TotalTimeStamp2);
                         $product_name = $item->get_name();
                         $quantity = $item->get_quantity();
                         $brand = get_the_terms($product_id, 'pa_brand');
-                    ?>
+                        ?>
                         <li>
                             <div class="product-card-sm">
                                 <div class="product-card-sm__left">
@@ -98,8 +102,7 @@ $date2 = date('j F', $TotalTimeStamp2);
                 <div class="order-info__row">
                     <h4><?= __('пункт видачі замовлення', 'yos');?></h4>
                     <p>
-                        Нова Пошта — Відділення #132: вул.
-                        Генуезька, 5, 65002, Одеса
+                        <?= $ship;?> <?= $adres?'— '.$adres:'';?><?= $city?', '.$city:'';?>
                     </p>
                     <p class="text-sm">
                         <?= __('Приблизна дата доставки:', 'yos');?>
@@ -108,13 +111,13 @@ $date2 = date('j F', $TotalTimeStamp2);
                 </div>
                 <div class="order-info__row">
                     <div class="side-basket__payment-info">
-                        <div class="side-basket__payment-info-row">
-                            <span><?= __('Знижка за системою лояльності', 'yos');?></span>
-                            <span class="text-nowrap">-40 ₴</span>
-                        </div>
+                        <!--                        <div class="side-basket__payment-info-row">-->
+                        <!--                            <span>--><?//= __('Знижка за системою лояльності', 'yos');?><!--</span>-->
+                        <!--                            <span class="text-nowrap">-40 ₴</span>-->
+                        <!--                        </div>-->
                         <?php if($discount):?>
                             <div class="side-basket__payment-info-row">
-                                <span><?= __('Знижка', 'yos');?> -23%</span>
+                                <span><?= __('Знижка', 'yos');?></span>
                                 <span class="text-nowrap">-<?= $order->get_discount_total();?> ₴</span>
                             </div>
                         <?php endif;?>
