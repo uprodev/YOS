@@ -78,7 +78,9 @@ if($addit_prod):
     </div>
 <?php endif;?>
 
-    <div class="basket__side-row woocommerce-cart-form  ">
+
+
+    <div class="basket__side-row   ">
         <div class="side-basket__payment-info">
             <!--                            <div class="side-basket__payment-info-row">-->
             <!--                                <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
@@ -116,7 +118,7 @@ if($sub<2000):
 
     ?>
 
-    <div class="basket__side-row woocommerce-cart-form">
+    <div class="basket__side-row ">
         <div class="side-basket__free-shipping">
             <div class="side-basket__free-shipping-head">
                 <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>

@@ -91,7 +91,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         } ?>
                     </ul>
                 </div>
-                <div class="basket__side cart-collaterals">
+                <div class="basket__side cart-collaterals cart-totals   woocommerce-cart-form">
                     <?php woocommerce_cart_totals() ?>
                 </div>
             </div>
