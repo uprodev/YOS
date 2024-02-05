@@ -3730,6 +3730,15 @@ h5,
   background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
 }
 
+.button-link.lmp_button {
+  padding: 0.2rem 0 !important;
+  background-image: -o-linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+  background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+  background-color: transparent !important;
+  color: inherit !important;
+  font-size: inherit !important;
+}
+
 .popup {
   position: fixed;
   width: 100%;
@@ -5159,6 +5168,10 @@ h5,
   background-color: #EAEAEA;
 }
 
+.bapf_slidr_all .bapf_slidr_main.ui-widget-content {
+  height: 0.4rem;
+}
+
 .bapf_slidr_all .bapf_slidr_main .ui-slider-range {
   background-color: #6A6B6E;
 }
@@ -5172,7 +5185,7 @@ h5,
   -webkit-box-shadow: none;
           box-shadow: none;
   right: -0.8rem;
-  top: -0.5rem;
+  top: -0.6rem;
   cursor: pointer;
 }
 
@@ -9315,7 +9328,8 @@ h5,
   margin-top: 3.2rem;
 }
 
-.checkbox-radio-list {
+.checkbox-radio-list,
+ul.wc_payment_methods {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9326,7 +9340,8 @@ h5,
   gap: 1rem;
 }
 
-.checkbox-radio-list:not(:first-child) {
+.checkbox-radio-list:not(:first-child),
+ul.wc_payment_methods:not(:first-child) {
   margin-top: 2rem;
 }
 
@@ -9374,6 +9389,10 @@ h5,
 .woocommerce-checkout #payment.woocommerce-checkout-payment ul.payment_methods {
   padding: 0;
   border: none;
+}
+
+.woocommerce-checkout #payment.woocommerce-checkout-payment ul.payment_methods > li {
+  line-height: 1;
 }
 
 .woocommerce-checkout #payment.woocommerce-checkout-payment ul.payment_methods > li:last-child > *:last-child {
