@@ -5573,10 +5573,11 @@ h5,
   border-radius: 0;
   border: none;
   outline: none;
-  width: 1.7rem;
+  width: 1.9rem;
   font-size: 1.2rem;
   text-align: center;
   pointer-events: none;
+  padding: 0;
 }
 
 .spoller {
@@ -12156,6 +12157,10 @@ ul.wc_payment_methods:not(:first-child) {
 
   .carousel .swiper-slide .product-card .product-card__body {
     margin-bottom: auto;
+  }
+
+  .carousel__tab-content .category-info {
+    display: none;
   }
 
   .special-offers .swiper-slide.has-banner {
