@@ -73,7 +73,9 @@ $categories_product = get_sub_field('categories_product');
                                                 </div>
                                             </div>
                                         <?php else:?>
-                                            <?php wc_get_template_part( 'content', 'product' );?>
+                                            <div class="swiper-slide">
+                                                <?php wc_get_template_part( 'content', 'product' );?>
+                                            </div>
                                         <?php endif;?>
                                     <?php $pr++; endforeach; wp_reset_postdata(); $pr=1;?>
                                 </div>
