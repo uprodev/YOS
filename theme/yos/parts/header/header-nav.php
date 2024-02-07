@@ -69,8 +69,8 @@ if($offer):?>
                     <?= __('кабінет', 'yos');?>
                 </a>
             </div>
-            <div class="header-actions__item">
-                <button class="basket-count<?php if ( WC()->cart->is_empty() ){echo ' disable';}?>" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
+            <div class="header-actions__item<?php if (is_cart() || is_checkout()){echo ' disable';}?>">
+                <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
             </div>
         </div>
     </div>
@@ -102,8 +102,8 @@ if($offer):?>
                     <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/user.svg" alt="">
                 </a>
             </div>
-            <div class="header-actions__item">
-                <button class="basket-count<?php if ( WC()->cart->is_empty() ){echo ' disable';}?>" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
+            <div class="header-actions__item<?php if (is_cart() || is_checkout()){echo ' disable';}?>">
+                <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
             </div>
         </div>
     </div>
