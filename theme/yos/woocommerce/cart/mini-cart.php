@@ -19,6 +19,13 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$sub = WC()->cart->subtotal;
+
+$ost = 2000-$sub;
+$ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
+$percent = round(($ost*100)/2000);
+$percent_bar = 100-$percent;
+
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
 
@@ -104,7 +111,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 </div>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
-                    <span><?= __('За тарифами перевізника', 'yos');?></span>
+                    <span><?= $sub>=2000?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
@@ -116,14 +123,6 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
             </div>
 
-            <?php $sub = WC()->cart->subtotal;
-
-                $ost = 2000-$sub;
-                $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
-                $percent = round(($ost*100)/2000);
-                $percent_bar = 100-$percent;
-
-            ?>
 
                 <div class="side-basket__free-shipping">
                     <div class="side-basket__free-shipping-head">
