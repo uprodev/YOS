@@ -90,7 +90,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 do_action( 'woocommerce_mini_cart_contents' );
                 ?>
             </ul>
-
+        </div>
             <div class="side-basket__payment-info">
 <!--                <div class="side-basket__payment-info-row">-->
 <!--                    <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
@@ -141,7 +141,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                 </div>
 
-        </div>
+        
     </div>
 
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>
