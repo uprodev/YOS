@@ -34,7 +34,6 @@ $avatar_hover_data_attributes  = SB_Instagram_Display_Elements::get_avatar_hover
 $avatar_svg_data_attributes  = SB_Instagram_Display_Elements::get_avatar_svg_data_attributes( $settings );
 
 
-
 $header_padding             = (int) $settings['imagepadding'] > 0 ? 'padding: ' . (int) $settings['imagepadding'] . esc_attr( $settings['imagepaddingunit'] ) . ';' : '';
 $header_padding            .= isset( $settings['headeroutside'] ) && $settings['headeroutside'] 
 	&& ! empty( $settings['colorpalette'] ) && $settings['colorpalette'] === 'custom' 
@@ -50,38 +49,18 @@ $header_link                = SB_Instagram_Display_Elements::get_header_link( $s
 $header_link_title          = SB_Instagram_Display_Elements::get_header_link_title( $settings, $username );
 
 ?>
-<div<?php echo $header_classes; ?> style="<?php echo $header_padding . $header_margin; ?>" <?php echo $header_atts; ?>>
-	<a<?php echo $header_link ?> target="_blank" rel="nofollow noopener" <?php echo $header_link_title ?> class="sbi_header_link">
-		<div<?php echo $header_text_class; ?>>
-			<?php if ( SB_Instagram_Display_Elements::should_show_header_section( 'image-top', $settings ) ) : ?>
-				<div class="sbi_header_img"<?php echo $header_image_atts_centered; ?>>
-					<?php if ( $avatar !== '' || $doing_cutomizer):  ?>
-						<div class="sbi_header_img_hover" <?php echo $avatar_hover_data_attributes ?>><?php echo SB_Instagram_Display_Elements::get_icon( 'newlogo', 'svg' ); ?></div>
-						<img<?php echo $avatar_el_atts; ?> width="50" height="50">
-					<?php endif; ?>
-					<?php if( empty($avatar) || $doing_cutomizer): ?>
-						<div class="sbi_header_hashtag_icon" <?php echo $avatar_svg_data_attributes ?>><?php echo SB_Instagram_Display_Elements::get_icon( 'newlogo', 'svg' ); ?></div>
-					<?php endif; ?>
-				</div>
-			<?php endif; ?>
-
-			<h3<?php echo $header_text_color_style . $header_heading_attribute; ?>><?php echo esc_html( $username ); ?></h3>
-			<?php if ( $should_show_bio ) : ?>
-				<p class="sbi_bio"<?php echo $header_text_color_style . $bio_attribute; ?>><?php echo str_replace( '&lt;br /&gt;', '<br>', esc_html( nl2br( $bio ) ) ); ?></p>
-			<?php endif; ?>
-		</div>
-
-		<?php if ( SB_Instagram_Display_Elements::should_show_header_section( 'image-bottom', $settings ) ) : ?>
-			<div class="sbi_header_img"<?php echo $header_image_atts; ?>>
-				<?php if ( $avatar !== '' || $doing_cutomizer):   ?>
-					<div class="sbi_header_img_hover" <?php echo $avatar_hover_data_attributes ?>><?php echo SB_Instagram_Display_Elements::get_icon( 'newlogo', 'svg' ); ?></div>
-					<img<?php echo $avatar_el_atts; ?> width="50" height="50">
-				<?php endif; ?>
-				<?php if( empty($avatar) || $doing_cutomizer): ?>
-					<div class="sbi_header_hashtag_icon" <?php echo $avatar_svg_data_attributes ?>><?php echo SB_Instagram_Display_Elements::get_icon( 'newlogo', 'svg' ); ?></div>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
-
-	</a>
+<div class="instagram__head">
+    <div class="instagram__category-info">
+        <div class="category-links">
+            <h2 class="category-links__title title-2">instagram</h2>
+            <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a<?php echo $header_link ?> target="_blank" rel="nofollow noopener" <?php echo $header_link_title ?> class="sbi_header_link">#<?php echo esc_html( $username ); ?></a>
+                    </div>
+                </div>
+                <div class="swiper-scrollbar slider-scrollbar"></div>
+            </div>
+        </div>
+    </div>
 </div>
