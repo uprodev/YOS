@@ -18,7 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
-<section class="basket">
+<section class="basket woocommerce-cart-form">
     <div class="container">
         <div class="basket__head">
             <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="basket__link-to-shopping button-link">
@@ -31,9 +31,9 @@ do_action( 'woocommerce_before_cart' ); ?>
             </h2>
         </div>
             <?php do_action( 'woocommerce_before_cart_table' ); ?>
-            <div class="basket__body shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+            <div class=" basket__body shop_table shop_table_responsive cart woocommerce-cart-form__contents">
                 <div class="basket__main">
-                    <ul class="basket__list">
+                    <ul class=" basket__list">
                         <?php
                         foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
                         $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -91,7 +91,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         } ?>
                     </ul>
                 </div>
-                <div class="basket__side cart-collaterals cart-totals   woocommerce-cart-form">
+                <div class="basket__side cart-collaterals cart-totals   woocommerce-cart-form0">
                     <?php woocommerce_cart_totals() ?>
                 </div>
             </div>
