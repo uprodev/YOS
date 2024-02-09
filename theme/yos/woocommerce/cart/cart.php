@@ -31,7 +31,7 @@ do_action( 'woocommerce_before_cart' ); ?>
             </h2>
         </div>
             <?php do_action( 'woocommerce_before_cart_table' ); ?>
-            <div class="basket__body">
+            <div class="basket__body shop_table shop_table_responsive cart woocommerce-cart-form__contents">
                 <div class="basket__main">
                     <ul class="basket__list">
                         <?php
