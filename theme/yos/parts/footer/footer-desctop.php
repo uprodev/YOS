@@ -44,6 +44,11 @@
                             <a href="+<?= phone_clear(get_field('footer_phone', 'options'));?>"><?php the_field('footer_phone', 'options');?></a>
                         </li>
                     <?php endif;?>
+                    <?php if(get_field('footer_mail', 'options')):?>
+                        <li>
+                            <a href="mailto:<?=get_field('footer_mail', 'options');?>"><?php the_field('footer_mail', 'options');?></a>
+                        </li>
+                    <?php endif;?>
                     <?php if(get_field('footer_social', 'options')):
                         foreach (get_field('footer_social', 'options') as $soc):?>
                             <li>

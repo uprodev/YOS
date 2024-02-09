@@ -118,8 +118,6 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
             <?php $sub = WC()->cart->subtotal;
 
-            if($sub<2000):
-
                 $ost = 2000-$sub;
                 $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
                 $percent = round(($ost*100)/2000);
@@ -130,11 +128,11 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 <div class="side-basket__free-shipping">
                     <div class="side-basket__free-shipping-head">
                         <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
-                        <span class="text-nowrap"><?= $ost_html;?></span>
+                        <span class="text-nowrap"><?= $sub>=2000?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
                     </div>
                     <div class="side-basket__free-shipping-line">
                         <div class="line-track">
-                            <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+                            <div class="line" style="width: <?= $percent_bar>=100?'100':$percent_bar;?>%;"></div>
                         </div>
                     </div>
                     <div class="side-basket__free-shipping-total">
@@ -143,7 +141,6 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                 </div>
 
-            <?php endif;?>
         </div>
     </div>
 

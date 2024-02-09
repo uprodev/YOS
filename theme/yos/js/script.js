@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
-    Dropzone.autoDiscover = false;
 
+    Dropzone.autoDiscover = false;
 
 
     $( '.product-card__footer form' ).each(function() {
@@ -52,10 +52,9 @@ jQuery(document).ready(function ($) {
 
                 $( document.body ).trigger( 'wc_fragment_refresh' );
 
-                // $('.basket-count').text(data.data.cart_qty).removeClass('disable');
-                // $('.basket-qty').text('(' + data.data.cart_qty + ')');
+                window.sideBasket.open();
 
-                that.text('товар додано до кошика');
+                // that.text('товар додано до кошика');
 
             }
         });
