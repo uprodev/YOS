@@ -162,9 +162,38 @@ class Utils {
 	}
 
 	initCollapse() {
-		const collapseActionElements = document.querySelectorAll('[data-collapse]');
-		if (collapseActionElements.length) {
-			collapseActionElements.forEach(actionEl => {
+		document.addEventListener('click', (e) => {
+
+			if (e.target.closest('[data-collapse]')) {
+				const actionEl = e.target.closest('[data-collapse]');
+				if (actionEl.tagName === 'INPUT') return;
+				console.log(actionEl);
+				const id = actionEl.getAttribute('data-collapse');
+				if (!id) return;
+
+				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
+				if (!targetElements.length) return;
+
+
+				e.preventDefault();
+
+				if (actionEl.classList.contains('open')) {
+					actionEl.classList.remove('open');
+					targetElements.forEach(targetEl => {
+						this.slideUp(targetEl, 300)
+					})
+				} else {
+					actionEl.classList.add('open');
+					targetElements.forEach(targetEl => {
+						this.slideDown(targetEl, 300)
+					})
+				}
+			}
+		})
+
+		document.addEventListener('change', (e) => {
+			if (e.target.closest('[data-collapse]')) {
+				const actionEl = e.target.closest('[data-collapse]');
 
 				const id = actionEl.getAttribute('data-collapse');
 				if (!id) return;
@@ -172,38 +201,20 @@ class Utils {
 				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
 				if (!targetElements.length) return;
 
-				actionEl.addEventListener('click', (e) => {
-					if (actionEl.tagName === 'INPUT') return;
-					e.preventDefault();
+				if (actionEl.checked) {
+					actionEl.classList.add('open');
+					targetElements.forEach(targetEl => {
+						this.slideDown(targetEl, 300)
+					})
+				} else {
+					actionEl.classList.remove('open');
+					targetElements.forEach(targetEl => {
+						this.slideUp(targetEl, 300)
+					})
+				}
 
-					if (actionEl.classList.contains('open')) {
-						actionEl.classList.remove('open');
-						targetElements.forEach(targetEl => {
-							this.slideUp(targetEl, 300)
-						})
-					} else {
-						actionEl.classList.add('open');
-						targetElements.forEach(targetEl => {
-							this.slideDown(targetEl, 300)
-						})
-					}
-				})
-
-				actionEl.addEventListener('change', (e) => {
-					if (actionEl.checked) {
-						actionEl.classList.add('open');
-						targetElements.forEach(targetEl => {
-							this.slideDown(targetEl, 300)
-						})
-					} else {
-						actionEl.classList.remove('open');
-						targetElements.forEach(targetEl => {
-							this.slideUp(targetEl, 300)
-						})
-					}
-				})
-			})
-		}
+			}
+		})
 	}
 
 	initInputMask() {
@@ -297,7 +308,7 @@ class Utils {
 				anchor.addEventListener('click', (e) => {
 					const href = anchor.getAttribute('href')
 					const id = href.length > 1 ? href : null;
-					if(!id) return;
+					if (!id) return;
 					let el = document.querySelector(href);
 
 					if (el) {
@@ -708,6 +719,243 @@ window.popup = {
         if (!popup) return;
 
         popupClose(popup);
+    }
+}
+
+			
+function _slideUp(target, duration = 400) {
+    target.style.transitionProperty = 'height, margin, padding';
+    target.style.transitionDuration = duration + 'ms';
+    target.style.height = target.offsetHeight + 'px';
+    target.offsetHeight;
+    target.style.overflow = 'hidden';
+    target.style.height = 0;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    window.setTimeout(() => {
+        target.style.display = 'none';
+        target.style.removeProperty('height');
+        target.style.removeProperty('padding-top');
+        target.style.removeProperty('padding-bottom');
+        target.style.removeProperty('margin-top');
+        target.style.removeProperty('margin-bottom');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+        target.classList.remove('_slide');
+    }, duration);
+}
+function _slideDown(target, duration = 400) {
+    target.style.removeProperty('display');
+    let display = window.getComputedStyle(target).display;
+    if (display === 'none')
+        display = 'block';
+
+    target.style.display = display;
+    let height = target.offsetHeight;
+    target.style.overflow = 'hidden';
+    target.style.height = 0;
+    target.style.paddingTop = 0;
+    target.style.paddingBottom = 0;
+    target.style.marginTop = 0;
+    target.style.marginBottom = 0;
+    target.offsetHeight;
+    target.style.transitionProperty = "height, margin, padding";
+    target.style.transitionDuration = duration + 'ms';
+    target.style.height = height + 'px';
+    target.style.removeProperty('padding-top');
+    target.style.removeProperty('padding-bottom');
+    target.style.removeProperty('margin-top');
+    target.style.removeProperty('margin-bottom');
+    window.setTimeout(() => {
+        target.style.removeProperty('height');
+        target.style.removeProperty('overflow');
+        target.style.removeProperty('transition-duration');
+        target.style.removeProperty('transition-property');
+        target.classList.remove('_slide');
+    }, duration);
+}
+function _slideToggle(target, duration = 400) {
+    if (!target.classList.contains('_slide')) {
+        target.classList.add('_slide');
+        if (window.getComputedStyle(target).display === 'none') {
+            return _slideDown(target, duration);
+        } else {
+            return _slideUp(target, duration);
+        }
+    }
+}
+
+//Select
+// let selects = document.querySelectorAll('select.orderby');
+// if (selects.length > 0) {
+//     selects_init();
+// }
+function selects_init(selects) {
+    for (let index = 0; index < selects.length; index++) {
+        const select = selects[index];
+        select_init(select);
+    }
+    //select_callback();
+    document.addEventListener('click', function (e) {
+        selects_close(e);
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.which == 27) {
+            selects_close(e);
+        }
+    });
+}
+function selects_close(e) {
+    const selects = document.querySelectorAll('.select');
+    if (!e.target.closest('.select')) {
+        for (let index = 0; index < selects.length; index++) {
+            const select = selects[index];
+            const select_body_options = select.querySelector('.select__options');
+            select.classList.remove('_active');
+            _slideUp(select_body_options, 100);
+        }
+    }
+}
+function select_init(select) {
+    const select_parent = select.parentElement;
+    const select_modifikator = select.getAttribute('class');
+    const select_selected_option = select.querySelector('option:checked');
+    select.setAttribute('data-default', select_selected_option.value);
+    select.style.display = 'none';
+
+    select_parent.insertAdjacentHTML('beforeend', '<div class="select select_' + select_modifikator + '"></div>');
+
+    let new_select = select.parentElement.querySelector('.select');
+    new_select.appendChild(select);
+    select_item(select);
+}
+function select_item(select) {
+    const select_parent = select.parentElement;
+    const select_items = select_parent.querySelector('.select__item');
+    const select_options = select.querySelectorAll('option');
+    const select_selected_option = select.querySelector('option:checked');
+    const select_selected_text = select_selected_option.innerHTML;
+    const select_type = select.getAttribute('data-type');
+    const label = '<span class="select__label">Price:</span>';
+
+    if (select.required) {
+        select_parent.classList.add('required');
+    }
+
+    if (select_items) {
+        select_items.remove();
+    }
+
+    let select_type_content = '';
+    if (select_type == 'input') {
+        select_type_content = '<div class="select__value"><input autocomplete="off" type="text" name="form[]" value="' + select_selected_text + '" data-error="Ошибка" data-value="' + select_selected_text + '" class="select__input"></div>';
+    } else {
+        select_type_content = '<div class="select__value"><span>' + select_selected_text + '</span></div>';
+    }
+
+
+    select_parent.insertAdjacentHTML('beforeend',
+        '<div class="select__item">' +
+        `<div class="select__title">${(select.dataset.select === 'price') ? label : ''}` + select_type_content + '</div>' +
+        '<div class="select__options">' + select_get_options(select_options) + '</div>' +
+        '</div></div>');
+
+    select_actions(select, select_parent);
+}
+function select_actions(original, select) {
+    const select_item = select.querySelector('.select__item');
+    const select_body_options = select.querySelector('.select__options');
+    const select_options = select.querySelectorAll('.select__option');
+    const select_type = original.getAttribute('data-type');
+    const select_input = select.querySelector('.select__input');
+
+    select_item.addEventListener('click', function () {
+        let selects = document.querySelectorAll('.select');
+        for (let index = 0; index < selects.length; index++) {
+            const select = selects[index];
+            const select_body_options = select.querySelector('.select__options');
+            if (select != select_item.closest('.select')) {
+                select.classList.remove('_active');
+                _slideUp(select_body_options, 100);
+            }
+        }
+        _slideToggle(select_body_options, 100);
+        select.classList.toggle('_active');
+    });
+
+    for (let index = 0; index < select_options.length; index++) {
+        const select_option = select_options[index];
+        const select_option_value = select_option.getAttribute('data-value');
+        const select_option_text = select_option.innerHTML;
+
+        if (select_type == 'input') {
+            select_input.addEventListener('keyup', select_search);
+        } else {
+            if (select_option.getAttribute('data-value') == original.value) {
+                select_option.style.display = 'none';
+            }
+        }
+        select_option.addEventListener('click', function () {
+            for (let index = 0; index < select_options.length; index++) {
+                const el = select_options[index];
+                el.style.display = 'block';
+            }
+            if (select_type == 'input') {
+                select_input.value = select_option_text;
+                original.value = select_option_value;
+            } else {
+                select.querySelector('.select__value').innerHTML = '<span>' + select_option_text + '</span>';
+                original.value = select_option_value;
+                select_option.style.display = 'none';
+                select.classList.add('selected');
+
+                let event = new Event("change", { bubbles: true });
+                original.dispatchEvent(event);
+            }
+        });
+    }
+}
+function select_get_options(select_options) {
+    if (select_options) {
+        let select_options_content = '';
+        for (let index = 0; index < select_options.length; index++) {
+            const select_option = select_options[index];
+            const select_option_value = select_option.value;
+            if (select_option_value != '') {
+                const select_option_text = select_option.text;
+                select_options_content = select_options_content + '<div data-value="' + select_option_value + '" class="select__option">' + select_option_text + '</div>';
+            }
+        }
+        return select_options_content;
+    }
+}
+function select_search(e) {
+    let select_block = e.target.closest('.select ').querySelector('.select__options');
+    let select_options = e.target.closest('.select ').querySelectorAll('.select__option');
+    let select_search_text = e.target.value.toUpperCase();
+
+    for (let i = 0; i < select_options.length; i++) {
+        let select_option = select_options[i];
+        let select_txt_value = select_option.textContent || select_option.innerText;
+        if (select_txt_value.toUpperCase().indexOf(select_search_text) > -1) {
+            select_option.style.display = "";
+        } else {
+            select_option.style.display = "none";
+        }
+    }
+}
+window.select = {
+    updateAll: () => {
+        let selects = document.querySelectorAll('select');
+        if (selects) {
+            for (let index = 0; index < selects.length; index++) {
+                const select = selects[index];
+                select_item(select);
+            }
+        }
     }
 }
 
@@ -1659,11 +1907,11 @@ if (catalogFilter) {
     })
 
     catalogFilter.addEventListener('change', (e) => {
-        if(e.target.closest('input[name="orderby"]')) {
+        if (e.target.closest('input[name="orderby"]')) {
             const orderByRadio = e.target;
 
             const sortBySelect = catalogFilter.querySelector('.filter__sort-by select');
-            if(!sortBySelect) return;
+            if (!sortBySelect) return;
 
             sortBySelect.value = orderByRadio.value;
             const event = new Event('change', { bubbles: true });
@@ -1674,7 +1922,7 @@ if (catalogFilter) {
     let observer = new MutationObserver(mutationRecords => {
         setOrderByRadioAsChecked();
         const selectedFilters = catalogFilter.querySelector('.berocket_aapf_widget_selected_filter');
-        if(!selectedFilters) return;
+        if (!selectedFilters) return;
         const items = selectedFilters.querySelectorAll('a');
         const selectedFilterItems = document.createElement('div');
         selectedFilterItems.className = "selected-filter-items";
@@ -1682,25 +1930,49 @@ if (catalogFilter) {
         selectedFilters.replaceWith(selectedFilterItems);
     });
 
-    // наблюдать за всем, кроме атрибутов
+
     observer.observe(catalogFilter, {
-        childList: true, // наблюдать за непосредственными детьми
-        subtree: true, // и более глубокими потомками
-        //characterDataOldValue: true // передавать старое значение в колбэк
+        childList: true,
+        subtree: true, 
     });
 
     function setOrderByRadioAsChecked() {
         const sortBySelect = catalogFilter.querySelector('.filter__sort-by select');
-        if(!sortBySelect) return;
+        if (!sortBySelect) return;
         const sortByRadios = catalogFilter.querySelectorAll('.filter__sort-by input[name="orderby"]');
         sortByRadios.forEach(radio => {
-            if(radio.value === sortBySelect.value) {
+            if (radio.value === sortBySelect.value) {
                 radio.checked = true;
             }
         })
     }
 }
-;
+
+
+const sortByDesktop = document.querySelector('.catalog__products-sort-by .sort-by .woocommerce-ordering');
+if (sortByDesktop) {
+    const select = sortByDesktop.querySelector('select.orderby');
+    if(select) {
+        selects_init([select]);
+    }
+
+    let observer = new MutationObserver((mutationRecords, obs) => {
+        obs.disconnect();
+        const select = sortByDesktop.querySelector('select.orderby');
+        if(select) {
+            selects_init([select]);
+        }
+        obs.observe(sortByDesktop, {
+            childList: true, 
+            //subtree: true,
+        });
+    });
+
+    observer.observe(sortByDesktop, {
+        childList: true, 
+        //subtree: true,
+    });
+};
 			//toggle button as disabled by id handler
 document.addEventListener('change', (e) => {
     if(e.target.closest('input[type="checkbox"][data-action="toggle-button-as-disabled-by-id"]')) {
