@@ -69,7 +69,7 @@ if($addit_prod):
                         <?php if($_prod->is_type('variable')):?>
                             <a href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
                         <?php else:?>
-                            <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart addit-add" ><?= __('додати', 'yos');?></a>
+                            <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart" ><?= __('додати', 'yos');?></a>
                         <?php endif;?>
                     </div>
                 </div>

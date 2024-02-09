@@ -62,16 +62,6 @@ jQuery(document).ready(function ($) {
     })
 
 
-    /* recently add to cart */
-
-    $(document).on('click', '.addit-add', function (e) {
-
-        e.preventDefault();
-
-        $('.recently-row').remove();
-
-    })
-
     /* mini cart update */
 
     function ajax_mini_cart_update() {
