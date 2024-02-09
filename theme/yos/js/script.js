@@ -51,10 +51,11 @@ jQuery(document).ready(function ($) {
             success: function (data) {
 
                 $( document.body ).trigger( 'wc_fragment_refresh' );
+                $( document.body ).trigger('wc_update_cart');
 
-                window.sideBasket.open();
-
-                // that.text('товар додано до кошика');
+                if ( !$( '.woocommerce-cart-form' ).length) {
+                    window.sideBasket.open();
+                }
 
             }
         });
@@ -68,9 +69,6 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
 
         $('.recently-row').remove();
-
-        $(document.body).trigger('wc_update_cart');
-        $( document.body ).trigger( 'wc_fragment_refresh' );
 
     })
 
