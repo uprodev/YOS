@@ -37,7 +37,8 @@ defined( 'ABSPATH' ) || exit;
     </div>
 <?php } ?>
 
-<?php $addit_prod = recently_viewed_products();
+<?php
+$addit_prod = recently_viewed_products();
 
 if($addit_prod):
     $_prod =  wc_get_product( $addit_prod );
@@ -64,10 +65,11 @@ if($addit_prod):
                     </div>
                     <div class="product-card-sm__price">
                         <?= $_prod->get_price_html();?>
+                        <?= $_prod->get_de ?>
                     </div>
                     <div class="product-card-sm__btn-add">
-                        <?php if($_prod->is_type('variable')):?>
-                            <a href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
+                        <?php if($_prod->is_type('variable')):  ?>
+                            <a  href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
                         <?php else:?>
                             <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart" ><?= __('додати', 'yos');?></a>
                         <?php endif;?>
