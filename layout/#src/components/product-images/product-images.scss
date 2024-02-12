@@ -113,23 +113,12 @@
 
     &__main-img {
         height: 36rem;
-        
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
         transition: border-color $transition;
         padding: 1px;
-
-        @media (min-width: $mq-lg) {
-            border: 1px solid $themeColorFourth;
-        }
-
-        @media #{$mouse-device} {
-            &:hover {
-                border-color: $themeColor;
-            }
-        }
 
         @media (min-width: $mq-lg) {
             height: 51.6rem;

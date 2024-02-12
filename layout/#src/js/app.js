@@ -33,20 +33,20 @@ class App {
 
 			// ==== components =====================================================
 			@@include('../components/popup/popup.js')
+			@@include('../components/select/select.js')
 			@@include('../components/inputs/inputs.js')
 			@@include('../components/product-card/product-card.js')
 			@@include('../components/category-links/category-links.js')
 			@@include('../components/special-offer-card/special-offer-card.js')
-			@@include('../components/filter-brands/filter-brands.js')
 			@@include('../components/selected-filters/selected-filters.js')
 			@@include('../components/price-range/price-range.js')
 			@@include('../components/product-images/product-images.js')
 			@@include('../components/rating/rating.js')
 			@@include('../components/product-card-sm/product-card-sm.js')
 			@@include('../components/quantity/quantity.js')
-			@@include('../components/select/select.js')
 			@@include('../components/brand-description-card/brand-description-card.js')
 			@@include('../components/categories/categories.js')
+			@@include('../components/popup-notify-availability/popup-notify-availability.js')
 			// ==== // components =====================================================
 
 

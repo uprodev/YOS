@@ -202,3 +202,89 @@
 }
 
 //===== AND filter slider =========================================================
+
+
+.bapf_slidr_all {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem 2rem;
+
+    &::after {
+        content: none !important;
+    }
+
+    & .bapf_from, & .bapf_to {
+        float: none;
+        flex: 0 1 calc(50% - 1rem);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        & input {
+            width: auto;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 3.6rem;
+            outline: none;
+            box-shadow: none;
+            padding: 1rem 2rem;
+            border-radius: 0;
+            border: 1px solid $themeColorFourth;
+            font-size: $text-2;
+            color: $textColor;
+            transition: border-color $transition;
+    
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus {
+                -webkit-text-fill-color: $textColor;
+                -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+            }
+    
+            &::placeholder {
+                opacity: 0;
+            }
+    
+            &:focus {
+                border-color: $themeColor;
+            }
+    
+            @media (min-width: $mq-md) {
+                height: 4rem;
+            }
+        }
+    }
+
+    & .bapf_slidr_main {
+        flex: 0 1 calc(100% - 1.6rem);
+        margin-bottom: 0;
+        background-color: $themeColorFourth;
+
+        &.ui-widget-content {
+            height: 0.4rem;
+        }
+
+        & .ui-slider-range {
+            background-color: $themeColorThird;
+        }
+
+        & .ui-slider-handle {
+            width: 1.6rem;
+            height: 1.6rem;
+            background-color: $pagesBg;
+            border-radius: 50%;
+            border: 1px solid $textColorSecondary;
+            box-shadow: none;
+            right: -0.8rem;
+            top: -0.6rem;
+            cursor: pointer;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
+    }
+}

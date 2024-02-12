@@ -36,7 +36,9 @@
         right: 0;
         transform: translateY(-50%) translateX(2rem);
         width: 31.7rem;
-        transition: opacity .3s ease, transform .3s ease;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
 
         &.show {
             transform: translateY(-50%) translateY(0rem);
@@ -105,7 +107,8 @@
             font-size: $text-3;
         }
 
-        & img, & svg {
+        & img,
+        & svg {
             height: 2.1rem;
             width: auto;
             display: block;
@@ -158,16 +161,18 @@
     left: 0;
     width: 100%;
     opacity: 0;
-    transition: opacity $transition, color $transition;
+    transition:
+        opacity $transition,
+        color $transition;
     text-align: center;
+    background-color: $themeColor;
+    color: $textColorThird !important;
 
     @media (min-width: $mq-lg) {
         font-size: $text-2;
     }
 
-    @media #{$touch-device} {
-        color: $textColorThird !important;
-    }
+
 
     &.show {
         display: block;
@@ -187,20 +192,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $textColorThird;
-        background-color: $themeColor;
         transition: color $transition;
+
+
+        @media #{$mouse-device} {
+            &:hover {
+                color: #a9a9a9 !important;
+            }
+        }
 
         @media (min-width: $mq-lg) {
             padding: 0.2rem 5rem;
         }
-
-        @media #{$mouse-device} {
-            &:hover {
-                color: #a9a9a9;
-            }
-        }
-
     }
 
     &__close {
@@ -214,7 +217,7 @@
         top: 50%;
         transform: translateY(-50%);
         right: 0.5rem;
-        transition: background-color $transition;
+        transition: color $transition;
 
         @media (min-width: $mq-md) {
             right: 1.5rem;
@@ -222,7 +225,7 @@
 
         @media #{$mouse-device} {
             &:hover {
-                background-color: rgba(#fff, 0.2);
+                color: $textHover !important;
             }
         }
     }
@@ -239,6 +242,7 @@
     padding: 0rem 0.3rem;
     font-size: $text-3;
     transition: color $transition;
+    line-height: 1em;
 
     @media #{$mouse-device} {
         &:hover {
@@ -256,7 +260,7 @@
     height: 100dvh;
     z-index: 102;
     background-color: $pagesBg;
-    transition: transform .4s ease;
+    transition: transform 0.4s ease;
 
     &.open {
         transform: translateX(100%);
@@ -282,7 +286,9 @@
             z-index: 5;
             background-color: $pagesBg;
             padding: 2rem 0;
-            transition: opacity .3s ease, transform .3s ease;
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
 
             &.show {
                 transform: translateY(-50%) translateY(0rem);
@@ -333,7 +339,9 @@
         flex-direction: column;
         justify-content: space-between;
         position: none;
-        transition: opacity .3s ease, transform .3s ease;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
 
         &.show {
             position: auto;
@@ -355,16 +363,15 @@
     }
 
     &__layer-title {
-       text-align: left;
+        text-align: left;
         text-transform: uppercase;
         margin-bottom: 1rem;
 
         position: relative;
         padding-left: 2rem;
 
-
         &:before {
-            font-family: 'icomoon' !important;
+            font-family: "icomoon" !important;
             speak: never;
             font-style: normal;
             font-weight: normal;
@@ -393,7 +400,7 @@
 
             &:before {
                 position: absolute;
-                content: '';
+                content: "";
                 height: 1px;
                 top: calc(100% + 2rem);
                 transform: translateY(-50%);
@@ -406,7 +413,7 @@
     &__title {
         font-weight: 700;
         text-transform: uppercase;
-        
+
         &[data-collapse] {
             position: relative;
             padding-right: 2rem;
@@ -418,7 +425,7 @@
             }
 
             &:before {
-                font-family: 'icomoon' !important;
+                font-family: "icomoon" !important;
                 speak: never;
                 font-style: normal;
                 font-weight: normal;
@@ -465,14 +472,12 @@
             width: 100%;
             text-align: left;
 
-
             &[data-action] {
                 position: relative;
                 padding-right: 2rem;
 
-
                 &:before {
-                    font-family: 'icomoon' !important;
+                    font-family: "icomoon" !important;
                     speak: never;
                     font-style: normal;
                     font-weight: normal;
@@ -527,9 +532,8 @@
     }
 }
 
-
 .language {
-    position:  relative;
+    position: relative;
     cursor: pointer;
 
     &:hover {
@@ -541,7 +545,6 @@
     }
 
     &__current {
-
     }
 
     &__list {
@@ -555,7 +558,7 @@
         border-radius: 0.7rem;
         padding: 1.5rem;
         visibility: hidden;
-       opacity: 0;
+        opacity: 0;
         pointer-events: none;
         background-color: $pagesBg;
         color: $textColorSecondary;
@@ -565,7 +568,7 @@
 .main-search {
     opacity: 0;
     pointer-events: none;
-    transition: opacity .3s ease;
+    transition: opacity 0.3s ease;
 
     &.show {
         opacity: 1;
@@ -574,19 +577,6 @@
 
     &__inner {
         position: relative;
-
-        & .input {
-            position: relative;
-            z-index: 1;
-            padding-left: 4.7rem;
-            padding-right: 4.7rem;
-            height: 3rem;
-
-            @media (min-width: $mq-lg) {
-                height: 4rem;
-                padding-left: 5rem;
-            }
-        }
     }
 
     &__btn {
@@ -625,5 +615,81 @@
         transform: translateY(-50%);
         right: 0.8rem;
         z-index: 2;
+    }
+
+    & .dgwt-wcas-search-wrapp {
+        max-width: none;
+
+        & .js-dgwt-wcas-enable-mobile-form {
+            pointer-events: none;
+            display: none;
+        }
+
+    }
+
+    & .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp {
+        padding: 0;
+        & input[type="search"].dgwt-wcas-search-input {
+            @extend .input;
+            position: relative;
+            z-index: 1;
+            padding-left: 4.7rem;
+            padding-right: 4.7rem;
+            height: 3rem;
+            background-color: transparent;
+
+            @media (min-width: $mq-lg) {
+                height: 4rem;
+                padding-left: 5rem;
+            }
+        }
+
+        & button.dgwt-wcas-search-submit {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            font-size: 2rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0.8rem;
+            transition: background-color $transition;
+            cursor: pointer;
+            z-index: 2;
+            color: $textColor !important;
+            border-radius: 0;
+            box-shadow: none;
+            width: calc(1em + 0.5rem);
+            height: calc(1em + 0.5rem);
+            min-height: auto;
+            min-width: auto;
+            right: auto;
+
+            @media (min-width: $mq-lg) {
+                left: 1.5rem;
+            }
+
+            @media #{$mouse-device} {
+                &:hover {
+                    background-color: $bgHover;
+                }
+            }
+
+            & svg {
+                height: 100%;
+                width: auto;
+                display: block;
+                max-width: none;
+                max-height: none;
+                position: static;
+                margin: 0;
+            }
+        }
+
+        & .dgwt-wcas-close {
+            width: auto !important;
+            margin-right: 0 !important;
+            right: 1rem !important;
+        }
     }
 }

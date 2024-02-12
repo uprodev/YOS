@@ -30,6 +30,10 @@ html {
 	@media (max-width: 991.98px) {
 		font-size: 10px !important;
 	}
+
+	@media (min-width: 1440px) {
+		font-size: 10px !important;
+	}
 }
 html,
 body {
@@ -144,6 +148,7 @@ img {
 
 	@media (min-width: $mq-md) {	
 		width: calc(100% - 4rem);
+		max-width: calc(144rem - 4rem);
 	}
 }
 

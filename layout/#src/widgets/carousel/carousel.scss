@@ -9,9 +9,13 @@
     & .swiper:not(.category-links__list) {
         margin-top: 2rem;
         overflow: visible;
-
+        
         @media (min-width: $mq-md) {
             margin-top: 0;
+        }
+
+        @media (min-width: $mq-lg) {
+            overflow: hidden;
         }
     }
 
@@ -124,6 +128,12 @@
             &.active {
                 opacity: 0;
                 transition: opacity .6s ease;
+            }
+        }
+
+        @media (min-width: 0px) and (max-width: 767.98px) {
+            & .category-info {
+                display: none;
             }
         }
     }

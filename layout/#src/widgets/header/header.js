@@ -136,8 +136,7 @@ if(mainSearchElements.length) {
         const searchId = mainSearch.getAttribute('data-id');
         if(!searchId) return;
         const buttonsShow = document.querySelectorAll(`[data-action="show-search-by-id"][data-id="${searchId}"]`);
-        const buttonClose = mainSearch.querySelector('.main-search__btn-close');
-        const input = mainSearch.querySelector('input.input');
+        const input = mainSearch.querySelector('input.dgwt-wcas-search-input');
 
         buttonsShow.forEach(buttonShow => {
             buttonShow.addEventListener('click', (e) => {
@@ -147,13 +146,9 @@ if(mainSearchElements.length) {
             })
         })
 
+        if(!input) return;
         input.addEventListener('blur', () => {
             if (input.value.length === 0) mainSearch.classList.remove('show');
-        })
-
-        buttonClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            mainSearch.classList.remove('show');
         })
     })
 }

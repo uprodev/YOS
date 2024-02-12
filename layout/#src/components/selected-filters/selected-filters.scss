@@ -1,19 +1,64 @@
 .selected-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 1.6rem;
 
-    &__item {
-        color: $textColorSecondary;
+    & .berocket_single_filter_widget {
+        position: static !important;
+    }
+
+    & .selected-filter-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.6rem;
+    }
+
+    & .bapf_sfilter {
+        margin-bottom: 0;
+    }
+    & .berocket_aapf_widget_selected_filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 1.6rem;
+
+        & ul {
+            padding-left: 0;
+            margin-bottom: 0;
+            padding-top: 0 !important;
+
+            & li {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        & .bapf_sfa_taxonomy {
+            & ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1rem 1.6rem;
+            }
+        }
+
+    }
+    
+    & a[class^="braapf_unselect"] {
+        color: $textColorSecondary !important;
         font-size: $text-2;
         display: flex;
         align-items: center;
         gap: 0.5rem;
 
-        & button {
-            padding: 0.5rem;
-            font-size: .8rem;
-            display: flex;
+        & i {
+            display: none;
+        }
+
+        &:after {
+            content: '';
+            display: inline-block;
+            height: 1.8rem;
+            width: 1.8rem;
+            background-image: url($icon-close);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 60%;
         }
     }
 }

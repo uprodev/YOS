@@ -3,6 +3,7 @@
         display: none;
     }
     background-color: $themeColor;
+    font-weight: 300;
 
     &__body {
         display: flex;
@@ -54,6 +55,7 @@
     }
 
     &__title {
+        font-weight: 500;
     }
 
     &__list {
@@ -68,9 +70,9 @@
     }
 }
 
-
 .footer-mob {
     background-color: $themeColor;
+    font-weight: 300;
 
     @media (min-width: $mq-lg) {
         display: none;
@@ -113,6 +115,7 @@
     }
 
     &__title {
+        font-weight: 500;
     }
 
     &__contacts {
@@ -181,7 +184,6 @@
     }
 }
 
-
 .subscription {
     @media (max-width: 991.98px) {
         display: none;
@@ -190,6 +192,12 @@
     &__body {
         display: flex;
         gap: 2rem;
+        max-width: calc(144rem);
+        margin: 0 auto;
+
+        @media (min-width: 1440px) {
+            max-width: calc(144rem - 4rem);
+        }
     }
 
     &__col {

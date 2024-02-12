@@ -135,14 +135,13 @@
         flex-wrap: wrap;
         gap: 0.6rem;
         font-size: $text-1;
-        flex-direction: row-reverse;
 
         @media (min-width: $mq-lg) {
             font-size: $text-3;
             gap: 1rem;
         }
 
-        & ins {
+        & ins, & bdi {
             text-decoration: none;
             font-weight: 700;
         }
@@ -150,6 +149,11 @@
         & del {
             font-weight: 400;
             color: $textColorSecondary;
+            order: 1;
+
+            & bdi {
+                font-weight: inherit;
+            }
         }
     }
 

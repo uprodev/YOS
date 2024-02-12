@@ -30,6 +30,10 @@
             margin-right: -2rem;
             flex: 1 1 auto;
         }
+
+        @media (min-width: 1440px) {
+            margin-right: 0;
+        }
     }
 
     &__images {
@@ -45,6 +49,10 @@
             margin-top: 0;
             margin-right: -2rem;
             flex: 1 1 auto;
+        }
+
+        @media (min-width: 1440px) {
+            margin-right: 0;
         }
 
         & .swiper {

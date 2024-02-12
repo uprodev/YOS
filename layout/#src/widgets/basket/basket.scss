@@ -94,6 +94,10 @@
         flex-direction: column;
         gap: 3.2rem;
 
+        &::before {
+            display: none !important;
+        }
+
         @media (min-width: $mq-lg) {
             flex: 0 0 29.5rem;
         }

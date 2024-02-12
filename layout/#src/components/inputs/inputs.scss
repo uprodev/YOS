@@ -2,11 +2,29 @@
     display: block;
     position: relative;
 
-    & .input {
+    & .input:not(.wpcf7-text) {
         position: relative;
         z-index: 1;
         color: transparent;
         padding: 1.4rem 2rem 0.4rem;
+
+        &:focus {
+            color: $textColor;
+
+            & ~ .input-label {
+                top: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        &:not(:placeholder-shown) {
+            color: $textColor;
+
+            & ~ .input-label {
+                top: 0.8rem;
+                font-size: 1rem;
+            }
+        }
     }
 
     &.required {
@@ -69,6 +87,7 @@
     transition:
         border-color $transition,
         color $transition;
+    position: relative;
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
@@ -83,6 +102,22 @@
 
     &:focus {
         border-color: $themeColor;
+    }
+
+    &:required {
+        padding-right: 2.5rem;
+        background-image: url($icon-asterisk-red);
+        background-repeat: no-repeat;
+        background-size: 0.8rem;
+        background-position: right 1.5rem center;
+    }
+}
+
+.input-text {
+    @extend .input;
+    
+    &::placeholder {
+        opacity: 1;
     }
 }
 
@@ -137,6 +172,25 @@
     &::placeholder {
         opacity: 0;
     }
+
+    &:focus {
+        border-color: $themeColor;
+        color: $textColor;
+
+        & ~ .textarea-label {
+            top: 0.2rem;
+            font-size: 1rem;
+        }
+    }
+
+    &:not(:placeholder-shown) {
+        color: $textColor;
+
+        & ~ .textarea-label {
+            top: 0.2rem;
+            font-size: 1rem;
+        }
+    }
 }
 
 .textarea-label {
@@ -151,4 +205,8 @@
     transition:
         top $transition,
         font-size $transition;
+}
+
+.wpcf7-form-control-wrap + .input-label {
+    display: none;
 }

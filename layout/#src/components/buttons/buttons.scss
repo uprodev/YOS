@@ -2,7 +2,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     text-transform: uppercase;
     background-color: #fff;
     border: 1px solid $themeColor;
@@ -65,5 +65,13 @@
         &:hover {
             color: $themeColorSecondary;
         }
+    }
+
+    &.lmp_button {
+        padding: .2rem 0 !important;
+        background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+        background-color: transparent !important;
+        color: inherit !important;
+        font-size: inherit !important;
     }
 }

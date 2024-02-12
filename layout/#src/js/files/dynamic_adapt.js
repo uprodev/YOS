@@ -68,6 +68,8 @@ class DynamicAdapt {
 	}
 
 	moveTo(place, element, destination) {
+		if(!place || !element || !destination) return;
+
 		element.classList.add(this.daClassname);
 		if (place === 'last' || place >= destination.children.length) {
 			destination.append(element);
@@ -81,6 +83,7 @@ class DynamicAdapt {
 	}
 
 	moveBack(parent, element, index) {
+		if(!place || !element || !index) return;
 		element.classList.remove(this.daClassname);
 		if (parent.children[index] !== undefined) {
 			parent.children[index].after(element);

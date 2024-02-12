@@ -95,11 +95,11 @@
             content: "\e907";
         }
 
-        @media #{$mouse-device} {
-            &:hover {
-                background-color: $bgHover;
-            }
-        }
+        // @media #{$mouse-device} {
+        //     &:hover {
+        //         background-color: $bgHover;
+        //     }
+        // }
     }
 
     &__body {
@@ -150,7 +150,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            flex-direction: row-reverse;
+            flex-direction: row;
 
             & ins {
                 text-decoration: none;
@@ -159,6 +159,7 @@
             & del {
                 font-weight: 400;
                 color: $textColorSecondary;
+                order: 1;
             }
         }
     }

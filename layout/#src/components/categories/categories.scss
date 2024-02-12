@@ -70,13 +70,18 @@
         overflow: auto;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-        &.show {
-            display: block;
-        }
-
+        
         @media (min-width: $mq-lg) {
             height: auto;
             width: 100%;
+
+
+        }
+
+        @media (min-width: $mq-lg) and #{$mouse-device} {
+            &.show {
+                display: block;
+            }
         }
     }
 

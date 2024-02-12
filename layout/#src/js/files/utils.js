@@ -161,10 +161,12 @@ class Utils {
 		}
 	}
 
-	initCollapse() {
-		const collapseActionElements = document.querySelectorAll('[data-collapse]');
-		if (collapseActionElements.length) {
-			collapseActionElements.forEach(actionEl => {
+	initCollapse = () => {
+		document.addEventListener('click', (e) => {
+
+			if (e.target.closest('[data-collapse]')) {
+				const actionEl = e.target.closest('[data-collapse]');
+				if (actionEl.tagName === 'INPUT') return;
 
 				const id = actionEl.getAttribute('data-collapse');
 				if (!id) return;
@@ -172,49 +174,103 @@ class Utils {
 				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
 				if (!targetElements.length) return;
 
-				actionEl.addEventListener('click', (e) => {
-					if (actionEl.tagName === 'INPUT') return;
-					e.preventDefault();
 
-					if (actionEl.classList.contains('open')) {
-						actionEl.classList.remove('open');
-						targetElements.forEach(targetEl => {
-							this.slideUp(targetEl, 300)
-						})
-					} else {
-						actionEl.classList.add('open');
-						targetElements.forEach(targetEl => {
-							this.slideDown(targetEl, 300)
+				e.preventDefault();
+
+				const isLanguage = actionEl.getAttribute('data-collapse') === 'language';
+				const scrollContainer = isLanguage ? actionEl.closest('.mobile-menu__main-layer') : null;
+
+				if (actionEl.classList.contains('open')) {
+					actionEl.classList.remove('open');
+					targetElements.forEach(targetEl => {
+						this.slideUp(targetEl, 300)
+					})
+				} else {
+					actionEl.classList.add('open');
+					targetElements.forEach(targetEl => {
+						this.slideDown(targetEl, 300)
+					})
+
+					const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
+					const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
+					const initialScroll = scrollContainer.scrollTop;
+
+					if (scrollContainer) {
+						const draw = (progress) => {
+							scrollContainer.scrollTop = initialScroll + (scrollDistance * progress);
+						}
+						this.animate({
+							timing: (tf) => tf,
+							draw,
+							duration: 300
 						})
 					}
-				})
+				}
+			}
+		})
 
-				actionEl.addEventListener('change', (e) => {
-					if (actionEl.checked) {
-						actionEl.classList.add('open');
-						targetElements.forEach(targetEl => {
-							this.slideDown(targetEl, 300)
-						})
-					} else {
-						actionEl.classList.remove('open');
-						targetElements.forEach(targetEl => {
-							this.slideUp(targetEl, 300)
-						})
-					}
-				})
-			})
-		}
+		document.addEventListener('change', (e) => {
+			if (e.target.closest('[data-collapse]')) {
+				const actionEl = e.target.closest('[data-collapse]');
+
+				const id = actionEl.getAttribute('data-collapse');
+				if (!id) return;
+
+				const targetElements = document.querySelectorAll(`[data-collapse-target="${id}"]`);
+				if (!targetElements.length) return;
+
+				if (actionEl.checked) {
+					actionEl.classList.add('open');
+					targetElements.forEach(targetEl => {
+						this.slideDown(targetEl, 300)
+					})
+				} else {
+					actionEl.classList.remove('open');
+					targetElements.forEach(targetEl => {
+						this.slideUp(targetEl, 300)
+					})
+				}
+
+			}
+		})
 	}
 
 	initInputMask() {
-		let items = document.querySelectorAll('[data-mask]');
-		if (items.length) {
-			items.forEach(item => {
+		let itemsByData = document.querySelectorAll('[data-mask]');
+		if (itemsByData.length) {
+			itemsByData.forEach(item => {
 				let maskValue = item.dataset.mask;
 
 				Inputmask(maskValue, {
 					clearIncomplete: false,
 					clearMaskOnLostFocus: false,
+					oncomplete: () => {
+						const event = new Event('phonecomplete', { bubbles: true });
+						item.dispatchEvent(event);
+					},
+					oncleared: () => {
+						const event = new Event('phonecleare', { bubbles: true });
+						item.dispatchEvent(event);
+					}
+				}).mask(item);
+			})
+		}
+
+		let itemsByClass = document.querySelectorAll('input.phone-input');
+		if (itemsByClass.length) {
+			itemsByClass.forEach(item => {
+				Inputmask('+380 (99) 999 99 99', {
+					clearIncomplete: false,
+					clearMaskOnLostFocus: false,
+					oncomplete: () => {
+						const event = new Event('phonecomplete', { bubbles: true });
+						item.dispatchEvent(event);
+					},
+					oncleared: () => {
+						console.log('onclear');
+						const event = new Event('phonecleare', { bubbles: true });
+						item.dispatchEvent(event);
+					},
 				}).mask(item);
 			})
 		}
@@ -270,7 +326,7 @@ class Utils {
 				anchor.addEventListener('click', (e) => {
 					const href = anchor.getAttribute('href')
 					const id = href.length > 1 ? href : null;
-					if(!id) return;
+					if (!id) return;
 					let el = document.querySelector(href);
 
 					if (el) {
@@ -346,6 +402,20 @@ class Utils {
 			})
 		}
 	}
+
+	animate = ({ timing, draw, duration }) => {
+
+		let start = performance.now();
+	
+		requestAnimationFrame(function animate(time) {
+			let timeFraction = (time - start) / duration;
+			if (timeFraction > 1) timeFraction = 1;
+	
+			let progress = timing(timeFraction);
+			draw(progress); 
+			if (timeFraction < 1) {
+				requestAnimationFrame(animate);
+			}
+		});
+	}
 }
-
-

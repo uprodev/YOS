@@ -1,34 +1,39 @@
-// Fields labels animation
-const inputsWrap = document.querySelectorAll('[data-input]');
-if (inputsWrap.length) {
-    inputsWrap.forEach(inputWrap => {
-        const input = inputWrap.querySelector('input');
 
-        if(input.required) {
-            inputWrap.classList.add('required')
-        }
+// const inputsWrap = document.querySelectorAll('[data-input]');
+// if (inputsWrap.length) {
+//     inputsWrap.forEach(inputWrap => {
+//         const input = inputWrap.querySelector('input');
 
-        input.addEventListener('focus', () => {
-            inputWrap.classList.add('using');
-        });
+//         if(input.required) {
+//             inputWrap.classList.add('required')
+//         }
 
-        input.addEventListener('blur', (e) => {
-            if (input.value.length === 0) inputWrap.classList.remove('using');
-        });
-    })
-}
+//         input.addEventListener('focus', () => {
+//             inputWrap.classList.add('using');
+//         });
 
-const textareasWrap = document.querySelectorAll('[data-textarea]');
-if (textareasWrap.length) {
-    textareasWrap.forEach(textareaWrap => {
-        const textarea = textareaWrap.querySelector('textarea');
+//         input.addEventListener('blur', (e) => {
+//             if (input.value.length === 0) inputWrap.classList.remove('using');
+//         });
+//     })
+// }
 
-        textarea.addEventListener('focus', () => {
-            textareaWrap.classList.add('using');
-        });
+// document.addEventListener('focus', (e) => {
+//     console.log(e.target);
+// })
 
-        textarea.addEventListener('blur', (e) => {
-            if (textarea.value.length === 0) textareaWrap.classList.remove('using');
-        });
-    })
-}
+
+// const textareasWrap = document.querySelectorAll('[data-textarea]');
+// if (textareasWrap.length) {
+//     textareasWrap.forEach(textareaWrap => {
+//         const textarea = textareaWrap.querySelector('textarea');
+
+//         textarea.addEventListener('focus', () => {
+//             textareaWrap.classList.add('using');
+//         });
+
+//         textarea.addEventListener('blur', (e) => {
+//             if (textarea.value.length === 0) textareaWrap.classList.remove('using');
+//         });
+//     })
+// }
