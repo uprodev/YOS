@@ -54,7 +54,9 @@ if($addit_prod):
                     </a>
                 </div>
                 <div class="product-card-sm__right">
+                    <?php if($br):?>
                     <div class="product-card-sm__title"><a href="<?= get_term_link($br[0]->term_id);?>"><?= $br[0]->name;?></a></div>
+                    <?php endif;?>
                     <div class="product-card-sm__text">
                         <div class="product-card-sm__text-1">
                             <?= get_the_title($addit_prod);?>

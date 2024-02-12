@@ -62,7 +62,9 @@ do_action( 'woocommerce_before_cart' ); ?>
                                         </a>
                                     </div>
                                     <div class="product-card-sm__right">
-                                        <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                        <?php if($brand):?>
+                                            <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                        <?php endif;?>
                                         <div class="product-card-sm__text">
                                             <div class="product-card-sm__text-1">
                                                 <?php echo wp_kses_post( $product_name ); ?>

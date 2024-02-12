@@ -96,14 +96,18 @@ $choise = get_field('yos_choise', get_the_ID());
         <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-card__like-button" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
     </div>
     <div class="product-card__body">
-        <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+        <?php if($brand):?>
+            <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+        <?php endif;?>
         <div class="product-card__text">
             <div class="product-card__text-1">
                 <?php the_title();?>
             </div>
-            <div class="product-card__text-2">
-                <?php the_field('seria');?>
-            </div>
+            <?php if(get_field('seria')):?>
+                <div class="product-card__text-2">
+                    <?php the_field('seria');?>
+                </div>
+            <?php endif;?>
         </div>
         <?php if ($product->is_type('variable')):
             if (isset($variations_attr['pa_volumes'])):

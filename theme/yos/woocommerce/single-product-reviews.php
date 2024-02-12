@@ -229,7 +229,7 @@ endif;
                                     $field_html = '<div class="add-comment__form-field half-lg"><div class="input-wrap" data-input>';
 
 
-                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input '.$field['class'].'" ' . ( $field['required'] ? 'required' : '' ) . ' placeholder="'.$field['label'].'" /><span class="input-label">'.$field['label'].'</span>';
+                                    $field_html .= '<input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" class="input" ' . ( $field['required'] ? 'required' : '' ) . ' placeholder="'.$field['label'].'" /><span class="input-label">'.$field['label'].'</span>';
 
 
                                    $field_html .= '</div></div>';

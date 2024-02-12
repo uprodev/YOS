@@ -82,7 +82,9 @@ if( $product->is_type('variable') ){
                 </div>
                 <div class="product__col-2">
                     <div class="product__main-info product-main-info">
-                        <h2 class="product-main-info__title title-2"><?= $brand[0]->name;?></h2>
+                        <?php if($brand):?>
+                            <h2 class="product-main-info__title title-2"><?= $brand[0]->name;?></h2>
+                        <?php endif;?>
                         <?php woocommerce_template_single_title();?>
                         <?php if(get_field('seria')):?>
                             <div class="product-main-info__text mt-0"><?php the_field('seria');?></div>
@@ -264,7 +266,9 @@ if( $product->is_type('variable') ){
                             <?= __('опис', 'yos');?>
                         </h2>
                         <div class="product__description-text text-content last-no-margin">
-                            <h3 class="mb-0"><?= $brand[0]->name;?></h3>
+                            <?php if($brand):?>
+                                <h3 class="mb-0"><?= $brand[0]->name;?></h3>
+                            <?php endif;?>
                             <p class="text-4 mt-1"><?= get_field('seria')?get_field('seria').' — ':'';?><?php the_title();?></p>
                             <?= $product->get_description();?>
                         </div>
@@ -274,18 +278,19 @@ if( $product->is_type('variable') ){
                     <?php if($info):?>
                         <div class="product__features">
                             <ul class="product__spoller spoller" data-spoller>
-                                <?php foreach ($info as $in):?>
-                                    <li>
-                                        <div class="spoller__item-title <?= $in['open']?'active':'';?>" data-spoller-trigger>
-                                            <?= $in['title'];?>
-                                        </div>
-                                        <div class="spoller__item-colapse-content" <?= $in['open']?'style="display: block;"':'';?>>
-                                            <div class="text-content last-no-margin">
-                                                <?= $in['text'];?>
+                                <?php foreach ($info as $in):
+                                    if($in['text']):?>
+                                        <li>
+                                            <div class="spoller__item-title <?= $in['open']?'active':'';?>" data-spoller-trigger>
+                                                <?= $in['title'];?>
                                             </div>
-                                        </div>
-                                    </li>
-                                <?php endforeach;?>
+                                            <div class="spoller__item-colapse-content" <?= $in['open']?'style="display: block;"':'';?>>
+                                                <div class="text-content last-no-margin">
+                                                    <?= $in['text'];?>
+                                                </div>
+                                            </div>
+                                        </li>
+                                <?php endif; endforeach;?>
                             </ul>
                         </div>
                     <?php endif;?>
