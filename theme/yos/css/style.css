@@ -9631,6 +9631,15 @@ ul.wc_payment_methods:not(:first-child) {
   margin-bottom: 0;
 }
 
+.woocommerce-checkout #payment.woocommerce-checkout-payment .payment_box {
+  padding: 0.4em 1em;
+  background-color: #f0f0f0;
+}
+
+.woocommerce-checkout #payment.woocommerce-checkout-payment .payment_box::before {
+  border-bottom: 1em solid #f0f0f0;
+}
+
 .woocommerce-checkout #payment.woocommerce-checkout-payment .payment_box .fondy-ccard {
   max-width: none;
 }
