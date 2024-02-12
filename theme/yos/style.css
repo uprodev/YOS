@@ -19,3 +19,6 @@ Description: Theme WP for YOS
     background: #fff;
     border-radius: unset;
 }
+.promotional-code__text .text-color-warning{
+    text-transform: none;
+}

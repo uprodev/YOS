@@ -107,12 +107,13 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 <!--                    <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
 <!--                    <span class="text-nowrap">-60 ₴</span>-->
 <!--                </div>-->
-                <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
-                    <span><?= __('Інші знижки', 'yos');?></span>
-                    <span class="text-nowrap" >
-                        -<?= WC()->cart->get_cart_discount_total();?>₴
-                    </span>
-                </div>
+
+                <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
+                        <span><?= __('Інші знижки', 'yos');?></span>
+                        <span class="text-nowrap" >
+                            -<?= WC()->cart->get_cart_discount_total();?>₴
+                        </span>
+                    </div>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
                     <span><?= $sub>=2000?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>

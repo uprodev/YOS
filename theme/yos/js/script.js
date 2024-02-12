@@ -211,15 +211,17 @@ jQuery(document).ready(function ($) {
                 coupon: coupon,
             },
             success: function (data) {
-                that.after(data.message);
+                $('.promotional-code__text').html(data.message);
                 $('.cart-sub').html(data.total);
-                $('.coupon-row').show();
-                $('.coupon-row>.text-nowrap').text('-'+data.discount+'₴');
+                if(data.discount>0) {
+                    $('.coupon-row').show();
+                    $('.coupon-row>.text-nowrap').text('-' + data.discount + '₴');
+                }
                 $(document.body).trigger('update_checkout');
 
             },
             error: function(data){
-                $('.promo-error').show();
+                $('.promotional-code__text').html(data.message);
             },
         });
     });

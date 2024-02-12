@@ -29,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
                 <div class="promotional-code__body" data-collapse-target="promotional-code">
                     <input type="text" name="coupon_code" class="input" id="code_coupon" value="" />
                     <button class="button-primary light w-100" name="apply_coupon_code"><?= __('застосувати', 'yos');?></button>
-
+                    <div class="promotional-code__text"></div>
                     <?php do_action( 'woocommerce_cart_coupon' ); ?>
                 </div>
             </div>
@@ -55,7 +55,7 @@ if($addit_prod):
                 </div>
                 <div class="product-card-sm__right">
                     <?php if($br):?>
-                    <div class="product-card-sm__title"><a href="<?= get_term_link($br[0]->term_id);?>"><?= $br[0]->name;?></a></div>
+                        <div class="product-card-sm__title"><a href="<?= get_term_link($br[0]->term_id);?>"><?= $br[0]->name;?></a></div>
                     <?php endif;?>
                     <div class="product-card-sm__text">
                         <div class="product-card-sm__text-1">
@@ -90,11 +90,11 @@ if($addit_prod):
             <!--                                <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
             <!--                                <span class="text-nowrap">-60 ₴</span>-->
             <!--                            </div>-->
-            <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
+            <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
                 <span><?= __('Інші знижки', 'yos');?></span>
                 <span class="text-nowrap" >
-                                    -<?= WC()->cart->get_cart_discount_total();?>₴
-                                </span>
+                    -<?= WC()->cart->get_cart_discount_total();?>₴
+                </span>
             </div>
             <div class="side-basket__payment-info-row">
                 <span><?= __('Доставка', 'yos');?></span>

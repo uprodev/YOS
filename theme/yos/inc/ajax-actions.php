@@ -117,6 +117,7 @@ function update_totals() {
 /* apply_coupon */
 
 function apply_coupon(){
+
     $coupon = $_POST['coupon'];
 
     $coupon_code = wc_get_coupon_id_by_code($coupon);
@@ -126,12 +127,17 @@ function apply_coupon(){
         $total = WC()->cart->get_cart_total();
         $discount = WC()->cart->get_cart_discount_total();
 
-        wp_send_json(['message' => '<div class="promotional-code__text">'.__('промокод успішно застосуваний', 'yos').'</div>',
+        wp_send_json(['message' => __('промокод успішно застосуваний', 'yos'),
             'total' => $total,
             'discount' => $discount,
         ]);
     }else{
-        wp_send_json(['message' => '<div class="promotional-code__text text-color-warning">'.__('Термін дії промокоду закінчено!', 'yos').'</div>']);
+        $total = WC()->cart->get_cart_total();
+        $discount = WC()->cart->get_cart_discount_total();
+        wp_send_json(['message' => '<span class="text-color-warning">'.__('Термін дії промокоду закінчено або його не існує!', 'yos').'</span>',
+            'total' => $total,
+            'discount' => $discount,
+        ]);
     }
 
     die();
