@@ -161,13 +161,13 @@ class Utils {
 		}
 	}
 
-	initCollapse() {
+	initCollapse = () => {
 		document.addEventListener('click', (e) => {
 
 			if (e.target.closest('[data-collapse]')) {
 				const actionEl = e.target.closest('[data-collapse]');
 				if (actionEl.tagName === 'INPUT') return;
-				console.log(actionEl);
+
 				const id = actionEl.getAttribute('data-collapse');
 				if (!id) return;
 
@@ -176,6 +176,9 @@ class Utils {
 
 
 				e.preventDefault();
+
+				const isLanguage = actionEl.getAttribute('data-collapse') === 'language';
+				const scrollContainer = isLanguage ? actionEl.closest('.mobile-menu__main-layer') : null;
 
 				if (actionEl.classList.contains('open')) {
 					actionEl.classList.remove('open');
@@ -187,6 +190,21 @@ class Utils {
 					targetElements.forEach(targetEl => {
 						this.slideDown(targetEl, 300)
 					})
+
+					const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
+					const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
+					const initialScroll = scrollContainer.scrollTop;
+
+					if (scrollContainer) {
+						const draw = (progress) => {
+							scrollContainer.scrollTop = initialScroll + (scrollDistance * progress);
+						}
+						this.animate({
+							timing: (tf) => tf,
+							draw,
+							duration: 300
+						})
+					}
 				}
 			}
 		})
@@ -384,9 +402,23 @@ class Utils {
 			})
 		}
 	}
+
+	animate = ({ timing, draw, duration }) => {
+
+		let start = performance.now();
+	
+		requestAnimationFrame(function animate(time) {
+			let timeFraction = (time - start) / duration;
+			if (timeFraction > 1) timeFraction = 1;
+	
+			let progress = timing(timeFraction);
+			draw(progress); 
+			if (timeFraction < 1) {
+				requestAnimationFrame(animate);
+			}
+		});
+	}
 }
-
-
 ;
 // HTML data-da="where(uniq class name),when(breakpoint),position(digi)"
 // e.x. data-da=".content__column-garden,992,2"
