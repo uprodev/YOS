@@ -19,11 +19,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$sum_del = get_field('suma_bezkoshtovnoyi_dostavky', 'options');
 $sub = WC()->cart->subtotal;
 
-$ost = 3500-$sub;
-$ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
-$percent = round(($ost*100)/3500);
+$ost = $sum_del-$sub;
+$ost_html = number_format($ost, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();
+$percent = round(($ost*100)/$sum_del);
 $percent_bar = 100-$percent;
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
@@ -116,7 +117,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
-                    <span><?= $sub>=3500?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
+                    <span><?= $sub>=$sum_del?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
@@ -132,7 +133,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 <div class="side-basket__free-shipping">
                     <div class="side-basket__free-shipping-head">
                         <span><?= __('До безкоштовної доставки залишилось', 'yos');?></span>
-                        <span class="text-nowrap"><?= $sub>=3500?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+                        <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
                     </div>
                     <div class="side-basket__free-shipping-line">
                         <div class="line-track">
@@ -140,8 +141,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                         </div>
                     </div>
                     <div class="side-basket__free-shipping-total">
-                        <span class="text-nowrap">0 ₴</span>
-                        <span class="text-nowrap">3 500 ₴</span>
+                        <span class="text-nowrap">0  <?= get_woocommerce_currency_symbol();?></span>
+                        <span class="text-nowrap"><?= number_format($sum_del, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();?></span>
                     </div>
                 </div>
 
