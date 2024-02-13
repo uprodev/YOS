@@ -37,6 +37,9 @@
                         <?php if(get_field('footer_phone', 'options')):?>
                             <a href="+<?= phone_clear(get_field('footer_phone', 'options'));?>"><?php the_field('footer_phone', 'options');?></a>
                         <?php endif;?>
+                        <?php if(get_field('footer_mail', 'options')):?>
+                            <a href="mailto:<?=get_field('footer_mail', 'options');?>"><?php the_field('footer_mail', 'options');?></a>
+                        <?php endif;?>
                         <?php if(get_field('footer_social', 'options')):
                             foreach (get_field('footer_social', 'options') as $soc):?>
                                 <a href="<?= $soc['link'];?>" target="_blank" class="button-link"><span><?= $soc['name'];?></span></a>
