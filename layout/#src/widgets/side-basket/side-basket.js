@@ -1,12 +1,12 @@
 const sideBasket = document.querySelector('[data-side-basket]');
 if (sideBasket) {
+    this.utils.setHeightOfWindowWhenResize(sideBasket);
 
     document.addEventListener('click', (e) => {
         if(e.target.closest('[data-action="open-side-basket"]')) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
-            document.body.classList.add('overflow-hidden');
         } else if(e.target.closest('[data-action="close-side-basket"]')) {
             e.preventDefault();
             sideBasket.classList.remove('open');
@@ -25,7 +25,6 @@ if (sideBasket) {
         open: () => {
             bodyLock();
             sideBasket.classList.add('open');
-            document.body.classList.add('overflow-hidden');
         },
 
         close: () => {
@@ -33,4 +32,6 @@ if (sideBasket) {
             bodyUnlock();
         }
     }
+
+    
 }

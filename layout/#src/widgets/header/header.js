@@ -9,16 +9,18 @@ if (mobileMenu) {
     const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
     const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
 
+    this.utils.setHeightOfWindowWhenResize(mobileMenu);
+
     buttonsOpen.forEach(button => {
         button.addEventListener('click', () => {
-            document.body.classList.add('overflow-hidden');
+            document.documentElement.classList.add('overflow-hidden');
             mobileMenu.classList.add('open')
         });
     })
 
     buttonsClose.forEach(button => {
         button.addEventListener('click', () => {
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         });
     })
@@ -32,7 +34,7 @@ if (mobileMenu) {
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         }
     })

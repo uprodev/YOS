@@ -40,6 +40,8 @@ if (setStartsElements.length) {
 
 const addCommentEl = document.querySelector('[data-add-comment]');
 if (addCommentEl) {
+    this.utils.setHeightOfWindowWhenResize(addCommentEl);
+
     const openButtons = document.querySelectorAll('[data-action="opne-add-comment"]');
     const closeButtons = document.querySelectorAll('[data-action="close-add-comment"]');
 
@@ -47,7 +49,7 @@ if (addCommentEl) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             addCommentEl.classList.remove('open');
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
         })
     });
 
@@ -55,7 +57,7 @@ if (addCommentEl) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             addCommentEl.classList.add('open');
-            document.body.classList.add('overflow-hidden');
+            document.documentElement.classList.add('overflow-hidden');
         })
     })
 }

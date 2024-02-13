@@ -147,9 +147,25 @@
     }
 
     &__free-shipping-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 2rem;
+        padding-left: 3rem;
+        position: relative;
+
+        &:before {
+            position: absolute;
+            top: -.4rem;
+            left: 0;
+            content: '';
+            height: 2.8rem;
+            width: 2.8rem;
+            background-image: url($icon-box);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+        }
+
+        & span.text-nowrap {
+            color: $themeColorWarning;
+        }
     }
 
     &__free-shipping-line {

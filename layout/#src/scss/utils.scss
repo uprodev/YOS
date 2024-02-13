@@ -1,3 +1,27 @@
 [data-collapse-target] {
     display: none;
 }
+
+.chevron-left {
+    position: relative;
+    padding-left: 2rem;
+    min-height: 1em;
+    &:before {
+        font-family: "icomoon" !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: absolute;
+        content: "\e90d";
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        transition: transform $transition;
+        font-size: 1.9rem;
+    }
+}
