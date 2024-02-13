@@ -12584,6 +12584,14 @@ ul.wc_payment_methods:not(:first-child) {
 }
 
 @media (min-width: 0px) and (max-width: 767.98px) {
+  .header--empty {
+    padding-top: 0 !important;
+  }
+
+  .header--empty .top-offer {
+    display: none !important;
+  }
+
   .footer-desk {
     display: none;
   }
