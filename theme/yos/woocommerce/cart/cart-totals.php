@@ -19,12 +19,15 @@ defined( 'ABSPATH' ) || exit;
 
 $sub = WC()->cart->subtotal;
 
-if($sub<3500):
+if($sub<3500){
 
     $ost = 3500-$sub;
     $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
     $percent = round(($ost*100)/3500);
     $percent_bar = 100-$percent;
+
+}
+
 ?>
 
 <?php if ( wc_coupons_enabled() ) { ?>
@@ -119,22 +122,23 @@ if($addit_prod):
         <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('оформити замовлення', 'yos');?></a>
     </div>
 
-    <div class="basket__side-row ">
-        <div class="side-basket__free-shipping">
-            <div class="side-basket__free-shipping-head">
-                <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
-                <span class="text-nowrap"><?= $ost_html;?></span>
-            </div>
-            <div class="side-basket__free-shipping-line">
-                <div class="line-track">
-                    <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+    <?php if($sub<3500):?>
+        <div class="basket__side-row ">
+            <div class="side-basket__free-shipping">
+                <div class="side-basket__free-shipping-head">
+                    <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
+                    <span class="text-nowrap"><?= $ost_html;?></span>
+                </div>
+                <div class="side-basket__free-shipping-line">
+                    <div class="line-track">
+                        <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+                    </div>
+                </div>
+                <div class="side-basket__free-shipping-total">
+                    <span class="text-nowrap">0 ₴</span>
+                    <span class="text-nowrap">3 500 ₴</span>
                 </div>
             </div>
-            <div class="side-basket__free-shipping-total">
-                <span class="text-nowrap">0 ₴</span>
-                <span class="text-nowrap">3 500 ₴</span>
-            </div>
         </div>
-    </div>
 
-<?php endif;?>
+    <?php endif;?>
