@@ -15,27 +15,29 @@
  * @version 3.6.0
  * @global WC_Checkout $checkout
  */
+$fields = $checkout->get_checkout_fields( 'billing' );
 
 defined( 'ABSPATH' ) || exit;
 ?>
 <div class="checkout-form__row">
     <div class="checkout-form__col">
         <div class="checkout-form__fields">
-            <div class="checkout-form__field">
-                <div class="input-wrap" data-input>
-                    <input type="text" class="input" name="billing_last_name" id="billing_last_name" placeholder="" value="" autocomplete="family-name" required>
+            <div class="  checkout-form__field " id="billing_last_name_field">
+
+                <div class="input-wrap form-row validate-required" data-input>
+                    <input type="text" class="input input-text" name="billing_last_name" id="billing_last_name" placeholder="" value="" autocomplete="family-name" required>
                     <span class="input-label"><?= __('Прізвище', 'yos');?></span>
                 </div>
             </div>
             <div class="checkout-form__field">
-                <div class="input-wrap" data-input>
-                    <input type="text" class="input" name="billing_first_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" required>
+                <div class="input-wrap form-row validate-required" data-input>
+                    <input type="text" class="input input-text" name="billing_first_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name" required>
                     <span class="input-label"><?= __('Ім’я', 'yos');?></span>
                 </div>
             </div>
             <div class="checkout-form__field">
-                <div class="input-wrap" data-input>
-                    <input type="text" class="input" name="billing_mid_name" id="billing_mid_name" placeholder="" value="" autocomplete="given-name" required>
+                <div class="input-wrap form-row validate-required" data-input>
+                    <input type="text" class="input input-text" name="billing_mid_name" id="billing_mid_name" placeholder="" value="" autocomplete="given-name" required>
                     <span class="input-label"><?= __('По-батькові', 'yos');?></span>
                 </div>
             </div>
@@ -45,14 +47,14 @@ defined( 'ABSPATH' ) || exit;
     <div class="checkout-form__col">
         <div class="checkout-form__fields">
             <div class="checkout-form__field">
-                <div class="input-wrap" data-input>
-                    <input type="email" class="input" name="billing_email" id="billing_email" placeholder="" value="" autocomplete="email username" required>
+                <div class="input-wrap form-row validate-required validate-email" data-input>
+                    <input type="email" class="input input-text" name="billing_email" id="billing_email" placeholder="" value="" autocomplete="email username" required>
                     <span class="input-label"><?= __('Електронна адреса', 'yos');?></span>
                 </div>
             </div>
             <div class="checkout-form__field">
-                <div class="input-wrap" data-input>
-                    <input type="text" class="input" name="billing_phone" id="billing_phone" placeholder="" value="" autocomplete="tel" data-mask="+380 (99) 999 99 99"  required>
+                <div class="input-wrap form-row validate-required validate-phone" data-input>
+                    <input type="text" class="input input-text" name="billing_phone" id="billing_phone" placeholder="" value="" autocomplete="tel" data-mask="+380 (99) 999 99 99"  required>
                     <span class="input-label"><?= __('Телефонний номер', 'yos');?></span>
                 </div>
             </div>

@@ -22,3 +22,8 @@ Description: Theme WP for YOS
 .promotional-code__text .text-color-warning{
     text-transform: none;
 }
+
+.woocommerce form .form-row {
+  padding: inherit;
+  margin: inherit;
+}
