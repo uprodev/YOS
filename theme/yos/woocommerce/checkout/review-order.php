@@ -107,7 +107,7 @@ defined( 'ABSPATH' ) || exit;
         </div>
 
         <div class="side-basket__to-checkout">
-            <button type="submit" class="button-primary dark w-100" name="woocommerce_checkout_place_order" id="place_order" value="<?= __('оформити замовлення', 'yos');?>" data-value="<?= __('оформити замовлення', 'yos');?>"><?= __('оформити замовлення', 'yos');?></button>
+            <button type="submit" class="button-primary dark w-100" name="woocommerce_checkout_place_order" id="place_order" value="<?= __('оформити замовлення', 'yos');?>" data-value="<?= __('підтвердити замовлення', 'yos');?>"><?= __('оформити замовлення', 'yos');?></button>
             <div class="side-basket__text">
                 <?= __('Підтверджуючи замовлення, Ви приймаєте умови угоди', 'yos');?>
             </div>
