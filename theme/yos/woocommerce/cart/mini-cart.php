@@ -21,9 +21,9 @@ defined( 'ABSPATH' ) || exit;
 
 $sub = WC()->cart->subtotal;
 
-$ost = 2000-$sub;
+$ost = 3500-$sub;
 $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
-$percent = round(($ost*100)/2000);
+$percent = round(($ost*100)/3500);
 $percent_bar = 100-$percent;
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
@@ -116,7 +116,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                 <div class="side-basket__payment-info-row">
                     <span><?= __('Доставка', 'yos');?></span>
-                    <span><?= $sub>=2000?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
+                    <span><?= $sub>=3500?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
                 </div>
                 <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                     <span><?= __('всього до сплати', 'yos');?></span>
@@ -131,8 +131,8 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
                 <div class="side-basket__free-shipping">
                     <div class="side-basket__free-shipping-head">
-                        <span><?= __('До безкоштовної доставки залишилось:', 'yos');?></span>
-                        <span class="text-nowrap"><?= $sub>=2000?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+                        <span><?= __('До безкоштовної доставки залишилось', 'yos');?></span>
+                        <span class="text-nowrap"><?= $sub>=3500?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
                     </div>
                     <div class="side-basket__free-shipping-line">
                         <div class="line-track">
@@ -141,7 +141,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                     <div class="side-basket__free-shipping-total">
                         <span class="text-nowrap">0 ₴</span>
-                        <span class="text-nowrap">2 000 ₴</span>
+                        <span class="text-nowrap">3 500 ₴</span>
                     </div>
                 </div>
 

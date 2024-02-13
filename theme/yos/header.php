@@ -98,7 +98,7 @@
 
     <div class="_preloader"></div>
 
-    <header class="header<?= (is_page_template('templates/template-contacts.php') || is_404())?' header--transparent':'';?>" data-header data-popup="lock-padding">
+    <header class="header<?= (is_page_template('templates/template-contacts.php') || is_404())?' header--transparent':'';?><?= is_cart()?' shadow':'';?>" data-header data-popup="lock-padding">
 
         <?php get_template_part('parts/header/header-nav');?>
 

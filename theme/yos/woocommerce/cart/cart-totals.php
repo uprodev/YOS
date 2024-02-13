@@ -17,6 +17,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
+$sub = WC()->cart->subtotal;
+
+if($sub<3500):
+
+    $ost = 3500-$sub;
+    $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
+    $percent = round(($ost*100)/3500);
+    $percent_bar = 100-$percent;
 ?>
 
 <?php if ( wc_coupons_enabled() ) { ?>
@@ -98,7 +106,7 @@ if($addit_prod):
             </div>
             <div class="side-basket__payment-info-row">
                 <span><?= __('Доставка', 'yos');?></span>
-                <span><?= __('За тарифами перевізника', 'yos');?></span>
+                <span><?= $sub>=3500?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
             </div>
             <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                 <span><?= __('всього до сплати', 'yos');?></span>
@@ -108,19 +116,8 @@ if($addit_prod):
     </div>
 
     <div class="basket__side-row">
-        <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+        <a href="<?= wc_get_checkout_url();?>" class="button-primary dark w-100"><?= __('оформити замовлення', 'yos');?></a>
     </div>
-
-<?php $sub = WC()->cart->subtotal;
-
-if($sub<2000):
-
-    $ost = 2000-$sub;
-    $ost_html = number_format($ost, 2, ',', ' ') . ' '.get_woocommerce_currency_symbol();
-    $percent = round(($ost*100)/2000);
-    $percent_bar = 100-$percent;
-
-    ?>
 
     <div class="basket__side-row ">
         <div class="side-basket__free-shipping">
@@ -135,7 +132,7 @@ if($sub<2000):
             </div>
             <div class="side-basket__free-shipping-total">
                 <span class="text-nowrap">0 ₴</span>
-                <span class="text-nowrap">2 000 ₴</span>
+                <span class="text-nowrap">3 500 ₴</span>
             </div>
         </div>
     </div>
