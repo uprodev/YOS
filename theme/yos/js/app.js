@@ -191,11 +191,11 @@ class Utils {
 						this.slideDown(targetEl, 300)
 					})
 
-					const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
-					const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
-					const initialScroll = scrollContainer.scrollTop;
-
 					if (scrollContainer) {
+						const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
+						const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
+						const initialScroll = scrollContainer.scrollTop;
+
 						const draw = (progress) => {
 							scrollContainer.scrollTop = initialScroll + (scrollDistance * progress);
 						}
@@ -406,17 +406,23 @@ class Utils {
 	animate = ({ timing, draw, duration }) => {
 
 		let start = performance.now();
-	
+
 		requestAnimationFrame(function animate(time) {
 			let timeFraction = (time - start) / duration;
 			if (timeFraction > 1) timeFraction = 1;
-	
+
 			let progress = timing(timeFraction);
-			draw(progress); 
+			draw(progress);
 			if (timeFraction < 1) {
 				requestAnimationFrame(animate);
 			}
 		});
+	}
+
+	setHeightOfWindowWhenResize(htmlEl) {
+		window.addEventListener('resize', () => {
+			htmlEl.style.height = document.documentElement.clientHeight + 'px';
+		})
 	}
 }
 ;
@@ -667,7 +673,7 @@ function bodyLock() {
     }
 
     body.style.paddingRight = lockPaddingValue;
-    body.classList.add('overflow-hidden');
+    document.documentElement.classList.add('overflow-hidden');
 
     unlock = false;
     setTimeout(function () {
@@ -692,7 +698,7 @@ function bodyUnlock() {
         }
 
         body.style.paddingRight = '0px';
-        body.classList.remove('overflow-hidden');
+        document.documentElement.classList.remove('overflow-hidden');
     }, timeout);
 
     unlock = false;
@@ -1469,16 +1475,18 @@ if (mobileMenu) {
     const buttonsClose = document.querySelectorAll('[data-action="close-mobile-menu"]');
     const mainLayer = mobileMenu.querySelector('.mobile-menu__main-layer');
 
+    this.utils.setHeightOfWindowWhenResize(mobileMenu);
+
     buttonsOpen.forEach(button => {
         button.addEventListener('click', () => {
-            document.body.classList.add('overflow-hidden');
+            document.documentElement.classList.add('overflow-hidden');
             mobileMenu.classList.add('open')
         });
     })
 
     buttonsClose.forEach(button => {
         button.addEventListener('click', () => {
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         });
     })
@@ -1492,7 +1500,7 @@ if (mobileMenu) {
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         }
     })
@@ -2067,6 +2075,8 @@ if (setStartsElements.length) {
 
 const addCommentEl = document.querySelector('[data-add-comment]');
 if (addCommentEl) {
+    this.utils.setHeightOfWindowWhenResize(addCommentEl);
+
     const openButtons = document.querySelectorAll('[data-action="opne-add-comment"]');
     const closeButtons = document.querySelectorAll('[data-action="close-add-comment"]');
 
@@ -2074,7 +2084,7 @@ if (addCommentEl) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             addCommentEl.classList.remove('open');
-            document.body.classList.remove('overflow-hidden');
+            document.documentElement.classList.remove('overflow-hidden');
         })
     });
 
@@ -2082,19 +2092,19 @@ if (addCommentEl) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             addCommentEl.classList.add('open');
-            document.body.classList.add('overflow-hidden');
+            document.documentElement.classList.add('overflow-hidden');
         })
     })
 };
 			const sideBasket = document.querySelector('[data-side-basket]');
 if (sideBasket) {
+    this.utils.setHeightOfWindowWhenResize(sideBasket);
 
     document.addEventListener('click', (e) => {
         if(e.target.closest('[data-action="open-side-basket"]')) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
-            document.body.classList.add('overflow-hidden');
         } else if(e.target.closest('[data-action="close-side-basket"]')) {
             e.preventDefault();
             sideBasket.classList.remove('open');
@@ -2113,7 +2123,6 @@ if (sideBasket) {
         open: () => {
             bodyLock();
             sideBasket.classList.add('open');
-            document.body.classList.add('overflow-hidden');
         },
 
         close: () => {
@@ -2121,6 +2130,8 @@ if (sideBasket) {
             bodyUnlock();
         }
     }
+
+    
 };
 			
 const brandsNavSlider = document.querySelector('[data-slider="brands-nav"]');
