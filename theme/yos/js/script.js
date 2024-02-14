@@ -91,7 +91,7 @@ jQuery(document).ready(function ($) {
         if ( $( '.woocommerce-cart-form' ).length ||  $( '.woocommerce-checkout' ).length) {
           $(this).closest('li').remove();
         }
-        
+
         $(this).closest('.product-card-sm').remove();
         $.ajax({
             type: 'get',
@@ -156,7 +156,7 @@ jQuery(document).ready(function ($) {
 
     $(document).on('show_variation', '.single_variation_wrap', function (event, variation) {
 
-        // console.log(variation);
+         console.log(variation);
 
         $('.add-cart').attr('data-variation_id', variation.variation_id);
         $('.cost').html(variation.price_html);
@@ -174,6 +174,18 @@ jQuery(document).ready(function ($) {
             $('.product-actions__price-profit').text('-' + perc + '%');
             $('.price-sale').show();
         }
+
+        if (variation.sku) {
+          $('._sku').parent().show()
+          $('._sku').text(variation.sku)
+        } else {
+          $('._sku').parent().hide()
+        }
+
+        if (variation.image.url) {
+          $('.main-image').attr('src', variation.image.url)
+        }
+
     });
 
     $(document).on('click', '.color-item', function (){
@@ -193,6 +205,15 @@ jQuery(document).ready(function ($) {
         $('#pa_color').val(color).change();
 
     })
+
+  $(document).on('change', '.variations-new select', function (){
+    var name = $(this).attr('name');
+    var val = $(this).val();
+    
+    $('.variations_form  [name="'+ name +'"]').val(val).change()
+   return false
+
+  })
 
 
     /* apply coupon */

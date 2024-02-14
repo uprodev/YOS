@@ -18,8 +18,14 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+wp_reset_query();
+$related_products_default = wc_get_related_products(get_the_id());
+$product = new WC_Product(get_the_id());
+$related_products = $product->get_upsell_ids( 'edit' );
+$related_products = (!empty($related_products)) ? $related_products : $related_products_default;
 
 if ( $related_products ) :
+
     $i=1;?>
 
     <div class="top-space-60 top-space-md-150">
@@ -37,6 +43,7 @@ if ( $related_products ) :
                         <?php foreach ( $related_products as $related_product ) : ?>
 
                             <?php
+                            $related_product = new WC_Product($related_product);
                             $post_object = get_post( $related_product->get_id() );
 
                             setup_postdata( $GLOBALS['post'] =& $post_object );?>

@@ -89,9 +89,9 @@ if( $product->is_type('variable') ){
                         <?php if(get_field('seria')):?>
                             <div class="product-main-info__text mt-0"><?php the_field('seria');?></div>
                         <?php endif;?>
-                        <?php if( $product->get_sku()):?>
-                            <div class="product-main-info__articul"><?= __('Артикул:', 'yos');?> <?= $product->get_sku(); ?></div>
-                        <?php endif;?>
+
+                            <div class="product-main-info__articul"><?= __('Артикул:', 'yos');?> <span class="_sku"><?= $product->get_sku(); ?></span></div>
+
                         <div class="product-actions">
 
                             <?php woocommerce_template_single_rating();?>
@@ -106,94 +106,135 @@ if( $product->is_type('variable') ){
                                 </div>
                             <?php endif;?>
 
-                            <?php if ( !empty($variations_attr['pa_volumes'])):?>
-                                <div class="product-actions__option">
-                                    <div class="product-actions__option-head">
-                                        <div class="product-actions__option-title"><?= __('Виберіть об’єм:', 'yos');?></div>
+                            <?php
+                            $product_attributes = $product->get_attributes();
+                            if ($product_attributes)
+                            foreach ( $product_attributes as $attribute_name => $options ) {
+                                  ?>
+                                <?php if ( ($attribute_name == 'pa_volumes')):?>
+                                    <div class="product-actions__option">
+                                        <div class="product-actions__option-head">
+                                            <div class="product-actions__option-title"><?= __('Виберіть об’єм:', 'yos');?></div>
 
-                                        <div class="product-actions__option-text stock">
-                                            <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
+                                            <div class="product-actions__option-text stock">
+                                                <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
+                                            </div>
+                                        </div>
+                                        <div class="product-actions__option-items">
+                                            <?php foreach ($variations as  $variation) {
+                                                $volumes[] = $variation['attributes']['attribute_pa_volumes'];
+                                            }
+
+                                            $volumes = array_unique($volumes);
+
+                                            if ($volumes):
+                                                foreach ($volumes as $variation):
+                                                    $volume = get_term_by('slug', $variation , 'pa_volumes');?>
+
+                                                    <div class="product-actions__option-item volume-item" data-volumes="<?= $volume->slug ?>" >
+                                                        <label class="product-option">
+                                                            <input type="radio" name="volume" <?= $default_attributes['pa_volumes'] == $volume->slug ? 'checked' : '' ?> value="<?= $volume->slug ?>">
+                                                            <div class="product-option__value">
+                                                                <?= $volume->name ?>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                <?php endforeach;
+                                            endif;?>
                                         </div>
                                     </div>
-                                    <div class="product-actions__option-items">
-                                        <?php foreach ($variations as  $variation) {
-                                            $volumes[] = $variation['attributes']['attribute_pa_volumes'];
-                                        }
 
-                                        $volumes = array_unique($volumes);
+                                <?php elseif ( ($attribute_name == 'pa_color')):?>
+                                    <div class="product-actions__option colors">
+                                        <div class="product-actions__option-head">
+                                            <div class="product-actions__option-title"><?= __('Виберіть колір:', 'yos');?></div>
+                                            <!--                                    <div class="product-actions__option-text">-->
+                                            <!--                                        They Met In Argentina-->
+                                            <!--                                    </div>-->
+                                        </div>
+                                        <div class="product-actions__option-items">
+                                            <?php foreach ($variations as  $variation) {
+                                                $colors[] = $variation['attributes']['attribute_pa_color'];
+                                            }
 
-                                        if ($volumes):
-                                            foreach ($volumes as $variation):
-                                                $volume = get_term_by('slug', $variation , 'pa_volumes');?>
+                                            $colors = array_unique($colors);
 
-                                                <div class="product-actions__option-item volume-item" data-volumes="<?= $volume->slug ?>" >
-                                                    <label class="product-option">
-                                                        <input type="radio" name="volume" <?= $default_attributes['pa_volumes'] == $volume->slug ? 'checked' : '' ?> value="<?= $volume->slug ?>">
-                                                        <div class="product-option__value">
-                                                            <?= $volume->name ?>
+                                            if ($colors){
+                                                foreach ($colors as  $variation) {
+                                                    $color = get_term_by('slug', $variation , 'pa_color');
+
+                                                    $c = get_field('color', 'pa_color_'.$color->term_id);
+
+                                                    if($c):?>
+
+                                                        <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
+                                                            <label class="product-option-color" style="color: <?= $c;?>">
+                                                                <input type="radio" name="colors" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?> value="<?= $color->slug ?>">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg">
+                                                                    <g clip-path="url(#clip0_1014_6192)">
+                                                                        <path
+                                                                            d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12Z"
+                                                                            fill="currentColor" />
+                                                                        <path class="border"
+                                                                              d="M23.75 12C23.75 5.51065 18.4893 0.25 12 0.25C5.51065 0.25 0.25 5.51065 0.25 12C0.25 18.4893 5.51065 23.75 12 23.75C18.4893 23.75 23.75 18.4893 23.75 12Z"
+                                                                              fill="white" stroke="#121212" stroke-width="0.5" />
+                                                                        <path
+                                                                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                                            fill="currentColor" />
+                                                                        <path class="line" d="M20 3.5L3.5 20" stroke="#6A6B6E" />
+                                                                    </g>
+                                                                    <defs>
+                                                                        <clipPath id="clip0_1014_6192">
+                                                                            <rect width="24" height="24" fill="white" />
+                                                                        </clipPath>
+                                                                    </defs>
+                                                                </svg>
+                                                            </label>
                                                         </div>
-                                                    </label>
-                                                </div>
-                                            <?php endforeach;
-                                        endif;?>
+
+                                                    <?php endif; }
+
+                                            }?>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endif;?>
-                            <?php if (!empty($variations_attr['pa_color'])):?>
-                                <div class="product-actions__option colors">
-                                <div class="product-actions__option-head">
-                                    <div class="product-actions__option-title"><?= __('Виберіть колір:', 'yos');?></div>
-<!--                                    <div class="product-actions__option-text">-->
-<!--                                        They Met In Argentina-->
-<!--                                    </div>-->
-                                </div>
-                                <div class="product-actions__option-items">
-                                    <?php foreach ($variations as  $variation) {
-                                        $colors[] = $variation['attributes']['attribute_pa_color'];
-                                    }
 
-                                    $colors = array_unique($colors);
+                                <?php else:
 
-                                    if ($colors){
-                                        foreach ($colors as  $variation) {
-                                            $color = get_term_by('slug', $variation , 'pa_color');
+                                    $string = wc_attribute_label( $attribute_name, $product );
+                                    ?>
 
-                                            $c = get_field('color', 'pa_color_'.$color->term_id);
+                                    <div class="product-actions__option">
+                                        <div class="product-actions__option-head">
+                                            <div class="product-actions__option-title"><?= $string;?></div>
 
-                                            if($c):?>
-
-                                            <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
-                                                <label class="product-option-color" style="color: <?= $c;?>">
-                                                    <input type="radio" name="colors" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?> value="<?= $color->slug ?>">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_1014_6192)">
-                                                            <path
-                                                                    d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12Z"
-                                                                    fill="currentColor" />
-                                                            <path class="border"
-                                                                  d="M23.75 12C23.75 5.51065 18.4893 0.25 12 0.25C5.51065 0.25 0.25 5.51065 0.25 12C0.25 18.4893 5.51065 23.75 12 23.75C18.4893 23.75 23.75 18.4893 23.75 12Z"
-                                                                  fill="white" stroke="#121212" stroke-width="0.5" />
-                                                            <path
-                                                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                                                    fill="currentColor" />
-                                                            <path class="line" d="M20 3.5L3.5 20" stroke="#6A6B6E" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_1014_6192">
-                                                                <rect width="24" height="24" fill="white" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                </label>
+                                            <div class="product-actions__option-text stock">
+                                                <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
                                             </div>
+                                        </div>
+                                        <div class="product-actions__option-items variations-new">
 
-                                        <?php endif; }
+                                            <?php
+                                            wc_dropdown_variation_attribute_options(
+                                                array(
+                                                   // 'options'   => $options,
+                                                    'attribute' => $attribute_name,
+                                                    'product'   => $product,
+                                                    'id' => 'ad'
+                                                )
+                                            );
+                                         //   echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
+                                            ?>
+                                        </div>
+                                    </div>
 
-                                    }?>
-                                </div>
-                            </div>
-                            <?php endif;?>
+                                <?php endif;?>
+
+
+                            <?php
+                            } ?>
+
+
 
                             <?php if ($product->is_type('variable')):?>
 
