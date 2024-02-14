@@ -6065,6 +6065,10 @@ ul.woocommerce-messagule {
   color: #FF0000;
 }
 
+.woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout {
+  display: none !important;
+}
+
 .header {
   position: fixed;
   top: 0;
