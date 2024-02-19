@@ -93,7 +93,7 @@ if ($product->is_type( 'variable' )) {
 
                             <?php woocommerce_template_single_rating();?>
 
-                            <?php if ($product->is_type('simple')):?>
+                            <?php if ($product->is_type('simple0')):?>
                                 <div class="product-actions__option">
                                     <div class="product-actions__option-head">
                                         <div class="product-actions__option-text stock">
