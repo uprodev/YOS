@@ -20,22 +20,48 @@ defined( 'ABSPATH' ) || exit;
 /*
  * @hooked wc_empty_cart_message - 10
  */
-do_action( 'woocommerce_cart_is_empty' );
+
 
 if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
-<div class="container">
-	<p class="return-to-shop">
-		<a class="button-primary dark" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php
-				/**
-				 * Filter "Return To Shop" text.
-				 *
-				 * @since 4.6.0
-				 * @param string $default_text Default text.
-				 */
-				echo esc_html( apply_filters( 'woocommerce_return_to_shop_text', __( 'Return to shop', 'woocommerce' ) ) );
-			?>
-		</a>
-	</p>
-</div>
+
+    <section class="basket woocommerce-cart-form">
+        <div class="container">
+            <div class="basket__head">
+                <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="basket__link-to-shopping button-link">
+                    <span class="icon-chevrone-left"><?= __('продовжити покупки', 'yos');?></span>
+                </a>
+
+                <h2 class="basket__title title-2">
+                    <?php the_title();?>
+                    <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
+                </h2>
+
+
+            </div>
+
+            <div class=" basket__body shop_table shop_table_responsive cart woocommerce-cart-form__contents">
+                <div class="basket__main">
+                    <p class="return-to-shop">
+
+                        <?php do_action( 'woocommerce_cart_is_empty' ); ?>
+                        <a class="button-primary dark" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
+                            <?php
+                            /**
+                             * Filter "Return To Shop" text.
+                             *
+                             * @since 4.6.0
+                             * @param string $default_text Default text.
+                             */
+                            echo esc_html( apply_filters( 'woocommerce_return_to_shop_text', __( 'Return to shop', 'woocommerce' ) ) );
+                            ?>
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
 <?php endif; ?>

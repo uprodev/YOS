@@ -24,6 +24,8 @@ $ost = $sum_del-$sub;
 $ost_html = number_format($ost, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();
 $percent = round(($ost*100)/$sum_del);
 $percent_bar = 100-$percent;
+if ($ost < 0)
+    $percent_bar = 100;
 
 ?>
 
@@ -128,7 +130,7 @@ if($addit_prod):
                 </div>
                 <div class="side-basket__free-shipping-line">
                     <div class="line-track">
-                        <div class="line" style="width: <?= $percent_bar;?>%;"></div>
+                            <div class="line" style="width: <?= $percent_bar;?>%;"></div>
                     </div>
                 </div>
                 <div class="side-basket__free-shipping-total">
