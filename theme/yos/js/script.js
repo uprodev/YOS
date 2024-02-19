@@ -197,21 +197,22 @@ jQuery(document).ready(function ($) {
 
     })
 
-    $(document).on('click', '.volume-item', function (){
-        let volumes = $(this).attr('data-volumes');
-        let color = $('input[name="colors"]:checked').val();
+    // $(document).on('click', '.volume-item', function (){
+    //     let volumes = $(this).attr('data-volumes');
+    //     let color = $('input[name="colors"]:checked').val();
+    //
+    //     $('#pa_volumes').val(volumes).change();
+    //     $('#pa_color').val(color).change();
+    //
+    // })
 
-        $('#pa_volumes').val(volumes).change();
-        $('#pa_color').val(color).change();
-
-    })
-
-  $(document).on('change', '.variations-new select', function (){
+  $(document).on('change', '.volume-item input', function (){
     var name = $(this).attr('name');
     var val = $(this).val();
-    
-    $('.variations_form  [name="'+ name +'"]').val(val).change()
-   return false
+
+    $('.variations_form  #'+ name ).val(val).change()
+
+    return false
 
   })
 
