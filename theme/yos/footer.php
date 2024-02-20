@@ -5,7 +5,7 @@
     }?>
 
     <!-- == FOOTER ================== -->
-    <div class="top-space-140">
+    <div class="top-space-70">
 
         <?php get_template_part('parts/footer/footer-desctop');?>
 
