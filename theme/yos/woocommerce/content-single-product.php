@@ -109,11 +109,14 @@ if ($product->is_type( 'variable' )) {
                             foreach ( $product_attributes as $attribute_name => $options ) {
                                 $tax = get_taxonomy($attribute_name);
                                 $terms = $options->get_data()['options'];
+
+                                if (!$options->get_data()['visible'] || $attribute_name == 'pa_brand')
+                                    continue;
                                   ?>
                                 <?php if ( ($attribute_name !== 'pa_color')):?>
                                     <div class="product-actions__option">
                                         <div class="product-actions__option-head">
-                                            <div class="product-actions__option-title"><?= __('Виберіть', 'yos');?> <?= mb_strtolower($tax->labels->singular_name) ?>: </div>
+                                            <div class="product-actions__option-title"><?= ($tax->labels->singular_name) ?>: </div>
                                         </div>
                                         <div class="product-actions__option-items">
                                             <?php
@@ -137,7 +140,7 @@ if ($product->is_type( 'variable' )) {
                                 <?php elseif ( ($attribute_name == 'pa_color')):?>
                                     <div class="product-actions__option colors">
                                         <div class="product-actions__option-head">
-                                            <div class="product-actions__option-title"><?= __('Виберіть', 'yos');?> <?= mb_strtolower($tax->labels->singular_name) ?></div>
+                                            <div class="product-actions__option-title"><?= ($tax->labels->singular_name) ?></div>
                                             <div class="product-actions__option-text color-label">
                                             </div>
                                         </div>
@@ -199,6 +202,9 @@ if ($product->is_type( 'variable' )) {
                                 foreach ( $product_attributes as $attribute_name => $options ) {
                                     $tax = get_taxonomy($attribute_name);
                                     $terms = $options->get_data()['options'];
+                                    if (!$options->get_data()['visible'] || $attribute_name == 'pa_brand')
+                                        continue;
+
                                     if ( ($attribute_name !== 'pa_color')):
 
                                         ?>

@@ -79,6 +79,9 @@ function update_mini_cart() {
 function remove_from_cart() {
 
     WC()->cart->remove_cart_item( $_GET['key'] );
+    wp_send_json([
+        'count' => WC()->cart->get_cart_contents_count()
+    ]);
 
     die();
 }
