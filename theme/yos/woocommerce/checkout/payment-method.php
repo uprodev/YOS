@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <li class="wc_payment_method payment_method_<?php echo esc_attr( $gateway->id ); ?>">
     <label class="checkbox-radio" for="payment_method_<?php echo esc_attr( $gateway->id ); ?>">
-        <input id="payment_method_<?php echo esc_attr( $gateway->id ); ?>"  class="input-radio" type="radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
+        <input id="payment_method_<?php echo esc_attr( $gateway->id ); ?>"  class="input-radio" type="radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->id, 'fondy_bank' ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
         <div class="checkbox-radio__square"></div>
         <div class="checkbox-radio__text"><?php echo $gateway->get_title();?></div>
     </label>

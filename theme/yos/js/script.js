@@ -186,14 +186,35 @@ jQuery(document).ready(function ($) {
           $('.main-image').attr('src', variation.image.url)
         }
 
+        if (variation.is_in_stock) {
+          $('.main-image').attr('src', variation.image.url)
+        }
+        var stock = variation.is_in_stock ? $('.product-actions__option-text.stock').attr('data-instock') : $('.product-actions__option-text.stock').attr('data-outofstock')
+
+        $('.product-actions__option-text.stock').text(stock)
+
+        if (!variation.is_in_stock) {
+          $('.product-actions__footer .add-cart').prop('disabled', true)
+        } else {
+          $('.product-actions__footer .add-cart').prop('disabled', false)
+        }
+
+        if ($('[name="colors"]').length) {
+          var label = $('[name="colors"]:checked').attr('data-label')
+          $('.product-actions__option-text.color-label').text(label)
+
+        }
+
     });
 
-    $(document).on('click', '.color-item', function (){
-        let color = $(this).attr('data-color');
-        let vol = $('input[name="volume"]:checked').val();
+    $(document).on('change', '[name="colors"]', function (){
+        let color = $(this).closest('.color-item').attr('data-color');
+        let vol = $('input[name="pa_volumes"]:checked').val();
 
         $('#pa_color').val(color).change();
         $('#pa_volumes').val(vol).change();
+
+        $(document).trigger('show_variation')
 
     })
 

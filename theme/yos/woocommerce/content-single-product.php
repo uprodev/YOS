@@ -85,7 +85,7 @@ if ($product->is_type( 'variable' )) {
                         <?php endif;?>
 
                         <div class="product-main-info__articul"><?= __('Артикул:', 'yos');?> <span class="_sku"><?= $product->get_sku(); ?></span></div>
-                        <div class="product-actions__option-text stock">
+                        <div class="product-actions__option-text stock" data-instock="<?= __('Є в наявності', 'yos');?>" data-outofstock="<?= __('Немає в наявності', 'yos');?>">
                             <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
                         </div>
 
@@ -138,6 +138,8 @@ if ($product->is_type( 'variable' )) {
                                     <div class="product-actions__option colors">
                                         <div class="product-actions__option-head">
                                             <div class="product-actions__option-title"><?= __('Виберіть', 'yos');?> <?= mb_strtolower($tax->labels->singular_name) ?></div>
+                                            <div class="product-actions__option-text color-label">
+                                            </div>
                                         </div>
                                         <div class="product-actions__option-items">
                                             <?php foreach ($variations as  $variation) {
@@ -156,7 +158,7 @@ if ($product->is_type( 'variable' )) {
 
                                                         <div class="product-actions__option-item color-item" data-color="<?= $color->slug ?>">
                                                             <label class="product-option-color" style="color: <?= $c;?>">
-                                                                <input type="radio" name="colors" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?> value="<?= $color->slug ?>">
+                                                                <input data-label="<?= $color->name ?>" type="radio" name="colors" <?= $default_attributes['pa_color'] == $color->slug ? 'checked' : '' ?> value="<?= $color->slug ?>">
                                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg">
                                                                     <g clip-path="url(#clip0_1014_6192)">
@@ -320,13 +322,15 @@ if ($product->is_type( 'variable' )) {
                             <?php if($consultation):?>
                                 <div class="product-actions__have-a-consultation">
                                     <div class="product-main-info__text">
-                                        <?php the_field('consultation_text');?>
+                                        <?= __ ('У цьому засобі багато активних інгредієнтів, тому для покупки потрібно проконсультуватися з косметологом.', 'yos') ?>
                                     </div>
                                     <label class="checkbox-radio">
                                         <input type="checkbox" name="consultation"
                                                data-action="toggle-button-as-disabled-by-id" data-id="add-to-basket">
                                         <div class="checkbox-radio__square"></div>
-                                        <div class="checkbox-radio__text"><?php the_field('consultation_input_text');?></div>
+                                        <div class="checkbox-radio__text">
+                                            <?= __ ('У мене вже була консультація', 'yos') ?>
+                                        </div>
                                     </label>
                                 </div>
                             <?php endif;?>
@@ -399,3 +403,24 @@ if ($product->is_type( 'variable' )) {
 <?php endif;?>
 
 <?php comments_template() ?>
+
+<?php if ($_GET) {?>
+
+        <script>
+            jQuery(document).ready(function($){
+                <?php
+
+                foreach ($_GET as $key=>$value) {
+                    $name_get = substr($key, 0, 10);
+                    $name = substr($key, 10);
+
+                    if ('attribute_' !== $name_get)
+                        continue
+                ?>
+                    $('[name="<?= $name ?>"]').prop('checked', false)
+                    $('[name="<?= $name ?>"][value="<?= $value  ?>"]').prop('checked', true)
+                <?php } ?>
+            })
+        </script>
+
+<?php }?>

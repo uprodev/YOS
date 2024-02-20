@@ -65,11 +65,11 @@ if($addit_prod):
                 </div>
                 <div class="product-card-sm__right">
                     <?php if($br):?>
-                        <div class="product-card-sm__title"><a href="<?= get_term_link($br[0]->term_id);?>"><?= $br[0]->name;?></a></div>
+                        <div class="product-card-sm__title"><a href="<?= get_permalink($addit_prod);?>"><?= $br[0]->name;?></a></div>
                     <?php endif;?>
                     <div class="product-card-sm__text">
                         <div class="product-card-sm__text-1">
-                            <?= get_the_title($addit_prod);?>
+                            <a href="<?= get_permalink($addit_prod);?>"><?= get_the_title($addit_prod);?></a>
                         </div>
                         <div class="product-card-sm__text-2">
                             <?php the_field('seria', $addit_prod);?>
@@ -122,11 +122,22 @@ if($addit_prod):
     </div>
 
 
-        <div class="basket__side-row ">
+    <div class="basket__side-row ">
             <div class="side-basket__free-shipping">
                 <div class="side-basket__free-shipping-head">
-                    <span><?= __('До безкоштовної доставки залишилось', 'yos');?></span>
-                    <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+
+                        <?php if ($percent_bar < 100)
+                        {
+                            echo '<span>'. __('До безкоштовної доставки залишилось', 'yos') .'</span>';
+                            ?>
+                            <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+                            <?php
+                        }
+                        else {
+                            echo '<span>'. __('Вітаємо! Доставка за наш рахунок', 'yos') .'</span>';
+                        }
+                        ?>
+
                 </div>
                 <div class="side-basket__free-shipping-line">
                     <div class="line-track">

@@ -36,14 +36,14 @@ $post_thumbnail_id = $product->get_image_id();
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide">
-                    <a href="<?= wp_get_attachment_image_src( $post_thumbnail_id, 'large' )[0] ?>" data-fancybox="product-images" class="product-images__main-img">
+                    <a class="product-images__main-img">
                         <img class="main-image" src="<?= wp_get_attachment_image_src( $post_thumbnail_id, 'large' )[0] ?>" alt="">
                     </a>
                 </div>
                 <?php if ( $attachment_ids && $product->get_image_id() ) {
                     foreach ( $attachment_ids as $attachment_id ) {?>
                         <div class="swiper-slide">
-                            <a href="<?= wp_get_attachment_image_src( $attachment_id, 'large' )[0] ?>" data-fancybox="product-images" class="product-images__main-img">
+                            <a class="product-images__main-img">
                                 <img src="<?= wp_get_attachment_image_src( $attachment_id, 'large' )[0] ?>" alt="">
                             </a>
                         </div>

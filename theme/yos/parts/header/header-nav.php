@@ -2,7 +2,7 @@
 
 $offer = get_field('offer', 'options');
 
-if($offer):?>
+if($offer && !is_checkout()):?>
 
     <a href="" class="top-offer" data-top-offer>
         <div class="top-offer__inner container">

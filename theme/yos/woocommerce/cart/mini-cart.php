@@ -26,6 +26,8 @@ $ost = $sum_del-$sub;
 $ost_html = number_format($ost, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();
 $percent = round(($ost*100)/$sum_del);
 $percent_bar = 100-$percent;
+if ($ost < 0)
+    $percent_bar = 100;
 
 do_action( 'woocommerce_before_mini_cart' ); ?>
 
@@ -132,8 +134,19 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
 
                 <div class="side-basket__free-shipping">
                     <div class="side-basket__free-shipping-head">
-                        <span><?= __('До безкоштовної доставки залишилось', 'yos');?></span>
-                        <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+
+                        <?php if ($percent_bar < 100)
+                        {
+                            echo '<span>'. __('До безкоштовної доставки залишилось', 'yos') .'</span>';
+                            ?>
+                            <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+                            <?php
+                        }
+                        else {
+                            echo '<span>'. __('Вітаємо! Доставка за наш рахунок', 'yos') .'</span>';
+                        }
+                        ?>
+
                     </div>
                     <div class="side-basket__free-shipping-line">
                         <div class="line-track">
@@ -146,7 +159,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     </div>
                 </div>
 
-        
+
     </div>
 
 <?php do_action( 'woocommerce_after_mini_cart' ); ?>

@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 wp_reset_query();
 $related_products_default = wc_get_related_products(get_the_id());
 $product = new WC_Product(get_the_id());
-$related_products = $product->get_upsell_ids( 'edit' );
+$related_products = $product->get_upsell_ids(   );
 $related_products = (!empty($related_products)) ? $related_products : $related_products_default;
 
 if ( $related_products ) :
@@ -40,12 +40,15 @@ if ( $related_products ) :
                 </div>
                 <div class="swiper" data-slider="carousel">
                     <div class="swiper-wrapper">
-                        <?php foreach ( $related_products as $related_product ) : ?>
+                        <?php foreach ( $related_products as $related_product_item ) : ?>
 
                             <?php
-                            $related_product = new WC_Product($related_product);
-                            $post_object = get_post( $related_product->get_id() );
+                            if (get_post($related_product_item)->post_parent > 0)
+                                $related_product = new WC_Product_Variation($related_product_item);
+                            else
+                                $related_product = new WC_Product($related_product_item);
 
+                            $post_object = get_post( $related_product->get_id() );
                             setup_postdata( $GLOBALS['post'] =& $post_object );?>
 
                             <?php if($i==2):?>
