@@ -16,6 +16,15 @@
  */
 
 defined( 'ABSPATH' ) || exit;
+$sum_del = get_field('suma_bezkoshtovnoyi_dostavky', 'options');
+$sub = WC()->cart->subtotal;
+$ost = $sum_del-$sub;
+$ost_html = number_format($ost, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();
+$percent = round(($ost*100)/$sum_del);
+$percent_bar = 100-$percent;
+if ($ost < 0)
+    $percent_bar = 100;
+
 ?>
 
 
@@ -98,7 +107,7 @@ defined( 'ABSPATH' ) || exit;
             </div>
             <div class="side-basket__payment-info-row">
                 <span><?= __('Доставка', 'yos');?></span>
-                <span><?= __('За тарифами перевізника', 'yos');?></span>
+                <span><?= $percent_bar == 100 ? __('Безкоштовно', 'yos') : __('За тарифами перевізника', 'yos');?></span>
             </div>
             <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                 <span><?= __('всього до сплати', 'yos');?></span>

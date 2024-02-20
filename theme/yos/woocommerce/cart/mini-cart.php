@@ -105,59 +105,55 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 ?>
             </ul>
         </div>
-            <div class="side-basket__payment-info">
-<!--                <div class="side-basket__payment-info-row">-->
-<!--                    <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
-<!--                    <span class="text-nowrap">-60 ₴</span>-->
-<!--                </div>-->
+        <div class="side-basket__payment-info">
 
-                <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
-                        <span><?= __('Інші знижки', 'yos');?></span>
-                        <span class="text-nowrap" >
-                            -<?= WC()->cart->get_cart_discount_total();?>₴
-                        </span>
-                    </div>
-                <div class="side-basket__payment-info-row">
-                    <span><?= __('Доставка', 'yos');?></span>
-                    <span><?= $sub>=$sum_del?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
+            <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
+                    <span><?= __('Інші знижки', 'yos');?></span>
+                    <span class="text-nowrap" >
+                        -<?= WC()->cart->get_cart_discount_total();?>₴
+                    </span>
                 </div>
-                <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
-                    <span><?= __('всього до сплати', 'yos');?></span>
-                    <span class="text-nowrap cart-sub"><?php wc_cart_totals_order_total_html(); ?></span>
+            <div class="side-basket__payment-info-row">
+                <span><?= __('Доставка', 'yos');?></span>
+                <span><?= $sub>=$sum_del?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
+            </div>
+            <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
+                <span><?= __('всього до сплати', 'yos');?></span>
+                <span class="text-nowrap cart-sub"><?php wc_cart_totals_order_total_html(); ?></span>
+            </div>
+        </div>
+
+        <div class="side-basket__free-shipping">
+            <div class="side-basket__free-shipping-head">
+
+                <?php if ($percent_bar < 100)
+                {
+                    echo '<span>'. __('До безкоштовної доставки <br>залишилось', 'yos') .'</span>';
+                    ?>
+                    <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
+                    <?php
+                }
+                else {
+                    echo '<span>'. __('Вітаємо! Доставка за наш рахунок', 'yos') .'</span>';
+                }
+                ?>
+
+            </div>
+            <div class="side-basket__free-shipping-line">
+                <div class="line-track">
+                    <div class="line" style="width: <?= $percent_bar>=100?'100':$percent_bar;?>%;"></div>
                 </div>
             </div>
-
-            <div class="side-basket__to-checkout">
-                <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+            <div class="side-basket__free-shipping-total">
+                <span class="text-nowrap">0  <?= get_woocommerce_currency_symbol();?></span>
+                <span class="text-nowrap"><?= number_format($sum_del, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();?></span>
             </div>
+        </div>
 
+        <div class="side-basket__to-checkout">
+            <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+        </div>
 
-                <div class="side-basket__free-shipping">
-                    <div class="side-basket__free-shipping-head">
-
-                        <?php if ($percent_bar < 100)
-                        {
-                            echo '<span>'. __('До безкоштовної доставки залишилось', 'yos') .'</span>';
-                            ?>
-                            <span class="text-nowrap"><?= $sub>=$sum_del?'0 '.get_woocommerce_currency_symbol():$ost_html;?></span>
-                            <?php
-                        }
-                        else {
-                            echo '<span>'. __('Вітаємо! Доставка за наш рахунок', 'yos') .'</span>';
-                        }
-                        ?>
-
-                    </div>
-                    <div class="side-basket__free-shipping-line">
-                        <div class="line-track">
-                            <div class="line" style="width: <?= $percent_bar>=100?'100':$percent_bar;?>%;"></div>
-                        </div>
-                    </div>
-                    <div class="side-basket__free-shipping-total">
-                        <span class="text-nowrap">0  <?= get_woocommerce_currency_symbol();?></span>
-                        <span class="text-nowrap"><?= number_format($sum_del, 0, '', ' ') . ' '.get_woocommerce_currency_symbol();?></span>
-                    </div>
-                </div>
 
 
     </div>
