@@ -59,7 +59,7 @@ get_header();
                 <div class="brands__search">
                     <div class="input-wrap" data-input>
 
-                        <input type="text" class="input" >
+                        <input type="text" class="input" placeholder="enter">
                         <span class="input-label"><?= __('Пошук брендів', 'yos');?></span>
 
 
