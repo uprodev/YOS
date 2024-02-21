@@ -4718,6 +4718,7 @@ h5,
   font-family: "HelloAmerica", sans-serif;
   color: #0007FF;
   font-size: 1.6rem;
+  line-height: 1.2em;
 }
 
 .article-card-prview__img {
@@ -7024,6 +7025,10 @@ ul.woocommerce-messagule {
   width: 100%;
 }
 
+.subscription-form .wpcf7-not-valid-tip {
+  display: none;
+}
+
 .subscription-form input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7099,11 +7104,39 @@ ul.woocommerce-messagule {
   opacity: 0;
 }
 
+.subscription-form input.wpcf7-not-valid {
+  border-color: #FF0000;
+}
+
+.subscription-form input.wpcf7-not-valid::-webkit-input-placeholder {
+  color: #FF0000;
+}
+
+.subscription-form input.wpcf7-not-valid::-moz-placeholder {
+  color: #FF0000;
+}
+
+.subscription-form input.wpcf7-not-valid:-ms-input-placeholder {
+  color: #FF0000;
+}
+
+.subscription-form input.wpcf7-not-valid::-ms-input-placeholder {
+  color: #FF0000;
+}
+
+.subscription-form input.wpcf7-not-valid::placeholder {
+  color: #FF0000;
+}
+
 .subscription-form button {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   color: #fff;
+}
+
+.wpcf7-response-output {
+  display: none;
 }
 
 .subscription__body {
@@ -7287,8 +7320,7 @@ ul.woocommerce-messagule {
 }
 
 .banner__images {
-  height: 300px;
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-left: -1rem;
   margin-right: -1rem;
   min-width: 0;
@@ -7299,8 +7331,19 @@ ul.woocommerce-messagule {
   width: 100%;
 }
 
+.banner__images .swiper-scrollbar {
+  position: absolute;
+  top: calc(300px + 2rem);
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  width: calc(100% - 2rem);
+}
+
 .banner__footer {
-  margin-top: 2rem;
+  margin-top: 4rem;
+  padding: 0 1rem;
 }
 
 .banner .category-links__list a {
@@ -9679,6 +9722,23 @@ ul.wc_payment_methods::before {
       -ms-flex-align: center;
           align-items: center;
   color: #6A6B6E;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNS40Mjc3MyA0Ljk2Mzg3TDMuNzY2NiAzLjkxNzk3TDMuODM0OTYgNS44Nzk4OEgyLjkzOTQ1TDMuMDE0NjUgMy45MTc5N0wxLjMzMzAxIDQuOTcwN0wwLjkwOTE4IDQuMTUwMzlMMi42MzE4NCAzLjI3NTM5TDAuOTE2MDE2IDIuMzkzNTVMMS4zMzk4NCAxLjYwMDU5TDMuMDE0NjUgMi42MzI4MUwyLjk0NjI5IDAuNjg0NTdIMy44MzQ5NkwzLjc2NjYgMi42Mzk2NUw1LjQzNDU3IDEuNjAwNTlMNS44NzIwNyAyLjM5MzU1TDQuMTM1NzQgMy4yODIyM0w1Ljg3MjA3IDQuMTU3MjNMNS40Mjc3MyA0Ljk2Mzg3WiIgZmlsbD0iI0ZGMDAwMCIvPgo8L3N2Zz4K");
+  background-repeat: no-repeat;
+  background-size: 0.8rem;
+  background-position: right 1.5rem center;
+}
+
+.wcus-checkout-fields .zen-ui-select__value svg {
+  display: none;
+}
+
+.wcus-checkout-fields .input-text {
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgNiA2IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNNS40Mjc3MyA0Ljk2Mzg3TDMuNzY2NiAzLjkxNzk3TDMuODM0OTYgNS44Nzk4OEgyLjkzOTQ1TDMuMDE0NjUgMy45MTc5N0wxLjMzMzAxIDQuOTcwN0wwLjkwOTE4IDQuMTUwMzlMMi42MzE4NCAzLjI3NTM5TDAuOTE2MDE2IDIuMzkzNTVMMS4zMzk4NCAxLjYwMDU5TDMuMDE0NjUgMi42MzI4MUwyLjk0NjI5IDAuNjg0NTdIMy44MzQ5NkwzLjc2NjYgMi42Mzk2NUw1LjQzNDU3IDEuNjAwNTlMNS44NzIwNyAyLjM5MzU1TDQuMTM1NzQgMy4yODIyM0w1Ljg3MjA3IDQuMTU3MjNMNS40Mjc3MyA0Ljk2Mzg3WiIgZmlsbD0iI0ZGMDAwMCIvPgo8L3N2Zz4K");
+  background-repeat: no-repeat;
+  background-size: 0.8rem;
+  background-position: right 1.5rem center;
 }
 
 .wcus-checkout-fields .input-text::-webkit-input-placeholder {
@@ -10661,6 +10721,10 @@ ul.wc_payment_methods::before {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
+  }
+
+  .banner__images .swiper-scrollbar {
+    display: none;
   }
 
   .banner__footer {
@@ -12666,6 +12730,19 @@ ul.wc_payment_methods::before {
 
   .carousel__tab-content .category-info {
     display: none;
+  }
+
+  .banner__text-content .category-links__list .swiper-slide {
+    color: #6A6B6E;
+  }
+
+  .banner__text-content .category-links__list .swiper-slide.active {
+    color: #121212;
+  }
+
+  .banner__images .swiper-slide.ibg img {
+    position: static;
+    height: 300px;
   }
 
   .special-offers .swiper-slide.has-banner {
