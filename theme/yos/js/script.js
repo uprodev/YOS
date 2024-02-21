@@ -108,7 +108,7 @@ jQuery(document).ready(function ($) {
                 // $('.cart-sub').html(data.data.subtotal);
 
                 $(document.body).trigger('wc_update_cart');
-                $( document.body ).trigger( 'wc_fragment_refresh' );
+                $(document.body ).trigger( 'wc_fragment_refresh' );
                 $(document.body).trigger('update_checkout');
 
                 if (data.count === 0) location.href = '/shop';
@@ -200,15 +200,15 @@ jQuery(document).ready(function ($) {
           $('.product-actions__footer .add-cart').prop('disabled', false)
         }
 
-        if ($('[name="colors"]').length) {
-          var label = $('[name="colors"]:checked').attr('data-label')
+        if ($('[name="pa_color"]').length) {
+          var label = $('[name="pa_color"]:checked').attr('data-label')
           $('.product-actions__option-text.color-label').text(label)
 
         }
 
     });
 
-    $(document).on('change', '[name="colors"]', function (){
+    $(document).on('change', '[name="pa_color"]', function (){
         let color = $(this).closest('.color-item').attr('data-color');
         let vol = $('input[name="pa_volumes"]:checked').val();
 

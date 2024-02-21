@@ -214,6 +214,9 @@ add_filter('woocommerce_catalog_orderby', function($order) {
     unset($order['menu_order']);
     unset($order['rating']);
     $order['popularity'] = __('Вибір YOS', 'yos');
+    $order['price'] = __('За зростанням ціни', 'yos');
+    $order['price-desc'] = __('За спаданням ціни', 'yos');
+    $order['date'] = __('Новинки', 'yos');
 
     return $order;
 

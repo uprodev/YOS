@@ -118,6 +118,12 @@ $choise = get_field('yos_choise', get_the_ID());
                     </div>
                 <?php $i++;
                 endforeach;
+                else:
+                ?>
+                    <div class="product-card__price show">
+                        <div class="product-card__price-current"><?php woocommerce_template_loop_price();?></div>
+                    </div>
+                <?php
             endif;
         elseif($product->is_type('simple')):?>
             <div class="product-card__price show">
