@@ -73,6 +73,7 @@
     &__title {
         font-size: $text-2;
         text-transform: uppercase;
+        font-weight: 600;
 
         @media (min-width: $mq-lg) {
             font-size: $text-3;
@@ -90,6 +91,7 @@
     }
 
     &__text-1 {
+        font-weight: 500;
     }
 
     &__text-2 {

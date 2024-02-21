@@ -74,6 +74,14 @@
     }
 
     &__comments {
+        & .woocommerce-noreviews {
+            text-transform: uppercase;
+            font-weight: 500;
+
+            @media (min-width: $mq-lg) {
+                text-align: right;
+            }
+        }
     }
 }
 

@@ -34,3 +34,7 @@ ul.woocommerce-messagule {
         color: $themeColorWarning;
     }
 }
+
+.woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout {
+    display: none !important;
+}   

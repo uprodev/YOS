@@ -111,6 +111,7 @@
 
     &__title {
         text-transform: uppercase;
+        font-weight: 600;
     }
 
     &__text {
@@ -123,6 +124,7 @@
 
     &__text-1 {
         color: $textColor;
+        font-weight: 500;
     }
 
     &__text-2 {

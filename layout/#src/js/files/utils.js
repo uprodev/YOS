@@ -191,11 +191,11 @@ class Utils {
 						this.slideDown(targetEl, 300)
 					})
 
-					const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
-					const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
-					const initialScroll = scrollContainer.scrollTop;
-
 					if (scrollContainer) {
+						const fullHeight = scrollContainer.scrollHeight + targetElements[0].scrollHeight + 20;
+						const scrollDistance = fullHeight - scrollContainer.clientHeight - scrollContainer.scrollTop;
+						const initialScroll = scrollContainer.scrollTop;
+
 						const draw = (progress) => {
 							scrollContainer.scrollTop = initialScroll + (scrollDistance * progress);
 						}

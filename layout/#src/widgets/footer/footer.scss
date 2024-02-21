@@ -152,6 +152,10 @@
         }
     }
 
+    & .wpcf7-not-valid-tip {
+        display: none;
+    }
+
     & input {
         display: flex;
         align-items: center;
@@ -176,12 +180,24 @@
                 opacity: 0;
             }
         }
+
+        &.wpcf7-not-valid {
+            border-color: $textColorWarning;
+
+            &::placeholder {
+                color: $textColorWarning;
+            }
+        }
     }
 
     & button {
         flex: 0 0 auto;
         color: $textColorThird;
     }
+}
+
+.wpcf7-response-output {
+    display: none;
 }
 
 .subscription {

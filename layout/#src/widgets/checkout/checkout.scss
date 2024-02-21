@@ -136,6 +136,10 @@
         font-weight: 400;
         font-size: $text-3;
 
+        @media (min-width: $mq-md) {
+            font-size: $text-4-md;
+        }
+
         &:not(:first-child) {
             margin-top: 3.2rem;
 
@@ -155,12 +159,20 @@ ul.wc_payment_methods {
     &:not(:first-child) {
         margin-top: 2rem;
     }
+
+    &::after, &::before {
+        content: none !important;
+    }
 }
 
 .wcus-checkout-fields {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    & > h3 {
+        display: none;
+    }
 
     & p.form-row {
         padding: 0;
@@ -209,6 +221,17 @@ ul.wc_payment_methods {
         display: flex;
         align-items: center;
         color: $textColorSecondary;
+        padding-right: 2.5rem;
+        background-image: url($icon-asterisk-red);
+        background-repeat: no-repeat;
+        background-size: 0.8rem;
+        background-position: right 1.5rem center;
+
+        & svg {
+            display: none
+        }
+
+        
     }
 
     & .input-text {
@@ -218,6 +241,12 @@ ul.wc_payment_methods {
             opacity: 1;
             font-size: 1.4rem;
         }
+
+        padding-right: 2.5rem;
+        background-image: url($icon-asterisk-red);
+        background-repeat: no-repeat;
+        background-size: 0.8rem;
+        background-position: right 1.5rem center;
     }
 
     & .zen-ui-select__search-input {

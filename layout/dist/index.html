@@ -803,7 +803,7 @@ defer
 
         <div class="side-basket__free-shipping">
             <div class="side-basket__free-shipping-head">
-                <span>До безкоштовної доставки
+                <span>До безкоштовної доставки <br>
                     залишилось:</span>
                 <span class="text-nowrap">1 230 ₴</span>
             </div>
@@ -1640,13 +1640,14 @@ defer
 		</div>
 
 		<div class="top-space-140 top-space-md-120">
-			<div class="banner" data-banner >
+			<div class="banner" data-banner>
     <div class="container">
         <div class="banner__body">
             <div class="banner__text-content">
                 <div class="category-links">
                     <h2 class="title-2"><a href="#">категорії</a></h2>
-                    <div class="category-links__list swiper" data-slider="category-links-list-banner" data-mobile="false">
+                    <div class="category-links__list swiper" data-slider="category-links-list-banner"
+                        data-mobile="false">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" data-action="change-banner-image-by-index" data-index="0">
                                 <a href="#">Волосся</a>
@@ -1664,7 +1665,6 @@ defer
                                 <a href="#">Аксесуари <span class="link-label">Coming soon</span></a>
                             </div>
                         </div>
-                        <div class="swiper-scrollbar slider-scrollbar"></div>
                     </div>
                 </div>
             </div>
@@ -1673,40 +1673,53 @@ defer
                     <div class="swiper-wrapper">
                         <div class="swiper-slide ibg" data-index="0">
                             <picture>
-                                <source srcset="img/photo/category-banner-desk.jpg" media="(min-width: 768px)" >
+                                <source srcset="img/photo/category-banner-desk.jpg" media="(min-width: 768px)">
                                 <img src="img/photo/category-banner-mob.jpg" alt="img">
                             </picture>
+                            <div class="banner__footer">
+                                <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
+                            </div>
                         </div>
                         <div class="swiper-slide ibg" data-index="1">
                             <picture>
                                 <source srcset="img/photo/home-intro-desk.jpg" media="(min-width: 768px)">
                                 <img src="img/photo/home-intro-mob.jpg" alt="img">
                             </picture>
+                            <div class="banner__footer">
+                                <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
+                            </div>
                         </div>
                         <div class="swiper-slide ibg" data-index="2">
                             <picture>
-                                <source srcset="img/photo/special-offer-img-1.jpg" media="(min-width: 768px)" >
+                                <source srcset="img/photo/special-offer-img-1.jpg" media="(min-width: 768px)">
                                 <img src="img/photo/category-banner-mob.jpg" alt="img">
                             </picture>
+                            <div class="banner__footer">
+                                <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
+                            </div>
                         </div>
                         <div class="swiper-slide ibg" data-index="3">
                             <picture>
                                 <source srcset="img/photo/about-preview.jpg" media="(min-width: 768px)">
                                 <img src="img/photo/home-intro-mob.jpg" alt="img">
                             </picture>
+                            <div class="banner__footer">
+                                <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
+                            </div>
                         </div>
                         <div class="swiper-slide ibg" data-index="4">
                             <picture>
-                                <source srcset="img/photo/special-offer-img-2.jpg" media="(min-width: 768px)" >
+                                <source srcset="img/photo/special-offer-img-2.jpg" media="(min-width: 768px)">
                                 <img src="img/photo/category-banner-mob.jpg" alt="img">
                             </picture>
+                            <div class="banner__footer">
+                                <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="swiper-scrollbar slider-scrollbar"></div>
                 </div>
             </div>
-        </div>
-        <div class="banner__footer">
-            <a href="#" class="button-primary light w-100">ПЕРЕЙТИ</a>
         </div>
     </div>
 </div>
@@ -3177,7 +3190,231 @@ defer
 		</footer>
 	</div>
 	<!-- == // FOOTER ================== -->
+	<div class="popup" id="basket-popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <section class="basket">
+    <div class="container">
+        <div class="basket__head">
+            <a href="#" class="basket__link-to-shopping button-link">
+                <span class="icon-chevrone-left">продовжити покупки</span>
+            </a>
 
+            <h2 class="basket__title title-2">
+                ваш кошик
+                <span>(3)</span>
+            </h2>
+        </div>
+        <div class="basket__body">
+            <div class="basket__main">
+                <ul class="basket__list">
+                    <li>
+                        <div class="product-card-sm">
+                            <div class="product-card-sm__left">
+                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
+                                <a href="#" class="product-card-sm__img">
+                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card-sm__right">
+                                <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card-sm__text">
+                                    <div class="product-card-sm__text-1">
+                                        Exfoliating Polish, 65g
+                                    </div>
+                                    <div class="product-card-sm__text-2">
+                                        Zo Skin Health
+                                    </div>
+                                </div>
+                                <div class="product-card-sm__group">
+                                    <div class="product-card-sm__quantity">
+                                        <div class="product-card-sm__quantity-label">Кількість:</div>
+                                        <div class="quantity" data-quantity>
+    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
+    <input type="text" value="1" class="quantity__value">
+    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+</div>
+                                    </div>
+                                    <div class="product-card-sm__price">
+                                        <div class="product-card-sm__price-current">3 199 ₴</div>
+                                        <div class="product-card-sm__price-old">7 299 ₴</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card-sm">
+                            <div class="product-card-sm__left">
+                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
+                                <a href="#" class="product-card-sm__img">
+                                    <img src="img/photo/product-card-img-2.png" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card-sm__right">
+                                <div class="product-card-sm__title"><a href="#">rare paris</a></div>
+                                <div class="product-card-sm__text">
+                                    <div class="product-card-sm__text-1">
+                                        Ecological Cellulose, 65g
+                                    </div>
+                                    <div class="product-card-sm__text-2">
+                                        Tresor Solaire
+                                    </div>
+                                </div>
+                                <div class="product-card-sm__group">
+                                    <div class="product-card-sm__quantity">
+                                        <div class="product-card-sm__quantity-label">Кількість:</div>
+                                        <div class="quantity" data-quantity>
+    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
+    <input type="text" value="1" class="quantity__value">
+    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+</div>
+                                    </div>
+                                    <div class="product-card-sm__price">
+                                        <div class="product-card-sm__price-current">299 ₴</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="product-card-sm">
+                            <div class="product-card-sm__left">
+                                <button class="product-card-sm__btn-remove"><span class="icon-close"></span></button>
+                                <a href="#" class="product-card-sm__img">
+                                    <img src="img/photo/product-card-img-1.png" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card-sm__right">
+                                <div class="product-card-sm__title"><a href="#">zein obagi</a></div>
+                                <div class="product-card-sm__text">
+                                    <div class="product-card-sm__text-1">
+                                        Exfoliating Polish, 65g
+                                    </div>
+                                    <div class="product-card-sm__text-2">
+                                        Zo Skin Health
+                                    </div>
+                                </div>
+                                <div class="product-card-sm__group">
+                                    <div class="product-card-sm__quantity">
+                                        <div class="product-card-sm__quantity-label">Кількість:</div>
+                                        <div class="quantity" data-quantity>
+    <button class="quantity__btn minus"><span class="icon-square-minus"></span></button>
+    <input type="text" value="1" class="quantity__value">
+    <button class="quantity__btn plus"><span class="icon-square-plus"></span></button>
+</div>
+                                    </div>
+                                    <div class="product-card-sm__price">
+                                        <div class="product-card-sm__price-current">3 199 ₴</div>
+                                        <div class="product-card-sm__price-old">7 299 ₴</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="basket__side">
+                <div class="basket__side-row">
+                    <div class="basket__side-promotional-code">
+                        <div class="promotional-code">
+                            <button class="promotional-code__title button-link"
+                                data-collapse="promotional-code"><span>маєте промокод?</span></button>
+                            <div class="promotional-code__body" data-collapse-target="promotional-code">
+                                <input type="text" class="input">
+                                <button class="button-primary light w-100">застосувати</button>
+                                <!-- <div class="promotional-code__text">промокод успішно застосуваний</div>
+                                <div class="promotional-code__text text-color-warning">Термін дії промокоду закінчено!</div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="basket__side-row">
+                    <h4 class="basket__side-title title-4">додати до замовлення</h4>
+                    <div class="basket__side-offer">
+                        <div class="product-card-sm">
+                            <div class="product-card-sm__left">
+                                <a href="#" class="product-card-sm__img">
+                                    <img src="img/photo/product-card-img-2.png" alt="">
+                                </a>
+                            </div>
+                            <div class="product-card-sm__right">
+                                <div class="product-card-sm__title"><a href="#">rare paris</a></div>
+                                <div class="product-card-sm__text">
+                                    <div class="product-card-sm__text-1">
+                                        Cellulose Facial Mask
+                                    </div>
+                                    <div class="product-card-sm__text-2">
+                                        Tresor Solaire Ecological 
+                                    </div>
+                                </div>
+                                <div class="product-card-sm__price">
+                                    <div class="product-card-sm__price-current">299 ₴</div>
+                                </div>
+                                <div class="product-card-sm__btn-add">
+                                    <a href="#" class="button-primary dark button-primary--sm w-100">додати</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="basket__side-row">
+                    <div class="side-basket__payment-info">
+                        <div class="side-basket__payment-info-row">
+                            <span>Знижка за системою лояльності</span>
+                            <span class="text-nowrap">-60 ₴</span>
+                        </div>
+                        <div class="side-basket__payment-info-row">
+                            <span>Інші знижки</span>
+                            <span class="text-nowrap">0 ₴</span>
+                        </div>
+                        <div class="side-basket__payment-info-row">
+                            <span>Доставка</span>
+                            <span>За тарифами перевізника</span>
+                        </div>
+                        <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
+                            <span>всього до сплати</span>
+                            <span class="text-nowrap">4 098 ₴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="basket__side-row">
+                    <a href="#" class="button-primary dark w-100">оформити замовлення</a>
+                </div>
+
+                <div class="basket__side-row">
+                    <div class="side-basket__free-shipping">
+                        <div class="side-basket__free-shipping-head">
+                            <span>До безкоштовної доставки
+                                залишилось:</span>
+                            <span class="text-nowrap">1 230 ₴</span>
+                        </div>
+                        <div class="side-basket__free-shipping-line">
+                            <div class="line-track">
+                                <div class="line" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="side-basket__free-shipping-total">
+                            <span class="text-nowrap">0 ₴</span>
+                            <span class="text-nowrap">2 000 ₴</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+		</div>
+	</div>
+
+    <!-- 
+        После отправки формы нужно открыть следующий попап
+        это можно сделать методом - window.popup.open('#popup-notify-availability-thank-you')
+    -->
+</div>
 </body>
 
 </html>
