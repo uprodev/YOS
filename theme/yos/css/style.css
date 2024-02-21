@@ -8212,6 +8212,7 @@ ul.woocommerce-messagule {
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   margin-right: 2rem;
+  border-radius: 0;
 }
 
 .filter .berocket_single_filter_widget .bapf_body input[type=checkbox]:checked {
@@ -8220,7 +8221,7 @@ ul.woocommerce-messagule {
 }
 
 .filter .berocket_single_filter_widget .bapf_body input[type=checkbox] ~ label {
-  color: #6A6B6E;
+  color: #121212;
 }
 
 .filter .berocket_single_filter_widget .bapf_body input[type=checkbox]::after {
