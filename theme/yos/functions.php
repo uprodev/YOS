@@ -8,6 +8,7 @@ include 'inc/register.php';    // custom ajax register and auth
 include 'inc/ajax-actions.php';// ajax actions
 include 'inc/checkout.php';    // checkout actions
 include 'inc/dropzone.php';   // dropzone comments
+include 'inc/variation-gallery.php';   // variation-gallery
 
 
 add_action('after_setup_theme', 'theme_register_nav_menu');
@@ -22,13 +23,13 @@ function theme_register_nav_menu(){
         'footer-info' => 'footer-info',
        )
     );
-	add_theme_support( 'post-thumbnails'); 
+	add_theme_support( 'post-thumbnails');
 }
 
 add_theme_support( 'woocommerce');
 
 if( function_exists('acf_add_options_page') ) {
-	
+
 	acf_add_options_page();
 
 	acf_add_options_sub_page('Theme Settings');
@@ -36,9 +37,9 @@ if( function_exists('acf_add_options_page') ) {
 
 
 
-function phone_clear($phone_num){ 
+function phone_clear($phone_num){
     $phone_num = preg_replace("![^0-9]+!",'',$phone_num);
-    return($phone_num); 
+    return($phone_num);
 }
 
 add_action( 'woocommerce_thankyou', 'adding_customers_details_to_thankyou', 10, 1 );
