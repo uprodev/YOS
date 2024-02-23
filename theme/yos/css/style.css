@@ -12793,6 +12793,16 @@ ul.wc_payment_methods::before {
   }
 }
 
+@media (min-width: 0px) and (max-width: 768px) {
+  .header.has-top-offer ~ .dgwt-wcas-suggestions-wrapp {
+    top: 134px !important;
+  }
+
+  .header:not(.has-top-offer) ~ .dgwt-wcas-suggestions-wrapp {
+    top: 102px !important;
+  }
+}
+
 @media (min-width: 0px) and (max-width: 991.92px) {
   .catalog__head-row--selected-filters-and-sort {
     display: none;
