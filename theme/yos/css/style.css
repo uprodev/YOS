@@ -4492,6 +4492,9 @@ h5,
 
 .product-card__body {
   margin-top: 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4499,7 +4502,6 @@ h5,
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 1rem;
 }
 
 .product-card__title {
@@ -4509,11 +4511,12 @@ h5,
 
 .product-card__text {
   font-size: 1.4rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
 }
 
 .product-card__text-1 {
   color: #121212;
-  font-weight: 500;
 }
 
 .product-card__text-2 {
@@ -4522,6 +4525,7 @@ h5,
 }
 
 .product-card__price {
+  margin-top: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4577,8 +4581,8 @@ h5,
 }
 
 .product-card__footer {
-  margin-top: 1rem;
   display: none;
+  min-height: 8.5rem;
 }
 
 .product-card__footer .button-primary {
@@ -5637,10 +5641,6 @@ h5,
 .product-card-sm__text {
   margin-top: 0.3rem;
   font-size: 1.2rem;
-}
-
-.product-card-sm__text-1 {
-  font-weight: 500;
 }
 
 .product-card-sm__text-2 {
@@ -7383,7 +7383,6 @@ ul.woocommerce-messagule {
           justify-content: center;
   height: 100%;
   width: 100%;
-  border: 1px solid #EAEAEA;
   -webkit-transition: border-color 0.15s ease;
   -o-transition: border-color 0.15s ease;
   transition: border-color 0.15s ease;
@@ -8413,11 +8412,11 @@ ul.woocommerce-messagule {
   display: inline;
 }
 
-.breadcrumbs > li a {
+.breadcrumbs > li:not(:last-child) a {
   color: #6A6B6E;
 }
 
-.breadcrumbs > li a:after {
+.breadcrumbs > li:not(:last-child) a:after {
   content: "/";
   margin-left: 0.2em;
 }
@@ -10976,7 +10975,6 @@ ul.wc_payment_methods::before {
   }
 
   .product-card-sm__text {
-    margin-top: 1rem;
     font-size: 1.6rem;
   }
 
@@ -12552,6 +12550,10 @@ ul.wc_payment_methods::before {
     display: none;
   }
 
+  .side-basket__free-shipping-head br {
+    display: none;
+  }
+
   .basket__side-offer .product-card-sm__right {
     position: relative;
   }
@@ -12726,7 +12728,13 @@ ul.wc_payment_methods::before {
   }
 
   .carousel .swiper-slide .product-card .product-card__body {
-    margin-bottom: auto;
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+  }
+
+  .carousel .swiper-slide .product-card .product-card__price {
+    margin-top: auto;
   }
 
   .carousel__tab-content .category-info {
@@ -12900,10 +12908,6 @@ ul.wc_payment_methods::before {
 
   .main-search .dgwt-wcas-style-pirx .dgwt-wcas-sf-wrapp button.dgwt-wcas-search-submit:hover {
     background-color: rgba(106, 107, 110, 0.1);
-  }
-
-  .ticker-logo:hover {
-    border-color: #121212;
   }
 
   .instagram-card:hover img {
