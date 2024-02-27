@@ -246,3 +246,48 @@ function extend_comment_custom_fields() {
 
     echo '<div class="add-comment__form-field dropzone"><button type="button" class="button-primary light drop-zone">'.__('Додати медіафайл', 'yos').' <input id="photo" name="photo" type="file"/></button><div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
 }
+
+
+function doublee_filter_yoast_breadcrumb_items( $link_output, $link ) {
+
+    $new_link_output = '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">';
+    $new_link_output .= '<a href="' . $link['url'] . '" itemprop="url">' . $link['text'] . '</a>';
+    $new_link_output .= '</li>';
+
+    return $new_link_output;
+}
+add_filter( 'wpseo_breadcrumb_single_link', 'doublee_filter_yoast_breadcrumb_items', 10, 2 );
+
+function doublee_filter_yoast_breadcrumb_output( $output ){
+
+    $from = '<span>';
+    $to = '</span>';
+    $output = str_replace( $from, $to, $output );
+
+    return $output;
+}
+add_filter( 'wpseo_breadcrumb_output', 'doublee_filter_yoast_breadcrumb_output' );
+
+
+add_filter( 'dgwt/wcas/tnt/indexer/readable/product/data', function ( $data, $product_id, $product ) {
+
+    $term = $product->getTerms( 'pa_brand', 'string' );
+
+    if ( ! empty( $term ) ) {
+
+        $html = '<span class="suggestion-book-author">';
+        $html .= $term;
+        $html .= '</span>';
+
+
+        $data['meta']['pa_brand'] = $html;
+    }
+
+    return $data;
+}, 10, 3 );
+
+
+add_filter( 'dgwt/wcas/indexer/taxonomies', function ( $taxonomies ) {
+    $taxonomies[] = 'pa_brand';
+    return $taxonomies;
+} );

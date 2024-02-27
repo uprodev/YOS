@@ -103,7 +103,13 @@ if ($product->is_type( 'variable' )) {
 
                             <?php
                             $product_attributes = $product->get_attributes();
-                            if ($product_attributes) {
+                            $product_attributes_keys = array_keys($product_attributes);
+                            if (($key = array_search('pa_brand', $product_attributes_keys)) !== false) {
+                                unset($product_attributes_keys[$key]);
+                            }
+
+
+                            if ($product_attributes && !empty($product_attributes_keys)) {
                                     foreach ( $product_attributes as $attribute_name => $attribute ) {
                                         $i++;
                                         $tax = get_taxonomy($attribute_name);
@@ -246,7 +252,14 @@ if ($product->is_type( 'variable' )) {
                             <?php endif;?>
 
                             <div class="product-actions__footer">
-                                <button <?= $consultation||!$product->is_in_stock()?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
+
+
+                                <?php if ($product->is_in_stock()) { ?>
+                                    <button <?= $consultation||!$product->is_in_stock()?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
+                                <?php } else { ?>
+                                    <a href="#popup-notify-availability" data-popup="open-popup" class="button-primary dark">повідомити про наявність</a>
+                                <?php } ?>
+
                                 <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-actions__like" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
 
                             </div>
@@ -265,11 +278,8 @@ if ($product->is_type( 'variable' )) {
                             <?= __('опис', 'yos');?>
                         </h2>
                         <div class="product__description-text text-content last-no-margin">
-                            <?php if($brand):?>
-                                <h3 class="mb-0"><?= $brand[0]->name;?></h3>
-                            <?php endif;?>
-                            <p class="text-4 mt-1"><?= get_field('seria')?get_field('seria').' — ':'';?><?php the_title();?></p>
-                            <?= $product->get_description();?>
+
+                           <?= $product->get_description();?>
                         </div>
                     </div>
                 </div>
@@ -334,3 +344,5 @@ if ($product->is_type( 'variable' )) {
         </script>
 
 <?php }?>
+
+<?php get_template_part('parts/popups'); ?>

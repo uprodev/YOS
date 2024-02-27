@@ -111,7 +111,7 @@ jQuery(document).ready(function ($) {
                 $(document.body ).trigger( 'wc_fragment_refresh' );
                 $(document.body).trigger('update_checkout');
 
-                if (data.count === 0) location.href = '/shop';
+             //   if (data.count === 0) location.href = '/shop';
 
             }
         })

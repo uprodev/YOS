@@ -28,12 +28,10 @@ if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
         <div class="container">
             <div class="basket__head">
                 <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="basket__link-to-shopping button-link">
-                    <span class="icon-chevrone-left"><?= __('продовжити покупки', 'yos');?></span>
                 </a>
 
                 <h2 class="basket__title title-2">
-                    <?php the_title();?>
-                    <span class="basket-qty">(<?= WC()->cart->get_cart_contents_count();?>)</span>
+                    <?php _e('В кошику нічого немає', 'yos')   ?>
                 </h2>
 
 
@@ -43,7 +41,7 @@ if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
                 <div class="basket__main">
                     <p class="return-to-shop">
 
-                        <?php do_action( 'woocommerce_cart_is_empty' ); ?>
+                        <?php //do_action( 'woocommerce_cart_is_empty' ); ?>
                         <a class="button-primary dark" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
                             <?php
                             /**

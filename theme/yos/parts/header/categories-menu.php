@@ -47,7 +47,7 @@ if($menu):
                         <?php
 
                         foreach ($m['categories_menu'] as $key=>$column) {
-                             if (!empty($column['offer'])) { ?>
+                             if (!empty($column['offer']))  { ?>
                                 <div class="categories__block">
 
                                     <a href="<?= $column['offer']['url'] ?>" class="category-offer-card">
@@ -66,7 +66,14 @@ if($menu):
                                         <?php
                                         if (!empty($column)) {
                                             foreach ($column as $term_id) {
-                                                $term = get_term($term_id);?>
+                                                $term = get_term($term_id);
+                                                //echo $term_id;
+                                                if (is_wp_error($term)) {
+                                                    print_r($term_id);
+                                                    continue;
+                                                }
+
+                                                ?>
                                                 <li>
                                                     <a href="<?=  get_term_link($term->term_id)  ?>" class="categories__list-title"><?= $term->name ?></a>
 
