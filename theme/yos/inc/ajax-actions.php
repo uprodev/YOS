@@ -8,7 +8,8 @@ $actions = [
     'remove_from_cart',
     'apply_coupon',
     'add_to_fav',
-    'qty_cart'
+    'qty_cart',
+    'find_variation'
 ];
 
 foreach($actions as $action){
@@ -156,6 +157,43 @@ function add_to_fav() {
 
 
     wp_die();
+}
+
+
+function find_variation()
+{
+    $product_id = $_POST['product_id'];       //Added Specific Product id
+    $data =   [] ;
+    parse_str($_POST['data'], $data);
+
+
+    $match_attributes =  $data;
+
+    $data_store   = new WC_Product_Data_Store_CPT();
+    $variation_id = $data_store->find_matching_product_variation(
+        new WC_Product( $product_id),$match_attributes
+    );
+
+    if ($variation_id) {
+        $variation = new WC_Product_Variation($variation_id);
+        if ( $variation &&  $variation->is_on_sale() )  {
+            $price = $variation->regular_price;
+            $sale = $variation  ->sale_price;
+            $perc = round(($price-$sale)*100/$price);
+        }
+    }
+
+
+
+
+
+
+    wp_send_json([
+        'data' => $data,
+        'variation_id' => $variation_id,
+        'price' => $variation->get_price_html(),
+        'perc' => $perc
+    ]);
 }
 
 

@@ -257,7 +257,7 @@ if ($product->is_type( 'variable' )) {
                                 <?php if ($product->is_in_stock()) { ?>
                                     <button <?= $consultation||!$product->is_in_stock()?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
                                 <?php } else { ?>
-                                    <a href="#popup-notify-availability" data-popup="open-popup" class="button-primary dark">повідомити про наявність</a>
+                                    <a href="#popup-notify-availability" data-product="<?php the_title() ?>" data-product_id="<?php the_id()  ?>" data-popup="open-popup" class="button-primary dark btn-avaliable">повідомити про наявність</a>
                                 <?php } ?>
 
                                 <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-actions__like" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
