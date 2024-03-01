@@ -2041,6 +2041,15 @@ if (catalogFilter) {
                                 li.classList.remove('d-none');
                             }
                         }
+                    } else {
+                        const text = li.querySelector('label')?.innerText.trim().toLowerCase();
+                        if (!text) return;
+
+                        if (!text.startsWith(value)) {
+                            li.classList.add('d-none');
+                        } else {
+                            li.classList.remove('d-none');
+                        }
                     }
                 } else {
                     li.classList.remove('d-none');

@@ -8215,7 +8215,7 @@ ul.woocommerce-messagule {
 }
 
 .filter .berocket_single_filter_widget .bapf_body ul:not(.filter-brands__list) {
-  padding-top: 1rem;
+  margin-top: 1rem !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8224,6 +8224,14 @@ ul.woocommerce-messagule {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+  max-height: 19.7rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.filter .berocket_single_filter_widget .bapf_body ul:not(.filter-brands__list)::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
 }
 
 .filter .berocket_single_filter_widget .bapf_body input[type=checkbox] {
@@ -10956,6 +10964,10 @@ ul.wc_payment_methods::before {
     top: -0.7rem;
   }
 
+  .filter-brands__list {
+    max-height: 27.8rem;
+  }
+
   .popup-notify-availability__title {
     font-size: 2rem;
   }
@@ -11486,6 +11498,10 @@ ul.wc_payment_methods::before {
 
   .filter__selected-filters {
     display: none;
+  }
+
+  .filter .berocket_single_filter_widget .bapf_body ul:not(.filter-brands__list) {
+    max-height: 27.4rem;
   }
 
   .product {
