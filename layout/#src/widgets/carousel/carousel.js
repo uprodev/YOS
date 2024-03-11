@@ -1,6 +1,12 @@
 const carousels = document.querySelectorAll('[data-slider="carousel"]');
 if (carousels.length) {
     carousels.forEach(carousel => {
+        const products = carousel.querySelectorAll('.product-card');
+        if(products.length) {
+            const AlignPrices = initAlignPricesInOneLine();
+            AlignPrices.apply(Array.from(products), products.length);
+        }
+
         const swiperSlider = new Swiper(carousel, {
             speed: 600,
             observer: true,

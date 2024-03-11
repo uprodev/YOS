@@ -85,13 +85,12 @@
         font-size: $text-1;
 
         @media (min-width: $mq-lg) {
-            margin-top: 1rem;
             font-size: $text-3;
         }
     }
 
     &__text-1 {
-        font-weight: 500;
+
     }
 
     &__text-2 {

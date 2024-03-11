@@ -551,10 +551,22 @@
             margin-top: 1rem;
 
             & ul:not(.filter-brands__list) {
-                padding-top: 1rem;
+                margin-top: 1rem !important;
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
+                max-height: 19.7rem;
+                overflow-y: auto;
+                overflow-x: hidden;
+
+                @media (min-width: $mq-lg) {
+                    max-height: 27.4rem;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 3px;
+                    height: 3px;
+                }
             }
 
             & input[type="checkbox"] {
@@ -566,6 +578,7 @@
                 background-size: 80%;
                 flex: 0 0 auto;
                 margin-right: 2rem;
+                border-radius: 0;
 
                 &:checked {
                     background-color: $pagesBg;
@@ -573,7 +586,7 @@
                 }
 
                 & ~ label {
-                    color: $textColorSecondary;
+                    color: $textColor;
                 }
 
                 &::after {

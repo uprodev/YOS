@@ -50,7 +50,11 @@
                 flex-direction: column;
     
                 & .product-card__body {
-                    margin-bottom: auto;
+                    flex: 1 1 auto;
+                }
+
+                & .product-card__price {
+                    margin-top: auto;
                 }
             }
         }

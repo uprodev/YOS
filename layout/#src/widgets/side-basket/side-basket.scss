@@ -166,6 +166,13 @@
         & span.text-nowrap {
             color: $themeColorWarning;
         }
+
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            & br {
+                display: none;
+            }
+        }
+
     }
 
     &__free-shipping-line {

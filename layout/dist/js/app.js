@@ -1037,17 +1037,17 @@ window.select = {
 //     })
 // }
 			document.addEventListener('click', (e) => {
-    if(e.target.closest('[data-product-card-option]')) {
+    if (e.target.closest('[data-product-card-option]')) {
         const radio = e.target;
         const productCard = radio.closest('[data-product-card]');
-        if(!productCard) return;
+        if (!productCard) return;
 
         const priceItems = productCard.querySelectorAll('.product-card__price[data-index]');
         const index = radio.getAttribute('data-index');
-        
+
         priceItems.forEach(item => {
             const itemIndex = item.getAttribute('data-index');
-            if(itemIndex === index) {
+            if (itemIndex === index) {
                 item.classList.add('show');
             } else {
                 item.classList.remove('show');
@@ -1055,6 +1055,86 @@ window.select = {
         });
     }
 })
+
+function debounce(func, delay) {
+    let timeoutId;
+
+    return function () {
+        const context = this;
+        const args = arguments;
+
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(context, args);
+        }, delay);
+    };
+}
+
+function alignPricesInOneLine(productsCards) {
+    if (!productsCards?.length) return;
+
+    const dataOfCardsTextElements = productsCards.map(product => {
+        const text = product.querySelector('.product-card__text');
+        if (!text) return null;
+        text.style.minHeight = 'auto';
+        return {
+            el: text,
+            height: text.clientHeight
+        }
+    })
+
+    if (document.documentElement.clientWidth < 992) {
+        dataOfCardsTextElements.forEach(data => data.el.removeAttribute('style', 'min-height'));
+        return;
+    }
+    const height = Math.max(...dataOfCardsTextElements.map(data => {
+        return data ? data.height : 0;
+    }));
+
+    dataOfCardsTextElements.forEach(data => {
+        data.el.style.minHeight = height + 'px';
+    })
+}
+
+function chunkArray(array, size) {
+    const chunkedArray = [];
+
+    for (let i = 0; i < array.length; i += size) {
+        chunkedArray.push(array.slice(i, i + size));
+    }
+
+    return chunkedArray;
+}
+
+
+function initAlignPricesInOneLine() {
+    const previousCalls = new Set();
+
+    return {
+        apply(productsCards, chunksSize, callback) {
+            const chunkedProducts = chunkArray(productsCards, chunksSize = 3);
+
+            const applyAlignment = () => {
+                chunkedProducts.forEach(chunkProducts => {
+                    alignPricesInOneLine(chunkProducts);
+                });
+                callback && callback();
+            }
+
+            applyAlignment();
+
+            const debouncedApplyAlignmentFunc = debounce(applyAlignment, (50));
+
+            window.addEventListener('resize', debouncedApplyAlignmentFunc);
+
+            previousCalls.forEach(removeEventListener => removeEventListener());
+            previousCalls.clear();
+
+            previousCalls.add(() => window.removeEventListener('resize', debouncedApplyAlignmentFunc));
+        }
+    }
+
+}
 			const categoryLinksElements = document.querySelectorAll('[data-slider="category-links-list"]');
 if (categoryLinksElements.length) {
     categoryLinksElements.forEach(categoryLinks => {
@@ -1533,6 +1613,7 @@ if (topOffers.length) {
 
     topOffers.forEach(topOffer => {
         const parrentEl = topOffer.parentElement;
+        topOffer.closest('.header')?.classList.add('has-top-offer');
 
         const setPaddingTop = (value, isTransition = false) => {
             parrentEl.style.transition = isTransition ? 'padding-top .15s ease' : '';
@@ -1566,6 +1647,7 @@ if (topOffers.length) {
                 if(!headHeightCompensation) return;
                 headHeightCompensation.style.transition = 'padding-top .15s ease';
                 headHeightCompensation.style.paddingTop = (headHeightCompensation.clientHeight - topOfferHeight) + 'px';
+                topOffer.closest('.header')?.classList.remove('has-top-offer');
             }
         })
     })
@@ -1652,6 +1734,12 @@ if(homeIntro) {
 			const carousels = document.querySelectorAll('[data-slider="carousel"]');
 if (carousels.length) {
     carousels.forEach(carousel => {
+        const products = carousel.querySelectorAll('.product-card');
+        if(products.length) {
+            const AlignPrices = initAlignPricesInOneLine();
+            AlignPrices.apply(Array.from(products), products.length);
+        }
+
         const swiperSlider = new Swiper(carousel, {
             speed: 600,
             observer: true,
@@ -1953,6 +2041,15 @@ if (catalogFilter) {
                                 li.classList.remove('d-none');
                             }
                         }
+                    } else {
+                        const text = li.querySelector('label')?.innerText.trim().toLowerCase();
+                        if (!text) return;
+
+                        if (!text.startsWith(value)) {
+                            li.classList.add('d-none');
+                        } else {
+                            li.classList.remove('d-none');
+                        }
                     }
                 } else {
                     li.classList.remove('d-none');
@@ -2032,6 +2129,21 @@ if (sortByDesktop) {
     });
 
     observer.observe(sortByDesktop, {
+        childList: true, 
+        //subtree: true,
+    });
+}
+
+const productsList = document.querySelector('.catalog__products-list');
+if(productsList) {
+    const AlignPrices = initAlignPricesInOneLine();
+    AlignPrices.apply(Array.from(productsList.querySelectorAll('.product-card')));
+    
+    let observer = new MutationObserver((mutationRecords, obs) => {
+        AlignPrices.apply(Array.from(productsList.querySelectorAll('.product-card')));
+    });
+
+    observer.observe(productsList, {
         childList: true, 
         //subtree: true,
     });

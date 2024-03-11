@@ -41,6 +41,15 @@ if (catalogFilter) {
                                 li.classList.remove('d-none');
                             }
                         }
+                    } else {
+                        const text = li.querySelector('label')?.innerText.trim().toLowerCase();
+                        if (!text) return;
+
+                        if (!text.startsWith(value)) {
+                            li.classList.add('d-none');
+                        } else {
+                            li.classList.remove('d-none');
+                        }
                     }
                 } else {
                     li.classList.remove('d-none');
@@ -120,6 +129,21 @@ if (sortByDesktop) {
     });
 
     observer.observe(sortByDesktop, {
+        childList: true, 
+        //subtree: true,
+    });
+}
+
+const productsList = document.querySelector('.catalog__products-list');
+if(productsList) {
+    const AlignPrices = initAlignPricesInOneLine();
+    AlignPrices.apply(Array.from(productsList.querySelectorAll('.product-card')));
+    
+    let observer = new MutationObserver((mutationRecords, obs) => {
+        AlignPrices.apply(Array.from(productsList.querySelectorAll('.product-card')));
+    });
+
+    observer.observe(productsList, {
         childList: true, 
         //subtree: true,
     });

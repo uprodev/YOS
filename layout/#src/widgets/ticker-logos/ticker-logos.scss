@@ -37,7 +37,6 @@
     justify-content: center;
     height: 100%;
     width: 100%;
-    border: 1px solid $themeColorFourth;
     transition: border-color $transition;
     padding: 3rem;
 
@@ -45,11 +44,6 @@
         padding: 5rem;
     }
 
-    @media #{$mouse-device} {
-        &:hover {
-            border-color: $themeColor;
-        }
-    }
 
     & img {
         width: auto;

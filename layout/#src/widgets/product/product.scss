@@ -105,13 +105,16 @@
     & > li {
         display: inline;
 
-        & a {
-            color: $textColorSecondary;
-            &:after {
-                content: "/";
-                margin-left: 0.2em;
+        &:not(:last-child) {
+            & a {
+                color: $textColorSecondary;
+                &:after {
+                    content: "/";
+                    margin-left: 0.2em;
+                }
             }
         }
+
     }
 }
 

@@ -30,6 +30,15 @@
             }
         }
     }
+
+    @media (min-width: 0px) and (max-width: 768px) {
+        &.has-top-offer ~ .dgwt-wcas-suggestions-wrapp {
+            top: 134px !important;
+        }
+        &:not(.has-top-offer) ~ .dgwt-wcas-suggestions-wrapp {
+            top: 102px !important;
+        }
+    }
 }
 
 .header-desk {

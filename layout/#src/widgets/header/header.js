@@ -67,6 +67,7 @@ if (topOffers.length) {
 
     topOffers.forEach(topOffer => {
         const parrentEl = topOffer.parentElement;
+        topOffer.closest('.header')?.classList.add('has-top-offer');
 
         const setPaddingTop = (value, isTransition = false) => {
             parrentEl.style.transition = isTransition ? 'padding-top .15s ease' : '';
@@ -100,6 +101,7 @@ if (topOffers.length) {
                 if(!headHeightCompensation) return;
                 headHeightCompensation.style.transition = 'padding-top .15s ease';
                 headHeightCompensation.style.paddingTop = (headHeightCompensation.clientHeight - topOfferHeight) + 'px';
+                topOffer.closest('.header')?.classList.remove('has-top-offer');
             }
         })
     })
