@@ -45,9 +45,9 @@ body {
 	-ms-text-size-adjust: 100%;
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
-	color: $textColor;
-	font-weight: 400;
-	font-size: $text-3;
+	color: $themeColor;
+	font-weight: 300;
+	font-size: $text-2;
 	line-height: normal;
 	transition: opacity 0.4s ease;
 	position: relative;
@@ -55,6 +55,10 @@ body {
 	display: flex;
 	flex-direction: column;
 	background-color: $pagesBg;
+
+	@media (min-width: $mq-lg) {
+		font-size: $text-3;
+	}
 
 	&:not(.mobile) {
 		& a:not(.not-hover):hover {
@@ -68,7 +72,7 @@ body {
 	height: 3px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: $themeColorThird;
+	background-color: rgba($themeColor, 0.7);
 	border-radius: 0px;
 }
 
@@ -141,14 +145,14 @@ img {
 }
 
 .container {
-	width: calc(100% - 2rem);
+	width: calc(100% - 3rem);
 	margin: 0 auto;
 	padding: 0;
 	max-width: none;
 
-	@media (min-width: $mq-md) {	
-		width: calc(100% - 4rem);
-		max-width: calc(144rem - 4rem);
+	@media (min-width: $mq-lg) {	
+		width: calc(100% - 12rem);
+		max-width: calc(140rem);
 	}
 }
 
@@ -230,29 +234,33 @@ figure {
 }
 
 h2, .title-2 {
-	font-weight: 700;
-	font-size: 2.4rem;
+	font-weight: 600;
+	font-size: $text-3;
 	text-transform: uppercase;
 	margin-bottom: 0;
 	margin-top: 0;
+
+	@media (min-width: $mq-md) {
+		font-size: 2.4rem;
+	}
 }
 
 h3, .title-3 {
-	font-weight: 700;
+	font-weight: 600;
 	font-size: 2rem;
 	text-transform: uppercase;
 	margin-bottom: 0;
 	margin-top: 0;
 }
 h4, .title-4 {
-	font-weight: 700;
+	font-weight: 600;
 	font-size: 1.6rem;
 	text-transform: uppercase;
 	margin-bottom: 0;
 	margin-top: 0;
 }
 h5, .title-5 {
-	font-weight: 700;
+	font-weight: 600;
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	margin-bottom: 0;
@@ -332,7 +340,10 @@ h5, .title-5 {
 	color: $textColorSecondary;
 }
 .text-color-warning {
-	color: $themeColorWarning;
+	color: $themeColorSecondary;
+}
+.text-color-info {
+	color: $themeColorSecondary;
 }
 
 .text-sm {

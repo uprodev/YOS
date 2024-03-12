@@ -7,7 +7,7 @@ if (banners.length) {
         let linksSlider;
 
         function mobileSlider() {
-            if (document.documentElement.clientWidth <= 767 && slider.dataset.mobile == 'false') {
+            if (document.documentElement.clientWidth <= 991 && slider.dataset.mobile == 'false') {
                 linksSlider = new Swiper(slider, {
                     slidesPerView: 'auto',
                     touchRatio: 0
@@ -16,7 +16,7 @@ if (banners.length) {
                 slider.dataset.mobile = 'true';
             }
 
-            if (document.documentElement.clientWidth > 767) {
+            if (document.documentElement.clientWidth > 991) {
                 slider.dataset.mobile = 'false';
 
                 if (slider.classList.contains('swiper-initialized')) {
@@ -74,13 +74,21 @@ if (banners.length) {
 
         const triggers = banner.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
 
-        triggers.forEach(trigger => {
+        triggers.forEach((trigger, i) => {
+            if(i === 0) trigger.classList.add('active')
+
             const index = trigger.getAttribute('data-index');
             if (!index) return;
 
             trigger.addEventListener('mouseenter', () => {
-                if (!this.utils.isMobile()) {
+                if (document.documentElement.clientWidth > 991.98) {
                     swiperSlider.slideTo(index);
+                    trigger.classList.add('active');
+
+                    triggers.forEach(t => {
+                        if(t === trigger) return;
+                        t.classList.remove('active');
+                    })
                 }
             })
         })

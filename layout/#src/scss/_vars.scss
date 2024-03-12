@@ -1,9 +1,10 @@
 
 
 //<ШРИФТЫ>===========================================================================================================
-$mainFontFamily: 'SFProDisplay', sans-serif;
-$mainFontFamilyItalic: 'SFProDisplay-Italic', sans-serif;
-$secondFontFamily: 'Inter', sans-serif;
+$mainFontFamily: 'Inter', sans-serif;
+//$mainFontFamily: 'SFProDisplay', sans-serif;
+//$mainFontFamilyItalic: 'SFProDisplay-Italic', sans-serif;
+//$secondFontFamily: 'Inter', sans-serif;
 $thirdFontFamily: 'HelloAmerica', sans-serif;
 //</ШРИФТЫ>===========================================================================================================
 
@@ -20,17 +21,17 @@ $touch-device: "(hover: none) and (pointer: coarse)";
 //</РАЗМЕРЫ КОНТЕЙНЕРА>===========================================================================================================
 
 $textColor: #121212;
-$textColorSecondary: #6A6B6E;
+$textColorSecondary: rgba(#182A64, 0.6);
 $textColorThird: #fff;
 $textColorWarning: #FF0000;
 
-$themeColor: #121212;
-$themeColorSecondary: #0007FF;
+$themeColor: #182A64;
+$themeColorSecondary: #01A7A5;
 $themeColorThird: #6A6B6E;
-$themeColorFourth: #EAEAEA;
+$themeColorFourth: #E8EAF0;
 $themeColorWarning: #FF0000;
 $pagesBg: #fff;
-$hover: #0007FF;
+$hover: #01A7A5;
 $textHover: #a9a9a9;
 $bgHover: rgba($themeColorThird, 0.1);
 $shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

@@ -37,10 +37,6 @@
 		</div>
 
 		<div class="top-space-140 top-space-md-150">
-			@@include('widgets/banner/_about-banner.html')
-		</div>
-
-		<div class="top-space-140 top-space-md-150">
 			@@include('widgets/ticker-logos/_ticker-logos.html')
 		</div>
 
@@ -49,9 +45,7 @@
 		</div>
 
 		<div class="top-space-140 top-space-md-150">
-			<div class="image-full-width">
-				<img src="img/photo/phrase.png" alt="">
-			</div>
+			@@include('widgets/banner/_about-banner.html')
 		</div>
 
 		<div class="top-space-140 top-space-md-150">
@@ -60,7 +54,8 @@
 	</main>
 
 	<!-- == FOOTER ================== -->
-	<div class="top-space-140">
+	@@include('widgets/footer/_footer.html')
+	<!-- <div class="top-space-140">
 		<footer class="footer-desk">
 			<div class="container">
 				<div class="footer-desk__body">
@@ -210,7 +205,7 @@
 				</div>
 			</div>
 		</footer>
-	</div>
+	</div> -->
 	<!-- == // FOOTER ================== -->
 	@@include('widgets/side-basket/_basket-popup.html')
 </body>

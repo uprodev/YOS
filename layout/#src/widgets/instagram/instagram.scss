@@ -7,6 +7,10 @@
 
     & .category-links__list {
         margin-top: 1rem;
+
+        @media (min-width: $mq-md) {
+            margin-top: 0rem;
+        }
     }
 
     & .swiper-slide {
@@ -83,7 +87,7 @@
         -moz-osx-font-smoothing: grayscale;
 
         position: absolute;
-        content: "\e900";
+        content: "\e902";
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

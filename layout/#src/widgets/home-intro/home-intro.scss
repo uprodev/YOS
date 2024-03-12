@@ -6,15 +6,29 @@
             z-index: 1;
         }
 
+        & .swiper-slide {
+            background-color: $pagesBg;
+
+            &.swiper-slide-prev {
+                & img {
+                    opacity: 0.6;
+                }
+            }
+            
+            & img {
+                transition: opacity .6s ease;
+            }
+        }
+
         & .swiper-scrollbar.slider-scrollbar {
-            width: calc(100% - 2rem);
+            width: calc(100% - 3rem);
             margin: 2rem auto 0;
             position: relative;
             left: 0;
             bottom: 0;
 
             @media (min-width: $mq-md) {
-                width: calc(100% - 4rem);
+                width: calc(100% - 12rem);
             }
 
             & .swiper-scrollbar-drag {
@@ -34,36 +48,36 @@
         & .slider-buttons {
             display: none;
 
-            @media (min-width: $mq-md) {
-                display: flex;
-                position: absolute;
-                z-index: 2;
-                top: 50%;
-                left: 50%;
-                transform: translateY(-50%) translateX(-50%);
-                color: $textColorThird;
+            // @media (min-width: $mq-md) {
+            //     display: flex;
+            //     position: absolute;
+            //     z-index: 2;
+            //     top: 50%;
+            //     left: 50%;
+            //     transform: translateY(-50%) translateX(-50%);
+            //     color: $textColorThird;
 
-                & .slider-btn {
-                    @media #{$mouse-device} {
-                        &:hover {
-                            background-color: rgba($textColorThird, 0.2);
-                        }
-                    }
+            //     & .slider-btn {
+            //         @media #{$mouse-device} {
+            //             &:hover {
+            //                 background-color: rgba($textColorThird, 0.2);
+            //             }
+            //         }
 
-                    &.swiper-button-disabled {
-                        color: $textColorThird;
-                        opacity: 0.3;
-                    }
-                }
-            }
+            //         &.swiper-button-disabled {
+            //             color: $textColorThird;
+            //             opacity: 0.3;
+            //         }
+            //     }
+            // }
         }
     }
 
     &__img {
-        height: 38rem;
+        height: 48.9rem;
 
         @media (min-width: $mq-md) {
-            height: 44.5rem;
+            height: 48.9rem;
         }
     }
 

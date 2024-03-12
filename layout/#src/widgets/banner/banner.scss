@@ -2,33 +2,113 @@
     overflow: hidden;
 
     &__body {
-        @media (min-width: $mq-md) {
+        color: $textColorThird;
+        @media (min-width: $mq-lg) {
             display: flex;
-            gap: 2rem;
         }
     }
 
     &__text-content {
-        @media (min-width: $mq-md) {
-            flex: 0 0 26.5rem
+        position: relative;
+
+        &:before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            width: 100vw;
+            background-color: $themeColor;
+            z-index: 1;
+
+            @media (min-width: $mq-lg) {
+                width: 100%;
+            }
         }
+
+        & > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            padding: 4rem 0 2rem;
+        }
+
         @media (min-width: $mq-lg) {
-            flex: 0 0 34.5rem
+            flex: 0 0 34rem;
+            padding: 6rem 0 6rem 6rem;
+        }
+
+        & .title-2 {
+            color: $textColorThird;
         }
 
         & .category-links__list {
-            @media (min-width: 0px) and (max-width: 767.98px) {
-                & .swiper-slide {
-                    color: $textColorSecondary;
+            & .swiper-wrapper {
+                gap: 0;
 
-                    // &.swiper-slide-active {
-                    //     color: $textColor;
-                    // }
-                    // &.swiper-slide-thumb-active {
-                    //     color: $textColor;
-                    // }
-                    &.active {
-                        color: $textColor;
+                @media (min-width: 0px) and (max-width: 991.98px) {
+                    flex-direction: row;
+                }
+            }
+
+            & .swiper-slide {
+                color: $textColorThird;
+                padding-right: 0.6rem;
+
+                @media #{$mouse-device} {
+                    & a:hover {
+                        color: $hover;
+                    }
+                }
+
+                & .link-label {
+                    font-family: $mainFontFamily;
+                    color: $textColorThird !important;
+                    display: inline-flex;
+                    min-height: 2.1rem;
+                    border: 1px solid currentColor;
+                    border-radius: 2px;
+                    line-height: 1;
+                    padding: 0.5rem 1rem;
+                    font-size: 1.2rem;
+                    margin-left: 1.5rem;
+                    font-weight: 300;
+
+                    @media (min-width: 0px) and (max-width: 991.98px) {
+                        display: none;
+                    }
+                }
+
+                &.active {
+                    @media (min-width: $mq-lg) {
+                        color: $themeColorSecondary;
+                    }
+
+                    @media (min-width: 0px) and (max-width: 991.98px) {
+                        & a {
+                            background-color: $themeColorSecondary;
+                        }
+                    }
+                }
+
+                @media (min-width: $mq-lg) {
+                    & a {
+                        min-height: 3rem;
+                    }
+                }
+
+                @media (min-width: 0px) and (max-width: 991.98px) {
+                    & a {
+                        min-height: 2rem;
+                        border-radius: 2px;
+                        transition: background-color .15s ease;
+                        padding: 0.2rem 0.6rem;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                 }
             }
@@ -38,10 +118,10 @@
     &__img {
         height: 300px;
         margin-top: 3rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
 
-        @media (min-width: $mq-md) {
+        @media (min-width: $mq-lg) {
             height: 55.8rem;
             margin-left: 0;
             margin-top: 0;
@@ -55,21 +135,15 @@
     }
 
     &__images {
-        margin-top: 1rem;
-        margin-left: -1rem;
-        margin-right: -1rem;
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
         min-width: 0;
 
-        @media (min-width: $mq-md) {
+        @media (min-width: $mq-lg) {
             height: 55.8rem;
             margin-left: 0;
-            margin-top: 0;
-            margin-right: -2rem;
-            flex: 1 1 auto;
-        }
-
-        @media (min-width: 1440px) {
             margin-right: 0;
+            flex: 1 1 auto;
         }
 
         & .swiper {
@@ -78,7 +152,7 @@
         }
 
         & .swiper-slide.ibg {
-            @media (min-width: 0px) and (max-width: 767.98px) {
+            @media (min-width: 0px) and (max-width: 991.98px) {
                 & img {
                     position: static;
                     height: 300px;
@@ -93,7 +167,7 @@
             transform: translateX(-50%) translateY(-50%);
             width: calc(100% - 2rem);
 
-            @media (min-width: $mq-md) {
+            @media (min-width: $mq-lg) {
                 display: none;
             }
         }
@@ -103,7 +177,7 @@
         margin-top: 4rem;
         padding: 0 1rem;
 
-        @media (min-width: $mq-md) {
+        @media (min-width: $mq-lg) {
             display: none;
         }
     }
@@ -111,5 +185,48 @@
     & .category-links__list a {
         display: block;
         width: 100%;
+    }
+}
+
+.banner-about {
+    & .banner__text-content {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            padding: 4rem 0;
+        }
+
+        @media (min-width: $mq-lg) {
+            flex: 0 0 68.1rem;
+            padding-right: 4rem;
+            & > * {
+                max-width: 45rem;
+            }
+        }
+
+        & .button-link {
+            margin-top: 3rem;
+        }
+    }
+
+    & .text-content {
+        & p {
+            &:not(:last-child) {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+    & .banner__img {
+        margin-top: 0;
+
+        @media (min-width: $mq-md) {
+            height: 45rem;
+        }
+
+        @media (min-width: $mq-lg) {
+            height: 60rem;
+        }
+
+        & img {
+            object-position: top;
+        }
     }
 }

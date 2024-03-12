@@ -7,7 +7,7 @@ if (carousels.length) {
             AlignPrices.apply(Array.from(products), products.length);
         }
 
-        const swiperSlider = new Swiper(carousel, {
+        const swiperSlider = new Swiper(carousel.querySelector('.swiper'), {
             speed: 600,
             observer: true,
             observeParents: true,
@@ -30,15 +30,14 @@ if (carousels.length) {
             },
             breakpoints: {
                 320: {
-                    slidesPerView: 2,
-                    spaceBetween: 16,
-                    //autoHeight: true,
-                    freeMode: false,
-                },
-                768: {
                     slidesPerView: 'auto',
                     spaceBetween: 0,
                     freeMode: true,
+                },
+                992: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                    freeMode: false,
                 }
             },
         })

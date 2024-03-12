@@ -7,12 +7,13 @@
     background-color: #fff;
     border: 1px solid $themeColor;
     border-radius: 0.5rem;
-    min-height: 3.9rem;
+    min-height: 3.3rem;
     padding: 0.8rem 2.4rem;
-    color: $textColor;
+    color: $themeColor;
     transition: transform 0.05s ease, background-color $transition;
-    font-size: $text-3;
+    font-size: $text-1;
     text-align: center;
+    font-weight: 500;
 
     &.dark {
         background-color: $themeColor;
@@ -53,17 +54,54 @@
 }
 
 .button-link {
-    display: inline;
+    display: inline-flex;
     text-transform: uppercase;
+    position: relative;
+    padding-right: 0.95em;
+    font-size: $text-2;
+    font-weight: 500;
+    align-self: flex-start;
 
-    & > span {
-        padding: .2rem 0;
-        background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+    @media (min-width: $mq-lg) {
+        font-size: $text-3;
     }
+
+    &:after {
+        position: absolute;
+        content: "\e900";
+        font-family: 'icomoon' !important;
+        top: calc(50% - 0.5px);
+        right: 0;
+        transform: translateY(-50%);
+        font-size: 0.9em;
+        font-weight: 400;
+        transition: transform .15s ease;
+    }
+
+
 
     @media #{$mouse-device} {
         &:hover {
             color: $themeColorSecondary;
+
+            &::after {
+                transform: translateX(50%) translateY(-50%);
+            }
+        }
+    }
+
+    &--line {
+        font-weight: 300;
+        padding-right: 0;
+
+        & > span {
+            padding: .2rem 0 !important;
+            background-image: linear-gradient(transparent calc(100% - 1px), currentColor 1px);
+        }
+
+        &::after {
+            display: none;
+            padding-right: 0;
         }
     }
 

@@ -63,6 +63,7 @@ class App {
 			@@include('../widgets/side-basket/side-basket.js');
 			@@include('../widgets/brands/brands.js');
 			@@include('../widgets/faq/faq.js');
+			@@include('../widgets/special-offers/special-offers.js');
 			// ==== // widgets =====================================================
 		
 			document.body.classList.add('page-loaded');

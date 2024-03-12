@@ -15,12 +15,8 @@ if (tickerLogosSections.length) {
             breakpoints: {
                 0: {
                     slidesPerView: 'auto',
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 'auto',
                     spaceBetween: 0,
-                },
+                }
             },
         }
         

@@ -23,7 +23,12 @@
 
         & .swiper-slide {
             width: auto;
+            font-size: $text-2;
+            color: $themeColor;
             
+            @media (min-width: $mq-lg) {
+                font-size: $text-3;
+            }
             &:not(:last-child) {
                 padding-right: 2rem;
             }

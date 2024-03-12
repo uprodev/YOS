@@ -1,0 +1,14 @@
+.articles-preview-carousel {
+    & .swiper-slide {
+        width: auto;
+
+        @media (min-width: $mq-md) {
+            width: 35rem;
+        }
+    }
+    & .slider-buttons {
+        top: auto;
+        bottom: calc(8.5rem + 28.7rem / 2);
+        transform: translate(-50%, 50%);
+    }
+}

@@ -24,16 +24,11 @@
     &__labels {
         position: absolute;
         z-index: 3;
-        top: 1.2rem;
-        left: 1.2rem;
+        top: 0.5rem;
+        left: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.4rem;
-
-        @media (min-width: $mq-md) {
-            top: 1.5rem;
-            left: 1.5rem;
-        }
+        gap: 0.6rem;
     }
 
     &__img {
@@ -43,10 +38,10 @@
         justify-content: center;
         align-items: center;
         transition: border-color $transition;
-        height: 16.7rem;
+        height: 15.3rem;
 
         @media (min-width: $mq-md) {
-            height: 32.4rem;
+            height: 27.5rem;
             padding: 1.5rem;
         }
 
@@ -65,23 +60,22 @@
         cursor: pointer;
         padding: 0.5rem;
         position: absolute;
-        right: .4rem;
-        bottom: .4rem;
+        top: 0rem;
+        right: 0rem;
         z-index: 3;
         display: flex;
         transition: background-color $transition;
+        color: $themeColor;
 
         @media (min-width: $mq-md) {
             font-size: 1.9rem;
-            right: 1.1rem;
-            bottom: 1.3rem;
         }
 
         &.active {
             color: $themeColorSecondary;
 
             &:before {
-                content: "\e906";
+                content: "\e908";
             }
         }
 
@@ -95,7 +89,7 @@
             line-height: 1;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            content: "\e907";
+            content: "\e909";
         }
 
         // @media #{$mouse-device} {
@@ -108,8 +102,11 @@
     &__body {
         margin-top: 1rem;
         margin-bottom: auto;
+        text-align: center;
+        color: $themeColor;
 
-        @media (min-width: 0px) and (max-width: 991.98) {
+
+        @media (min-width: 0px) and (max-width: 991.98px) {
             flex: 1 1 auto;
             display: flex;
             flex-direction: column;
@@ -117,18 +114,49 @@
         }
     }
 
+    &__rating {
+        & .rating {
+            font-size: 1rem;
+            color: $themeColor;
+
+            @media (min-width: $mq-lg) {
+                font-size: 1.4rem;
+            }
+        }
+
+        & .rating__star {
+            margin-right: 0.35em;
+        }
+
+        & .rating__stars-1 {
+            width: calc(100% / 5 * var(--value));
+            max-width: 100%;
+        }
+    }
+
     &__title {
         text-transform: uppercase;
-        font-weight: 600;
+        font-weight: 500;
+        font-size: $text-2;
+
+
+        @media (min-width: $mq-lg) {
+            font-size: $text-3;
+        }
+
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
     }
 
     &__text {
-        font-size: $text-2;
-        margin-top: 0.3rem;
+        font-size: $text-1;
+        margin-top: 1rem;
         margin-bottom: 1rem;
 
         @media (min-width: $mq-md) {
             font-size: $text-3;
+            margin-bottom: 1.5rem;
         }
     }
 
@@ -138,7 +166,8 @@
 
     &__text-2 {
         color: $textColorSecondary;
-        font-size: $text-1;
+        font-size: 1rem;
+        margin-top: 0.4rem;
 
         @media (min-width: $mq-md) {
             font-size: $text-2;
@@ -149,12 +178,16 @@
         margin-top: auto;
         display: flex;
         align-items: center;
+        justify-content: center;
+        text-align: center;
         flex-wrap: wrap;
         gap: 1rem;
-        font-size: $text-3;
+        font-size: 1rem;
+        font-weight: 700;
 
         @media (min-width: $mq-lg) {
             margin-top: 1rem;
+            font-size: $text-3;
         }
 
         &:not(.show) {
@@ -173,15 +206,14 @@
             }
 
             & del {
-                font-weight: 400;
-                color: $textColorSecondary;
+                color: rgba($themeColor, 0.4);
                 order: 1;
             }
         }
     }
 
     &__price-current {
-        font-weight: 900;
+        font-weight: 700;
         color: $textColor;
         display: flex;
         gap: 1rem;
@@ -349,13 +381,21 @@
     display: inline-flex;
     background-color: $themeColorSecondary;
     color: $textColorThird;
-    font-size: $text-1;
+    font-size: 0.8rem;
     align-items: center;
     justify-content: center;
-    padding: .2rem .4rem;
+    padding: .2rem .6rem;
+    min-height: 1.4rem;
     align-self: flex-start;
+    border-radius: 0.2rem;
 
     @media (min-width: $mq-md) {
-        font-size: $text-3;
+        font-size: $text-2;
+        min-height: 2.1rem;
+        padding: .2rem .9rem;
+    }
+
+    &--secondary {
+        background-color: $themeColor;
     }
 }

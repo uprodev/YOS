@@ -129,9 +129,11 @@
         align-items: center;
         text-transform: uppercase;
         position: relative;
+        color: $themeColor;
 
         @media (min-width: $mq-lg) {
             font-size: $text-3;
+            text-transform: none;
         }
 
         & img,
@@ -142,8 +144,6 @@
         }
 
         & button {
-            text-transform: uppercase;
-
             @media #{$mouse-device} {
                 &:hover {
                     color: $themeColorSecondary;
@@ -154,13 +154,14 @@
 
     &__logo {
         position: absolute;
-        top: 2.4rem;
+        top: 50%;
         left: 50%;
-        width: 12.9rem;
-        transform: translateX(-41.68%);
+        width: 7rem;
+        transform: translateY(-50%) translateX(calc(-50% + 0.6rem));
 
         @media (min-width: $mq-lg) {
-            top: 3.4rem;
+            width: 10.6rem;
+            transform: translateY(-50%)  translateX(calc(-50% + 1rem));
         }
 
         & img,
@@ -180,10 +181,11 @@
 
 .top-offer {
     display: none;
-    font-family: $secondFontFamily;
-    font-size: $text-1;
+    font-family: $mainFontFamily;
+    font-size: 1rem;
     font-style: italic;
     position: absolute;
+    font-weight: 200;
     top: 0;
     left: 0;
     width: 100%;
@@ -191,12 +193,13 @@
     transition:
         opacity $transition,
         color $transition;
-    text-align: center;
+
     background-color: $themeColor;
     color: $textColorThird !important;
 
     @media (min-width: $mq-lg) {
-        font-size: $text-2;
+        font-size: $text-1;
+        text-align: center;
     }
 
     &.show {
@@ -211,22 +214,22 @@
 
     &__text {
         width: 100%;
-        text-align: center;
         min-height: 3rem;
-        padding: 0.2rem 3rem;
+        padding: 0.2rem 3rem 0.2rem 1.5rem;
         display: flex;
         align-items: center;
-        justify-content: center;
+
         transition: color $transition;
 
         @media #{$mouse-device} {
             &:hover {
-                color: #a9a9a9 !important;
+                color: #cfcdcd !important;
             }
         }
 
         @media (min-width: $mq-lg) {
             padding: 0.2rem 5rem;
+            justify-content: center;
         }
     }
 
@@ -285,6 +288,7 @@
     z-index: 102;
     background-color: $pagesBg;
     transition: transform 0.4s ease;
+    color: $themeColor;
 
     &.open {
         transform: translateX(100%);
@@ -405,7 +409,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             position: absolute;
-            content: "\e90d";
+            content: "\e90f";
             top: 50%;
             left: 0;
             transform: translateY(-50%);
@@ -511,7 +515,7 @@
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
                     position: absolute;
-                    content: "\e90c";
+                    content: "\e90e";
                     top: 50%;
                     right: 0;
                     transform: translateY(-50%);

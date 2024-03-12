@@ -1,13 +1,17 @@
 .swiper-scrollbar.slider-scrollbar {
     position: static;
     background-color: $themeColorFourth;
-    height: 0.6rem;
+    height: 0.3rem;
     border-radius: 0;
     width: 100%;
 
+    @media (min-width: $mq-lg) {
+        height: 0.6rem;
+    }
+
     & .swiper-scrollbar-drag {
         border-radius: 0;
-        background-color: $themeColorThird;
+        background-color: $themeColor;
         cursor: pointer;
     }
 }
@@ -27,7 +31,7 @@
 }
 
 .slider-btn {
-    font-size: 2.1rem;
+    font-size: 3.1rem;
     color: currentColor;
     padding: 0.5rem;
     display: inline-flex;
@@ -60,5 +64,10 @@
 .slider-navigations {
     & .slider-buttons {
         margin-top: 2rem;
+    }
+    & .slider-pagination {
+        text-align: center;
+        margin-top: 2rem;
+        justify-content: center;
     }
 }
