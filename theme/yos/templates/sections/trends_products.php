@@ -73,15 +73,16 @@ $t = 1;
                         <?php endif; ?>
 
                     </div>
-                    <div class="carousel__navigation">
-                        <div class="slider-buttons">
-                            <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
-                            <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
-                        </div>
-                        <div class="slider-navigations">
-                            <div class="swiper-scrollbar slider-scrollbar"></div>
-                            <div class="slider-pagination"></div>
-                        </div>
+
+                </div>
+                <div class="carousel__navigation">
+                    <div class="slider-buttons">
+                        <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
+                        <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
+                    </div>
+                    <div class="slider-navigations">
+                        <div class="swiper-scrollbar slider-scrollbar"></div>
+                        <div class="slider-pagination"></div>
                     </div>
                 </div>
             </div>
