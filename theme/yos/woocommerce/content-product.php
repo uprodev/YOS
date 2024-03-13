@@ -50,6 +50,7 @@ if (isset($variations_attr['pa_volumes'])){
 $brand = get_the_terms(get_the_ID(), 'pa_brand');
 $choise = get_field('yos_choise', get_the_ID());
 
+$average = $product->get_average_rating();
 ?>
 
 <div class="product-card<?= $product->is_in_stock()?'':' product-card--not-in-stock';?>"  data-product-card>
@@ -87,7 +88,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
             endif;?>
 
-            <?= $choise?'<div class="product-card-label">'.__('YOS choice', 'yos').'</div>':'';?>
+            <?= $choise?'<div class="product-card-label product-card-label--secondary">'.__('YOS choice', 'yos').'</div>':'';?>
         </div>
         <a href="<?php the_permalink();?>" class="product-card__img">
             <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">
@@ -96,6 +97,44 @@ $choise = get_field('yos_choise', get_the_ID());
         <button class="add_to_fav <?= is_favorite($product->get_id()) ?> product-card__like-button" data-liked="<?= is_favorite($product->get_id()) ?>" data-user_id="<?= get_current_user_id() ?>" data-product_id="<?= $product->get_id() ?>"></button>
     </div>
     <div class="product-card__body">
+        <div class="product-card__rating">
+            <div class="rating" style="--value:<?= $average;?>">
+                <div class="rating__stars rating__stars-1">
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star-full"></span>
+                    </div>
+                </div>
+                <div class="rating__stars rating__stars-2">
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                    <div class="rating__star">
+                        <span class="icon-star"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php if($brand):?>
             <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
         <?php endif;?>

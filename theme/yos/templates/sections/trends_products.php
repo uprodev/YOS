@@ -35,53 +35,54 @@ $t = 1;
                     </div>
                 </div>
             </div>
-            <div class="swiper" data-slider="carousel">
-                <div class="swiper-wrapper">
-                    <?php if( $products_trend ):
-                        foreach( $products_trend as $post): setup_postdata($post);
-                            if($t==2):?>
-                                <div class="swiper-slide hide-in-mobile">
-                                    <div class="carousel__category-info">
-                                        <div class="category-links">
-                                            <?php if( $mtxnm ):?>
-                                                <h2 class="category-links__title title-2"><a href="<?= get_term_link($mtxnm);?>"><?= $mtxnm_name->name;?></a></h2>
-                                            <?php endif; ?>
-                                            <?php if( $categories_product ):?>
-                                                <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
-                                                    <div class="swiper-wrapper">
-                                                        <?php foreach ($categories_product as $item):
-                                                            $item_name = get_term( $item );?>
-                                                            <div class="swiper-slide">
-                                                                <a href="<?= get_term_link($item);?>"><?= $item_name->name;?></a>
-                                                            </div>
-                                                        <?php endforeach;?>
+            <div class="carousel__slider" data-slider="carousel">
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <?php if( $products_trend ):
+                            foreach( $products_trend as $post): setup_postdata($post);
+                                if($t==2):?>
+                                    <div class="swiper-slide hide-in-mobile">
+                                        <div class="carousel__category-info">
+                                            <div class="category-links">
+                                                <?php if( $mtxnm ):?>
+                                                    <h2 class="category-links__title title-2"><a href="<?= get_term_link($mtxnm);?>"><?= $mtxnm_name->name;?></a></h2>
+                                                <?php endif; ?>
+                                                <?php if( $categories_product ):?>
+                                                    <div class="category-links__list swiper" data-slider="category-links-list" data-mobile="false">
+                                                        <div class="swiper-wrapper">
+                                                            <?php foreach ($categories_product as $item):
+                                                                $item_name = get_term( $item );?>
+                                                                <div class="swiper-slide">
+                                                                    <a href="<?= get_term_link($item);?>"><?= $item_name->name;?></a>
+                                                                </div>
+                                                            <?php endforeach;?>
+                                                        </div>
+                                                        <div class="swiper-scrollbar slider-scrollbar"></div>
                                                     </div>
-                                                    <div class="swiper-scrollbar slider-scrollbar"></div>
-                                                </div>
-                                            <?php endif;?>
+                                                <?php endif;?>
+                                            </div>
                                         </div>
                                     </div>
+                                <?php endif;?>
+
+                                <div class="swiper-slide">
+                                    <?php wc_get_template_part( 'content', 'product' );?>
                                 </div>
-                            <?php endif;?>
 
-                            <div class="swiper-slide">
-                                <?php wc_get_template_part( 'content', 'product' );?>
-                            </div>
+                            <?php $t++; endforeach; wp_reset_postdata(); ?>
+                        <?php endif; ?>
 
-                        <?php $t++; endforeach; wp_reset_postdata(); ?>
-                    <?php endif; ?>
-
-                </div>
-                <div class="carousel__navigation">
-                    <div class="slider-navigations">
-                        <div class="swiper-scrollbar slider-scrollbar"></div>
+                    </div>
+                    <div class="carousel__navigation">
                         <div class="slider-buttons">
                             <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
-                            <div class="slider-pagination"></div>
                             <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
                         </div>
+                        <div class="slider-navigations">
+                            <div class="swiper-scrollbar slider-scrollbar"></div>
+                            <div class="slider-pagination"></div>
+                        </div>
                     </div>
-                </div>
             </div>
             <?php if( $link ):
                 $link_url = $link['url'];
