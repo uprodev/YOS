@@ -63,7 +63,7 @@
                         <?php the_field('fidbek_tekst', 'options');?>
                     </h2>
                 <?php endif;?>
-                <?php $linkf = get_field('fidbek_posylannya');
+                <?php $linkf = get_field('fidbek_posylannya', 'options');
 
                 if( $linkf ):
                     $linkf_url = $linkf['url'];
