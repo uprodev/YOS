@@ -42,7 +42,7 @@
                         <?php endif;?>
                         <?php if(get_field('footer_social', 'options')):
                             foreach (get_field('footer_social', 'options') as $soc):?>
-                                <a href="<?= $soc['link'];?>" target="_blank" class="button-link"><span><?= $soc['name'];?></span></a>
+                                <a href="<?= $soc['link'];?>" target="_blank" class="button-link button-link--line"><span><?= $soc['name'];?></span></a>
                             <?php endforeach;
                         endif;?>
                     </div>
