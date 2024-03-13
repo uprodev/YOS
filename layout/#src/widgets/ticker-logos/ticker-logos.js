@@ -10,6 +10,7 @@ if (tickerLogosSections.length) {
                 delay: 1,
                 disableOnInteraction: false
             },
+            centeredSlides: true,
             loop: true,
             freeMode: true,
             breakpoints: {
