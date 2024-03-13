@@ -1,8 +1,8 @@
 <?php if(!is_404()):
 
-    if(!is_front_page()){
+
         get_template_part('parts/subscription');
-    }?>
+    ?>
 
     <!-- == FOOTER ================== -->
     <div class="top-space-70">
