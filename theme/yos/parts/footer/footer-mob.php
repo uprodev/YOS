@@ -15,18 +15,19 @@
                 <?php endif;?>
             </div>
             <div class="footer-mob__row">
-                <div class="footer-mob__time">
+                <div class="footer-mob__cols-2 footer-mob__time">
                     <?php if(get_field('footer_mobile_title_hours', 'options')):?>
                         <h3 class="footer-mob__title title-3"><?php the_field('footer_mobile_title_hours', 'options');?></h3>
                     <?php endif;?>
 
                     <?php if(get_field('footer_hours', 'options')):?>
-                            <div class="footer-mob__vertical-content">
-                                <?php the_field('footer_hours', 'options');?>
-                            </div>
+                        <div class="footer-mob__vertical-content">
+                            <?php the_field('footer_hours', 'options');?>
+                        </div>
                     <?php endif;?>
-
                 </div>
+            </div>
+            <div class="footer-mob__row">
                 <div class="footer-mob__contacts">
                     <?php if(get_field('footer_mobile_title_contact', 'options')):?>
                         <h3 class="footer-mob__title title-3">
@@ -46,6 +47,28 @@
                             <?php endforeach;
                         endif;?>
                     </div>
+                </div>
+            </div>
+            <div class="footer-mob__row">
+                <div class="footer-mob__cols-2">
+                    <?php if(get_field('fidbek_tekst', 'options')):?>
+                        <h2 class="footer-mob__title title-3">
+                            <?php the_field('fidbek_tekst', 'options');?>
+                        </h2>
+                    <?php endif;?>
+                    <?php $linkf = get_field('fidbek_posylannya', 'options');
+
+                    if( $linkf ):
+                        $linkf_url = $linkf['url'];
+                        $linkf_title = $linkf['title'];
+                        $linkf_target = $linkf['target'] ? $linkf['target'] : '_self';
+                        ?>
+                        <div class="footer-mob__vertical-content">
+                            <a class="button-link button-link--line" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>">
+                                <span><?= esc_html($linkf_title); ?></span>
+                            </a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="footer-mob__row">
