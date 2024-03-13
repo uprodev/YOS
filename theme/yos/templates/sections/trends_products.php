@@ -83,6 +83,7 @@ $t = 1;
                             <div class="slider-pagination"></div>
                         </div>
                     </div>
+                </div>
             </div>
             <?php if( $link ):
                 $link_url = $link['url'];
