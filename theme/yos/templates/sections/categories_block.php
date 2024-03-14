@@ -46,6 +46,9 @@ $link = get_sub_field('link');
                                             <source srcset="<?= $img;?>" media="(min-width: 768px)" >
                                             <img src="<?= $img_mob;?>" alt="img">
                                         </picture>
+                                        <div class="banner__footer">
+                                            <a href="<?= get_term_link($cat);?>" class="button-primary light w-100"><?= __('ПЕРЕЙТИ', 'yos');?></a>
+                                        </div>
                                     </div>
                                 <?php $g++; endforeach;?>
                             </div>
@@ -54,16 +57,6 @@ $link = get_sub_field('link');
                     </div>
                 <?php endif;?>
             </div>
-            <?php if( $link ):
-                $link_url = $link['url'];
-                $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
-                ?>
-                <div class="banner__footer">
-                    <a class="button-primary light w-100" href="<?= esc_url($link_url); ?>" target="<?= esc_attr($link_target); ?>"><?= esc_html($link_title); ?></a>
-                </div>
-            <?php endif; ?>
-
         </div>
     </div>
 </div>
