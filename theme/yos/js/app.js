@@ -1037,24 +1037,53 @@ window.select = {
 //     })
 // }
 			document.addEventListener('click', (e) => {
-    if (e.target.closest('[data-product-card-option]')) {
-        const radio = e.target;
-        const productCard = radio.closest('[data-product-card]');
-        if (!productCard) return;
+    if(e.target.closest('input[type="radio"][data-label]')) return;
 
-        const priceItems = productCard.querySelectorAll('.product-card__price[data-index]');
-        const index = radio.getAttribute('data-index');
+    if (e.target.closest('.product-actions__option:not(.colors)')) {
+        if(!e.target.closest('[data-product-card]')) return;
+        const productOptionsParent = e.target.closest('.product-actions__option:not(.colors)');
+        hideCheckedItems(productOptionsParent);
+        productOptionsParent.classList.toggle('active');
+    } else {
+        document.querySelectorAll('.product-actions__option.active').forEach(el => el.classList.remove('active'))
+    }
+});
 
-        priceItems.forEach(item => {
-            const itemIndex = item.getAttribute('data-index');
-            if (itemIndex === index) {
-                item.classList.add('show');
-            } else {
-                item.classList.remove('show');
-            }
-        });
+document.addEventListener('change', (e) => {
+    if(e.target.closest('input[type="radio"][data-label]')) {
+        const radio = e.target.closest('input[type="radio"][data-label]');
+        if(!radio.closest('[data-product-card]')) return;
+
+        const productOptionsParent = radio.closest('.product-actions__option:not(.colors)');
+        if(!productOptionsParent) return;
+        
+        const head = productOptionsParent.querySelector('.product-actions__option-head');
+        if(!head) return;
+
+        const radioValue = radio.getAttribute('data-label');
+        if(!radioValue) return;
+        head.innerText = radioValue;
+        head.setAttribute('data-label', radioValue);
     }
 })
+
+function hideCheckedItems(optionWrapperEl) {
+    if(!optionWrapperEl) return;
+
+    const head = optionWrapperEl.querySelector('.product-actions__option-head');
+    if(!head) return;
+
+    optionWrapperEl.querySelectorAll('input[type="radio"]')
+        .forEach(radio => {
+            const parent = radio.closest('.product-actions__option-item');
+            
+            if(radio.checked) {
+                parent?.classList.add('d-none');
+            } else {
+                parent?.classList.remove('d-none');
+            }
+        })
+}
 
 function debounce(func, delay) {
     let timeoutId;
@@ -1980,6 +2009,7 @@ if (banners.length) {
 
         const scrollbar = images.querySelector('.swiper-scrollbar');
         if (!scrollbar) return;
+        
         const clickLine = document.createElement('div');
         clickLine.className = 'click-line';
         scrollbar.append(clickLine);
@@ -1993,7 +2023,7 @@ if (banners.length) {
         })
 
         const triggers = banner.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
-
+        console.log(triggers);
         triggers.forEach((trigger, i) => {
             if(i === 0) trigger.classList.add('active')
 
