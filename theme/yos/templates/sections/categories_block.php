@@ -28,7 +28,6 @@ $link = get_sub_field('link');
 
                                     <?php $c++; endforeach;?>
                                 </div>
-                                <div class="swiper-scrollbar slider-scrollbar"></div>
                             </div>
                         <?php endif;?>
                     </div>
@@ -50,6 +49,7 @@ $link = get_sub_field('link');
                                     </div>
                                 <?php $g++; endforeach;?>
                             </div>
+                            <div class="swiper-scrollbar slider-scrollbar"></div>
                         </div>
                     </div>
                 <?php endif;?>
