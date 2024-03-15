@@ -5,7 +5,7 @@ $proposes = get_sub_field('proposes');
 
 ?>
 
-<div class="top-space-140 top-space-md-150">
+<div class="top-space-80 top-space-md-150">
     <div class="special-offers carousel">
         <div class="container">
             <div class="carousel__head">

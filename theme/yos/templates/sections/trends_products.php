@@ -10,7 +10,7 @@ $link = get_sub_field('button');
 $t = 1;
 ?>
 
-<div class="top-space-60 top-space-md-170">
+<div class="top-space-60 top-space-md-150">
     <div class="carousel">
         <div class="container">
             <div class="carousel__head">
