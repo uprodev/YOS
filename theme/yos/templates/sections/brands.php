@@ -4,7 +4,7 @@ $brands = get_sub_field('brands');
 
 ?>
 
-<div class="top-space-140 top-space-md-150">
+<div class="top-space-80 top-space-md-150">
     <section class="ticker-logos" data-ticker-logos>
         <div dir="ltr" class="swiper">
             <div class="swiper-wrapper">

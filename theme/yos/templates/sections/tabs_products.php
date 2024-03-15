@@ -5,7 +5,7 @@ $categories_product = get_sub_field('categories_product');
 
 ?>
 
-<div class="top-space-140 top-space-md-150">
+<div class="top-space-80 top-space-md-150">
     <div class="carousel" data-carousel-tabs>
         <div class="container">
             <div class="carousel__head">

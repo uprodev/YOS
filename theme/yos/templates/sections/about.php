@@ -8,7 +8,7 @@ $link = get_sub_field('link');
 
 ?>
 
-<div class="top-space-140 top-space-md-150">
+<div class="top-space-80 top-space-md-150">
     <div class="banner banner-about">
         <div class="container">
             <div class="banner__body">

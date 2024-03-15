@@ -5,7 +5,7 @@ $selection = get_sub_field('selection');
 
 ?>
 
-<div class="top-space-140 top-space-md-100">
+<div class="top-space-80 top-space-md-150">
     <div class="carousel articles-preview-carousel">
         <div class="container">
             <div class="carousel__head">
