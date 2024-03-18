@@ -149,15 +149,15 @@
                 </div>
             </div>
             <?php if($brand):?>
-                <div class="product-card__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                <div class="product-card__title"><a href="<?php the_permalink();?>"><?= $brand[0]->name;?></a></div>
             <?php endif;?>
             <div class="product-card__text">
                 <div class="product-card__text-1">
-                    <?php the_title();?>
+                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
                 </div>
                 <?php if(get_field('seria')):?>
                     <div class="product-card__text-2">
-                        <?php the_field('seria');?>
+                        <a href="<?php the_permalink();?>"><?php the_field('seria');?></a>
                     </div>
                 <?php endif;?>
             </div>
