@@ -213,14 +213,14 @@
 
                                     if ( $attribute ) {
                                         ?>
-                                        <div class="product-card__option <?= $is_color ? 'colors' : '' ?>">
-                                            <div class="product-card__option-head">
+                                        <div class="product-actions__option <?= $is_color ? 'colors' : '' ?>">
+                                            <div class="product-actions__option-head">
 
                                                 <?php if ($is_color) { ?>
                                                     <div class="product-actions__option-text color-label"></div>
                                                 <?php } ?>
                                             </div>
-                                          
+
                                                 <?php
                                                 if ($terms):
                                                     $count = count($terms);
@@ -230,7 +230,7 @@
                                                         $c = get_field('color', 'pa_color_'.$term->term_id) ;
                                                         ?>
 
-                                                        <div class="product-card__option-item var-item <?= $is_color ? 'color' : 'volume' ?>-item" data-<?= $is_color ? 'color' : 'volumes' ?>="<?= $term->slug ?>" >
+                                                        <div class="product-actions__option-item var-item <?= $is_color ? 'color' : 'volume' ?>-item" data-<?= $is_color ? 'color' : 'volumes' ?>="<?= $term->slug ?>" >
                                                             <label class="product-option<?= $is_color ? '-color' : '' ?>" style="color: <?= $c;?>">
                                                                 <input data-label="<?= $term->name ?>" type="radio" name="attribute_<?= $term->taxonomy ?>" <?= $variation && $count != 1 ? ($default_attributes[$term->taxonomy] == $term->slug ? 'checked' : '') : 'checked' ?> value="<?= $term->slug ?>">
                                                                 <?php if ($is_color) { ?>
