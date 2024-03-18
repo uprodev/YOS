@@ -38,48 +38,50 @@ if ( $related_products ) :
                         </div>
                     </div>
                 </div>
-                <div class="swiper" data-slider="carousel">
-                    <div class="swiper-wrapper">
-                        <?php foreach ( $related_products as $related_product_item ) : ?>
+                <div class="carousel__slider" data-slider="carousel">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <?php foreach ( $related_products as $related_product_item ) : ?>
 
-                            <?php
-                            if (get_post($related_product_item)->post_parent > 0)
-                                $related_product = new WC_Product_Variation($related_product_item);
-                            else
-                                $related_product = new WC_Product($related_product_item);
+                                <?php
+                                if (get_post($related_product_item)->post_parent > 0)
+                                    $related_product = new WC_Product_Variation($related_product_item);
+                                else
+                                    $related_product = new WC_Product($related_product_item);
 
-                            $post_object = get_post( $related_product->get_id() );
-                            setup_postdata( $GLOBALS['post'] =& $post_object );?>
+                                $post_object = get_post( $related_product->get_id() );
+                                setup_postdata( $GLOBALS['post'] =& $post_object );?>
 
-                            <?php if($i==2):?>
+                                <?php if($i==2):?>
 
-                                <div class="swiper-slide hide-in-mobile">
-                                    <div class="carousel__category-info">
-                                        <div class="category-links">
-                                            <h2 class="category-links__title title-2"><?= __('часто купують разом', 'yos');?></h2>
+                                    <div class="swiper-slide hide-in-mobile">
+                                        <div class="carousel__category-info">
+                                            <div class="category-links">
+                                                <h2 class="category-links__title title-2"><?= __('часто купують разом', 'yos');?></h2>
+                                            </div>
                                         </div>
                                     </div>
+
+                                <?php endif;?>
+
+                                <div class="swiper-slide">
+
+                                    <?php wc_get_template_part( 'content', 'product' );?>
+
                                 </div>
 
-                            <?php endif;?>
+                            <?php $i++; endforeach; ?>
 
-                            <div class="swiper-slide">
-
-                                <?php wc_get_template_part( 'content', 'product' );?>
-
-                            </div>
-
-                        <?php $i++; endforeach; ?>
-
+                        </div>
                     </div>
                     <div class="carousel__navigation">
+                        <div class="slider-buttons">
+                            <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
+                            <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
+                        </div>
                         <div class="slider-navigations">
                             <div class="swiper-scrollbar slider-scrollbar"></div>
-                            <div class="slider-buttons">
-                                <button class="slider-btn left"><span class="icon-arrow-left"></span></button>
-                                <div class="slider-pagination"></div>
-                                <button class="slider-btn right"><span class="icon-arrow-right"></span></button>
-                            </div>
+                            <div class="slider-pagination"></div>
                         </div>
                     </div>
                 </div>
