@@ -218,9 +218,13 @@
 
                                                 <?php if ($is_color) { ?>
                                                     <div class="product-actions__option-text color-label"></div>
+                                                <?php } else { ?>
+
+                                                    <?=  get_term_by('slug', $default_attributes[$attribute_name], $attribute_name)->name ?>
                                                 <?php } ?>
                                             </div>
 
+                                            <div class="product-actions__option-items">
                                                 <?php
                                                 if ($terms):
                                                     $count = count($terms);
@@ -263,7 +267,7 @@
                                                         </div>
                                                     <?php endforeach;
                                                 endif;?>
-
+                                            </div>
                                         </div>
                                     <?php
                                     }
