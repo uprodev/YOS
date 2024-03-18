@@ -52,3 +52,25 @@ function adding_customers_details_to_thankyou( $order_id ) {
     wc_get_template( 'order/order-details-customer.php', array('order' => $order ));
 }
 
+function _nok_order_by_stock_status( $posts_clauses, $query ) {
+
+    // only change query on WooCommerce loops
+    if ( $query->is_main_query() && ( is_product_category() || is_product_tag() || is_product_taxonomy() || is_shop() ) ) {
+        global $wpdb;
+
+        $posts_clauses['join'] .=
+            " LEFT JOIN (
+            SELECT post_id, meta_id, meta_value FROM $wpdb->postmeta
+            WHERE meta_key = '_stock_status' AND meta_value <> ''
+        ) istockstatus ON ($wpdb->posts.ID = istockstatus.post_id) ";
+
+        $posts_clauses['orderby'] =
+            " CASE istockstatus.meta_value WHEN
+            'outofstock' THEN 1
+            ELSE 0
+        END ASC, " . $posts_clauses['orderby'];
+    }
+
+    return $posts_clauses;
+}
+add_filter( 'posts_clauses', '_nok_order_by_stock_status', 2000, 2 );
