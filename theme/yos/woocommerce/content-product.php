@@ -133,7 +133,7 @@
                         <div class="rating__star">
                             <span class="icon-star"></span>
                         </div>
-                        <div class="rating__    star">
+                        <div class="rating__star">
                             <span class="icon-star"></span>
                         </div>
                         <div class="rating__star">
