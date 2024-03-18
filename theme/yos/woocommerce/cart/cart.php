@@ -63,14 +63,14 @@ do_action( 'woocommerce_before_cart' ); ?>
                                     </div>
                                     <div class="product-card-sm__right">
                                         <?php if($brand):?>
-                                            <div class="product-card-sm__title"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></div>
+                                            <div class="product-card-sm__title"><a href="<?= esc_url( $product_permalink ); ?>"><?= $brand[0]->name;?></a></div>
                                         <?php endif;?>
                                         <div class="product-card-sm__text">
                                             <div class="product-card-sm__text-1">
-                                                <?php echo wp_kses_post( $product_name ); ?>
+                                                <a href="<?php echo esc_url( $product_permalink ); ?>"><?php echo wp_kses_post( $product_name ); ?></a>
                                             </div>
                                             <div class="product-card-sm__text-2">
-                                                <?php the_field('seria', $product_id);?>
+                                                <a href="<?= esc_url( $product_permalink ); ?>"><?php the_field('seria', $product_id);?></a>
                                             </div>
                                         </div>
                                         <div class="product-card-sm__group">
