@@ -1,8 +1,11 @@
 <?php
 
-$menu = get_field('menu', 'options');
+
+$menu = get_field('menu', 'option');
 if(!empty($menu)):
     $i=0;
+
+print_r($menu)
 
 ?>
 
@@ -33,9 +36,13 @@ if(!empty($menu)):
         </div>
     </div>
 
-    <?php foreach ($menu as $m):
+    <?php
+
+    foreach ($menu as $m):
 
         array_filter($m);
+
+
 
         if ($m['categories_menu']) {
             if (!empty($m['categories_menu']['column_1'])) { ?>
