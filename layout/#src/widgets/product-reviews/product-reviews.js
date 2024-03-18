@@ -38,26 +38,26 @@ if (setStartsElements.length) {
     })
 }
 
-const addCommentEl = document.querySelector('[data-add-comment]');
-if (addCommentEl) {
-    this.utils.setHeightOfWindowWhenResize(addCommentEl);
 
-    const openButtons = document.querySelectorAll('[data-action="opne-add-comment"]');
-    const closeButtons = document.querySelectorAll('[data-action="close-add-comment"]');
+const commentsList = document.querySelector('.product-comments__list');
+if(commentsList) {
+    commentsList.addEventListener('click', (e) => {
+        if(e.target.closest('[data-open-form]')) {
+            const parent = e.target.closest('.comment');
+            if(!parent) return;
 
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            addCommentEl.classList.remove('open');
-            document.documentElement.classList.remove('overflow-hidden');
-        })
-    });
+            const formWrap = parent.querySelector('.comment__form');
+            if(!formWrap) return;
+            formWrap.classList.add('show');
+        }
 
-    openButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            addCommentEl.classList.add('open');
-            document.documentElement.classList.add('overflow-hidden');
-        })
+        if(e.target.closest('[data-close-form]')) {
+            const parent = e.target.closest('.comment');
+            if(!parent) return;
+
+            const formWrap = parent.querySelector('.comment__form');
+            if(!formWrap) return;
+            formWrap.classList.remove('show');
+        }
     })
 }

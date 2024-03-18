@@ -7,13 +7,13 @@
     background-color: #fff;
     border: 1px solid $themeColor;
     border-radius: 0.5rem;
-    min-height: 3.3rem;
+    min-height: 4.1rem;
     padding: 0.8rem 2.4rem;
     color: $themeColor;
     transition: transform 0.05s ease, background-color $transition;
-    font-size: $text-1;
+    font-size: 1.5rem;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
 
     &.dark {
         background-color: $themeColor;

@@ -236,12 +236,9 @@
     &__body {
         display: flex;
         gap: 4rem;
-        max-width: calc(144rem);
         margin: 0 auto;
-
-        @media (min-width: 1440px) {
-            max-width: calc(144rem - 4rem);
-        }
+		width: calc(100% - 12rem);
+		max-width: calc(140rem);
     }
 
     &__col {

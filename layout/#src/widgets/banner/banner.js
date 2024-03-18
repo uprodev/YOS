@@ -60,6 +60,7 @@ if (banners.length) {
 
         const scrollbar = images.querySelector('.swiper-scrollbar');
         if (!scrollbar) return;
+        
         const clickLine = document.createElement('div');
         clickLine.className = 'click-line';
         scrollbar.append(clickLine);

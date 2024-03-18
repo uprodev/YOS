@@ -1,0 +1,60 @@
+<div class="popup" id="add-comment-popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <button class="popup__close" data-popup="close-popup"><span class="icon-close-thin"></span></button>
+            <div class="product-reviews__add-comment">
+                <div class="add-comment">
+                    <div class="add-comment__scroll-container">
+                        <div class="add-comment__title">
+                            ви можете залишити відгук або
+                            поставити питання
+                        </div>
+                        <div class="add-comment__subtitle">
+                            <div class="add-comment__text">
+                                Використовуйте цю форму для того, щоб залишити відгук про товар або поставити питання.
+                                Усі відгуки, які не стосуються товару, будуть видалені!
+                            </div>
+                        </div>
+                        <form action="/" class="add-comment__form">
+                            <div class="add-comment__form-stars">
+                                <div class="set-stars" data-set-stars>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <input type="text" value="0">
+                                </div>
+                                <div>оцініть, будь ласка, товар</div>
+                            </div>
+                            <div class="add-comment__form-fields">
+                                <div class="add-comment__form-field">
+                                    @@include('../../components/inputs/_input.html', {
+                                    "label": "Ім’я",
+                                    "type": "text",
+                                    "required": true 
+                                })
+                                </div>
+                                <div class="add-comment__form-field">
+                                    @@include('../../components/inputs/_input.html', {
+                                    "label": "Email",
+                                    "type": "Email",
+                                    "required": true 
+                                })
+                                </div>
+                                <div class="add-comment__form-field">
+                                    @@include('../../components/inputs/_textarea.html', {
+                                    "label": "Коментар"
+                                    })
+                                </div>
+                            </div>
+                            <div class="add-comment__form-footer">
+                                <button class="button-primary dark">надіслати відгук</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,17 +9,39 @@
     &__slider {
         position: relative;
 
+        @media (min-width: $mq-lg) {
+            &:after {
+                position: absolute;
+                content: '';
+                top: 0;
+                right: calc(100% + 1px);
+                height: 100%;
+                width: 100vw;
+                background-color: $pagesBg;
+                z-index: 2;
+            }
+            &::before {
+                position: absolute;
+                content: '';
+                top: 0;
+                left: calc(100% + 1px);
+                height: 100%;
+                width: 100vw;
+                background-color: $pagesBg;
+                z-index: 2;
+            }
+        }
+
         & .swiper:not(.category-links__list) {
             margin-top: 2rem;
             overflow: visible;
+            z-index: 1;
             
             @media (min-width: $mq-md) {
                 margin-top: 0;
             }
     
-            @media (min-width: $mq-lg) {
-                overflow: hidden;
-            }
+
         }
     
         & .swiper-wrapper {}
@@ -76,11 +98,12 @@
 
         & .slider-buttons {
             position: absolute;
+            z-index: 3;
             top: calc(50% - 5rem);
             left: 50%;
             pointer-events: none;
             transform: translateY(-50%) translateX(-50%);
-            width: calc(100% + 12rem);
+            width: calc(100% + 8rem);
 
             & .slider-btn:not(.swiper-button-disabled)  {
                 pointer-events: auto;

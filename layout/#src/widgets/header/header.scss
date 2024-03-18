@@ -131,10 +131,13 @@
         position: relative;
         color: $themeColor;
 
+
         @media (min-width: $mq-lg) {
             font-size: $text-3;
             text-transform: none;
         }
+
+
 
         & img,
         & svg {
@@ -144,12 +147,19 @@
         }
 
         & button {
+            font-weight: 300;
             @media #{$mouse-device} {
                 &:hover {
                     color: $themeColorSecondary;
                 }
             }
         }
+
+        & > a, & > button {
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        } 
     }
 
     &__logo {
@@ -463,7 +473,7 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 position: absolute;
-                content: "\e90c";
+                content: "\e90e";
                 top: 50%;
                 right: 0;
                 transform: translateY(-50%);

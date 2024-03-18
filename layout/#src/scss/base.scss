@@ -31,7 +31,7 @@ html {
 		font-size: 10px !important;
 	}
 
-	@media (min-width: 1440px) {
+	@media (min-width: 1517px) {
 		font-size: 10px !important;
 	}
 }
@@ -46,7 +46,7 @@ body {
 	-moz-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	color: $themeColor;
-	font-weight: 300;
+	font-weight: 400;
 	font-size: $text-2;
 	line-height: normal;
 	transition: opacity 0.4s ease;
@@ -364,7 +364,7 @@ h5, .title-5 {
 	& p,
 	& ul,
 	& ol {
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 	}
 
 

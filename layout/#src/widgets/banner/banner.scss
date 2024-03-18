@@ -13,7 +13,7 @@
 
         &:before {
             position: absolute;
-            content: '';
+            content: "";
             top: 0;
             left: 50%;
             transform: translateX(-50%);
@@ -104,7 +104,7 @@
                     & a {
                         min-height: 2rem;
                         border-radius: 2px;
-                        transition: background-color .15s ease;
+                        transition: background-color 0.15s ease;
                         padding: 0.2rem 0.6rem;
                         display: inline-flex;
                         align-items: center;
@@ -125,7 +125,7 @@
             height: 55.8rem;
             margin-left: 0;
             margin-top: 0;
-            margin-right: -2rem;
+            margin-right: 0rem;
             flex: 1 1 auto;
         }
 
@@ -179,6 +179,12 @@
 
         @media (min-width: $mq-lg) {
             display: none;
+        }
+
+        & .button-primary {
+            &:hover {
+                color: $themeColor !important;
+            }
         }
     }
 

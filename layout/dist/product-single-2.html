@@ -12,7 +12,7 @@
 		let element = document.querySelector('html');
 		if (element) {
 			const setFontSize = () => {
-				let value = 10 / 1440 * element.clientWidth;
+				let value = 10 / 1517 * element.clientWidth;
 				element.style.fontSize = value + 'px';
 			}
 
@@ -2066,11 +2066,6 @@ defer
     <div class="container">
         <div class="product-reviews__inner">
             <div class="product-reviews__head">
-                <h2 class="product-reviews__title title-2">
-                    відгуки покупців
-
-                    <span>(2)</span>
-                </h2>
                 <div class="product-reviews__main-stars">
                     <div class="product-reviews__main-stars-row">
                         <div class="rating" data-rating="3.5">
@@ -2169,92 +2164,15 @@ defer
                         </div>
                     </div>
                 </div>
+                <a href="#add-comment-popup" class="button-primary dark">залишити відгук</a>
             </div>
             <div class="product-reviews__body">
-                <div class="product-reviews__add-comment">
-                    <button class="product-reviews__add-comment-mobile-btn button-primary light"
-                        data-action="opne-add-comment">
-                        написати
-                        відгук
-                    </button>
-                    <div class="add-comment" data-add-comment>
-                        <button class="add-comment__btn-close" data-action="close-add-comment">
-                            <span class="icon-close-thin"></span>
-                        </button>
-                        <div class="add-comment__scroll-container">
-                            <div class="add-comment__title">
-                                ви можете залишити відгук або
-                                поставити питання
-                            </div>
-                            <div class="add-comment__subtitle">
-                                <div class="add-comment__text">
-                                    Ви можете залишити відгук або поставити
-                                    питання. Використовуйте цю форму для того, щоб
-                                    залишити відгук про товар або поставити
-                                    питання. Усі відгуки, які не стосуються товару,
-                                    будуть видалені!
-                                </div>
-                                <div class="add-comment__text-sm">
-                                    * залиште свій email, і ми надішлемо сповіщення одразу
-                                    після того, як фахівець дасть відповідь на ваше
-                                    запитання.
-                                </div>
-                            </div>
-                            <form action="/" class="add-comment__form">
-                                <div class="add-comment__form-fields">
-                                    <div class="add-comment__form-field half-lg">
-                                        <div class="input-wrap" data-input>
-    
-    
-        <input type="text" class="input" required placeholder="enter">
-        <span class="input-label">Ім’я</span>
-    
-</div>
-                                    </div>
-                                    <div class="add-comment__form-field half-lg">
-                                        <div class="input-wrap" data-input>
-    
-        <input type="email" class="input"  placeholder="enter">
-        <span class="input-label">Електронна адреса</span>
-    
-    
-</div>
-                                    </div>
-                                    <div class="add-comment__form-field">
-                                        <div class="textarea-wrap" data-textarea>
-    <textarea class="textarea" placeholder="enter"></textarea>
-    <span class="textarea-label">Текст повідомлення</span>
-</div>
-                                    </div>
-                                </div>
-                                <div class="add-comment__form-stars">
-                                    <div>Оцінка</div>
-                                    <div class="set-stars" data-set-stars>
-                                        <div class="set-stars__item">
-                                            1
-                                        </div>
-                                        <div class="set-stars__item">
-                                            2
-                                        </div>
-                                        <div class="set-stars__item">
-                                            3
-                                        </div>
-                                        <div class="set-stars__item">
-                                            4
-                                        </div>
-                                        <div class="set-stars__item">
-                                            5
-                                        </div>
-                                        <input type="text" value="0">
-                                    </div>
-                                </div>
-                                <div class="add-comment__form-footer">
-                                    <button class="button-primary dark">написати відгук</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="product-reviews__title title-2">
+                    відгуки покупців
+
+                    <span>(2)</span>
+                </h2>
+
                 <div class="product-reviews__comments">
                     <div class="product-comments">
                         <div class="product-comments__list">
@@ -2262,9 +2180,6 @@ defer
                                 <div class="comment__head">
                                     <div class="comment__author-name">
                                         катерина
-                                    </div>
-                                    <div class="comment__author-status">
-                                        Покупку підтверджено
                                     </div>
                                     <div class="comment__author-set-stars">
                                         <div class="rating" data-rating="5">
@@ -2304,6 +2219,7 @@ defer
     </div>
 </div>
                                     </div>
+                                    <div class="comment__data">22.03.2023</div>
                                 </div>
                                 <div class="comment__body">
                                     <div class="comment__text">
@@ -2314,18 +2230,36 @@ defer
                                         без
                                         «комків» та потреби нашаровування
                                     </div>
-                                    <div class="comment__footer">
-                                        <div class="comment__date">
-                                            30 листопада 2022
+                                </div>
+                                <div class="comment__footer">
+                                    <div class="comment__footer-row">
+                                        <button class="button-link comment__reply-btn" data-open-form><span>відповісти</span></button>
+                                        <div class="comment__answers-count">
+                                            <img src="img/icons/answer.svg" alt="">
+                                            1 відповідь
                                         </div>
-                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                        <div class="comment__likes">
+                                            2 <img src="img/icons/like.svg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="comment__form">
+                                        <form action="">
+                                            <div class="textarea-wrap" data-textarea>
+    <textarea class="textarea" placeholder="enter"></textarea>
+    <span class="textarea-label">Текст повідомлення</span>
+</div>
+                                            <div class="comment__btn-group">
+                                                <button class="button-primary dark">Опублікувати</button>
+                                                <button type="button" class="button-primary light" data-close-form>закрити</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment subcomment">
                                 <div class="comment__head">
                                     <div class="comment__author-name">
-                                        <img src="img/logo/yos-short-logo.png" alt="">
+                                        Консультант YOS
                                     </div>
                                 </div>
                                 <div class="comment__body">
@@ -2342,38 +2276,20 @@ defer
                                         від партії може відрізнятись.
                                     </div>
                                     <div class="comment__footer">
-                                        <div class="comment__date">
-                                            30 листопада 2022
+                                        <div class="comment__btn-group">
+                                            <button class="button-primary dark">редагувати</button>
+                                            <button type="button" class="button-primary light">видалити</button>
                                         </div>
-                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment subcomment">
-                                <div class="comment__head">
-                                    <div class="comment__author-name">
-                                        аліса
-                                    </div>
-                                </div>
-                                <div class="comment__body">
-                                    <div class="comment__text">
-                                        Екатерина, мабуть віддінки олівців nude
-                                        beige i nude truffle? Дуже гарний макіяж
-                                        губ!)
-                                    </div>
-                                    <div class="comment__footer">
-                                        <div class="comment__date">
-                                            31 листопада 2022
-                                        </div>
-                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
                                     </div>
                                 </div>
                             </div>
                             <div class="comment">
                                 <div class="comment__head">
-                                    <div class="comment__author-name">інна</div>
+                                    <div class="comment__author-name">
+                                        катерина
+                                    </div>
                                     <div class="comment__author-set-stars">
-                                        <div class="rating" data-rating="3">
+                                        <div class="rating" data-rating="5">
     <div class="rating__stars rating__stars-1">
         <div class="rating__star">
             <span class="icon-star-full"></span>
@@ -2410,31 +2326,42 @@ defer
     </div>
 </div>
                                     </div>
+                                    <div class="comment__data">22.03.2023</div>
                                 </div>
                                 <div class="comment__body">
                                     <div class="comment__text">
-                                        34 - Dubai
-                                        Фотографією точчний відтінок важко передати, але, можливо, комусь буде
-                                        корисно для приблизного розуміння.
-                                        На губах приємна, майже не відчувається. Стійкість середня, але для мене це не
-                                        проблема. Замовляла заради гарного кольору.
+                                        Брала відтінок Трансільванія, боялась, що буде надто віддавати фіолетовим, але
+                                        все добре. Помада матова, приємна при нанесені, але запах мені не зрозумілий
+                                        (кожному своє). Стійкість відносна, якщо не куштувати нічого при носці, або
+                                        робити це з обережністю, то все добре. Мій відтінок наноситься чудово, зразу,
+                                        без
+                                        «комків» та потреби нашаровування
                                     </div>
-                                    <div class="comment__footer">
-                                        <div class="comment__date">
-                                            29 жовтня 2022
+                                </div>
+                                <div class="comment__footer">
+                                    <div class="comment__footer-row">
+                                        <button class="button-link comment__reply-btn" data-open-form><span>відповісти</span></button>
+                                        <div class="comment__likes">
+                                            2 <img src="img/icons/like.svg" alt="">
                                         </div>
-                                        <button class="button-link comment__reply-btn"><span>відповісти</span></button>
+                                    </div>
+                                    <div class="comment__form">
+                                        <form action="">
+                                            <div class="textarea-wrap" data-textarea>
+    <textarea class="textarea" placeholder="enter"></textarea>
+    <span class="textarea-label">Текст повідомлення</span>
+</div>
+                                            <div class="comment__btn-group">
+                                                <button class="button-primary dark">Опублікувати</button>
+                                                <button type="button" class="button-primary light" data-close-form>закрити</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="product-comments__footer">
-                            <div class="pagination">
-    <a href="#" class="button-link"><span>завантажити ще</span></a>
-    <div class="pagination__fraction">01/13</div>
-    <a href="#" class="pagination__btn left disabled"><span class="icon-arrow-left"></span></a>
-    <a href="#" class="pagination__btn right"><span class="icon-arrow-right"></span></a>
-</div>
+                            <button class="button-primary light">більше відгуків</button>
                         </div>
                     </div>
                 </div>
@@ -2442,6 +2369,72 @@ defer
         </div>
     </div>
 </section>
+
+<div class="popup" id="add-comment-popup">
+    <div class="popup__body">
+        <div class="popup__content">
+            <button class="popup__close" data-popup="close-popup"><span class="icon-close-thin"></span></button>
+            <div class="product-reviews__add-comment">
+                <div class="add-comment">
+                    <div class="add-comment__scroll-container">
+                        <div class="add-comment__title">
+                            ви можете залишити відгук або
+                            поставити питання
+                        </div>
+                        <div class="add-comment__subtitle">
+                            <div class="add-comment__text">
+                                Використовуйте цю форму для того, щоб залишити відгук про товар або поставити питання.
+                                Усі відгуки, які не стосуються товару, будуть видалені!
+                            </div>
+                        </div>
+                        <form action="/" class="add-comment__form">
+                            <div class="add-comment__form-stars">
+                                <div class="set-stars" data-set-stars>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <div class="set-stars__item"></div>
+                                    <input type="text" value="0">
+                                </div>
+                                <div>оцініть, будь ласка, товар</div>
+                            </div>
+                            <div class="add-comment__form-fields">
+                                <div class="add-comment__form-field">
+                                    <div class="input-wrap" data-input>
+    
+    
+        <input type="text" class="input" required placeholder="enter">
+        <span class="input-label">Ім’я</span>
+    
+</div>
+                                </div>
+                                <div class="add-comment__form-field">
+                                    <div class="input-wrap" data-input>
+    
+    
+        <input type="Email" class="input" required placeholder="enter">
+        <span class="input-label">Email</span>
+    
+</div>
+                                </div>
+                                <div class="add-comment__form-field">
+                                    <div class="textarea-wrap" data-textarea>
+    <textarea class="textarea" placeholder="enter"></textarea>
+    <span class="textarea-label">Коментар</span>
+</div>
+                                </div>
+                            </div>
+                            <div class="add-comment__form-footer">
+                                <button class="button-primary dark">надіслати відгук</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 		</div>
 	</main>
 

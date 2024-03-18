@@ -1,16 +1,31 @@
+#sb_instagram {
+    &.top-space-80 {
+        margin-top: 8rem;
+    }
+
+    &.top-space-140 {
+        margin-top: 14rem;
+    }
+
+    &.top-space-md-150 {
+        @media (min-width: $mq-md) {
+            margin-top: 15rem;
+        }
+    }
+}
+
 .instagram {
     overflow: hidden;
     & .swiper:not(.category-links__list) {
-        margin-top: 4rem;
-        overflow: visible;
+        @media (min-width: 0px) and (max-width: 767.98px) {
+            margin-top: 4rem;
+            overflow: visible;
+        }
+
     }
 
     & .category-links__list {
         margin-top: 1rem;
-
-        @media (min-width: $mq-md) {
-            margin-top: 0rem;
-        }
     }
 
     & .swiper-slide {

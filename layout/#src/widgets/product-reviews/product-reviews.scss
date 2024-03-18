@@ -6,18 +6,23 @@
 
         @media (min-width: $mq-lg) {
             flex-direction: row;
+            gap: 19.5rem;
         }
     }
 
     &__head {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
         @media (min-width: $mq-lg) {
-            flex: 0 0 33.5rem;
+            flex: 0 0 33rem;
+            gap: 4rem;
         }
     }
 
     &__title {
         display: flex;
-        justify-content: space-between;
         gap: 1rem;
         flex-wrap: wrap;
     }
@@ -28,9 +33,9 @@
 
     &__main-stars-row {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        gap: 2rem;
     }
 
     &__main-stars-value {
@@ -44,7 +49,7 @@
     }
 
     &__chart {
-        margin-top: 2rem;
+
     }
 
     &__body {
@@ -54,15 +59,11 @@
 
         @media (min-width: $mq-lg) {
             flex: 1 1 auto;
-            gap: 12rem;
+            gap: 4rem;
         }
     }
 
     &__add-comment {
-        @media (min-width: $mq-lg) {
-            max-width: 56rem;
-            margin-left: auto;
-        }
     }
 
     &__add-comment-mobile-btn {
@@ -86,6 +87,10 @@
 }
 
 .reviews-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     &__row {
         display: flex;
         align-items: center;
@@ -99,6 +104,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: 500;
 
         & .icon-star-full {
             font-size: 1.9rem;
@@ -112,70 +118,30 @@
 }
 
 .add-comment {
-    @media (min-width: 0px) and (max-width: 991.98px) {
-        position: fixed;
-        top: 0;
-        right: 100%;
-        width: 100%;
-        height: 100dvh;
-        background-color: $pagesBg;
-        z-index: 101;
-        padding: 6rem 1rem 2rem;
-        transition: transform 0.4s ease;
-
-        &.open {
-            transform: translateX(100%);
-        }
-    }
-
-    @media (min-width: $mq-lg) {
-        height: auto !important;
-    }
-
-    &__btn-close {
-        position: absolute;
-        font-size: 1.6rem;
-        padding: 0.5rem;
-        z-index: 4;
-        top: 1.5rem;
-        right: 0.5rem;
-
-        @media (min-width: $mq-lg) {
-            display: none;
-        }
-    }
-
-    &__scroll-container {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        @media (min-width: 0px) and (max-width: 991.98px) {
-            margin-right: -1rem;
-            padding-right: 1rem;
-            height: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-    }
+    max-width: 50rem;
+    margin: 0 auto;
 
     &__title {
-        font-weight: 700;
+        text-align: center;
+        font-weight: 600;
         text-transform: uppercase;
+        font-size: 1.6rem;
 
         @media (min-width: $mq-lg) {
-            font-size: 2.4rem;
-            font-weight: 400;
+            font-size: 2rem;
         }
     }
 
     &__subtitle {
+        margin-top: 2rem;
+        text-align: center;
     }
 
     &__text {
         display: flex;
         flex-direction: column;
         gap: 1rem;
+        font-size: $text-2;
     }
 
     &__text-sm {
@@ -189,6 +155,11 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 2rem;
+        margin-top: 2rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 4rem;
+        }
 
         & > * {
             flex: 0 1 100%;
@@ -215,8 +186,16 @@
             }
         }
 
-        &:not(.dropzone) {
-            order: -1;
+        & input {
+            height: 5rem;
+            border-radius: 0.3rem;
+        }
+
+        & textarea {
+            border-radius: 0.3rem;
+            @media (min-width: $mq-md) {
+                min-height: 13rem;
+            }
         }
     }
 
@@ -224,32 +203,21 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        order: 1;
+        text-align: center;
+        justify-content: center;
+        font-size: 1.4rem;
     }
 
     &__form-footer {
-        margin-top: auto;
-        order: 1;
-
-        & button.button-primary {
-            width: 100%;
-            background-color: #fff;
-            color: $textColor;
-
-            @media (min-width: $mq-lg) {
-                &:hover {
-                    color: $textColor !important;
-                    background-color: $bgHover;
-                }
-            }
-        }
+        display: flex;
+        flex-direction: column;
     }
 }
 
 .set-stars {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.9rem;
     position: relative;
 
     &__item {
@@ -271,23 +239,23 @@
             line-height: 1;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            content: "\e901";
+            content: "\e903";
         }
 
         &.active {
             color: $themeColor;
 
             &::before {
-                content: "\e902";
+                content: "\e904";
             }
         }
 
         @media (min-width: $mq-lg) {
             &.hover {
-                color: $themeColorThird;
+                color: rgba($themeColor, 0.8);
 
                 &::before {
-                    content: "\e902";
+                    content: "\e904";
                 }
             }
         }
@@ -308,81 +276,36 @@
 
 .product-comments {
     &__list {
-        display: flex;
-        flex-direction: column;
-
-        & > * {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            position: relative;
-
-            &:not(:first-child) {
-                margin-top: 4rem;
-            }
-
-            & > div:not(.comment):not(.comment-respond) {
-                display: flex;
-            }
-
-            &:not(:last-child) {
-                &:before {
-                    position: absolute;
-                    content: "";
-                    top: calc(100% + 2rem);
-                    transform: translateY(-50%);
-                    right: 0;
-                    height: 1px;
-                    background-color: $themeColorFourth;
-                    width: 100%;
-
-                    @media (min-width: $mq-lg) {
-                        width: 56rem;
-                    }
-                }
-            }
-
-            &:last-child {
-                & > * {
-                    margin-bottom: 0;
-                }
-            }
-        }
-
-        & .comment-respond {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        & > .comment-respond {
-            margin-top: 4rem !important;
-            margin-bottom: 4rem;
-        }
+        border-bottom: 1px solid rgba($themeColor, 0.3);
     }
 
     &__footer {
-        margin-top: 5rem;
+        margin-top: 3rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 5rem;
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
 
 .comment {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-
-    @media (min-width: $mq-lg) {
-        flex-direction: row;
-    }
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid rgba($themeColor, 0.3);
 
     &__head {
-        flex: 1 1 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0rem 2rem;
     }
 
     &__author-name {
-        text-transform: uppercase;
-        font-size: $text-3;
-        font-weight: 700;
+        font-size: $text-2-md;
+        font-weight: 400;
+        order: 1;
+        text-transform: capitalize;
 
         & img {
             height: 1.6rem;
@@ -398,25 +321,77 @@
     }
 
     &__author-set-stars {
-        margin-top: 2rem;
+        grid-column: span 2;
+        order: 3;
+        padding-top: 0.4rem;
+
+        & .rating {
+            font-size: 1.6rem;
+        }
+
+        & .rating__star {
+            margin-right: 0.6rem;
+        }
+    }
+
+    &__data {
+        order: 2;
+        text-align: right;
+        font-size: $text-1;
+        color: #6A6B6E;
     }
 
     &__body {
+        margin-top: 1.5rem;
         @media (min-width: $mq-lg) {
+            margin-top: 3rem;
             flex: 0 0 56rem;
         }
     }
 
     &__text {
         word-break: break-word;
+        max-width: 66.4rem;
     }
 
     &__footer {
         margin-top: 2rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 4rem;
+        }
+        &-row {
+            display: flex;
+            align-content: center;
+            gap: 3.5rem;
+        }
+    }
+
+    &__answers-count {
         display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: $text-2;
+        color: $themeColorSecondary;
+
+        & img {
+            height: 1em;
+            width: auto;
+        }
+    }
+
+    &__likes {
+        margin-left: auto;
+        display: flex;
+        align-items: flex-end;
+        gap: 0.5rem;
+        font-size: 1.8rem;
+        line-height: 0.8em;
+
+        & img {
+            height: 1em;
+            width: auto;
+        }
     }
 
     &__date {
@@ -428,35 +403,75 @@
         // pointer-events: none;
     }
 
-    &.subcomment {
-        margin-left: 4rem;
-        gap: 1rem;
-        justify-content: flex-end;
-        width: 100%;
+    &__form {
+        margin-top: 2rem;
+        display: none;
 
-        @media (min-width: $mq-lg) {
-            gap: 2rem;
-            margin-left: auto;
-            max-width: 56rem;
+        &.show {
+            display: block;
         }
 
-        & .comment__head {
-            @media (min-width: $mq-lg) {
-                flex: 0 0 auto;
-                min-width: 11rem;
+        & .textarea {
+            min-height: 13.5rem;
+            border-radius: 1rem;
+            border-color: $textColor;
+        }
+
+        & .textarea-label {
+            display: none;
+        }
+
+        & .comment__btn-group {
+            margin-top: 2rem;
+        }
+    }
+
+    &__btn-group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        @media (min-width: $mq-md) {
+            flex-direction: row;
+
+            & button.dark {
+                min-width: 30rem;
             }
+
+            & button.light {
+                min-width: 25.2rem;
+            }
+        }
+    }
+
+    &.subcomment {
+        padding: 1.5rem;
+        background-color: #EDEDED;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        border: none;
+
+        @media (min-width: $mq-md) {
+            padding: 3rem 3rem 3rem 15rem;
+        }
+
+        & .comment__author-name {
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         & .comment__body {
-            flex: 1 1 auto;
+            margin-top: 2rem;
+        }
 
-            @media (min-width: $mq-lg) {
-                max-width: 29.2rem;
-            }
+        & .comment__text {
+            font-size: 1.4rem;
+            max-width: 52.3rem;
         }
 
         & .comment__footer {
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
     }
 }
