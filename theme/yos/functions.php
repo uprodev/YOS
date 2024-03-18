@@ -4,7 +4,6 @@ include 'inc/enqueue.php';     // add styles and scripts
 include 'inc/acf.php';         // custom acf functions
 include 'inc/extras.php';      // custom functions
 include 'classes/walker.php';  // walker nav menu
-include 'classes/order-stock.php';  // order stock
 include 'inc/register.php';    // custom ajax register and auth
 include 'inc/ajax-actions.php';// ajax actions
 include 'inc/checkout.php';    // checkout actions
