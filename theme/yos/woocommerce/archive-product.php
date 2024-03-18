@@ -39,6 +39,7 @@ if($atr->taxonomy=='pa_brand'){
 ?>
     <main class="_page catalog-page">
         <div class="head-height-compensation"></div>
+
         <?php get_template_part('parts/header/categories-menu');?>
 
     <section class="catalog">

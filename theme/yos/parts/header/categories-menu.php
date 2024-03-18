@@ -1,8 +1,7 @@
 <?php
 
 $menu = get_field('menu', 'options');
-
-if($menu):
+if(!empty($menu)):
     $i=0;
 
 ?>
