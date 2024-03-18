@@ -1,11 +1,11 @@
 <?php if(!is_404()):
 
-    if(!is_front_page()){
+
         get_template_part('parts/subscription');
-    }?>
+    ?>
 
     <!-- == FOOTER ================== -->
-    <div class="top-space-70">
+    <div class="top-space-80 top-space-md-150">
 
         <?php get_template_part('parts/footer/footer-desctop');?>
 

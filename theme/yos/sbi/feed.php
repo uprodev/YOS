@@ -31,7 +31,7 @@ $feed_classes    = SB_Instagram_Display_Elements::get_feed_container_css_classes
 sbi_header_html( $settings, $header_data, 'outside' );
 ?>
 
-<div id="sb_instagram" class="top-space-140 top-space-md-150"  data-feedid="<?php echo esc_attr( $feed_id ); ?>" <?php echo $feed_atts; ?> data-shortcode-atts="<?php echo esc_attr( $shortcode_atts ); ?>">
+<div id="sb_instagram" class="top-space-80 top-space-md-150"  data-feedid="<?php echo esc_attr( $feed_id ); ?>" <?php echo $feed_atts; ?> data-shortcode-atts="<?php echo esc_attr( $shortcode_atts ); ?>">
     <div class="instagram">
         <div class="container">
 	        <?php sbi_header_html( $settings, $header_data ); ?>

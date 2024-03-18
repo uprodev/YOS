@@ -14,7 +14,7 @@
         let element = document.querySelector('html');
         if (element) {
             const setFontSize = () => {
-                let value = 10 / 1440 * element.clientWidth;
+                let value = 10 / 1517 * element.clientWidth;
                 element.style.fontSize = value + 'px';
             }
 

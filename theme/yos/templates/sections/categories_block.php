@@ -6,7 +6,7 @@ $link = get_sub_field('link');
 
 ?>
 
-<div class="top-space-140 top-space-md-120">
+<div class="top-space-80 top-space-md-150">
     <div class="banner" data-banner >
         <div class="container">
             <div class="banner__body">
@@ -28,7 +28,6 @@ $link = get_sub_field('link');
 
                                     <?php $c++; endforeach;?>
                                 </div>
-                                <div class="swiper-scrollbar slider-scrollbar"></div>
                             </div>
                         <?php endif;?>
                     </div>
@@ -47,23 +46,17 @@ $link = get_sub_field('link');
                                             <source srcset="<?= $img;?>" media="(min-width: 768px)" >
                                             <img src="<?= $img_mob;?>" alt="img">
                                         </picture>
+                                        <div class="banner__footer">
+                                            <a href="<?= get_term_link($cat);?>" class="button-primary light w-100"><?= __('ПЕРЕЙТИ', 'yos');?></a>
+                                        </div>
                                     </div>
                                 <?php $g++; endforeach;?>
                             </div>
+                            <div class="swiper-scrollbar slider-scrollbar"></div>
                         </div>
                     </div>
                 <?php endif;?>
             </div>
-            <?php if( $link ):
-                $link_url = $link['url'];
-                $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
-                ?>
-                <div class="banner__footer">
-                    <a class="button-primary light w-100" href="<?= esc_url($link_url); ?>" target="<?= esc_attr($link_target); ?>"><?= esc_html($link_title); ?></a>
-                </div>
-            <?php endif; ?>
-
         </div>
     </div>
 </div>

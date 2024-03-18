@@ -1037,24 +1037,53 @@ window.select = {
 //     })
 // }
 			document.addEventListener('click', (e) => {
-    if (e.target.closest('[data-product-card-option]')) {
-        const radio = e.target;
-        const productCard = radio.closest('[data-product-card]');
-        if (!productCard) return;
+    if(e.target.closest('input[type="radio"][data-label]')) return;
 
-        const priceItems = productCard.querySelectorAll('.product-card__price[data-index]');
-        const index = radio.getAttribute('data-index');
+    if (e.target.closest('.product-actions__option:not(.colors)')) {
+        if(!e.target.closest('[data-product-card]')) return;
+        const productOptionsParent = e.target.closest('.product-actions__option:not(.colors)');
+        hideCheckedItems(productOptionsParent);
+        productOptionsParent.classList.toggle('active');
+    } else {
+        document.querySelectorAll('.product-actions__option.active').forEach(el => el.classList.remove('active'))
+    }
+});
 
-        priceItems.forEach(item => {
-            const itemIndex = item.getAttribute('data-index');
-            if (itemIndex === index) {
-                item.classList.add('show');
-            } else {
-                item.classList.remove('show');
-            }
-        });
+document.addEventListener('change', (e) => {
+    if(e.target.closest('input[type="radio"][data-label]')) {
+        const radio = e.target.closest('input[type="radio"][data-label]');
+        if(!radio.closest('[data-product-card]')) return;
+
+        const productOptionsParent = radio.closest('.product-actions__option:not(.colors)');
+        if(!productOptionsParent) return;
+        
+        const head = productOptionsParent.querySelector('.product-actions__option-head');
+        if(!head) return;
+
+        const radioValue = radio.getAttribute('data-label');
+        if(!radioValue) return;
+        head.innerText = radioValue;
+        head.setAttribute('data-label', radioValue);
     }
 })
+
+function hideCheckedItems(optionWrapperEl) {
+    if(!optionWrapperEl) return;
+
+    const head = optionWrapperEl.querySelector('.product-actions__option-head');
+    if(!head) return;
+
+    optionWrapperEl.querySelectorAll('input[type="radio"]')
+        .forEach(radio => {
+            const parent = radio.closest('.product-actions__option-item');
+            
+            if(radio.checked) {
+                parent?.classList.add('d-none');
+            } else {
+                parent?.classList.remove('d-none');
+            }
+        })
+}
 
 function debounce(func, delay) {
     let timeoutId;
@@ -1703,10 +1732,23 @@ if(mainSearchElements.length) {
     })
 };
 			const homeIntro = document.querySelector('[data-slider="home-intro"]');
-if(homeIntro) {
+if (homeIntro) {
     const swiperSlider = new Swiper(homeIntro.querySelector('.swiper'), {
         slidesPerView: 1,
         speed: 600,
+        effect: "creative",
+        creativeEffect: {
+            prev: {
+                translate: ["-20%", 0, -1],
+            },
+            next: {
+                translate: ["100%", 0, 0],
+            },
+        },
+        autoplay: {
+            delay: 3000
+        },
+        loop: true,
         scrollbar: {
             el: homeIntro.querySelector('.swiper-scrollbar'),
             draggable: true,
@@ -1718,11 +1760,11 @@ if(homeIntro) {
     })
 
     const scrollbar = homeIntro.querySelector('.swiper-scrollbar');
-    if(!scrollbar) return;
+    if (!scrollbar) return;
     const clickLine = document.createElement('div');
     clickLine.className = 'click-line';
     scrollbar.append(clickLine);
-    
+
     clickLine.addEventListener('pointerdown', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -1740,7 +1782,7 @@ if (carousels.length) {
             AlignPrices.apply(Array.from(products), products.length);
         }
 
-        const swiperSlider = new Swiper(carousel, {
+        const swiperSlider = new Swiper(carousel.querySelector('.swiper'), {
             speed: 600,
             observer: true,
             observeParents: true,
@@ -1763,15 +1805,14 @@ if (carousels.length) {
             },
             breakpoints: {
                 320: {
-                    slidesPerView: 2,
-                    spaceBetween: 16,
-                    //autoHeight: true,
-                    freeMode: false,
-                },
-                768: {
                     slidesPerView: 'auto',
                     spaceBetween: 0,
                     freeMode: true,
+                },
+                992: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                    freeMode: false,
                 }
             },
         })
@@ -1861,17 +1902,14 @@ if (tickerLogosSections.length) {
                 delay: 1,
                 disableOnInteraction: false
             },
+            centeredSlides: true,
             loop: true,
             freeMode: true,
             breakpoints: {
                 0: {
                     slidesPerView: 'auto',
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 'auto',
                     spaceBetween: 0,
-                },
+                }
             },
         }
         
@@ -1918,7 +1956,7 @@ if (banners.length) {
         let linksSlider;
 
         function mobileSlider() {
-            if (document.documentElement.clientWidth <= 767 && slider.dataset.mobile == 'false') {
+            if (document.documentElement.clientWidth <= 991 && slider.dataset.mobile == 'false') {
                 linksSlider = new Swiper(slider, {
                     slidesPerView: 'auto',
                     touchRatio: 0
@@ -1927,7 +1965,7 @@ if (banners.length) {
                 slider.dataset.mobile = 'true';
             }
 
-            if (document.documentElement.clientWidth > 767) {
+            if (document.documentElement.clientWidth > 991) {
                 slider.dataset.mobile = 'false';
 
                 if (slider.classList.contains('swiper-initialized')) {
@@ -1971,6 +2009,7 @@ if (banners.length) {
 
         const scrollbar = images.querySelector('.swiper-scrollbar');
         if (!scrollbar) return;
+        
         const clickLine = document.createElement('div');
         clickLine.className = 'click-line';
         scrollbar.append(clickLine);
@@ -1984,14 +2023,22 @@ if (banners.length) {
         })
 
         const triggers = banner.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
+        console.log(triggers);
+        triggers.forEach((trigger, i) => {
+            if(i === 0) trigger.classList.add('active')
 
-        triggers.forEach(trigger => {
             const index = trigger.getAttribute('data-index');
             if (!index) return;
 
             trigger.addEventListener('mouseenter', () => {
-                if (!this.utils.isMobile()) {
+                if (document.documentElement.clientWidth > 991.98) {
                     swiperSlider.slideTo(index);
+                    trigger.classList.add('active');
+
+                    triggers.forEach(t => {
+                        if(t === trigger) return;
+                        t.classList.remove('active');
+                    })
                 }
             })
         })
@@ -2040,6 +2087,15 @@ if (catalogFilter) {
                             } else {
                                 li.classList.remove('d-none');
                             }
+                        }
+                    } else {
+                        const text = li.querySelector('label')?.innerText.trim().toLowerCase();
+                        if (!text) return;
+
+                        if (!text.startsWith(value)) {
+                            li.classList.add('d-none');
+                        } else {
+                            li.classList.remove('d-none');
                         }
                     }
                 } else {
@@ -2381,6 +2437,42 @@ if (faqNavSlider) {
     window.addEventListener('resize', () => {
         mobileSlider();
     })
+};
+			{
+    const carousels = document.querySelectorAll('[data-slider="special-offers"]');
+    if (carousels.length) {
+        carousels.forEach(carousel => {
+            const swiperSlider = new Swiper(carousel.querySelector('.swiper'), {
+                speed: 600,
+                observer: true,
+                observeParents: true,
+                scrollbar: {
+                    el: carousel.querySelector('.carousel__navigation .swiper-scrollbar'),
+                    draggable: true
+                },
+                navigation: {
+                    nextEl: carousel.querySelector('.carousel__navigation .slider-btn.right'),
+                    prevEl: carousel.querySelector('.carousel__navigation .slider-btn.left'),
+                },
+                pagination: {
+                    el: carousel.querySelector('.carousel__navigation .slider-pagination'),
+                    type: 'custom',
+                    renderCustom: function (swiper, current, total) {
+                        let currentValue = current > 9 ? current : '0' + current;
+                        let currentTotal = total > 9 ? total : '0' + total;
+                        return currentValue + '/' + currentTotal;
+                    }
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 'auto',
+                        spaceBetween: 0,
+                        freeMode: true,
+                    }
+                },
+            })
+        })
+    }
 };
 			// ==== // widgets =====================================================
 		

@@ -52,11 +52,26 @@
                     <?php if(get_field('footer_social', 'options')):
                         foreach (get_field('footer_social', 'options') as $soc):?>
                             <li>
-                                <a href="<?= $soc['link'];?>" target="_blank" class="button-link"><span><?= $soc['name'];?></span></a>
+                                <a href="<?= $soc['link'];?>" target="_blank" class="button-link button-link--line"><span><?= $soc['name'];?></span></a>
                             </li>
                         <?php endforeach;
                     endif;?>
                 </ul>
+
+                <?php if(get_field('fidbek_tekst', 'options')):?>
+                    <h2 class="footer-desk__title title-2">
+                        <?php the_field('fidbek_tekst', 'options');?>
+                    </h2>
+                <?php endif;?>
+                <?php $linkf = get_field('fidbek_posylannya', 'options');
+
+                if( $linkf ):
+                    $linkf_url = $linkf['url'];
+                    $linkf_title = $linkf['title'];
+                    $linkf_target = $linkf['target'] ? $linkf['target'] : '_self';
+                    ?>
+                    <a class="button-link button-link--line" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>"><span><?= esc_html($linkf_title); ?></span></a>
+                <?php endif; ?>
             </div>
             <div class="footer-desk__col footer-desk__col-4">
                 <h2 class="footer-desk__title title-2">
