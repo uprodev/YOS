@@ -105,68 +105,71 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                 ?>
             </ul>
         </div>
-        <?php if ( wc_coupons_enabled() ) { ?>
 
-            <div class="basket__side-row">
-                <div class="basket__side-promotional-code">
-                    <div class="promotional-code">
-                        <button class="promotional-code__title button-link"
-                                data-collapse="promotional-code"><span><?= __('маєте промокод?', 'yos');?></span></button>
-                        <div class="promotional-code__body" data-collapse-target="promotional-code">
-                            <input type="text" name="coupon_code" class="input" id="code_coupon" value="" />
-                            <button class="button-primary light w-100" name="apply_coupon_code"><?= __('застосувати', 'yos');?></button>
-                            <div class="promotional-code__text"></div>
-                            <?php do_action( 'woocommerce_cart_coupon' ); ?>
+        <?php if(wp_is_mobile()):?>
+            <?php if ( wc_coupons_enabled() ) { ?>
+
+                <div class="basket__side-row">
+                    <div class="basket__side-promotional-code">
+                        <div class="promotional-code">
+                            <button class="promotional-code__title button-link"
+                                    data-collapse="promotional-code"><span><?= __('маєте промокод?', 'yos');?></span></button>
+                            <div class="promotional-code__body" data-collapse-target="promotional-code">
+                                <input type="text" name="coupon_code" class="input" id="code_coupon" value="" />
+                                <button class="button-primary light w-100" name="apply_coupon_code"><?= __('застосувати', 'yos');?></button>
+                                <div class="promotional-code__text"></div>
+                                <?php do_action( 'woocommerce_cart_coupon' ); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php } ?>
 
-        <?php
-        $addit_prod = recently_viewed_products();
+            <?php $addit_prod = recently_viewed_products();
 
-        if($addit_prod):
-            $_prod =  wc_get_product( $addit_prod );
-            $br = get_the_terms($addit_prod, 'pa_brand');?>
-            <div class="basket__side-row recently-row">
-                <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
+            if($addit_prod):
+                $_prod =  wc_get_product( $addit_prod );
+                $br = get_the_terms($addit_prod, 'pa_brand');?>
+                <div class="basket__side-row recently-row">
+                    <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
 
-                <div class="basket__side-offer">
-                    <div class="product-card-sm">
-                        <div class="product-card-sm__left">
-                            <a href="<?= get_permalink($addit_prod);?>" class="product-card-sm__img">
-                                <img src="<?= get_the_post_thumbnail_url($addit_prod);?>" alt="">
-                            </a>
-                        </div>
-                        <div class="product-card-sm__right">
-                            <?php if($br):?>
-                                <div class="product-card-sm__title"><a href="<?= get_permalink($addit_prod);?>"><?= $br[0]->name;?></a></div>
-                            <?php endif;?>
-                            <div class="product-card-sm__text">
-                                <div class="product-card-sm__text-1">
-                                    <a href="<?= get_permalink($addit_prod);?>"><?= get_the_title($addit_prod);?></a>
-                                </div>
-                                <div class="product-card-sm__text-2">
-                                    <a href="<?= get_permalink($addit_prod);?>"><?php the_field('seria', $addit_prod);?></a>
-                                </div>
+                    <div class="basket__side-offer">
+                        <div class="product-card-sm">
+                            <div class="product-card-sm__left">
+                                <a href="<?= get_permalink($addit_prod);?>" class="product-card-sm__img">
+                                    <img src="<?= get_the_post_thumbnail_url($addit_prod);?>" alt="">
+                                </a>
                             </div>
-                            <div class="product-card-sm__price">
-                                <?= $_prod->get_price_html();?>
-
-                            </div>
-                            <div class="product-card-sm__btn-add">
-                                <?php if($_prod->is_type('variable')):  ?>
-                                    <a  href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
-                                <?php else:?>
-                                    <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart" ><?= __('додати', 'yos');?></a>
+                            <div class="product-card-sm__right">
+                                <?php if($br):?>
+                                    <div class="product-card-sm__title"><a href="<?= get_permalink($addit_prod);?>"><?= $br[0]->name;?></a></div>
                                 <?php endif;?>
+                                <div class="product-card-sm__text">
+                                    <div class="product-card-sm__text-1">
+                                        <a href="<?= get_permalink($addit_prod);?>"><?= get_the_title($addit_prod);?></a>
+                                    </div>
+                                    <div class="product-card-sm__text-2">
+                                        <a href="<?= get_permalink($addit_prod);?>"><?php the_field('seria', $addit_prod);?></a>
+                                    </div>
+                                </div>
+                                <div class="product-card-sm__price">
+                                    <?= $_prod->get_price_html();?>
+
+                                </div>
+                                <div class="product-card-sm__btn-add">
+                                    <?php if($_prod->is_type('variable')):  ?>
+                                        <a  href="<?= get_permalink($addit_prod);?>"  class="button-primary dark button-primary--sm w-100" ><?= __('додати', 'yos');?></a>
+                                    <?php else:?>
+                                        <a href="#" data-product_id="<?= $addit_prod;?>" class="button-primary dark button-primary--sm w-100 add-cart" ><?= __('додати', 'yos');?></a>
+                                    <?php endif;?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif;?>
         <?php endif;?>
+
         <div class="side-basket__payment-info">
 
             <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
@@ -213,7 +216,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
         </div>
 
         <div class="side-basket__to-checkout">
-            <a href="<?= wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
+            <a href="<?= wp_is_mobile()?wc_get_checkout_url():wc_get_cart_url();?>" class="button-primary dark w-100"><?= __('перейти далі', 'yos');?></a>
         </div>
 
 
