@@ -148,19 +148,21 @@
                     </div>
                 </div>
             </div>
-            <?php if($brand):?>
-                <div class="product-card__title"><a href="<?php the_permalink();?>"><?= $brand[0]->name;?></a></div>
-            <?php endif;?>
-            <div class="product-card__text">
-                <div class="product-card__text-1">
-                    <a href="<?php the_permalink();?>"><?php the_title();?></a>
-                </div>
-                <?php if(get_field('seria')):?>
-                    <div class="product-card__text-2">
-                        <a href="<?php the_permalink();?>"><?php the_field('seria');?></a>
-                    </div>
+            <a href="<?php the_permalink();?>" class="product-card__text-wrapper">
+                <?php if($brand):?>
+                    <div class="product-card__title"><?= $brand[0]->name;?></div>
                 <?php endif;?>
-            </div>
+                <div class="product-card__text">
+                    <div class="product-card__text-1">
+                        <?php the_title();?>
+                    </div>
+                    <?php if(get_field('seria')):?>
+                        <div class="product-card__text-2">
+                            <?php the_field('seria');?>
+                        </div>
+                    <?php endif;?>
+                </div>
+            </a>
             <?php if ($product->is_type('variable')): ?>
 
                     <div class="product-card__price <?= $q==$i?'show':'';?>" data-index="<?= $i;?>">
