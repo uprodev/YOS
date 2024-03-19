@@ -234,7 +234,7 @@ figure {
 }
 
 h2, .title-2 {
-	font-weight: 600;
+	font-weight: 700;
 	font-size: $text-3;
 	text-transform: uppercase;
 	margin-bottom: 0;
@@ -368,7 +368,7 @@ h5, .title-5 {
 	}
 
 
-	& ul {
+	& ul:not(.spoller) {
 		padding-left: 3em;
 
 		& > li {
@@ -384,8 +384,8 @@ h5, .title-5 {
 		}
 	}
 
-	& ol {
-		padding-left: 3em;
+	& ol:not(.spoller) {
+		padding-left: 0em;
 
 
 		& > li {

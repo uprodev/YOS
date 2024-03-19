@@ -58,12 +58,13 @@
     text-transform: uppercase;
     position: relative;
     padding-right: 0.95em;
-    font-size: $text-2;
-    font-weight: 500;
+    font-size: $text-1;
+    font-weight: 600;
     align-self: flex-start;
 
     @media (min-width: $mq-lg) {
         font-size: $text-3;
+        font-weight: 500;
     }
 
     &:after {

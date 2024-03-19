@@ -11,6 +11,9 @@
     }
 
     &__title {
+        @media (min-width: $mq-lg) {
+            max-width: 30rem;
+        }
         @media (min-width: 0px) and (max-width: 991.98px) {
             font-size: $text-3;
         }
@@ -145,7 +148,36 @@
         }
 
         & h4 {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &--second {
+
+        & .faq__body {
+            margin-top: 0;
+        }
+
+        & .spoller__item-title {
+            font-weight: 400;
+
+            &.active {
+                &::before {
+                    background-image: url($icon-minus-regular);
+                }
+            }
+
+            &::before {
+                background-image: url($icon-plus-regular);
+            }
+        }
+
+        & .spoller__item-colapse-content {
+            padding-left: 2rem;
+
+            & ol li {
+                margin-bottom: 0;
+            }
         }
     }
 }

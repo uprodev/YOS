@@ -262,14 +262,17 @@
     }
 
     & .subscription-form {
+        flex-direction: column;
         & input {
             color: $textColor;
-
             border-color: $themeColor;
+            width: 100%;
         }
 
         & button {
             color: $textColor;
+            font-size: 1.7rem;
+            line-height: 1em;
         }
     }
 }

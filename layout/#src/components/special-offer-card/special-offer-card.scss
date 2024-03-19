@@ -4,7 +4,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.7rem;
     background-color: $pagesBg;
 
     @media (min-width: $mq-lg) {
@@ -14,12 +14,13 @@
     &__text-content {
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
         justify-content: space-between;
         flex: 1 1 auto;
 
         @media (min-width: $mq-lg) {
             flex: 0 1 auto;
+            gap: 1.5rem;
         }
     }
 

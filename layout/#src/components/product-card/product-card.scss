@@ -131,6 +131,22 @@
         }
     }
 
+    &__text-wrapper {
+        display: block;
+
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+
+        @media #{$mouse-device} {
+            &:hover {
+                & .product-card__text-1, & .product-card__text-2 {
+                    color: $hover;
+                }
+            }
+        }
+    }
+
     &__title {
         text-transform: uppercase;
         font-weight: 500;
@@ -159,15 +175,18 @@
 
     &__text-1 {
         color: $textColor;
+        transition: color $transition;
     }
 
     &__text-2 {
         color: $textColorSecondary;
         font-size: 1rem;
-        margin-top: 0.4rem;
+        margin-top: 0.2rem;
+        transition: color $transition;
 
         @media (min-width: $mq-md) {
             font-size: $text-2;
+            margin-top: 0.4rem;
         }
     }
 
@@ -179,7 +198,7 @@
         text-align: center;
         flex-wrap: wrap;
         gap: 1rem;
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: 700;
 
         @media (min-width: $mq-lg) {
@@ -205,6 +224,7 @@
             & del {
                 color: rgba($themeColor, 0.4);
                 order: 1;
+                font-weight: 600;
             }
         }
     }

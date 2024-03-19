@@ -33,7 +33,7 @@
         }
 
         & .swiper:not(.category-links__list) {
-            margin-top: 2rem;
+            margin-top: 2.6rem;
             overflow: visible;
             z-index: 1;
             
@@ -141,7 +141,7 @@
     }
 
     &__navigation {
-        margin-top: 2rem;
+        margin-top: 2.3rem;
 
         @media (min-width: $mq-md) {
             margin-top: 4rem;
