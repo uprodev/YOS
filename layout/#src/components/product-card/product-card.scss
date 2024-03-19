@@ -125,10 +125,6 @@
             }
         }
 
-        & .rating__star {
-            margin-right: 0.35em;
-        }
-
         & .rating__stars-1 {
             width: calc(100% / 5 * var(--value));
             max-width: 100%;

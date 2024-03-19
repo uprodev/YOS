@@ -48,6 +48,9 @@
         & .category-links__list {
             & .swiper-wrapper {
                 gap: 0;
+                @media (min-width: $mq-lg) {
+                    gap: 0.5rem;
+                }
 
                 @media (min-width: 0px) and (max-width: 991.98px) {
                     flex-direction: row;
@@ -58,24 +61,20 @@
                 color: $textColorThird;
                 padding-right: 0.6rem;
 
-                @media #{$mouse-device} {
-                    & a:hover {
-                        color: $hover;
-                    }
+                @media (min-width: $mq-lg) {
+                    display: inline-block;
+                    width: auto;
+                    align-self: flex-start;
                 }
 
-                & .link-label {
-                    font-family: $mainFontFamily;
-                    color: $textColorThird !important;
-                    display: inline-flex;
-                    min-height: 2.1rem;
-                    border: 1px solid currentColor;
-                    border-radius: 2px;
-                    line-height: 1;
-                    padding: 0.5rem 1rem;
-                    font-size: 1.2rem;
-                    margin-left: 1.5rem;
-                    font-weight: 300;
+                & .coming-soon {
+                    position: absolute;
+                    top: 50%;
+                    left: calc(100% + 2rem);
+                    transform: translateY(-50%);
+                    height: 2.4rem;
+                    width: auto;
+                    display: block;
 
                     @media (min-width: 0px) and (max-width: 991.98px) {
                         display: none;
@@ -84,7 +83,10 @@
 
                 &.active {
                     @media (min-width: $mq-lg) {
-                        color: $themeColorSecondary;
+                        & a {
+                            background-color: $themeColorSecondary;
+                            padding: 0.6rem 0.8rem 0.4em;
+                        }
                     }
 
                     @media (min-width: 0px) and (max-width: 991.98px) {
@@ -92,6 +94,11 @@
                             background-color: $themeColorSecondary;
                         }
                     }
+                }
+
+                & a {
+                    position: relative;
+                    line-height: 1em
                 }
 
                 @media (min-width: $mq-lg) {
@@ -186,11 +193,6 @@
                 color: $themeColor !important;
             }
         }
-    }
-
-    & .category-links__list a {
-        display: block;
-        width: 100%;
     }
 }
 

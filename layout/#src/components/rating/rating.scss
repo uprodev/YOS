@@ -1,9 +1,10 @@
 .rating {
     position: relative;
-    font-size: 1.9rem;
+    font-size: 2rem;
     line-height: 1em;
     color: $themeColor;
     display: inline-block;
+    margin-right: -0.25em;
 
     &__stars {
         display: flex;
@@ -22,13 +23,13 @@
     }
 
     &__star {
-        margin-right: 1rem;
+        margin-right: 0.25em;
     }
 
     &__stars-2 {
         position: relative;
         z-index: 1;
-        color: $textColor;
+        color: inherit;
     }
 }
 
