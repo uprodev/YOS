@@ -1,0 +1,44 @@
+<div class="side-basket proposition" data-proposition>
+    <!-- 
+        Можно открыть/закрыть боковое окно скриптами, есть два метода
+        window.proposition.open();
+        window.proposition.close();
+    -->
+    <div class="side-basket__container">
+        <button class="side-basket__close-btn" data-action="close-proposition"><span
+                class="icon-close-thin"></span></button>
+        <div class="side-basket__head">
+            <h2>Поділися своєю думкою </h2>
+            <p>Що может зробити наш сайт більш зручнішим для тебе?</p>
+        </div>
+        <div class="side-basket__scroll-container">
+            <form action="">
+                <div class="form__fields">
+                    <div class="form__field">
+                        @@include('../../components/inputs/_input.html', {
+                        "label": "Ім’я",
+                        "type": "text",
+                        "required": true 
+                    })
+                    </div>
+                    <div class="form__field">
+                        @@include('../../components/inputs/_input.html', {
+                        "label": "Електронна адреса",
+                        "type": "Email",
+                        "required": true 
+                    })
+                    </div>
+                    <div class="form__field">
+                        @@include('../../components/inputs/_textarea.html', {
+                        "label": "Текст повідомлення"
+                        })
+                    </div>
+                </div>
+                <div class="form__footer">
+                    <button class="button-primary dark">надіслати</button>
+                    <button class="button-primary light">надіслати анонімно</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

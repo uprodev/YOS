@@ -31,6 +31,7 @@ if (mobileMenu) {
             || e.target.closest('[data-side-basket]')
             || e.target.closest('[data-filter]')
             || e.target.closest('[data-add-comment]')
+            || e.target.closest('[data-proposition]')
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {

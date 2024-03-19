@@ -64,6 +64,7 @@ class App {
 			@@include('../widgets/brands/brands.js');
 			@@include('../widgets/faq/faq.js');
 			@@include('../widgets/special-offers/special-offers.js');
+			@@include('../widgets/proposition/proposition.js');
 			// ==== // widgets =====================================================
 		
 			document.body.classList.add('page-loaded');

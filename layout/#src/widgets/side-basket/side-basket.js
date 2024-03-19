@@ -32,6 +32,4 @@ if (sideBasket) {
             bodyUnlock();
         }
     }
-
-    
 }
