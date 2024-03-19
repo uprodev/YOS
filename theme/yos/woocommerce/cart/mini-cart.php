@@ -91,7 +91,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                                         </div>
                                     </div>
                                     <div class="product-card-sm__price">
-                                        <?= $_product->get_price_html();?>
+                                        <?= $product_price;?>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                     <div class="product-card-sm">
                         <div class="product-card-sm__left">
                             <a href="<?= get_permalink($addit_prod);?>" class="product-card-sm__img">
-                                <img src="<?= get_the_post_thumbnail_url($addit_prod, 'thumb');?>" alt="">
+                                <img src="<?= get_the_post_thumbnail_url($addit_prod);?>" alt="">
                             </a>
                         </div>
                         <div class="product-card-sm__right">
@@ -153,7 +153,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                             </div>
                             <div class="product-card-sm__price">
                                 <?= $_prod->get_price_html();?>
-                                <?= $_prod->get_de ?>
+
                             </div>
                             <div class="product-card-sm__btn-add">
                                 <?php if($_prod->is_type('variable')):  ?>
