@@ -23,7 +23,7 @@ $link = get_sub_field('link');
                                     ?>
 
                                         <div class="swiper-slide" data-action="change-banner-image-by-index" data-index="<?= $c;?>">
-                                            <a href="<?= get_term_link($cat);?>"><?= $name->name;?> <?= $cs?'<span class="link-label">' . __('Coming soon', 'yos') . '</span>':'';?></a>
+                                            <a href="<?= get_term_link($cat);?>"><?= $name->name;?> <?= $cs?'<img src="'.get_template_directory_uri().'/img/icons/coming-soon.svg" class="coming-soon">':'';?></a>
                                         </div>
 
                                     <?php $c++; endforeach;?>
