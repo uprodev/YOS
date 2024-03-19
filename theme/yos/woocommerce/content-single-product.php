@@ -77,7 +77,7 @@ if ($product->is_type( 'variable' )) {
                 <div class="product__col-2">
                     <div class="product__main-info product-main-info">
                         <?php if($brand):?>
-                            <h2 class="product-main-info__title title-2"><?= $brand[0]->name;?></h2>
+                            <h2 class="product-main-info__title title-2"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></h2>
                         <?php endif;?>
                         <?php woocommerce_template_single_title();?>
                         <?php if(get_field('seria')):?>
