@@ -1,5 +1,9 @@
 <?php
 
+$title = get_field('fidbek_zagolovok', 'options');
+$text = get_field('tekst_fidbek', 'options');
+$form = get_field('fidbek_forma', 'options');
+
 ?>
 
 <div class="side-basket proposition" data-proposition>
@@ -12,42 +16,21 @@
         <button class="side-basket__close-btn" data-action="close-proposition"><span
                 class="icon-close-thin"></span></button>
         <div class="side-basket__head">
-            <h2>Поділися своєю думкою </h2>
-            <p>Що может зробити наш сайт більш зручнішим для тебе?</p>
+            <?php if($title):?>
+                <h2><?= $title;?></h2>
+            <?php endif;?>
+            <?php if($text):?>
+                <p><?= $text;?></p>
+            <?php endif;?>
         </div>
-        <div class="side-basket__scroll-container">
-            <form action="">
-                <div class="form__fields">
-                    <div class="form__field">
-                        <div class="input-wrap" data-input>
 
+        <?php if($form):?>
+            <div class="side-basket__scroll-container">
 
-                            <input type="text" class="input" required placeholder="enter">
-                            <span class="input-label">Ім’я</span>
+                <?= do_shortcode('[contact-form-7 id="'.$form.'"]');?>
 
-                        </div>
-                    </div>
-                    <div class="form__field">
-                        <div class="input-wrap" data-input>
+            </div>
+        <?php endif;?>
 
-
-                            <input type="Email" class="input" required placeholder="enter">
-                            <span class="input-label">Електронна адреса</span>
-
-                        </div>
-                    </div>
-                    <div class="form__field">
-                        <div class="textarea-wrap" data-textarea>
-                            <textarea class="textarea" placeholder="enter"></textarea>
-                            <span class="textarea-label">Текст повідомлення</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form__footer">
-                    <button class="button-primary dark">надіслати</button>
-                    <button class="button-primary light">надіслати анонімно</button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
