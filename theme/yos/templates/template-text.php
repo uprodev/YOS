@@ -26,7 +26,7 @@ get_header();
 
                                     <?php while( have_rows('content') ): the_row(); ?>
                                         <?php if( get_row_layout() == 'text' ): ?>
-                                            <?php the_sub_field('text'); ?>
+                                            <?php the_sub_field('tekst'); ?>
                                         <?php elseif( get_row_layout() == 'list' ):
                                             $list = get_sub_field('list');
                                             $i = 1;
