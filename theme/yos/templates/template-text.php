@@ -22,15 +22,17 @@ get_header();
                         <?php if( have_rows('content') ): ?>
 
                             <div class="faq__content">
-                                <div class="text-content last-no-margin">
 
-                                    <?php while( have_rows('content') ): the_row(); ?>
-                                        <?php if( get_row_layout() == 'text' ): ?>
+                                <?php while( have_rows('content') ): the_row(); ?>
+                                    <?php if( get_row_layout() == 'text' ): ?>
+                                        <div class="text-content">
                                             <?php the_sub_field('tekst'); ?>
-                                        <?php elseif( get_row_layout() == 'list' ):
-                                            $list = get_sub_field('list');
-                                            $i = 1;
-                                            ?>
+                                        </div>
+                                    <?php elseif( get_row_layout() == 'list' ):
+                                        $list = get_sub_field('list');
+                                        $i = 1;
+                                        ?>
+                                        <div class="text-content">
                                             <ul class="product__spoller spoller" data-spoller>
                                                 <?php foreach ($list as $li):
                                                     $punkts = $li['punkty'];
@@ -56,10 +58,32 @@ get_header();
                                                 <?php $i++; endforeach;?>
 
                                             </ul>
-                                        <?php endif; ?>
-                                    <?php endwhile; ?>
+                                        </div>
 
-                                </div>
+                                    <?php elseif( get_row_layout() == 'info' ):
+                                        $title = get_sub_field('zagolovok');
+                                        $update = get_sub_field('onovlennya');
+                                        $text = get_sub_field('tekst');
+                                        ?>
+                                        <div class="faq__content-head">
+                                            <?php if($title):?>
+                                                <h2><span><?= $title;?></span></h2>
+                                            <?php endif;?>
+                                            <?php if($update):?>
+                                                <div class="faq__content-date">
+                                                    <?= $update;?>
+                                                </div>
+                                            <?php endif;?>
+                                        </div>
+                                        <?php if($text):?>
+                                            <div class="faq__content-text text-content last-no-margin">
+                                                <?= $text;?>
+                                            </div>
+                                        <?php endif;?>
+
+                                    <?php endif; ?>
+                                <?php endwhile; ?>
+
                             </div>
                         <?php endif; ?>
 
