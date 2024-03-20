@@ -1606,6 +1606,7 @@ if (mobileMenu) {
             || e.target.closest('[data-side-basket]')
             || e.target.closest('[data-filter]')
             || e.target.closest('[data-add-comment]')
+            || e.target.closest('[data-proposition]')
             ) return;
 
         if(!e.target.closest('.mobile-menu')) {
@@ -2023,7 +2024,7 @@ if (banners.length) {
         })
 
         const triggers = banner.querySelectorAll('.category-links__list [data-action="change-banner-image-by-index"]');
-        console.log(triggers);
+
         triggers.forEach((trigger, i) => {
             if(i === 0) trigger.classList.add('active')
 
@@ -2255,27 +2256,27 @@ if (setStartsElements.length) {
     })
 }
 
-const addCommentEl = document.querySelector('[data-add-comment]');
-if (addCommentEl) {
-    this.utils.setHeightOfWindowWhenResize(addCommentEl);
 
-    const openButtons = document.querySelectorAll('[data-action="opne-add-comment"]');
-    const closeButtons = document.querySelectorAll('[data-action="close-add-comment"]');
+const commentsList = document.querySelector('.product-comments__list');
+if(commentsList) {
+    commentsList.addEventListener('click', (e) => {
+        if(e.target.closest('[data-open-form]')) {
+            const parent = e.target.closest('.comment');
+            if(!parent) return;
 
-    closeButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            addCommentEl.classList.remove('open');
-            document.documentElement.classList.remove('overflow-hidden');
-        })
-    });
+            const formWrap = parent.querySelector('.comment__form');
+            if(!formWrap) return;
+            formWrap.classList.add('show');
+        }
 
-    openButtons.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            addCommentEl.classList.add('open');
-            document.documentElement.classList.add('overflow-hidden');
-        })
+        if(e.target.closest('[data-close-form]')) {
+            const parent = e.target.closest('.comment');
+            if(!parent) return;
+
+            const formWrap = parent.querySelector('.comment__form');
+            if(!formWrap) return;
+            formWrap.classList.remove('show');
+        }
     })
 };
 			const sideBasket = document.querySelector('[data-side-basket]');
@@ -2312,8 +2313,6 @@ if (sideBasket) {
             bodyUnlock();
         }
     }
-
-    
 };
 			
 const brandsNavSlider = document.querySelector('[data-slider="brands-nav"]');
@@ -2472,6 +2471,43 @@ if (faqNavSlider) {
                 },
             })
         })
+    }
+};
+			{
+    const proposition = document.querySelector('[data-proposition]');
+    if (proposition) {
+        this.utils.setHeightOfWindowWhenResize(proposition);
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('[data-action="open-proposition"]')) {
+                e.preventDefault();
+                bodyLock();
+                proposition.classList.add('open');
+            } else if (e.target.closest('[data-action="close-proposition"]')) {
+                e.preventDefault();
+                proposition.classList.remove('open');
+                bodyUnlock();
+            }
+        })
+
+        proposition.addEventListener('click', (e) => {
+            if (e.target.closest('.side-basket__container')) return;
+
+            proposition.classList.remove('open');
+            bodyUnlock();
+        })
+
+        window.proposition = {
+            open: () => {
+                bodyLock();
+                proposition.classList.add('open');
+            },
+
+            close: () => {
+                proposition.classList.remove('open');
+                bodyUnlock();
+            }
+        }
     }
 };
 			// ==== // widgets =====================================================
