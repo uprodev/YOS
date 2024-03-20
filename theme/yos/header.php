@@ -112,3 +112,5 @@
         get_template_part('parts/header/side-basket');
 
     }
+
+    get_template_part('parts/header/proposition');

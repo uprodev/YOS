@@ -70,7 +70,7 @@
                     $linkf_title = $linkf['title'];
                     $linkf_target = $linkf['target'] ? $linkf['target'] : '_self';
                     ?>
-                    <a class="button-link button-link--line" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>"><span><?= esc_html($linkf_title); ?></span></a>
+                    <a class="button-link button-link--line" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>" data-action="open-proposition"><span><?= esc_html($linkf_title); ?></span></a>
                 <?php endif; ?>
             </div>
             <div class="footer-desk__col footer-desk__col-4">

@@ -64,7 +64,7 @@
                         $linkf_target = $linkf['target'] ? $linkf['target'] : '_self';
                         ?>
                         <div class="footer-mob__vertical-content">
-                            <a class="button-link button-link--line" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>">
+                            <a class="button-link button-link--line" data-action="open-proposition" href="<?= esc_url($linkf_url); ?>" target="<?= esc_attr($linkf_target); ?>">
                                 <span><?= esc_html($linkf_title); ?></span>
                             </a>
                         </div>
