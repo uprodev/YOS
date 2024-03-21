@@ -56,6 +56,7 @@ $prc3 = round(($s3*100)/$review_count);
 $prc4 = round(($s4*100)/$review_count);
 $prc5 = round(($s5*100)/$review_count);
 endif;
+
 ?>
 
 <div class="top-space-60 top-space-md-150">
@@ -105,7 +106,9 @@ endif;
                                 <?= $average;?>
                             </div>
                         </div>
-
+                        <div class="product-reviews__main-stars-row">
+                            <div class="product-reviews__count"><?php printf( _n( '%s відгук', '%s відгуки', $review_count, 'yos' ), $review_count);?></div>
+                        </div>
                     </div>
                     <div class="product-reviews__chart reviews-chart">
                         <div class="reviews-chart__row">

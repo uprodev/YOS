@@ -98,15 +98,15 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
                         ) ) );
 
                     }?>
-                    <?php if($dpt==1):?>
-                        <div class="comment__answers-count">
-                            <img src="<?= get_template_directory_uri();?>/img/icons/answer.svg" alt="">
-                            1 відповідь
-                        </div>
+                    <?php if($dpt==1 && $comment->comment_parent==0):?>
+                            <div class="comment__answers-count">
+                                <img src="<?= get_template_directory_uri();?>/img/icons/answer.svg" alt="">
+                                <?= __('1 відповідь', 'yos');?>
+                            </div>
 
-                        <div class="comment__likes">
-                            <?php comments_like_dislike(get_comment_ID());?>
-                        </div>
+                            <div class="comment__likes">
+                                <?php comments_like_dislike(get_comment_ID());?>
+                            </div>
                     <?php endif;?>
                 </div>
             </div>
