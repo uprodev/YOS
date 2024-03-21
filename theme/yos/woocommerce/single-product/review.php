@@ -21,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 $rate = intval(get_comment_meta(get_comment_ID(), 'rating', true));
-$buy = get_field('approve_buy', 'comment_'.get_comment_ID());
 $dpt = get_comment_depth(get_comment_ID());
 
 $images = get_field('photos', 'comment_'.get_comment_ID());
@@ -31,9 +30,9 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
     <div class="comment <?= $dpt>1?'subcomment':'';?>">
         <div class="comment__head">
             <div class="comment__author-name">
-                <?php if (1 == $comment->user_id){?>
-                    <img src="<?= get_template_directory_uri();?>/img/logo/yos-short-logo.png" alt="">
-                <?php }else{
+                <?php if (1 == $comment->user_id){
+                    echo __('Консультант YOS', 'yos');
+                }else{
                     comment_author();
                 }?>
             </div>
@@ -76,34 +75,40 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
                         </div>
                     </div>
                 </div>
+                <div class="comment__date">
+                    <?=  get_comment_date( 'j.m.Y'  ); ?>
+                </div>
             <?php endif;?>
         </div>
         <div class="comment__body">
-            <?php if($images):?>
-                <div class="comment-images">
-                    <?php foreach ($images as $img){?>
-                        <img src="<?= $img['sizes']['woocommerce_gallery_thumbnail'];?>" alt="comment_img">
-                    <?php }?>
-                </div>
-            <?php endif;?>
             <div class="comment__text">
                 <?php do_action( 'woocommerce_review_comment_text', $comment );?>
             </div>
             <div class="comment__footer">
-                <div class="comment__date">
-                    <?=  get_comment_date( 'j F Y'  ); ?>
+                <div class="comment__footer-row">
+
+                    <?php if( current_user_can('administrator') && $dpt == 1){
+
+                        comment_reply_link( array_merge( $args, array(
+                            'reply_text' => __('відповісти', 'yos'),
+                            'depth'     => 1,
+                            'max_depth' => 2,
+                            'before'    => '<div class="button-link comment__reply-btn" data-open-form><span>',
+                            'after'     => '</span></div>'
+                        ) ) );
+
+                    }?>
+                    <?php if($dpt==1):?>
+                        <div class="comment__answers-count">
+                            <img src="<?= get_template_directory_uri();?>/img/icons/answer.svg" alt="">
+                            1 відповідь
+                        </div>
+
+                        <div class="comment__likes">
+                            <?php comments_like_dislike(get_comment_ID());?>
+                        </div>
+                    <?php endif;?>
                 </div>
-                <?php if( current_user_can('administrator')){
-
-                    comment_reply_link( array_merge( $args, array(
-                        'reply_text' => __('відповісти', 'yos'),
-                        'depth'     => 1,
-                        'max_depth' => 2,
-                        'before'    => '<div class="button-link comment__reply-btn"><span>',
-                        'after'     => '</span></div>'
-                    ) ) );
-
-                }?>
             </div>
         </div>
     </div>
