@@ -176,7 +176,7 @@ endif;
                                 </div>
                                 <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :?>
                                     <div class="product-comments__footer">
-                                        <button class="button-primary light">більше відгуків</button>
+                                        <button class="button-primary light"><?= __('більше відгуків', 'yos');?></button>
                                     </div>
                                 <?php endif;?>
 
