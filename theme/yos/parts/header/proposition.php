@@ -12,7 +12,7 @@ $form = get_field('fidbek_forma', 'options');
         window.proposition.open();
         window.proposition.close();
     -->
-    <div class="side-basket__container">
+    <div class="proposition__container">
         <button class="side-basket__close-btn" data-action="close-proposition"><span
                 class="icon-close-thin"></span></button>
         <div class="side-basket__head">
