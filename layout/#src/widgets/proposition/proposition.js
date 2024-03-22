@@ -16,7 +16,7 @@
         })
 
         proposition.addEventListener('click', (e) => {
-            if (e.target.closest('.side-basket__container')) return;
+            if (e.target.closest('.proposition__container')) return;
 
             proposition.classList.remove('open');
             bodyUnlock();

@@ -630,11 +630,12 @@ if (popupCloseIcon.length > 0) {
 
 function popupOpen(curentPopup) {
     if (curentPopup && unlock) {
+        document.documentElement.classList.add('overflow-hidden');
         const popupActive = document.querySelector('.popup.popup--open');
         if (popupActive) {
             popupClose(popupActive, false);
         } else {
-            bodyLock();
+            //bodyLock();
         }
         curentPopup.classList.add('popup--open');
         curentPopup.addEventListener('click', function (e) {
@@ -648,9 +649,10 @@ function popupOpen(curentPopup) {
 
 function popupClose(popupActive, doUnlock = true) {
     if (unlock) {
+        document.documentElement.classList.remove('overflow-hidden');
         popupActive.classList.remove('popup--open');
         if (doUnlock) {
-            bodyUnlock();
+            //bodyUnlock();
         }
     }
 }
@@ -2491,7 +2493,7 @@ if (faqNavSlider) {
         })
 
         proposition.addEventListener('click', (e) => {
-            if (e.target.closest('.side-basket__container')) return;
+            if (e.target.closest('.proposition__container')) return;
 
             proposition.classList.remove('open');
             bodyUnlock();

@@ -112,5 +112,9 @@
         background-color: transparent !important;
         color: inherit !important;
         font-size: inherit !important;
+
+        &::after {
+            display: none;
+        }
     }
 }
