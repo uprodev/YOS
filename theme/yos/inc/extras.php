@@ -61,10 +61,12 @@ function all_commentfields( $fields ) {
     $myauthor_field = $fields['author'];
     $myemail_field = $fields['email'];
     $myrate_field = $fields['rating'];
+    $myphoto_field = $fields['photo'];
 
     unset( $fields['comment'], $fields['author'], $fields['email'], $fields['rating'], $fields['photo']);
 
     $fields['rating'] = $myrate_field;
+    $fields['photo'] = $myphoto_field;
     $fields['author'] = $myauthor_field;
     $fields['email'] = $myemail_field;
     $fields['comment'] = $mycomment_field;
@@ -74,6 +76,23 @@ function all_commentfields( $fields ) {
 
 add_filter( 'comment_form_fields', 'all_commentfields' );
 
+add_action( 'comment_post', 'save_comment_meta_data' );
+function save_comment_meta_data( $comment_id ) {
+    if ( ( isset( $_POST['media_ids'] ) ) && ( $_POST['media_ids'] != '') )
+        $photo = explode(",", $_POST['media_ids']);
+    add_comment_meta( $comment_id, 'photos', $photo );
+    update_field( 'photos', $photo, get_comment($comment_id) );
+}
+
+/* comment dropzone field */
+
+
+add_action( 'comment_form_logged_in_after', 'extend_comment_custom_fields' );
+add_action( 'comment_form_after_fields', 'extend_comment_custom_fields' );
+function extend_comment_custom_fields() {
+
+    echo '<div class="add-comment__form-field dropzone"><button type="button" class="button-primary light drop-zone">'.__('Додати медіафайл', 'yos').' <input id="photo" name="photo" type="file"/></button><div class="drop-zone__preview dropzone-previews"></div><input type="hidden" name="media_ids"></div>';
+}
 
 /* excerpt */
 

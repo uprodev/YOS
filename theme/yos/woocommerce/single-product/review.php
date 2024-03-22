@@ -84,6 +84,13 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
             <div class="comment__text">
                 <?php do_action( 'woocommerce_review_comment_text', $comment );?>
             </div>
+            <?php if($images):?>
+                <div class="comment-images">
+                    <?php foreach ($images as $img){?>
+                        <img src="<?= $img['sizes']['woocommerce_gallery_thumbnail'];?>" alt="comment_img">
+                    <?php }?>
+                </div>
+            <?php endif;?>
             <div class="comment__footer">
                 <div class="comment__footer-row">
 
