@@ -164,12 +164,6 @@ $choise = get_field('yos_choise', get_the_ID());
                                                 <div class="product-actions__option-head">
                                                     <div class="product-actions__option-title"><?= ($tax->labels->singular_name) ?>: </div>
 
-                                                    <?php if ($i == 1) { ?>
-                                                        <div class="product-actions__option-text stock" data-instock="<?= __('Є в наявності', 'yos');?>" data-outofstock="<?= __('Немає в наявності', 'yos');?>">
-                                                            <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
-                                                        </div>
-                                                    <?php } ?>
-
                                                     <?php if ($is_color) { ?>
                                                         <div class="product-actions__option-text color-label"></div>
                                                     <?php } ?>
@@ -216,13 +210,10 @@ $choise = get_field('yos_choise', get_the_ID());
                                         }
 
                                     }
-                                } else { ?>
-                                    
-                                <div class="product-actions__stock-status">
-                                    <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
-                                </div>
-
-                            <?php } ?>
+                                }?>
+                            <div class="product-actions__stock-status">
+                                <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
+                            </div>
 
 
                             <?php if ($product->is_type('variable')):?>

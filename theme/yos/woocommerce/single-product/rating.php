@@ -69,6 +69,7 @@ if ( $rating_count > 0 ) : ?>
                     </div>
                 </div>
             </div>
+            <div class="product-actions__stars-comments-count"><?php printf( _n( '%s відгук', '%s відгуки', $review_count, 'yos' ), $review_count);?></div>
         </a>
     </div>
 
