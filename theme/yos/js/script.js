@@ -475,5 +475,12 @@ jQuery(document).ready(function ($) {
     $('[name="product"]').val(product + ' id:' + product_id);
   })
 
+    $(document).on('click', '.icon-close', function(){
+
+        $.cookie("Modal", 'close', { expires: 1, path: "/" });
+
+    });
+
+
 
 });
