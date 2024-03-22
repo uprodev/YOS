@@ -87,7 +87,9 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
             <?php if($images):?>
                 <div class="comment-images">
                     <?php foreach ($images as $img){?>
-                        <img src="<?= $img['sizes']['woocommerce_gallery_thumbnail'];?>" alt="comment_img">
+                        <a href="<?= $img['sizes']['full'];?>" data-fancybox="images-group-id">
+                            <img src="<?= $img['sizes']['woocommerce_gallery_thumbnail'];?>" alt="comment_img">
+                        </a>
                     <?php }?>
                 </div>
             <?php endif;?>
