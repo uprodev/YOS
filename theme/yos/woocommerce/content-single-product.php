@@ -76,8 +76,34 @@ $choise = get_field('yos_choise', get_the_ID());
                     <div class="product__images">
                         <div class="product-card__labels">
                             <?= $choise?'<div class="product-card-label product-card-label--secondary">'.__('YOS choice', 'yos').'</div>':'';?>
-                            <div class="product-card-label product-card-label--secondary">YOS choice</div>
-                            <div class="product-card-label">-25%</div>
+                            <?php if ($product->is_type('variable')):
+                                if ( $default_variation &&  $default_variation->is_on_sale() ) :
+
+
+                                    $price = $default_variation->regular_price;
+                                    $sale = $default_variation  ->sale_price;
+
+                                    $perc = round(($price-$sale)*100/$price); ?>
+
+                                    <div class="product-card-label <?= $perc > 0 ? 'show' : '' ?>"  >-<?= $perc;?>%</div>
+
+                                <?php
+
+                                endif;
+
+                            elseif($product->is_type('simple')):
+
+                                if ( $product->is_on_sale() ) :
+                                    $price = $product->regular_price;
+                                    $sale = $product->sale_price;
+
+                                    $perc = round(($price-$sale)*100/$price);?>
+
+                                    <div class="product-card-label">-<?= $perc;?>%</div>
+
+                                <?php endif;
+
+                            endif;?>
                         </div>
 
                         <?php woocommerce_show_product_images();?>
@@ -191,8 +217,8 @@ $choise = get_field('yos_choise', get_the_ID());
 
                                     }
                                 } else { ?>
-
-                                <div class="product-actions__option-text stock" data-instock="<?= __('Є в наявності', 'yos');?>" data-outofstock="<?= __('Немає в наявності', 'yos');?>">
+                                    
+                                <div class="product-actions__stock-status">
                                     <?= $product->is_in_stock()?__('Є в наявності', 'yos'):__('Немає в наявності', 'yos');?>
                                 </div>
 
