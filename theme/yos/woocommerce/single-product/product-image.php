@@ -28,7 +28,6 @@ $attachment_ids = $product->get_gallery_image_ids();
 $post_thumbnail_id = $product->get_image_id();
 
 ?>
-<div class="product__images">
     <div class="product-images" data-product-images>
         <?php do_action( 'woocommerce_product_thumbnails' );?>
 
@@ -52,5 +51,5 @@ $post_thumbnail_id = $product->get_image_id();
             </div>
             <div class="swiper-scrollbar slider-scrollbar"></div>
         </div>
+
     </div>
-</div>
