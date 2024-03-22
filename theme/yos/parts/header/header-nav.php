@@ -2,20 +2,26 @@
 
 $offer = get_field('offer', 'options');
 
-if($offer && !is_checkout()):?>
+if($offer && !is_checkout()):
 
-    <a href="" class="top-offer" data-top-offer>
-        <div class="top-offer__inner container">
-            <div class="top-offer__text">
-                <?= $offer;?>
+//    if(!$_COOKIE['Modal']):
+        ?>
+
+        <div class="top-offer" data-top-offer>
+            <div class="top-offer__inner container">
+                <div class="top-offer__text">
+                    <?= $offer;?>
+                </div>
+                <button class="top-offer__close" data-action="close-top-offer">
+                    <span class="icon-close"></span>
+                </button>
             </div>
-            <button class="top-offer__close" data-action="close-top-offer">
-                <span class="icon-close"></span>
-            </button>
         </div>
-    </a>
 
-<?php endif;?>
+    <?php
+//    endif;
+
+endif;?>
 
 <div class="header__nav header-desk">
     <div class="header-desk__body container header-actions">
