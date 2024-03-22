@@ -25,6 +25,13 @@ $dpt = get_comment_depth(get_comment_ID());
 
 $images = get_field('photos', 'comment_'.get_comment_ID());
 
+$args = array(
+    'parent' => get_comment_ID(),
+    'hierarchical' => true,
+);
+$answers = get_comments($args);
+$count = count($answers);
+
 ?>
 <div id="comment-<?php comment_ID(); ?>">
     <div class="comment <?= $dpt>1?'subcomment':'';?>">
@@ -87,7 +94,7 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
             <?php if($images):?>
                 <div class="comment-images">
                     <?php foreach ($images as $img){?>
-                        <a href="<?= $img['sizes']['full'];?>" data-fancybox="images-group-id">
+                        <a href="<?= $img['sizes']['large'];?>" data-fancybox="images-group-id">
                             <img src="<?= $img['sizes']['woocommerce_gallery_thumbnail'];?>" alt="comment_img">
                         </a>
                     <?php }?>
@@ -107,10 +114,10 @@ $images = get_field('photos', 'comment_'.get_comment_ID());
                         ) ) );
 
                     }?>
-                    <?php if($dpt==1 && $comment->comment_parent==0):?>
+                    <?php if($dpt==1 && !empty($answers)):?>
                             <div class="comment__answers-count">
                                 <img src="<?= get_template_directory_uri();?>/img/icons/answer.svg" alt="">
-                                <?= __('1 відповідь', 'yos');?>
+                                <?= $count . __(' відповідь', 'yos');?>
                             </div>
 
                             <div class="comment__likes">
