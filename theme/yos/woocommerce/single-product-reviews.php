@@ -117,7 +117,7 @@ endif;
                             </div>
                             <div class="reviews-chart__line">
                                 <div class="line-track">
-                                    <div class="line" style="width: <?= $prc5;?>%;"></div>
+                                    <div class="line" style="width: <?= $prc5?$prc5:0;?>%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ endif;
                             </div>
                             <div class="reviews-chart__line">
                                 <div class="line-track">
-                                    <div class="line" style="width: <?= $prc4;?>%;"></div>
+                                    <div class="line" style="width: <?= $prc4?$prc4:0;?>%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@ endif;
                             </div>
                             <div class="reviews-chart__line">
                                 <div class="line-track">
-                                    <div class="line" style="width: <?= $prc3;?>%;"></div>
+                                    <div class="line" style="width: <?= $prc3?$prc3:0;?>%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -147,7 +147,7 @@ endif;
                             </div>
                             <div class="reviews-chart__line">
                                 <div class="line-track">
-                                    <div class="line" style="width: <?= $prc2;?>%;"></div>
+                                    <div class="line" style="width: <?= $prc2?$prc2:0;?>%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@ endif;
                             </div>
                             <div class="reviews-chart__line">
                                 <div class="line-track">
-                                    <div class="line" style="width: <?= $prc1;?>%;"></div>
+                                    <div class="line" style="width: <?= $prc1?$prc1:0;?>%;"></div>
                                 </div>
                             </div>
                         </div>
