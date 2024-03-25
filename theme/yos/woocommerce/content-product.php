@@ -35,7 +35,7 @@
         $variations = ($product->get_available_variations());
         $variations_attr = ($product->get_variation_attributes());
         $default_attributes = $product->get_default_attributes();
-        $count_variations = (count($variations[0]['attributes']));
+        $count_variations = (count( $variations[0]['attributes'] ?? []));
 
         $prefixed_slugs = array_map( function( $pa_name ) {
             return 'attribute_'. $pa_name;
@@ -51,6 +51,7 @@
             $default_variation = new WC_Product_Variation($variation_id);
 
 
+      //  print_r(array_values(wp_list_pluck($variations, 'attributes')));
     }
 
     if (isset($variations_attr['pa_volumes'])){
@@ -211,7 +212,7 @@
                                         $visible = $attribute->get_visible();
                                         $is_color = $attribute_name == 'pa_color' ? true : false;
 
-                                        if (!$visible || $attribute_name == 'pa_brand' || !$terms)
+                                        if (!$visible || $attribute_name == 'pa_brand' || count($terms) < 2)
                                             continue;
 
                                         if ( $attribute ) {

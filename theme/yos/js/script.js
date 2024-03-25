@@ -200,20 +200,31 @@ jQuery(document).ready(function ($) {
         $('.product-actions__option-text.stock').text(stock)
 
         if (!variation.is_in_stock) {
-          $('.product-actions__footer .add-cart').prop('disabled', true)
+          $('.product-actions__footer .add-cart').prop('disabled', true).hide()
+          $('.btn-avaliable-var').show()
         } else {
-          $('.product-actions__footer .add-cart').prop('disabled', false)
+          $('.product-actions__footer .add-cart').prop('disabled', false).show()
+          $('.btn-avaliable-var').hide()
         }
 
-        if ($('[name="pa_color"]').length) {
-          var label = $('[name="pa_color"]:checked').attr('data-label')
-          $('.product-actions__option-text.color-label').text(label)
 
-        }
 
 
 
     });
+
+
+  if ($('[name="pa_color"]').length) {
+    setTimeout(function(){
+      $('[name="pa_color"]').change()
+    }, 200)
+
+    $('[name="pa_color"]').change(function(){
+      var label = $('[name="pa_color"]:checked').attr('data-label')
+      $('.product-actions__option-text.color-label').text(label)
+    })
+
+  }
 
 
   /* variation loop  */
@@ -480,6 +491,21 @@ jQuery(document).ready(function ($) {
         $.cookie("Modal", 'close', { expires: 1, path: "/" });
 
     });
+
+
+  function formatMoney(number, decPlaces, decSep, thouSep) {
+    decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+      decSep = typeof decSep === "undefined" ? "." : decSep;
+    thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+    var sign = number < 0 ? "-" : "";
+    var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+    var j = (j = i.length) > 3 ? j % 3 : 0;
+
+    return sign +
+      (j ? i.substr(0, j) + thouSep : "") +
+      i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+      (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+  }
 
 
 

@@ -150,13 +150,23 @@ $choise = get_field('yos_choise', get_the_ID());
                                     foreach ( $product_attributes as $attribute_name => $attribute ) {
                                         $i++;
                                         $tax = get_taxonomy($attribute_name);
-                                        $terms = $attribute->get_data()['options'];
+                                        $termsA = $attribute->get_data()['options'];
+                                        $terms = get_terms([
+                                            'taxonomy' => $attribute_name,
+                                            'include' => $termsA,
+                                            'fields' => 'ids',
+                                            'orderby' => 'menu-order',
+                                            'order' => 'ASC'
+                                        ]);
+
                                         $variation = $attribute->get_variation();
                                         $visible = $attribute->get_visible();
                                         $is_color = $attribute_name == 'pa_color' ? true : false;
 
                                         if (!$visible || $attribute_name == 'pa_brand' || !$terms)
                                             continue;
+
+
 
                                         if ( $attribute ) {
                                             ?>
@@ -274,6 +284,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
                                 <?php if ($product->is_in_stock()) { ?>
                                     <button <?= $consultation||!$product->is_in_stock()?'disabled':'';?> data-target="toggle-button-as-disabled-by-id" data-id="add-to-basket" class="product-actions__buy button-primary dark add-cart" data-product_id="<?= get_the_ID();?>"><?= __('додати до кошика', 'yos');?></button>
+                                    <a style="display: none" href="#popup-notify-availability" data-product="<?php the_title() ?>" data-product_id="<?php the_id()  ?>" data-popup="open-popup" class="button-primary dark btn-avaliable btn-avaliable-var">повідомити про наявність</a>
                                 <?php } else { ?>
                                     <a href="#popup-notify-availability" data-product="<?php the_title() ?>" data-product_id="<?php the_id()  ?>" data-popup="open-popup" class="button-primary dark btn-avaliable">повідомити про наявність</a>
                                 <?php } ?>

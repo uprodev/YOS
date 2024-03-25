@@ -74,3 +74,27 @@ function _nok_order_by_stock_status( $posts_clauses, $query ) {
     return $posts_clauses;
 }
 add_filter( 'posts_clauses', '_nok_order_by_stock_status', 2000, 2 );
+
+
+add_action('init', function(){
+    if ($_GET['fixsku']) {
+        $q = new WP_Query([
+            'post_type'      => array('product', 'product_variation'),
+            'posts_per_page' => -1,
+          //  'post_status' => 'any'
+        ]);
+
+        while ($q->have_posts()) {
+            $q->the_post();
+
+            $sku = get_post_meta(get_the_id(),'_sku', 1);
+            $l = strlen($sku);
+
+            if ($l == 5)
+                update_post_meta(get_the_id(),'_sku','0'.$sku);
+
+        }
+
+        die();
+    }
+});
