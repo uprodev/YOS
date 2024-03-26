@@ -58,7 +58,7 @@
         top: 50%;
         right: 0;
         transform: translateY(-50%) translateX(2rem);
-        width: 31.7rem;
+        width: 45.7rem;
         transition:
             opacity 0.3s ease,
             transform 0.3s ease;
@@ -147,7 +147,6 @@
         }
 
         & button {
-            font-weight: 300;
             @media #{$mouse-device} {
                 &:hover {
                     color: $themeColorSecondary;
@@ -195,7 +194,8 @@
     font-size: 1rem;
     font-style: italic;
     position: absolute;
-    font-weight: 200;
+    font-weight: 300;
+    letter-spacing: 0.03em;
     top: 0;
     left: 0;
     width: 100%;

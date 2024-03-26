@@ -87,7 +87,7 @@ function alignPricesInOneLine(productsCards) {
     })
 }
 
-function chunkArray(array, size) {
+function chunkArray(array, size = 3) {
     const chunkedArray = [];
 
     for (let i = 0; i < array.length; i += size) {
@@ -103,7 +103,7 @@ function initAlignPricesInOneLine() {
 
     return {
         apply(productsCards, chunksSize, callback) {
-            const chunkedProducts = chunkArray(productsCards, chunksSize = 3);
+            const chunkedProducts = chunkArray(productsCards, chunksSize);
 
             const applyAlignment = () => {
                 chunkedProducts.forEach(chunkProducts => {

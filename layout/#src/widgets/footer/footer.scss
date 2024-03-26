@@ -39,7 +39,7 @@
 
     &__logo {
         height: 6.1rem;
-
+        align-self: flex-start;
         & img, & svg {
             height: 100%;
             width: auto;
@@ -100,7 +100,8 @@
 
     &__logo {
         height: 4.3rem;
-
+        align-self: flex-start;
+        
         & img, & svg {
             height: 100%;
             width: auto;

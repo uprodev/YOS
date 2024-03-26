@@ -281,6 +281,22 @@
 .product-comments {
     &__list {
         border-bottom: 1px solid rgba($themeColor, 0.3);
+
+        & .comment-respond {
+            & .textarea {
+                min-height: 13.5rem;
+                border-radius: 1rem;
+                border-color: $textColor;
+            }
+    
+            & .add-comment__form-stars {
+                display: none;
+            }
+
+            & .add-comment__form-field.dropzone {
+                display: none;
+            }
+        }
     }
 
     &__footer {
@@ -381,6 +397,14 @@
         gap: 0.5rem;
         font-size: $text-2;
         color: $themeColorSecondary;
+        cursor: pointer;
+        transition: opacity $transition;
+
+        @media #{$mouse-device} {
+            &:hover {
+                opacity: 0.7;
+            }
+        }
 
         & img {
             height: 1em;
@@ -497,7 +521,16 @@
         }
 
         & .comment__footer {
-            margin-top: 2rem;
+            display: none;
+        }
+    }
+
+    & ~ div {
+        display: none;
+        margin-bottom: 2rem;
+
+        &.subcomment {
+            margin-bottom: 0;
         }
     }
 }
@@ -517,22 +550,11 @@
     }
 }
 
-.product-comments__list {
-    & .comment-respond {
-        & .textarea {
-            min-height: 13.5rem;
-            border-radius: 1rem;
-            border-color: $textColor;
-        }
-    }
-}
 .comment-respond {
     & .add-comment__form {
         margin-top: 2rem;
     }
-    & .add-comment__form-stars {
-        display: none;
-    }
+
     & p.form-submit,
     & p,
     & .add-comment__form > * {

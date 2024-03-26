@@ -49,10 +49,15 @@
             top: 0;
             right: 0;
             left: auto;
+            gap: 1rem;
+            
+            
         }
 
         & .product-card-label {
             align-self: flex-end;
+            font-size: 1.4rem;
+            padding: .32rem 1.6rem;
         }
     }
 
@@ -317,16 +322,21 @@
         display: flex;
         align-items: flex-end;
         gap: 1.6rem;
+        flex-wrap: wrap;
 
         @media (min-width: $mq-lg) {
-            max-width: 34rem;
             margin-top: 2rem !important;
         }
     }
 
     &__buy {
         flex: 1 1 auto;
-        min-height: 3.9rem;
+        min-height: 4.1rem;
+
+        @media (min-width: $mq-md) {
+            flex: 0 1 auto;
+            min-width: 30.2rem;
+        }
     }
 
     &__like {
@@ -340,7 +350,7 @@
         transition: background-color $transition;
         border: 1px solid $themeColor;
         border-radius: 0.5rem;
-        height: 3.9rem;
+        height: 4.1rem;
         width: 8.1rem;
         background-color: #fff;
 

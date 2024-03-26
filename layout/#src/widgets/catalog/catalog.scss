@@ -561,7 +561,18 @@
                 }
             }
 
+            & ul > li {
+                &[data-letter] {
+                    position: relative;
+                    padding-left: 3.8rem !important;
+                }
+            }
+
             & input[type="checkbox"] {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
                 width: 1.9rem;
                 height: 1.9rem;
                 border: 1px solid #8D8D8D;

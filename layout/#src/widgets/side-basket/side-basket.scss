@@ -27,7 +27,7 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 4rem;
+        gap: 3rem;
         justify-content: space-between;
         padding: 5rem 1rem 2rem;
         transform: translateX(100%);
@@ -204,6 +204,46 @@
     @media (min-width: $mq-lg) {
         & .basket__side-row {
             display: none;
+        }
+    }
+
+    &:not(.proposition) {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+
+            & .side-basket__container {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+    
+            & .side-basket__head {
+                justify-content: initial;
+                position: relative;
+                padding-left: 1.2em;
+    
+                &:before {
+                    font-family: "icomoon" !important;
+                    speak: never;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    position: absolute;
+                    content: "\e90f";
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    transition: transform $transition;
+                    font-size: 1em;
+                }
+            }
+    
+            & .side-basket__close-btn {
+                font-size: 1.9rem;
+                top: 1rem;
+            }
         }
     }
 }

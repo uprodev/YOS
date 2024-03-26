@@ -24,6 +24,14 @@ if (homeIntro) {
             nextEl: homeIntro.querySelector('.slider-btn.right'),
             prevEl: homeIntro.querySelector('.slider-btn.left'),
         },
+        breakpoints: {
+            0: {
+                autoHeight: true
+            },
+            768: {
+                autoHeight: false
+            }
+        },
     })
 
     const scrollbar = homeIntro.querySelector('.swiper-scrollbar');

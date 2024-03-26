@@ -7,7 +7,10 @@ if (sideBasket) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
-        } else if(e.target.closest('[data-action="close-side-basket"]')) {
+        } else if(
+            e.target.closest('[data-action="close-side-basket"]')
+            || e.target.closest('.side-basket__head')
+            ) {
             e.preventDefault();
             sideBasket.classList.remove('open');
             bodyUnlock();

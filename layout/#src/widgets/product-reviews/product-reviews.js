@@ -42,22 +42,25 @@ if (setStartsElements.length) {
 const commentsList = document.querySelector('.product-comments__list');
 if(commentsList) {
     commentsList.addEventListener('click', (e) => {
-        if(e.target.closest('[data-open-form]')) {
-            const parent = e.target.closest('.comment');
-            if(!parent) return;
+        if(e.target.closest('.comment__answers-count')) {
+            const button = e.target.closest('.comment__answers-count');
+            const comment = e.target.closest('.comment');
+            if(!comment) return;
 
-            const formWrap = parent.querySelector('.comment__form');
-            if(!formWrap) return;
-            formWrap.classList.add('show');
-        }
-
-        if(e.target.closest('[data-close-form]')) {
-            const parent = e.target.closest('.comment');
-            if(!parent) return;
-
-            const formWrap = parent.querySelector('.comment__form');
-            if(!formWrap) return;
-            formWrap.classList.remove('show');
+            if(button.classList.contains('active')) {
+                button.classList.remove('active');
+                Array.from(comment.parentElement.children).forEach(child => {
+                    if(child === comment) return;
+                    this.utils.slideUp(child, 300);
+                })
+                
+            } else {
+                button.classList.add('active');
+                Array.from(comment.parentElement.children).forEach(child => {
+                    if(child === comment) return;
+                    this.utils.slideDown(child, 300);
+                })
+            }
         }
     })
 }
