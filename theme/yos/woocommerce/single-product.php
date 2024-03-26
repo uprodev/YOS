@@ -23,7 +23,7 @@ get_header(); ?>
 
 	<main class="_page product-single-page">
 	<div class="head-height-compensation"></div>
-
+        <?php get_template_part('parts/header/categories-menu');?>
 
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>

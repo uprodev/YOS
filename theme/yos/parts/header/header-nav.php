@@ -19,7 +19,7 @@ if($offer && !is_checkout()):
         </div>
 
     <?php
-//    endif;
+//
 
 endif;?>
 
@@ -77,11 +77,11 @@ endif;?>
                     </div>
                 <?php endif;?>
 
-                <div class="header-actions__item">
-                    <a href="#">
-                        <?= __('кабінет', 'yos');?>
-                    </a>
-                </div>
+<!--                <div class="header-actions__item">-->
+<!--                    <a href="#">-->
+<!--                       //= __('кабінет', 'yos');?>-->
+<!--                    </a>-->
+<!--                </div>-->
                 <div class="header-actions__item<?php if (is_cart() || is_checkout()){echo ' disable';}?>">
                     <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
                 </div>
@@ -118,11 +118,11 @@ endif;?>
         </div>
         <div class="header-actions__right">
             <?php if(!is_checkout()):?>
-                <div class="header-actions__item">
-                    <a href="#">
-                        <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/user.svg" alt="">
-                    </a>
-                </div>
+<!--                <div class="header-actions__item">-->
+<!--                    <a href="#">-->
+<!--                        <img class="img-svg" src="//= get_template_directory_uri();/img/icons/user.svg" alt="">-->
+<!--                    </a>-->
+<!--                </div>-->
                 <div class="header-actions__item<?php if (is_cart() || is_checkout()){echo ' disable';}?>">
                     <button class="basket-count" data-action="open-side-basket"><?= WC()->cart->get_cart_contents_count();?></button>
                 </div>
