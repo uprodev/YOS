@@ -43,11 +43,19 @@ if ( $related_products ) :
                         <div class="swiper-wrapper">
                             <?php foreach ( $related_products as $related_product_item ) : ?>
 
+
                                 <?php
                                 if (get_post($related_product_item)->post_parent > 0)
                                     $related_product = new WC_Product_Variation($related_product_item);
-                                else
-                                    $related_product = new WC_Product($related_product_item);
+                                else {
+                                    try {
+                                        $related_product = new WC_Product($related_product_item);
+                                    }
+                                    catch (Exception $ignored)  {
+                                        continue;
+                                    }
+                                }
+
 
                                 $post_object = get_post( $related_product->get_id() );
                                 setup_postdata( $GLOBALS['post'] =& $post_object );?>

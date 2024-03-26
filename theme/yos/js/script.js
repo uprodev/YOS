@@ -172,11 +172,11 @@ jQuery(document).ready(function ($) {
         let sale = variation.display_price;
         let perc = Math.round((pr-sale)*100/pr);
         if(pr == sale){
-            $('.product-actions__price-current').text(pr + ' ₴');
+            $('.product-actions__price-current').text(formatMoney(pr, '', '', ' ') + ' ₴');
             $('.price-sale').hide();
         }else {
-            $('.product-actions__price-current').text(sale + ' ₴');
-            $('.product-actions__price-old').text(pr + ' ₴');
+            $('.product-actions__price-current').text(formatMoney(sale, '', '', ' ') + ' ₴');
+            $('.product-actions__price-old').text(formatMoney(pr, '', '', ' ') + ' ₴');
             $('.product-actions__price-profit').text('-' + perc + '%');
             $('.price-sale').show();
         }
@@ -493,20 +493,23 @@ jQuery(document).ready(function ($) {
     });
 
 
-  function formatMoney(number, decPlaces, decSep, thouSep) {
-    decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
-      decSep = typeof decSep === "undefined" ? "." : decSep;
-    thouSep = typeof thouSep === "undefined" ? "," : thouSep;
-    var sign = number < 0 ? "-" : "";
-    var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
-    var j = (j = i.length) > 3 ? j % 3 : 0;
 
-    return sign +
-      (j ? i.substr(0, j) + thouSep : "") +
-      i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
-      (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
-  }
 
 
 
 });
+
+
+function formatMoney(number, decPlaces, decSep, thouSep) {
+  decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+    decSep = typeof decSep === "undefined" ? "." : decSep;
+  thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+  var sign = number < 0 ? "-" : "";
+  var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+  var j = (j = i.length) > 3 ? j % 3 : 0;
+
+  return sign +
+    (j ? i.substr(0, j) + thouSep : "") +
+    i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+    (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+}
