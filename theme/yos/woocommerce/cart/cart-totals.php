@@ -51,7 +51,26 @@ $addit_prod = recently_viewed_products();
 
 if($addit_prod):
     $_prod =  wc_get_product( $addit_prod );
-    $br = get_the_terms($addit_prod, 'pa_brand');?>
+    $br = get_the_terms($addit_prod, 'pa_brand');
+
+     if ($_prod->is_type( 'variable' )) {
+         $default_attributes = $_prod->get_default_attributes();
+         $count_variations = (count( $variations[0]['attributes'] ?? []));
+
+         $prefixed_slugs = array_map( function( $pa_name ) {
+             return 'attribute_'. $pa_name;
+         }, array_keys( $default_attributes ) );
+         $default_attributes_var = array_combine( $prefixed_slugs, $default_attributes );
+         $variations_json = wp_json_encode( $variations );
+         $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
+        $data_store   = new WC_Product_Data_Store_CPT();
+        $variation_id = $data_store->find_matching_product_variation(
+            new WC_Product( $addit_prod),$default_attributes_var
+        );
+         if ($variation_id)
+             $default_variation = new WC_Product_Variation($variation_id);
+     }
+    ?>
     <div class="basket__side-row recently-row">
         <h4 class="basket__side-title title-4"><?= __('додати до замовлення', 'yos');?></h4>
 
@@ -75,8 +94,13 @@ if($addit_prod):
                         </div>
                     </div>
                     <div class="product-card-sm__price">
-                        <?= $_prod->get_price_html();?>
-                        <?= $_prod->get_de ?>
+                        <?php if ($_prod->is_type( 'variable' )) {
+                            if($default_variation && $default_variation->get_price_html())
+                                echo $default_variation->get_price_html();
+                        }else {
+                            echo $_prod->get_price_html();
+                        }
+                        ?>
                     </div>
                     <div class="product-card-sm__btn-add">
                         <?php if($_prod->is_type('variable')):  ?>
