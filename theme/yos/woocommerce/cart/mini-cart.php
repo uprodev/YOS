@@ -91,7 +91,7 @@ do_action( 'woocommerce_before_mini_cart' ); ?>
                                         </div>
                                     </div>
                                     <div class="product-card-sm__price">
-                                        <?= $product_price;?>
+                                        <?= $_product->get_price_html();?>
                                     </div>
                                 </div>
                             </div>

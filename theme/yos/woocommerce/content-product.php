@@ -285,8 +285,9 @@
                                     <input type="hidden" value="<?= $variation['variation_id'];?>">
                                 <?php endif;
                                 $h++; endforeach;
+
                       ?>
-                        <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="" data-product_id="<?= get_the_ID();?>">
+                        <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="<?= $variation_id?$variation_id:'';?>" data-product_id="<?= get_the_ID();?>">
                             <?= __('додати до кошика', 'yos');?>
                         </button>
                     </form>
