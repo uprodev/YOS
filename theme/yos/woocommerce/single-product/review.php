@@ -119,11 +119,10 @@ $count = count($answers);
                                 <img src="<?= get_template_directory_uri();?>/img/icons/answer.svg" alt="">
                                 <?= $count . __(' відповідь', 'yos');?>
                             </div>
-
-                            <div class="comment__likes">
-                                <?php comments_like_dislike(get_comment_ID());?>
-                            </div>
                     <?php endif;?>
+                    <div class="comment__likes">
+                        <?php comments_like_dislike(get_comment_ID());?>
+                    </div>
                 </div>
             </div>
         </div>
