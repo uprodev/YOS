@@ -630,11 +630,12 @@ if (popupCloseIcon.length > 0) {
 
 function popupOpen(curentPopup) {
     if (curentPopup && unlock) {
+        document.documentElement.classList.add('overflow-hidden');
         const popupActive = document.querySelector('.popup.popup--open');
         if (popupActive) {
             popupClose(popupActive, false);
         } else {
-            bodyLock();
+            //bodyLock();
         }
         curentPopup.classList.add('popup--open');
         curentPopup.addEventListener('click', function (e) {
@@ -648,9 +649,10 @@ function popupOpen(curentPopup) {
 
 function popupClose(popupActive, doUnlock = true) {
     if (unlock) {
+        document.documentElement.classList.remove('overflow-hidden');
         popupActive.classList.remove('popup--open');
         if (doUnlock) {
-            bodyUnlock();
+            //bodyUnlock();
         }
     }
 }
@@ -1125,7 +1127,7 @@ function alignPricesInOneLine(productsCards) {
     })
 }
 
-function chunkArray(array, size) {
+function chunkArray(array, size = 3) {
     const chunkedArray = [];
 
     for (let i = 0; i < array.length; i += size) {
@@ -1141,7 +1143,7 @@ function initAlignPricesInOneLine() {
 
     return {
         apply(productsCards, chunksSize, callback) {
-            const chunkedProducts = chunkArray(productsCards, chunksSize = 3);
+            const chunkedProducts = chunkArray(productsCards, chunksSize);
 
             const applyAlignment = () => {
                 chunkedProducts.forEach(chunkProducts => {
@@ -1569,6 +1571,51 @@ if(categoriesEl) {
         })
     }
 }
+			{
+    const addCommentForm = document.querySelector('#add-comment-popup #commentform');
+    if(addCommentForm) {
+        const buttonSubmit = addCommentForm.querySelector('button[type="submit"]');
+        if(!buttonSubmit) return;
+
+        const inputAuthor = addCommentForm.querySelector('input[name="author"]');
+        const inputEmail = addCommentForm.querySelector('input[name="email"]');
+        const inputRating = addCommentForm.querySelector('input[name="rating"]');
+
+        buttonSubmit.addEventListener('click', (e) => {
+            const ratingValidateResult = inputRating.value !== "0";
+            if(!ratingValidateResult) {
+                inputRating.closest('.set-stars')?.classList.add('error');
+            }
+
+            const authorValidateResult = !!inputAuthor.value.trim().length;
+            if(!authorValidateResult) {
+                inputAuthor.parentElement.classList.add('error');
+            }
+
+            const emailValidateResult = !!inputEmail.value.trim().length;
+            if(!emailValidateResult) {
+                inputEmail.parentElement.classList.add('error');
+            }
+
+            if(!ratingValidateResult || !authorValidateResult || !emailValidateResult) {
+                e.preventDefault();
+                return;
+            };
+        })
+
+        inputRating.closest('.set-stars')?.addEventListener('click', () => {
+            inputRating.closest('.set-stars')?.classList.remove('error');
+        })
+
+        inputAuthor.addEventListener('focus', () => {
+            inputAuthor.parentElement.classList.remove('error');
+        })
+
+        inputEmail.addEventListener('focus', () => {
+            inputEmail.parentElement.classList.remove('error');
+        })
+    }
+}
 			// ==== // components =====================================================
 
 
@@ -1758,6 +1805,14 @@ if (homeIntro) {
             nextEl: homeIntro.querySelector('.slider-btn.right'),
             prevEl: homeIntro.querySelector('.slider-btn.left'),
         },
+        breakpoints: {
+            0: {
+                autoHeight: true
+            },
+            768: {
+                autoHeight: false
+            }
+        },
     })
 
     const scrollbar = homeIntro.querySelector('.swiper-scrollbar');
@@ -1777,11 +1832,7 @@ if (homeIntro) {
 			const carousels = document.querySelectorAll('[data-slider="carousel"]');
 if (carousels.length) {
     carousels.forEach(carousel => {
-        const products = carousel.querySelectorAll('.product-card');
-        if(products.length) {
-            const AlignPrices = initAlignPricesInOneLine();
-            AlignPrices.apply(Array.from(products), products.length);
-        }
+
 
         const swiperSlider = new Swiper(carousel.querySelector('.swiper'), {
             speed: 600,
@@ -1816,7 +1867,13 @@ if (carousels.length) {
                     freeMode: false,
                 }
             },
-        })
+        });
+
+        const products = carousel.querySelectorAll('.product-card');
+        if(products.length) {
+            const AlignPrices = initAlignPricesInOneLine();
+            AlignPrices.apply(Array.from(products), products.length);
+        }
     })
 }
 
@@ -1894,10 +1951,7 @@ if (carouselsTabs.length) {
 			const tickerLogosSections = document.querySelectorAll('[data-ticker-logos]');
 if (tickerLogosSections.length) {
     tickerLogosSections.forEach(tickerLogosSection => {
-        const sliderLtr = tickerLogosSection.querySelector('.swiper[dir="ltr"]');
-        const sliderRtl = tickerLogosSection.querySelector('.swiper[dir="rtl"]');
-        
-        const options = {
+        new Swiper(tickerLogosSection.querySelector('.swiper'), {
             speed: 6000,
             autoplay: {
                 delay: 1,
@@ -1912,17 +1966,7 @@ if (tickerLogosSections.length) {
                     spaceBetween: 0,
                 }
             },
-        }
-        
-        
-
-        if(document.documentElement.clientWidth < 992) {
-            new Swiper(sliderRtl, options);
-        } else {
-            sliderLtr.firstElementChild.append(...sliderRtl.firstElementChild.children)
-        }
-
-        new Swiper(sliderLtr, options);
+        });
     })
 };
 			const instagramSliders = document.querySelectorAll('[data-slider="instagram"]');
@@ -2260,22 +2304,25 @@ if (setStartsElements.length) {
 const commentsList = document.querySelector('.product-comments__list');
 if(commentsList) {
     commentsList.addEventListener('click', (e) => {
-        if(e.target.closest('[data-open-form]')) {
-            const parent = e.target.closest('.comment');
-            if(!parent) return;
+        if(e.target.closest('.comment__answers-count')) {
+            const button = e.target.closest('.comment__answers-count');
+            const comment = e.target.closest('.comment');
+            if(!comment) return;
 
-            const formWrap = parent.querySelector('.comment__form');
-            if(!formWrap) return;
-            formWrap.classList.add('show');
-        }
-
-        if(e.target.closest('[data-close-form]')) {
-            const parent = e.target.closest('.comment');
-            if(!parent) return;
-
-            const formWrap = parent.querySelector('.comment__form');
-            if(!formWrap) return;
-            formWrap.classList.remove('show');
+            if(button.classList.contains('active')) {
+                button.classList.remove('active');
+                Array.from(comment.parentElement.children).forEach(child => {
+                    if(child === comment) return;
+                    this.utils.slideUp(child, 300);
+                })
+                
+            } else {
+                button.classList.add('active');
+                Array.from(comment.parentElement.children).forEach(child => {
+                    if(child === comment) return;
+                    this.utils.slideDown(child, 300);
+                })
+            }
         }
     })
 };
@@ -2288,7 +2335,10 @@ if (sideBasket) {
             e.preventDefault();
             bodyLock();
             sideBasket.classList.add('open');
-        } else if(e.target.closest('[data-action="close-side-basket"]')) {
+        } else if(
+            e.target.closest('[data-action="close-side-basket"]')
+            || e.target.closest('.side-basket__head')
+            ) {
             e.preventDefault();
             sideBasket.classList.remove('open');
             bodyUnlock();
@@ -2491,7 +2541,7 @@ if (faqNavSlider) {
         })
 
         proposition.addEventListener('click', (e) => {
-            if (e.target.closest('.side-basket__container')) return;
+            if (e.target.closest('.proposition__container')) return;
 
             proposition.classList.remove('open');
             bodyUnlock();
