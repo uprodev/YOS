@@ -7,11 +7,6 @@ $form = get_field('fidbek_forma', 'options');
 ?>
 
 <div class="side-basket proposition" data-proposition>
-    <!--
-        Можно открыть/закрыть боковое окно скриптами, есть два метода
-        window.proposition.open();
-        window.proposition.close();
-    -->
     <div class="proposition__container">
         <button class="side-basket__close-btn" data-action="close-proposition"><span
                 class="icon-close-thin"></span></button>
