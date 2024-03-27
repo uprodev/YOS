@@ -15,12 +15,12 @@ function add_scripts() {
     wp_enqueue_script( 'wc-cart-fragments' );
     wp_enqueue_script( 'vendorsjs', get_template_directory_uri() . '/js/vendors.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'app', get_template_directory_uri() . '/js/app.js', array(), rand(1111, 9999), false);
-    wp_enqueue_script( 'dropzone', get_template_directory_uri() . '/js/dropzone.js', array(), rand(1111, 9999), false);
     wp_enqueue_script( 'cookie', get_template_directory_uri() . '/js/jquery.cookie.js', array('jquery'), rand(1111, 9999), false);
     wp_enqueue_script( 'script', get_template_directory_uri() . '/js/script.js', array('jquery'), rand(1111, 9999), true);
 
     if (is_product()){
         wp_enqueue_script( 'comment-reply' );
+        wp_enqueue_script( 'dropzone', get_template_directory_uri() . '/js/dropzone.js', array(), rand(1111, 9999), false);
     }
     wp_dequeue_script('wc-order-attribution');
 
