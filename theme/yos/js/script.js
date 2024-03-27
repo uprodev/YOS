@@ -493,7 +493,13 @@ jQuery(document).ready(function ($) {
     });
 
 
+    /* scroll top*/
 
+    $(document).on('click','.pagination__btn', function() {
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+        
+        return false;
+    });
 
 
 
