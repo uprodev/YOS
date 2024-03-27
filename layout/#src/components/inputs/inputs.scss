@@ -56,6 +56,12 @@
             opacity: 0;
         }
     }
+
+    &.error {
+        & .input {
+            border-color: $themeColorWarning;
+        }
+    }
 }
 .input-label {
     position: absolute;
@@ -140,6 +146,12 @@
         & .textarea-label {
             top: 0.2rem;
             font-size: 1rem;
+        }
+    }
+
+    &.error {
+        & .textarea {
+            border-color: $themeColorWarning;
         }
     }
 }

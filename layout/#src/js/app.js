@@ -47,6 +47,7 @@ class App {
 			@@include('../components/brand-description-card/brand-description-card.js')
 			@@include('../components/categories/categories.js')
 			@@include('../components/popup-notify-availability/popup-notify-availability.js')
+			@@include('../components/add-comment-popup/add-comment-popup.js')
 			// ==== // components =====================================================
 
 

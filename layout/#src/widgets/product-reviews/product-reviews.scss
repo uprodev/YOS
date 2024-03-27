@@ -224,6 +224,14 @@
     gap: 0.9rem;
     position: relative;
 
+    &.error {
+        color: $textColorWarning;
+
+        & + div {
+            color: $textColorWarning;
+        }
+    }
+
     &__item {
         display: flex;
         gap: 1rem;
