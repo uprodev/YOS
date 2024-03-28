@@ -147,12 +147,12 @@
             <!--
                 Кабинет пока не делаем, этот елемент сделан на будущее
             -->
-            <div class="mobile-menu__title">кабінет</div>
-
-            <div class="mobile-menu__cabinet-buttons">
-                <a href="#" class="button-primary dark w-100">увійти</a>
-                <a href="#" class="button-primary light w-100">зареєструватися</a>
-            </div>
+<!--            <div class="mobile-menu__title">кабінет</div>-->
+<!---->
+<!--            <div class="mobile-menu__cabinet-buttons">-->
+<!--                <a href="#" class="button-primary dark w-100">увійти</a>-->
+<!--                <a href="#" class="button-primary light w-100">зареєструватися</a>-->
+<!--            </div>-->
         </div>
     </div>
 </div>

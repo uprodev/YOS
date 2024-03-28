@@ -497,9 +497,17 @@ jQuery(document).ready(function ($) {
 
     $(document).on('click','.pagination__btn', function() {
         $('html, body').animate({ scrollTop: 0 }, 'slow');
-        
+
         return false;
     });
+
+    //
+    // $(window).load(function(){
+    //   setTimeout(function(){
+    //     $("#payment").css({'opacity': 1})
+    //   }, 400)
+    //
+    // })
 
 
 
