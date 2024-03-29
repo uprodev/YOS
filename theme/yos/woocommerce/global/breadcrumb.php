@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul class="breadcrumbs">
+<ul class="breadcrumbs" data-da=".product__col-2,992,first">
     <?php
 echo do_shortcode('[wpseo_breadcrumb]');
 ?>

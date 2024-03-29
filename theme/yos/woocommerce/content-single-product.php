@@ -73,6 +73,7 @@ $choise = get_field('yos_choise', get_the_ID());
         <div class="product__body">
             <div class="product__row">
                 <div class="product__col-1">
+                    <?php woocommerce_breadcrumb();?>
                     <div class="product__images">
                         <div class="product-card__labels">
                             <?= $choise?'<div class="product-card-label product-card-label--secondary">'.__('YOS choice', 'yos').'</div>':'';?>
@@ -111,7 +112,7 @@ $choise = get_field('yos_choise', get_the_ID());
                     </div>
                 </div>
                 <div class="product__col-2">
-                    <?php woocommerce_breadcrumb();?>
+                    
                     <div class="product__main-info product-main-info">
                         <?php if($brand):?>
                             <h2 class="product-main-info__title title-2"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></h2>
