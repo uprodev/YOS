@@ -1000,44 +1000,48 @@ window.select = {
 }
 
 			
-// const inputsWrap = document.querySelectorAll('[data-input]');
-// if (inputsWrap.length) {
-//     inputsWrap.forEach(inputWrap => {
-//         const input = inputWrap.querySelector('input');
+const inputsWrap = document.querySelectorAll('[data-input]');
+if (inputsWrap.length) {
+    inputsWrap.forEach(inputWrap => {
+        const input = inputWrap.querySelector('input');
 
-//         if(input.required) {
-//             inputWrap.classList.add('required')
-//         }
+        if(!input.closest('.wpcf7-form-control-wrap')) return;
 
-//         input.addEventListener('focus', () => {
-//             inputWrap.classList.add('using');
-//         });
+        if(input.required) {
+            inputWrap.classList.add('required')
+        }
 
-//         input.addEventListener('blur', (e) => {
-//             if (input.value.length === 0) inputWrap.classList.remove('using');
-//         });
-//     })
-// }
+        input.addEventListener('focus', () => {
+            inputWrap.classList.add('using');
+        });
+
+        input.addEventListener('blur', (e) => {
+            if (input.value.length === 0) inputWrap.classList.remove('using');
+        });
+    })
+}
 
 // document.addEventListener('focus', (e) => {
 //     console.log(e.target);
 // })
 
 
-// const textareasWrap = document.querySelectorAll('[data-textarea]');
-// if (textareasWrap.length) {
-//     textareasWrap.forEach(textareaWrap => {
-//         const textarea = textareaWrap.querySelector('textarea');
+const textareasWrap = document.querySelectorAll('[data-textarea]');
+if (textareasWrap.length) {
+    textareasWrap.forEach(textareaWrap => {
+        const textarea = textareaWrap.querySelector('textarea');
 
-//         textarea.addEventListener('focus', () => {
-//             textareaWrap.classList.add('using');
-//         });
+        if(!textarea.closest('.wpcf7-form-control-wrap')) return;
+        
+        textarea.addEventListener('focus', () => {
+            textareaWrap.classList.add('using');
+        });
 
-//         textarea.addEventListener('blur', (e) => {
-//             if (textarea.value.length === 0) textareaWrap.classList.remove('using');
-//         });
-//     })
-// }
+        textarea.addEventListener('blur', (e) => {
+            if (textarea.value.length === 0) textareaWrap.classList.remove('using');
+        });
+    })
+}
 			document.addEventListener('click', (e) => {
     if(e.target.closest('input[type="radio"][data-label]')) return;
 
@@ -1575,44 +1579,71 @@ if(categoriesEl) {
     const addCommentForm = document.querySelector('#add-comment-popup #commentform');
     if(addCommentForm) {
         const buttonSubmit = addCommentForm.querySelector('button[type="submit"]');
-        if(!buttonSubmit) return;
 
         const inputAuthor = addCommentForm.querySelector('input[name="author"]');
         const inputEmail = addCommentForm.querySelector('input[name="email"]');
         const inputRating = addCommentForm.querySelector('input[name="rating"]');
+        const textareaComment = addCommentForm.querySelector('textarea[name="comment"]');
 
-        buttonSubmit.addEventListener('click', (e) => {
-            const ratingValidateResult = inputRating.value !== "0";
-            if(!ratingValidateResult) {
-                inputRating.closest('.set-stars')?.classList.add('error');
+        
+        buttonSubmit && buttonSubmit.addEventListener('click', (e) => {
+            if(buttonSubmit.closest('.product-comments__list')) return;
+
+            const validateState = {}
+
+            if(inputRating) {
+                validateState.rating = inputRating.value !== "0";
+                if(!validateState.rating) {
+                    inputRating.closest('.set-stars')?.classList.add('error');
+                }
             }
 
-            const authorValidateResult = !!inputAuthor.value.trim().length;
-            if(!authorValidateResult) {
-                inputAuthor.parentElement.classList.add('error');
+            if(inputAuthor) {
+                validateState.author = !!inputAuthor.value.trim().length;
+                if(!validateState.author) {
+                    inputAuthor.parentElement.classList.add('error');
+                }
             }
 
-            const emailValidateResult = !!inputEmail.value.trim().length;
-            if(!emailValidateResult) {
-                inputEmail.parentElement.classList.add('error');
+            if(inputEmail) {
+                validateState.email = !!inputEmail.value.trim().length;
+                if(!validateState.email) {
+                    inputEmail.parentElement.classList.add('error');
+                }
             }
 
-            if(!ratingValidateResult || !authorValidateResult || !emailValidateResult) {
+            if(textareaComment) {
+                validateState.comment = !!textareaComment.value.trim().length;
+                if(!validateState.comment) {
+                    textareaComment.parentElement.classList.add('error');
+                }
+            }
+
+            if(
+                (validateState.hasOwnProperty('rating') ? !validateState.rating : false)
+                || (validateState.hasOwnProperty('author') ? !validateState.author : false)
+                || (validateState.hasOwnProperty('email') ? !validateState.email : false)
+                || (validateState.hasOwnProperty('comment') ? !validateState.comment : false)
+            ) {
                 e.preventDefault();
                 return;
             };
         })
 
-        inputRating.closest('.set-stars')?.addEventListener('click', () => {
+        inputRating && inputRating.closest('.set-stars')?.addEventListener('click', () => {
             inputRating.closest('.set-stars')?.classList.remove('error');
         })
 
-        inputAuthor.addEventListener('focus', () => {
+        inputAuthor && inputAuthor.addEventListener('focus', () => {
             inputAuthor.parentElement.classList.remove('error');
         })
 
-        inputEmail.addEventListener('focus', () => {
+        inputEmail && inputEmail.addEventListener('focus', () => {
             inputEmail.parentElement.classList.remove('error');
+        })
+
+        textareaComment && textareaComment.addEventListener('focus', () => {
+            textareaComment.parentElement.classList.remove('error');
         })
     }
 }
