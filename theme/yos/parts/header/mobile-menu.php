@@ -5,11 +5,12 @@
 
         <div class="mobile-menu__head header-actions">
             <div class="header-actions__left">
-                <div class="header-actions__item">
-                    <button data-action="show-search-by-id" data-id="mobile-menu-search">
-                        <img class="img-svg" src="<?= get_template_directory_uri();?>/img/icons/search.svg" alt="">
-                    </button>
-                </div>
+<!--                <div class="header-actions__item">-->
+<!--                    <button data-action="show-search-by-id" data-id="mobile-menu-search">-->
+<!--                        <img class="img-svg" src="= get_template_directory_uri();-->
+<!--                      /img/icons/search.svg" alt="">-->
+<!--                    </button>-->
+<!--                </div>-->
             </div>
             <div class="header-actions__logo">
                 <a href="<?= get_home_url();?>">

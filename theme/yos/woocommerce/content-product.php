@@ -74,6 +74,8 @@
         <div class="product-card__head">
             <div class="product-card__labels">
 
+                <?= $choise?'<div class="product-card-label product-card-label--secondary">'.__('YOS choice', 'yos').'</div>':'';?>
+
                 <?php if ($product->is_type('variable')):
                     if ( $default_variation &&  $default_variation->is_on_sale() ) :
 
@@ -103,7 +105,6 @@
 
                 endif;?>
 
-                <?= $choise?'<div class="product-card-label product-card-label--secondary">'.__('YOS choice', 'yos').'</div>':'';?>
             </div>
             <a href="<?php the_permalink();?>" class="product-card__img">
                 <img src="<?php the_post_thumbnail_url();?>" alt="<?= strip_tags(get_the_title());?>">

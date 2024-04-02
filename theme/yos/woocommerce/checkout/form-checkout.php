@@ -38,7 +38,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                 <div class="checkout-form__head">
                     <div class="checkout-form__head-left">
                         <h2 class="checkout-form__head-title"><?php the_title();?></h2>
-                        <a href="#" class="button-link"><span><?= __('є акаунт?', 'yos');?></span></a>
+<!--                        <a href="#" class="button-link"><span>--><?//= __('є акаунт?', 'yos');?><!--</span></a>-->
                     </div>
                     <div class="checkout-form__head-right">
                         <a href="<?= wc_get_page_permalink( 'shop' ) ?>" class="button-link">

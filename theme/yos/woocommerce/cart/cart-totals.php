@@ -117,7 +117,7 @@ if($addit_prod):
 
 
 
-    <div class="basket__side-row   ">
+    <div class="basket__side-row">
         <div class="side-basket__payment-info">
 
             <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
