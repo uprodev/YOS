@@ -84,7 +84,8 @@ if($atr->taxonomy=='pa_brand'){
                     <div class="catalog__head-col-1"></div>
                     <div class="catalog__head-col-2">
                         <div class="catalog__head-row catalog__head-row--selected-filters-and-sort">
-                            <div class="catalog__products-selected-filters d-none0">
+                            <div class="catalog__products-selected-filters d-none0"
+                            <?php woocommerce_breadcrumb();?>
                                 <div class="selected-filters">
                                     <?= do_shortcode('[br_filter_single filter_id=450]') ?>
                                 </div>
