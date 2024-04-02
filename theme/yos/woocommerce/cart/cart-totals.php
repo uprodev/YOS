@@ -47,7 +47,8 @@ if ($ost < 0)
 <?php } ?>
 
 <?php
-$addit_prod = recently_viewed_products();
+$addit_prod = get_field('cart_item', 'option') ? get_field('cart_item', 'option')[0] : recently_viewed_products()  ;
+
 
 if($addit_prod):
     $_prod =  wc_get_product( $addit_prod );
