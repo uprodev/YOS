@@ -32,6 +32,8 @@ $ship = $order->get_shipping_to_display();
 $adres = $order->get_shipping_address_1();
 $city = $order->get_shipping_city();
 
+$sum_del = get_field('suma_bezkoshtovnoyi_dostavky', 'options');
+$sub = $order->get_formatted_order_total();
 ?>
 <section class="order-info">
     <div class="container">
@@ -130,11 +132,11 @@ $city = $order->get_shipping_city();
                         <?php endif;?>
                         <div class="side-basket__payment-info-row">
                             <span><?= __('Доставка', 'yos');?></span>
-                            <span><?= __('За тарифами перевізника', 'yos');?></span>
+                            <span><?= $sub>=$sum_del?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>
                         </div>
                         <div class="side-basket__payment-info-row side-basket__payment-info-row--total">
                             <span><?= __('всього до сплати', 'yos');?></span>
-                            <span class="text-nowrap"><?= $order->get_formatted_order_total();?></span>
+                            <span class="text-nowrap"><?= $sub;?></span>
 
                         </div>
                     </div>
