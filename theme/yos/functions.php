@@ -80,7 +80,7 @@ add_action('init', function(){
 
     if ($_GET['test']) {
         $order = new WC_order(6547);
-        print_r(get_field('billing_mid_name', 6549));
+        print_r(get_field('test2', 6565));
         die();
     }
 

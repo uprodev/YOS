@@ -25,9 +25,10 @@ function quadlayers_remove_checkout_fields( $fields ) {
 }
 
 
-add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta', 9999 );
 
 function my_custom_checkout_field_update_order_meta( $order_id ) {
+
 
 
     if ( ! empty( $_POST['billing_mid_name'] ) )
@@ -37,6 +38,9 @@ function my_custom_checkout_field_update_order_meta( $order_id ) {
         update_post_meta( $order_id, 'shipping_mid_name', sanitize_text_field( $_POST['shipping_mid_name'] ) );
 
 
+   // if ( ! empty( $_POST['shipping_mid_name'] ) )
+        update_post_meta( $order_id, 'test', json_encode( $_POST ) );
+        update_field( 'test2', json_encode( $_POST ), $order_id );
 
 
 }
