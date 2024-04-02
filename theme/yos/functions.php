@@ -79,8 +79,8 @@ add_filter( 'posts_clauses', '_nok_order_by_stock_status', 2000, 2 );
 add_action('init', function(){
 
     if ($_GET['test']) {
-        $order = new WC_order(6547);
-        print_r(get_field('test2', 6565));
+        $order = new WC_order(6576);
+        print_r(get_field('shipping_phone', 6578));
         die();
     }
 
@@ -106,3 +106,6 @@ add_action('init', function(){
         die();
     }
 });
+
+
+
