@@ -8357,6 +8357,10 @@ ul.woocommerce-messagule {
   margin-top: 4rem;
 }
 
+.catalog__products-selected-filters {
+  display: none;
+}
+
 .catalog__products-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -12412,10 +12416,6 @@ ul.wc_payment_methods::before {
     position: static;
     -ms-flex-item-align: start;
         align-self: flex-start;
-  }
-
-  .filter__selected-filters {
-    display: none;
   }
 
   .filter .berocket_single_filter_widget .bapf_body ul:not(.filter-brands__list) {
