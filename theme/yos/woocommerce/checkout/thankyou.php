@@ -94,8 +94,15 @@ $city = $order->get_shipping_city();
 
                 <div class="order-info__row">
                     <h4><?= __('дані одержувача', 'yos');?></h4>
-                    <p><?= $order->get_billing_first_name(). ' '.$order->get_billing_last_name();?></p>
-                    <p><?= $order->get_billing_phone();?></p>
+                    <?php if ($order->get_shipping_first_name())      { ?>
+                        <p><?= $order->get_shipping_first_name()   . ' '. $order->get_shipping_last_name(); ?></p>
+                    <?php } else {  ?>
+
+                        <p><?= $order->get_billing_first_name(). ' '.$order->get_billing_last_name();?></p>
+                    <?php } ?>
+
+
+                    <p><?= $order->get_shipping_phone() ? $order->get_shipping_phone() : $order->get_billing_phone();?></p>
                     <p><?= $order->get_billing_email();?></p>
                 </div>
 
