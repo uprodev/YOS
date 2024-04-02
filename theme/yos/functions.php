@@ -77,6 +77,14 @@ add_filter( 'posts_clauses', '_nok_order_by_stock_status', 2000, 2 );
 
 
 add_action('init', function(){
+
+    if ($_GET['test']) {
+        $order = new WC_order(6547);
+        print_r(get_field('billing_mid_name', 6549));
+        die();
+    }
+
+
     if ($_GET['fixsku']) {
         $q = new WP_Query([
             'post_type'      => array('product', 'product_variation'),

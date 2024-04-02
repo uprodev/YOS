@@ -24,55 +24,59 @@ function quadlayers_remove_checkout_fields( $fields ) {
 
 }
 
-/* add custom checkout field */
-add_action( 'woocommerce_before_order_notes', 'add_custom_checkout_field' );
 
-function add_custom_checkout_field( $checkout ) {
-    $current_user = wp_get_current_user();
-    $saved_mid_name = $current_user->billing_mid_name;
-    woocommerce_form_field( 'billing_mid_name', array(
-        'type' => 'text',
-        'class' => '',
-        'label' => __('По-батькові', 'yos'),
-        'placeholder' => '',
-        'required' => true,
-        'default' => $saved_mid_name,
-    ), $checkout->get_value( 'billing_mid_name' ) );
+add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+
+function my_custom_checkout_field_update_order_meta( $order_id ) {
+
+
+    if ( ! empty( $_POST['billing_mid_name'] ) )
+        update_post_meta( $order_id, 'billing_mid_name', sanitize_text_field( $_POST['billing_mid_name'] ) );
+
+    if ( ! empty( $_POST['shipping_mid_name'] ) )
+        update_post_meta( $order_id, 'shipping_mid_name', sanitize_text_field( $_POST['shipping_mid_name'] ) );
+
+
+
+
+}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+function my_custom_checkout_field_display_admin_order_meta($order){
+
+    if (get_post_meta($order->id, 'billing_mid_name', true))
+    echo '<p><strong>По-батькові:</strong> ' . get_post_meta($order->id, 'billing_mid_name', true) . '</p>';
+
+
+}
+
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'my_custom_checkout_field_display_admin_order_meta2', 10, 1 );
+function my_custom_checkout_field_display_admin_order_meta2($order){
+
+    if (get_post_meta($order->id, 'shipping_mid_name', true))
+        echo '<p><strong>По-батькові:</strong> ' . get_post_meta($order->id, 'shipping_mid_name', true) . '</p>';
+
+
 }
 
 
-add_action( 'woocommerce_checkout_process', 'validate_new_checkout_field' );
 
-function validate_new_checkout_field() {
-    if ( ! $_POST['billing_mid_name'] ) {
-        wc_add_notice( '<strong>'.__('По-батькові', 'yos').'</strong> '.__('is a required field.', 'yos'), 'error' );
-    }
-}
 
-add_action( 'woocommerce_checkout_update_order_meta', 'save_new_checkout_field' );
 
-function save_new_checkout_field( $order_id ) {
-    if ( $_POST['billing_mid_name'] ) update_post_meta( $order_id, '_billing_mid_name', esc_attr( $_POST['billing_mid_name'] ) );
-}
 
-add_action( 'woocommerce_thankyou', 'show_new_checkout_field_thankyou' );
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'show_new_checkout_field_emails', 20, 4 );
 
-function show_new_checkout_field_thankyou( $order_id ) {
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
-}
-
-add_action( 'woocommerce_admin_order_data_after_billing_address', 'show_new_checkout_field_order' );
-
-function show_new_checkout_field_order( $order ) {
-    $order_id = $order->get_id();
-    if ( get_post_meta( $order_id, '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order_id, '_billing_mid_name', true ) . '</p>';
-}
-
-add_action( 'woocommerce_email_after_order_table', 'show_new_checkout_field_emails', 20, 4 );
 
 function show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
-    if ( get_post_meta( $order->get_id(), '_billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order->get_id(), '_billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order->get_id(), 'billing_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order->get_id(), 'billing_mid_name', true ) . '</p>';
+    if ( get_post_meta( $order->get_id(), 'shipping_mid_name', true ) ) echo '<p><strong>'. __('По-батькові', 'yos').': </strong> ' . get_post_meta( $order->get_id(), 'shipping_mid_name', true ) . '</p>';
 }
+
+
+
+
+
+
 
 remove_action( 'woocommerce_checkout_order_review', 'woocommerce_order_review', 10 );
 
