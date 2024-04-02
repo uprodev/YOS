@@ -125,6 +125,7 @@
     }
 
     &__products-selected-filters {
+        display: none;
         @media (min-width: $mq-lg) {
             flex: 1 1 auto;
         }
@@ -394,10 +395,6 @@
 
     &__selected-filters {
         margin-top: 2rem;
-
-        @media (min-width: $mq-lg) {
-            display: none;
-        }
     }
 
     &__spoller {

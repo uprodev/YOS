@@ -2,7 +2,7 @@
     display: block;
     position: relative;
 
-    & .input:not(.wpcf7-text) {
+    & .input {
         position: relative;
         z-index: 1;
         color: transparent;
@@ -217,8 +217,4 @@
     transition:
         top $transition,
         font-size $transition;
-}
-
-.wpcf7-form-control-wrap + .input-label {
-    display: none;
 }

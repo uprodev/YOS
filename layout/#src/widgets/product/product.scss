@@ -1,3 +1,11 @@
+.product-single-page {
+    & .categories {
+        @media (min-width: 0px) and (max-width: 991.98px) {
+            display: none;
+        }
+    }
+}
+
 .product {
     padding-top: 1rem;
     min-width: 0;
@@ -44,14 +52,20 @@
     &__images {
         position: relative;
 
+        &:not(:first-child) {
+            margin-top: 1rem;
+        }
+
         & .product-card__labels {
             z-index: 10;
-            top: 0;
+            top: 1.5rem;
             right: 0;
             left: auto;
             gap: 1rem;
             
-            
+            @media (min-width: $mq-lg) {
+                top: 4.5rem;
+            }
         }
 
         & .product-card-label {
@@ -327,17 +341,23 @@
         @media (min-width: $mq-lg) {
             margin-top: 2rem !important;
         }
-    }
 
-    &__buy {
-        flex: 1 1 auto;
-        min-height: 4.1rem;
+        & .button-primary {
+            flex: 1 1 auto;
+            min-height: 4.1rem;
+            width: 100%;
 
-        @media (min-width: $mq-md) {
-            flex: 0 1 auto;
-            min-width: 30.2rem;
+            @media (min-width: 375px) {
+                width: auto;
+            }
+    
+            @media (min-width: $mq-md) {
+                flex: 0 1 auto;
+                min-width: 30.2rem;
+            }
         }
     }
+
 
     &__like {
         flex: 0 0 auto;
@@ -351,10 +371,10 @@
         border: 1px solid $themeColor;
         border-radius: 0.5rem;
         height: 4.1rem;
-        width: 8.1rem;
+        width: 100%;
         background-color: #fff;
 
-        @media (min-width: $mq-lg) {
+        @media (min-width: 375px) {
             width: 4.1rem;
         }
 

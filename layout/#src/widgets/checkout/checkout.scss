@@ -240,6 +240,7 @@ ul.wc_payment_methods {
         &::placeholder {
             opacity: 1;
             font-size: 1.4rem;
+            color: $textColorSecondary;
         }
 
         padding-right: 2.5rem;
