@@ -420,8 +420,8 @@ class Utils {
 	}
 
 	setHeightOfWindowWhenResize(htmlEl) {
-		window.addEventListener('resize', () => {
-			htmlEl.style.height = document.documentElement.clientHeight + 'px';
+		window.addEventListener('resize', (e) => {
+			htmlEl.style.height = document.documentElement.innerHeight + 'px';
 		})
 	}
 }
@@ -676,6 +676,7 @@ function bodyLock() {
 
     body.style.paddingRight = lockPaddingValue;
     document.documentElement.classList.add('overflow-hidden');
+    document.body.classList.add('overflow-hidden');
 
     unlock = false;
     setTimeout(function () {
@@ -701,6 +702,7 @@ function bodyUnlock() {
 
         body.style.paddingRight = '0px';
         document.documentElement.classList.remove('overflow-hidden');
+        document.body.classList.remove('overflow-hidden');
     }, timeout);
 
     unlock = false;

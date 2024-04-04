@@ -10005,6 +10005,7 @@ ul.woocommerce-messagule {
   -o-transition: transform 0.4s ease;
   transition: transform 0.4s ease;
   transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
 }
 
 .side-basket__close-btn {
