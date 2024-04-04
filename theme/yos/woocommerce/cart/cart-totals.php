@@ -104,7 +104,7 @@ if($addit_prod):
                         ?>
                     </div>
                     <div class="product-card-sm__btn-add">
-                        <a href="#" class="button-primary dark button-primary--sm w-100 add-cart" <?= $_prod->is_type('variable')?'data-variation_id="'.$variation_id.'"':'';?>><?= __('додати', 'yos');?></a>
+                        <a href="#" class="button-primary dark button-primary--sm w-100 add-cart" <?= $_prod->is_type('variable')?'data-variation_id="'.$variation_id.'"':'';?> data-product_id="<?= $_prod->get_id() ?>"><?= __('додати', 'yos');?></a>
                     </div>
                 </div>
             </div>
