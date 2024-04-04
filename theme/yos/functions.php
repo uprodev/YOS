@@ -108,4 +108,6 @@ add_action('init', function(){
 });
 
 
-
+function icl_get_languages() {
+    return [];
+}

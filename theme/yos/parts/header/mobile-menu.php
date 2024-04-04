@@ -61,7 +61,9 @@
                         'menu_class' => 'mobile-menu__list text-color-secondary',
                     ]);?>
 
-                    <?php $languages = icl_get_languages('skip_missing=1');
+                    <?php
+                    if (function_exists('icl_get_languages'))
+                        $languages = icl_get_languages('skip_missing=1');
 
                     if(1 < count($languages)):?>
 

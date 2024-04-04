@@ -52,7 +52,10 @@ endif;?>
                         <?php echo do_shortcode('[fibosearch]'); ?>
                     </div>
                 </div>
-                <?php $languages = icl_get_languages('skip_missing=1');
+                <?php
+
+                if (function_exists('icl_get_languages'))
+                $languages = icl_get_languages('skip_missing=1');
 
                 if(1 < count($languages)):?>
 
