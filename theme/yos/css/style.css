@@ -13461,12 +13461,16 @@ ul.wc_payment_methods::before {
     padding: 4rem 0;
   }
 
+  .catalog-page .categories {
+    display: none;
+  }
+
   .filter {
     position: fixed;
     top: 0;
     right: 100%;
     width: 100%;
-    height: 100svh;
+    height: 100dvh;
     background-color: #fff;
     z-index: 101;
     padding: 8rem 1rem 6rem;

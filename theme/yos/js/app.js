@@ -1669,6 +1669,7 @@ if (mobileMenu) {
     buttonsOpen.forEach(button => {
         button.addEventListener('click', () => {
             document.documentElement.classList.add('overflow-hidden');
+            document.body.classList.add('overflow-hidden');
             mobileMenu.classList.add('open')
         });
     })
@@ -1676,6 +1677,7 @@ if (mobileMenu) {
     buttonsClose.forEach(button => {
         button.addEventListener('click', () => {
             document.documentElement.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         });
     })
@@ -1691,6 +1693,7 @@ if (mobileMenu) {
 
         if(!e.target.closest('.mobile-menu')) {
             document.documentElement.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden');
             mobileMenu.classList.remove('open')
         }
     })
@@ -2131,6 +2134,7 @@ if (catalogFilter) {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             catalogFilter.classList.add('open');
+            document.documentElement.classList.add('overflow-hidden');
             document.body.classList.add('overflow-hidden');
         })
     })
@@ -2187,6 +2191,7 @@ if (catalogFilter) {
         if (e.target.closest('[data-action="close-filter"]') || e.target.closest('.filter__btn-close-mob')) {
             e.preventDefault();
             catalogFilter.classList.remove('open');
+            document.documentElement.classList.remove('overflow-hidden');
             document.body.classList.remove('overflow-hidden');
         }
     })
