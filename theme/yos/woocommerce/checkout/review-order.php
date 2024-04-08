@@ -99,12 +99,15 @@ if ($ost < 0)
             <!--                            <span>--><?php //__('Знижка за системою лояльності', 'yos');?><!--</span>-->
             <!--                            <span class="text-nowrap">-60 ₴</span>-->
             <!--                        </div>-->
-            <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_coupons()?'':'style="display:none;"';?>>
-                <span><?= __('Інші знижки', 'yos');?></span>
-                <span class="text-nowrap" >
-                                    -<?= WC()->cart->get_cart_discount_total();?>₴
-                                </span>
-            </div>
+            <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
+                <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
+                    <span><?= __('Промокод', 'yos');?> <?= $code; ?></span>
+
+                    <span class="text-nowrap" >
+                    <?php wc_cart_totals_coupon_html( $coupon ); ?>
+                </span>
+                </div>
+            <?php endforeach; ?>
             <div class="side-basket__payment-info-row">
                 <span><?= __('Доставка', 'yos');?></span>
                 <span><?= $percent_bar == 100 ? __('Безкоштовно', 'yos') : __('За тарифами перевізника', 'yos');?></span>

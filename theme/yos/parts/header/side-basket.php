@@ -1,3 +1,5 @@
 <div class="side-basket" data-side-basket>
-    <?php wc_get_template_part( 'cart/mini-cart' );?>
+    <?php
+    if (!is_cart())
+    wc_get_template_part( 'cart/mini-cart' );?>
 </div>

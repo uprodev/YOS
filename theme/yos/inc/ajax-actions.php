@@ -122,7 +122,7 @@ function update_totals() {
 
 function apply_coupon(){
 
-    $coupon = $_POST['coupon'];
+    $coupon = $_GET['coupon'];
 
     $coupon_code = wc_get_coupon_id_by_code($coupon);
     if ($coupon_code) {
@@ -141,6 +141,7 @@ function apply_coupon(){
         wp_send_json(['message' => '<span class="text-color-warning">'.__('Термін дії промокоду закінчено або його не існує!', 'yos').'</span>',
             'total' => $total,
             'discount' => $discount,
+            'coupon' => $_POST['coupon']
         ]);
     }
 

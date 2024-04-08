@@ -117,12 +117,16 @@ if($addit_prod):
     <div class="basket__side-row">
         <div class="side-basket__payment-info">
 
+            <?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
             <div class="side-basket__payment-info-row coupon-row" <?= WC()->cart->get_applied_coupons()?'':'style="display:none;"';?>>
-                <span><?= __('Інші знижки', 'yos');?></span>
+                <span><?= __('Промокод', 'yos');?> <?= $code; ?></span>
+
                 <span class="text-nowrap" >
-                    -<?= WC()->cart->get_cart_discount_total();?>₴
+                    <?php wc_cart_totals_coupon_html( $coupon ); ?>
                 </span>
             </div>
+            <?php endforeach; ?>
+
             <div class="side-basket__payment-info-row">
                 <span><?= __('Доставка', 'yos');?></span>
                 <span><?= $sub>=$sum_del?__('Безкоштовно', 'yos'):__('За тарифами перевізника', 'yos');?></span>

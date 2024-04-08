@@ -289,3 +289,11 @@ add_filter( 'dgwt/wcas/indexer/taxonomies', function ( $taxonomies ) {
     $taxonomies[] = 'pa_brand';
     return $taxonomies;
 } );
+
+
+add_filter( 'woocommerce_coupon_message', 'remove_coupon_message' );
+add_filter( 'woocommerce_coupon_error', 'remove_coupon_message' );
+
+function remove_coupon_message() {
+    return;
+}

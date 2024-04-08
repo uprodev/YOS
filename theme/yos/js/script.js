@@ -329,15 +329,16 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
         var that = $(this);
 
-        var coupon = $('#code_coupon').val();
+        var coupon = $('[name="coupon_code"]').val();
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: wc_add_to_cart_params.ajax_url,
             data: {
                 action: 'apply_coupon',
                 coupon: coupon,
             },
             success: function (data) {
+              console.log(data)
                 $('.promotional-code__text').html(data.message);
                 $('.cart-sub').html(data.total);
                 if(data.discount>0) {
@@ -346,12 +347,22 @@ jQuery(document).ready(function ($) {
                 }
                 $(document.body).trigger('update_checkout');
 
+                if (data.discount > 0)
+                  $( document.body ).trigger('wc_update_cart');
             },
             error: function(data){
                 $('.promotional-code__text').html(data.message);
             },
         });
     });
+
+
+  $(document).on('click', '.woocommerce-remove-coupon', function(){
+    setTimeout(function(){
+      $(document.body).trigger('update_checkout');
+    }, 300)
+
+  })
 
 
     /**
@@ -419,6 +430,7 @@ jQuery(document).ready(function ($) {
             });
         }
     });
+
 
 
 
