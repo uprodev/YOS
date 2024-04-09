@@ -38,6 +38,7 @@ $cats = get_terms([
                 <div class="articles-preview__col-2">
                     <ul class="breadcrumbs">
                         <li><a href="<?= get_home_url();?>"><?= __('головна', 'yos');?></a></li>
+                        <li><a href="<?php the_permalink(256) ?>"><?= __('ДОБІРКИ', 'yos');?></a></li>
                         <li><?= is_home()?get_the_title($blog_id):get_queried_object()->name;?></li>
                     </ul>
                 </div>

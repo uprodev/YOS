@@ -12,7 +12,7 @@ $selection = get_sub_field('selection');
                 <?php if($title):?>
                     <div class="carousel__category-info">
                         <div class="category-links">
-                            <h2 class="category-links__title title-2"><?= $title;?></h2>
+                            <h2 class="asd category-links__title title-2"><a href="<?php the_permalink(256) ?>"><?= $title;?></a></h2>
                         </div>
                     </div>
                 <?php endif;?>
@@ -24,7 +24,7 @@ $selection = get_sub_field('selection');
                             <div class="swiper-slide hide-in-mobile">
                                 <div class="carousel__category-info">
                                     <div class="category-links">
-                                        <h2 class="category-links__title title-2"><?= $title;?></h2>
+                                        <h2 class="category-links__title title-2"><a href="<?php the_permalink(256) ?>"><?= $title;?></a></h2>
                                     </div>
                                 </div>
                             </div>

@@ -135,7 +135,7 @@ function apply_coupon(){
         $total = WC()->cart->get_cart_total();
         $discount = WC()->cart->get_cart_discount_total();
 
-        wp_send_json(['message' => '<span class="text-color-warning">'.__('промокод успішно застосуваний', 'yos') . $msg .'</span>',
+        wp_send_json(['message' => '<span class="text-color-warning">'.__('Промокод успішно застосуваний', 'yos') . $msg .'</span>',
             'total' => $total,
             'discount' => $discount,
         ]);
