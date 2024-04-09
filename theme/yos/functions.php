@@ -80,8 +80,12 @@ add_filter( 'posts_clauses', '_nok_order_by_stock_status', 2000, 2 );
 add_action('init', function(){
 
     if ($_GET['test']) {
-        $order = new WC_order(6576);
-        print_r(get_field('shipping_phone', 6675));
+        $order = new WC_order(6678);
+        $order->set_shipping_phone(1245);
+        update_post_meta(6678, '_shipping_phone', 123213);
+        //$order->set_address_prop( 'phone', 'sh
+        //ipping', 565646 );
+       // print_r(get_field('shipping_phone', 6678));
         die();
     }
 
