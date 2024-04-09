@@ -10260,6 +10260,14 @@ ul.woocommerce-messagule {
   gap: 4rem;
 }
 
+.checkout__side-basket .side-basket__head {
+  padding-left: 0;
+}
+
+.checkout__side-basket .side-basket__head::before {
+  display: none;
+}
+
 .checkout__side-basket .side-basket__scroll-container {
   margin-top: 2rem;
   height: auto;
@@ -10307,6 +10315,10 @@ ul.woocommerce-messagule {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 1rem;
+}
+
+.checkout-form__row[data-da] {
+  margin-top: 3rem;
 }
 
 .checkout-form__fields:not(:first-child) {
@@ -13818,6 +13830,12 @@ ul.wc_payment_methods::before {
 
   .basket__link-to-shopping span::before {
     font-size: 1.9rem;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 991.98) {
+  .checkout-form__col.other-recipient .checkout-form__row {
+    margin-top: 3rem;
   }
 }
 
