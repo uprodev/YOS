@@ -11,6 +11,7 @@ include 'inc/dropzone.php';   // dropzone comments
 include 'inc/variation-gallery.php';   // variation-gallery
 
 
+
 add_action('after_setup_theme', 'theme_register_nav_menu');
 
 
@@ -80,7 +81,7 @@ add_action('init', function(){
 
     if ($_GET['test']) {
         $order = new WC_order(6576);
-        print_r(get_field('shipping_phone', 6578));
+        print_r(get_field('shipping_phone', 6675));
         die();
     }
 

@@ -67,6 +67,8 @@ function save_new_checkout_field( $order_id ) {
     if ( $_POST['_shipping_phone'] ) update_post_meta( $order_id, '_shipping_phone', esc_attr( $_POST['_shipping_phone'] ) );
     if ( $_POST['shipping_phone'] ) update_post_meta( $order_id, 'shipping_phone', esc_attr( $_POST['shipping_phone'] ) );
 
+    $order = new WC_Order($order_id);
+    $order->set_shipping_phone($_POST['shipping_phone']);
     update_post_meta( $order_id, 'test', json_encode( $_POST     ) );
 
 }

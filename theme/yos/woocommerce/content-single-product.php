@@ -19,6 +19,8 @@ defined( 'ABSPATH' ) || exit;
 
 global $product;
 
+
+
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -112,7 +114,7 @@ $choise = get_field('yos_choise', get_the_ID());
                     </div>
                 </div>
                 <div class="product__col-2">
-                    
+
                     <div class="product__main-info product-main-info">
                         <?php if($brand):?>
                             <h2 class="product-main-info__title title-2"><a href="<?= get_term_link($brand[0]->term_id);?>"><?= $brand[0]->name;?></a></h2>
@@ -242,7 +244,7 @@ $choise = get_field('yos_choise', get_the_ID());
 
                             <?php elseif($product->is_type('simple')):
                                 if ( $product->is_on_sale() ) :
-                                    $price = $product->display_price;
+                                    $price = $product->regular_price;
                                     $sale = $product->sale_price;
 
                                     $perc = round(($price-$sale)*100/$price);?>

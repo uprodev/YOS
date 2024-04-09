@@ -123,15 +123,19 @@ function update_totals() {
 function apply_coupon(){
 
     $coupon = $_GET['coupon'];
-
+    $coupon_obj =  new WC_Coupon($coupon);
+    $exclude = $coupon_obj->get_exclude_sale_items();
     $coupon_code = wc_get_coupon_id_by_code($coupon);
+
+    if ($exclude)
+        $msg = __('. Цей промокод діє тільки для товарів без знижок', 'yos');
     if ($coupon_code) {
         WC()->cart->apply_coupon($coupon);
 
         $total = WC()->cart->get_cart_total();
         $discount = WC()->cart->get_cart_discount_total();
 
-        wp_send_json(['message' => __('промокод успішно застосуваний', 'yos'),
+        wp_send_json(['message' => __('промокод успішно застосуваний', 'yos') . $msg,
             'total' => $total,
             'discount' => $discount,
         ]);
@@ -141,7 +145,8 @@ function apply_coupon(){
         wp_send_json(['message' => '<span class="text-color-warning">'.__('Термін дії промокоду закінчено або його не існує!', 'yos').'</span>',
             'total' => $total,
             'discount' => $discount,
-            'coupon' => $_POST['coupon']
+            'coupon' => $_POST['coupon'],
+            'exclude' => $exclude
         ]);
     }
 
