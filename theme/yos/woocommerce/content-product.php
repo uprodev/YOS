@@ -243,25 +243,15 @@
                                                                 <label class="product-option<?= $is_color ? '-color' : '' ?>" style="color: <?= $c;?>">
                                                                     <input data-label="<?= $term->name ?>" type="radio" name="attribute_<?= $term->taxonomy ?>" <?= $variation && $count != 1 ? ($default_attributes[$term->taxonomy] == $term->slug ? 'checked' : '') : 'checked' ?> value="<?= $term->slug ?>">
                                                                     <?php if ($is_color) { ?>
-                                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                        <svg width="31" height="31" viewBox="0 0 31 31" fill="none"
                                                                              xmlns="http://www.w3.org/2000/svg">
-                                                                            <g clip-path="url(#clip0_1014_6192)">
-                                                                                <path
-                                                                                    d="M24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12Z"
-                                                                                    fill="currentColor" />
-                                                                                <path class="border"
-                                                                                      d="M23.75 12C23.75 5.51065 18.4893 0.25 12 0.25C5.51065 0.25 0.25 5.51065 0.25 12C0.25 18.4893 5.51065 23.75 12 23.75C18.4893 23.75 23.75 18.4893 23.75 12Z"
-                                                                                      fill="white" stroke="#121212" stroke-width="0.5" />
-                                                                                <path
-                                                                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                                                                    fill="currentColor" />
-                                                                                <path class="line" d="M20 3.5L3.5 20" stroke="#6A6B6E" />
-                                                                            </g>
-                                                                            <defs>
-                                                                                <clipPath id="clip0_1014_6192">
-                                                                                    <rect width="24" height="24" fill="white" />
-                                                                                </clipPath>
-                                                                            </defs>
+                                                                            <path class="border"
+                                                                                  d="M4.5 1.46875H26.5C28.433 1.46875 30 3.03575 30 4.96875V26.9688C30 28.9017 28.433 30.4688 26.5 30.4688H4.5C2.567 30.4688 1 28.9017 1 26.9688V4.96875C1 3.03575 2.567 1.46875 4.5 1.46875Z"
+                                                                                  stroke="#182A64" />
+                                                                            <rect x="3" y="3.46875" width="25" height="25" rx="3"
+                                                                                  fill="currentColor" />
+                                                                            <path class="line" d="M4.5 27.5L26.5 4.5" stroke="#182A64"
+                                                                                  stroke-linecap="round" stroke-linejoin="round" />
                                                                         </svg>
                                                                     <?php } else { ?>
                                                                         <div class="product-option__value">
