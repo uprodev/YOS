@@ -28,17 +28,19 @@ get_header();
             <div class="contacts__info">
                 <?php the_content();?>
                 <?php if(get_field('phone')):?>
-                    <p>
-                        <a href="+<?= phone_clear(get_field('phone'));?>" class="button-link"><?php the_field('phone');?></a>
+                    <p class="">
+                        <a href="+<?= phone_clear(get_field('phone'));?>" class="button-link button-link--line"><span><?php the_field('phone');?></span></a>
                     </p>
                 <?php endif;?>
                 <?php if(get_field('social_network')):
                     foreach (get_field('social_network') as $soc):?>
-                        <p>
-                            <a href="<?= $soc['link'];?>" target="_blank" class="button-link"><span><?= $soc['name'];?></span></a>
+                        <p class="button-link button-link--line">
+                            <a href="<?= $soc['link'];?>" target="_blank" class="button-link button-link--line"><span><?= $soc['name'];?></span></a>
                         </p>
+                    <br>
                     <?php endforeach;
                 endif;?>
+                <?php the_field('address') ?>
             </div>
         </section>
     </main>
