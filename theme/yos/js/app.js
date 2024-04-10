@@ -146,7 +146,8 @@ class Utils {
 		if (images.length) {
 			images.forEach(img => {
 				let xhr = new XMLHttpRequest();
-				xhr.open('GET', img.src);
+				const src = img.getAttribute('data-src') || img.src;
+				xhr.open('GET', src);
 				xhr.onload = () => {
 					if (xhr.readyState === xhr.DONE) {
 						if (xhr.status === 200) {

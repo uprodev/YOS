@@ -4734,12 +4734,12 @@ h5,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   text-align: start;
   min-height: 3.3rem;
-  padding: 0.8rem 4rem 0.8rem 2rem;
+  padding: 0.8rem 3rem;
   position: relative;
   z-index: 1;
   border: 1px solid rgba(24, 42, 100, 0.5);
@@ -4794,14 +4794,17 @@ h5,
   color: rgba(24, 42, 100, 0.5);
   font-weight: 500;
   min-height: auto;
-  -webkit-box-pack: initial;
-      -ms-flex-pack: initial;
-          justify-content: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 1.2rem;
 }
 
 .product-card__footer .product-actions__option-items {
   margin-top: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .product-card__option {
