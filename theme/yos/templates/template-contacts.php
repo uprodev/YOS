@@ -29,7 +29,7 @@ get_header();
                 <?php the_content();?>
                 <?php if(get_field('phone')):?>
                     <p class="">
-                        <a href="+<?= phone_clear(get_field('phone'));?>" class="button-link button-link--line"><span><?php the_field('phone');?></span></a>
+                        <a href="tel:+<?= phone_clear(get_field('phone'));?>" class="button-link button-link--line"><span><?php the_field('phone');?></span></a>
                     </p>
                 <?php endif;?>
                 <?php if(get_field('social_network')):

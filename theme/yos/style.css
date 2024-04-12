@@ -31,3 +31,7 @@ Description: Theme WP for YOS
 /*#payment {*/
 /*  opacity:0*/
 /*}*/
+
+a.braapf_unselect_all {
+  display: none !important;
+}
