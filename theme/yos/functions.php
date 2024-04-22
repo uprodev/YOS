@@ -105,6 +105,13 @@ add_action('init', function(){
 
             if ($l == 5)
                 update_post_meta(get_the_id(),'_sku','0'.$sku);
+            if ($l == 4)
+                update_post_meta(get_the_id(),'_sku','00'.$sku);
+            if ($l == 3)
+                update_post_meta(get_the_id(),'_sku','000'.$sku);
+            if ($l == 2)
+                update_post_meta(get_the_id(),'_sku','0000'.$sku);
+
 
         }
 
