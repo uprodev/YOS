@@ -38,11 +38,16 @@ $cats = get_terms([
                 <div class="articles-preview__col-2">
                     <ul class="breadcrumbs">
                         <li><a href="<?= get_home_url();?>"><?= __('головна', 'yos');?></a></li>
-                        <li><a href="<?php the_permalink(256) ?>"><?= __('ДОБІРКИ', 'yos');?></a></li>
+                          <?php if (!is_home()) { ?>
+                            <li><a href="<?php the_permalink(256) ?>"><?= __('ДОБІРКИ', 'yos');?></a></li>
+                          <?php } ?>
                         <li><?= is_home()?get_the_title($blog_id):get_queried_object()->name;?></li>
                     </ul>
                 </div>
             </div>
+
+          <div id="scrollyVideo" data-video="<?= $is_video_desktop ?>" data-videomob="<?= $is_video_mobile ?>"></div>
+
             <div class="articles-preview__grid">
 
                 <div class="articles-preview__grid-row first">

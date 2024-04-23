@@ -68,6 +68,8 @@
     $choise = get_field('yos_choise', get_the_ID());
 
     $average = $product->get_average_rating();
+
+   // print_r((get_metadata('post', get_the_id())))
     ?>
 
     <div class="product-card<?= $product->is_in_stock()?'':' product-card--not-in-stock';?>"  data-product-card>
@@ -278,9 +280,21 @@
                                 $h++; endforeach;
 
                       ?>
-                        <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="<?= $variation_id?$variation_id:'';?>" data-product_id="<?= get_the_ID();?>">
-                            <?= __('додати до кошика', 'yos');?>
-                        </button>
+                        <?php if ($default_variation->is_in_stock()) { ?>
+                            <button class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="<?= $variation_id?$variation_id:'';?>" data-product_id="<?= get_the_ID();?>">
+                                <?= __('додати до кошика', 'yos');?>
+                            </button>
+                            <div class="product-card__footer">
+                                <a style="display: none" href="#popup-notify-availability" data-product="<?php the_title() ?>" data-product_id="<?php the_id()  ?>" data-popup="open-popup" class="button-primary dark btn-avaliable btn-avaliable-var">повідомити про наявність</a>
+                            </div>
+                        <?php } else {?>
+                            <button style="display: none"  class="product-card__btn-to-basket button-primary dark w-100 add-cart" data-variation_id="<?= $variation_id?$variation_id:'';?>" data-product_id="<?= get_the_ID();?>">
+                                <?= __('додати до кошика', 'yos');?>
+                            </button>
+                            <div class="product-card__footer">
+                                <a href="#popup-notify-availability" data-product="<?php the_title() ?>" data-product_id="<?php the_id()  ?>" data-popup="open-popup" class="button-primary dark btn-avaliable btn-avaliable-var">повідомити про наявність</a>
+                            </div>
+                        <?php } ?>
                     </form>
 
                 <?php else:?>

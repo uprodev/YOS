@@ -198,7 +198,8 @@ function find_variation()
         'data' => $data,
         'variation_id' => $variation_id,
         'price' => $variation->get_price_html(),
-        'perc' => $perc
+        'perc' => $perc,
+        'is_in_stock' => $variation->is_in_stock()
     ]);
 }
 

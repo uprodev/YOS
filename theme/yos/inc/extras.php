@@ -299,32 +299,7 @@ function remove_coupon_message() {
 }
 
 
-add_filter( 'woocommerce_get_catalog_ordering_args', 'custom_woocommerce_get_catalog_ordering_args' );
 
-function custom_woocommerce_get_catalog_ordering_args( $args ) {
-    if (isset($_GET['orderby']) && 'price' === $_GET['orderby']) {
-        $args['orderby'] = 'meta_value_num';
-        $args['order'] = 'ASC';
-        $args['meta_key'] = '_price';
-    }
-    return $args;
-}
 
-add_action( 'woocommerce_product_query', 'custom_woocommerce_product_query' );
-function custom_woocommerce_product_query( $q ) {
-    if (isset($_GET['orderby']) && 'price' === $_GET['orderby']) {
-        add_filter( 'posts_clauses', 'order_by_default_variation_min_price_clause' );
-    }
-}
 
-function order_by_default_variation_min_price_clause( $clauses ) {
-    global $wpdb;
-    remove_filter( 'posts_clauses', 'order_by_default_variation_min_price_clause' );
 
-    // Тут добавляем логику для определения ID дефолтной вариации
-    $clauses['join'] .= " LEFT JOIN {$wpdb->postmeta} as pm ON {$wpdb->posts}.ID = pm.post_id AND pm.meta_key = '_default_variation_id'";
-
-    $clauses['orderby'] = "COALESCE(pm.meta_value, {$wpdb->postmeta}.meta_value+0) ASC";
-
-    return $clauses;
-}

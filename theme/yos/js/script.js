@@ -247,9 +247,19 @@ jQuery(document).ready(function ($) {
           that.closest('.product-card__footer').find('.product-card__btn-to-basket').attr('data-variation_id', data.variation_id);
           that.closest('.product-card').find('.product-card__price-current').html(data.price);
 
+          console.log(data)
           if (data.perc > 0) {
             that.closest('.product-card').find('.product-card-label-perc').addClass('show').html('-' + data.perc + '%');
           }
+
+          if (!data.is_in_stock) {
+            that.closest('.product-card__footer').find('.add-cart').prop('disabled', true).hide()
+            that.closest('.product-card__footer').find('.btn-avaliable-var').show()
+          } else {
+            that.closest('.product-card__footer').find('.add-cart').prop('disabled', false).show()
+            that.closest('.product-card__footer').find('.btn-avaliable-var').hide()
+          }
+
         },
         error: function(data){
 
