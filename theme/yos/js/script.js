@@ -160,6 +160,7 @@ jQuery(document).ready(function ($) {
 
     /* variation  */
 
+
     $(document).on('show_variation', '.product-main-info .single_variation_wrap', function (event, variation) {
 
          console.log(variation);
@@ -199,12 +200,16 @@ jQuery(document).ready(function ($) {
 
         $('.product-actions__option-text.stock').text(stock)
 
-        if (!variation.is_in_stock) {
+        if (!variation.is_in_stock ) {
           $('.product-actions__footer .add-cart').prop('disabled', true).hide()
           $('.btn-avaliable-var').show()
         } else {
           $('.product-actions__footer .add-cart').prop('disabled', false).show()
           $('.btn-avaliable-var').hide()
+        }
+
+        if (variation.consultation && $('[name="consultation"]').prop('checked') !== true) {
+          $('.product-actions__footer .add-cart').prop('disabled', true)
         }
 
 
@@ -216,7 +221,8 @@ jQuery(document).ready(function ($) {
 
   if ($('[name="pa_color"]').length) {
     setTimeout(function(){
-      $('[name="pa_color"]').change()
+      var label = $('[name="pa_color"]:checked').attr('data-label')
+      $('.product-actions__option-text.color-label').text(label)
     }, 200)
 
     $('[name="pa_color"]').change(function(){

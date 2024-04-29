@@ -299,6 +299,14 @@ function remove_coupon_message() {
 }
 
 
+add_filter( 'woocommerce_available_variation', function( $variation ) {
+    $post_id = get_post($variation['variation_id'])->post_parent;
+    $variation[ 'post_id' ] = $post_id;
+    $variation[ 'consultation' ] = get_field('consultation', $post_id);
+    return $variation;
+
+} );
+
 
 
 

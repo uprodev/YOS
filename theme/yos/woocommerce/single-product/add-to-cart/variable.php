@@ -22,6 +22,7 @@ global $product;
 $attribute_keys  = array_keys( $attributes );
 $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
+$default_attributes = $product->get_default_attributes();
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
@@ -33,7 +34,9 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 	<?php else : ?>
 		<table class="variations" cellspacing="0" role="presentation">
 			<tbody>
-				<?php foreach ( $attributes as $attribute_name => $options ) : ?>
+				<?php foreach ( $attributes as $attribute_name => $options ) :
+                    echo $default_attributes[$attribute_name]
+                   ?>
 					<tr>
 						<th class="label"><label for="<?php echo esc_attr( sanitize_title( $attribute_name ) ); ?>"><?php echo wc_attribute_label( $attribute_name ); // WPCS: XSS ok. ?></label></th>
 						<td class="value">
@@ -43,6 +46,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 										'options'   => $options,
 										'attribute' => $attribute_name,
 										'product'   => $product,
+                                        'selected'  => $default_attributes[$attribute_name]
 									)
 								);
 								echo end( $attribute_keys ) === $attribute_name ? wp_kses_post( apply_filters( 'woocommerce_reset_variations_link', '<a class="reset_variations" href="#">' . esc_html__( 'Clear', 'woocommerce' ) . '</a>' ) ) : '';
