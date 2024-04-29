@@ -6198,7 +6198,6 @@ h5,
 
 .categories .swiper {
   overflow: visible;
-  max-width: 75.6rem;
 }
 
 .categories .swiper-slide {
@@ -11971,6 +11970,18 @@ ul.wc_payment_methods::before {
 
   .categories__inner {
     padding: 1.6rem 0 2rem;
+  }
+
+  .categories .swiper .swiper-scrollbar {
+    display: none;
+  }
+
+  .categories .swiper-wrapper {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
 
   .categories .swiper-slide {

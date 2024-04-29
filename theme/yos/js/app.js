@@ -1485,15 +1485,30 @@ if(quantityElements.length) {
 			// categories
 const headerMobCategoriesSlider = document.querySelector('[data-slider="header-mob-categories"]');
 if (headerMobCategoriesSlider) {
-    const swiperSlider = new Swiper(headerMobCategoriesSlider, {
-        freeMode: true,
-        slidesPerView: 'auto',
-        scrollbar: {
-            el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
-            hide: true,
-            draggable: true
-        },
-    })
+    let swiperSlider;
+
+    const init = () => {
+        console.log('test');
+        if(document.documentElement.clientWidth < 992) {
+            if(headerMobCategoriesSlider.classList.contains('swiper-initialized')) return;
+
+            swiperSlider = new Swiper(headerMobCategoriesSlider, {
+                freeMode: true,
+                slidesPerView: 'auto',
+                scrollbar: {
+                    el: headerMobCategoriesSlider.querySelector('.swiper-scrollbar'),
+                    hide: true,
+                    draggable: true
+                },
+            })
+        } else {
+            swiperSlider?.destroy();
+        }
+    }
+    init();
+
+    window.addEventListener('resize', init);
+    
 }
 
 class CategoryItems {
