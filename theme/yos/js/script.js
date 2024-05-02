@@ -235,7 +235,7 @@ jQuery(document).ready(function ($) {
 
   /* variation loop  */
 
-  $(document).on('change', 'li .product-card input',  function(){
+  $(document).on('change', 'li .product-card input, .carousel__slider .product-card input',  function(){
 
       var data = $(this).closest('form').serialize();
       var product_id = $(this).closest('form').attr('data-product_id');

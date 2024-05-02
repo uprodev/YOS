@@ -50,6 +50,7 @@ if ($ost < 0)
 $addit_prod = get_field('cart_item', 'option') ? get_field('cart_item', 'option')[0] : recently_viewed_products()  ;
 
 
+
 if($addit_prod):
     $_prod =  wc_get_product( $addit_prod );
     $br = get_the_terms($addit_prod, 'pa_brand');
