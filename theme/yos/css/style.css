@@ -11426,6 +11426,10 @@ ul.wc_payment_methods::before {
     margin-top: 0.4rem;
   }
 
+  .product-card__footer .button-primary {
+    margin-top: 1.6rem;
+  }
+
   .product-card__footer .product-actions__option:not(:first-child) {
     margin-top: 1.6rem !important;
   }
@@ -11770,6 +11774,14 @@ ul.wc_payment_methods::before {
     -webkit-transition: opacity 0.15s ease;
     -o-transition: opacity 0.15s ease;
     transition: opacity 0.15s ease;
+  }
+
+  .product-card__footer .product-card__footer {
+    margin-top: 0;
+  }
+
+  .product-card__footer .product-card__footer .button-primary {
+    margin-top: 1.6rem;
   }
 
   .product-card--not-in-stock:hover .product-card__img img {

@@ -1488,7 +1488,6 @@ if (headerMobCategoriesSlider) {
     let swiperSlider;
 
     const init = () => {
-        console.log('test');
         if(document.documentElement.clientWidth < 992) {
             if(headerMobCategoriesSlider.classList.contains('swiper-initialized')) return;
 
@@ -2458,9 +2457,7 @@ if (brandsSection) {
             if (text.length) {
 
                 if (firstLetter !== listRowData.letter) {
-
                     listRowData.el.classList.add('d-none');
-
                 } else {
                     listRowData.el.classList.remove('d-none');
                     listRowData.children && listRowData.children.forEach(rowItem => {
